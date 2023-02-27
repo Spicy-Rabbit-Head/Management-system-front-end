@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*注册登录界面*/
+@layer components {
+    /*注册登录界面布局框架*/
+    .login {
+        @apply
+        flex
+        justify-center
+        items-center
+        absolute
+    }
+
+    /*主标题*/
+    .Title {
+        @apply
+        text-3xl
+        font-bold
+        caret-black
+        mb-8
+    }
+
+    /*副标题*/
+    .SwitchDescription {
+        @apply
+        text-base
+        tracking-wider
+        text-center
+        text-gray-400
+        mb-8
+    }
+
+    /*切换按钮*/
+    #SwitchButton {
+        @apply
+        mt-4
+        w-40
+        h-12
+        text-xl
+        text-login-btn
+        tracking-wider
+        bg-blue-500
+        font-bold
+    }
+
+    /*输入框*/
+    .InputIn {
+        @apply
+        shadow-login-in-shadow
+        caret-transparent
+        w-3/5
+        h-12
+        m-2
+        pl-6
+        text-xl
+        tracking-wider
+        font-sans
+        outline-none
+        border-none
+        rounded-xl
+        duration-500
+        ease-in-out
+        focus:ring-4
+        focus:ring-blue-600
+        focus:w-8/12
+    }
+
+    /*切换隐藏*/
+    .SwitchHidden {
+        @apply
+        invisible
+        opacity-0
+        absolute
+    }
+
+    /*过渡属性*/
+    .Transition_configuration {
+        @apply
+        duration-1250
+        ease-in-out
+    }
+}
