@@ -4,6 +4,41 @@
 
 /*注册登录界面*/
 @layer components {
+    /* 上圆过渡 */
+    .Circle1 {
+        left: 40% !important;
+    }
+
+    /* 下圆过渡 */
+    .Circle2 {
+        left: -25% !important;
+    }
+
+    /* 文字提示框右过渡 */
+    .Switch_txr {
+        left: 60%;
+        @apply
+        rounded-r-2xl
+    }
+
+    /* 文字提示框左过渡 */
+    .Switch_txl {
+        @apply
+        left-0
+        rounded-l-2xl
+    }
+
+    /* 注册登录框右过渡 */
+    .Switch_txr {
+        @apply
+        right-0
+    }
+
+    /* 注册登录框左过渡 */
+    .Switch_txl {
+        right: 40%;
+    }
+
     /*注册登录界面布局框架*/
     .login {
         @apply
@@ -74,7 +109,6 @@
         opacity-0
         absolute
     }
-
     /*过渡属性*/
     .Transition_configuration {
         @apply

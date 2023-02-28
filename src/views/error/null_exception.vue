@@ -24,6 +24,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
+//错误容器
 .error {
   width: 400px;
   min-width: 400px;

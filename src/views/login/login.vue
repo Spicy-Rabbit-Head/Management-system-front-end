@@ -13,6 +13,7 @@ import Login_register from "./login_register.vue";
 </script>
 
 <style scoped>
+/* 背景组件 */
 .BackgroundComponent {
   @apply
   bg-gradient-to-r
@@ -23,6 +24,7 @@ import Login_register from "./login_register.vue";
   font-serif
 }
 
+/* 背景组件内拟态框 */
 .BackgroundComponentFrame {
   @apply
   bg-login-bg
@@ -39,6 +41,7 @@ import Login_register from "./login_register.vue";
   p-6
 }
 
+/* 背景组件内拟态框响应式 */
 .Response {
   @apply
   2xl:scale-90
@@ -47,6 +50,4 @@ import Login_register from "./login_register.vue";
   md:scale-60
   scale-50
 }
-
-
 </style>

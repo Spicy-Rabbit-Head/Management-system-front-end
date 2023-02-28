@@ -35,19 +35,11 @@
   </div>
 </template>
 <script setup lang="ts">
-import {LoginPinia} from '../../store'
-</script>
+import {LoginPinia} from '../../store'</script>
 
 <style scoped>
-.Switch_txr {
-  @apply
-  right-0
-}
 
-.Switch_txl {
-  right: 40%;
-}
-
+/* 注册登录框容器 */
 .Container {
   @apply
   w-3/5
@@ -56,6 +48,7 @@ import {LoginPinia} from '../../store'
   p-10
 }
 
+/* 注册登录表单 */
 .Form {
   @apply
   flex-col
@@ -63,6 +56,7 @@ import {LoginPinia} from '../../store'
   h-full
 }
 
+/* 自动登录框 */
 .AutomaticLogin {
   @apply
   h-14

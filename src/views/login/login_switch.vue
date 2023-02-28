@@ -25,34 +25,10 @@
 </template>
 
 <script setup lang="ts">
-import {LoginPinia} from '../../store'
-
-
-</script>
+import {LoginPinia} from '../../store'</script>
 
 <style scoped>
-
-
-.Circle1 {
-  left: 40% !important;
-}
-
-.Circle2 {
-  left: -25% !important;
-}
-
-.Switch_txr {
-  left: 60%;
-  @apply
-  rounded-r-2xl
-}
-
-.Switch_txl {
-  @apply
-  left-0
-  rounded-l-2xl
-}
-
+/* 文字提示框 */
 .Switch {
   @apply
   bg-login-bg
@@ -66,6 +42,7 @@ import {LoginPinia} from '../../store'
   shadow-2xl
 }
 
+/* 文字提示框下圆 */
 .SwitchCircle {
   box-shadow: inset 8px 8px 12px #d1d9e6,
   inset -8px -8px 12px #f9f9f9;
@@ -79,6 +56,7 @@ import {LoginPinia} from '../../store'
   -left-1/4
 }
 
+/* 文字提示框上圆 */
 .SwitchCircleT {
   @apply
   -top-1/4
@@ -87,12 +65,12 @@ import {LoginPinia} from '../../store'
   h-60
 }
 
+/* 文字提示框内容器 */
 .SwitchContainer {
   @apply
   absolute
   w-72
   px-4
 }
-
 
 </style>
