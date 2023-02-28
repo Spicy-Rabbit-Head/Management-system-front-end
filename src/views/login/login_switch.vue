@@ -72,5 +72,4 @@ import {LoginPinia} from '../../store'</script>
   w-72
   px-4
 }
-
 </style>

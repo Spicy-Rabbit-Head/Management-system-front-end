@@ -15,27 +15,27 @@
     }
 
     /* 文字提示框右过渡 */
-    .Switch_txr {
+    .Prompt_box_switch_txr {
         left: 60%;
         @apply
         rounded-r-2xl
     }
 
     /* 文字提示框左过渡 */
-    .Switch_txl {
+    .Prompt_box_switch_txl {
         @apply
         left-0
         rounded-l-2xl
     }
 
     /* 注册登录框右过渡 */
-    .Switch_txr {
+    .Register-switch_txr {
         @apply
         right-0
     }
 
     /* 注册登录框左过渡 */
-    .Switch_txl {
+    .Register-switch_txl {
         right: 40%;
     }
 
@@ -109,6 +109,7 @@
         opacity-0
         absolute
     }
+
     /*过渡属性*/
     .Transition_configuration {
         @apply

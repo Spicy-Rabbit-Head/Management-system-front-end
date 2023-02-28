@@ -4,35 +4,34 @@ import router from "../router";
 export const LoginPinia = defineStore('LoginPinia', {
     state: () => {
         return {
-            Switch_btn: 'Switch_txl',
+            Switch_btn: 'Prompt_box_switch_txl',
             Switch_btn_hidden1: '',
             Switch_btn_hidden2: 'SwitchHidden',
             Circle1: '',
             Circle2: '',
-            Switch_register: 'Switch_txr',
             FormRegister: {Username: '', Password: '', PasswordDuplication: ''},
             FormLogin: {Username: '', Password: ''},
-            Switch_Register: 'Switch_txr',
-            Switch_Login: 'Switch_txr SwitchHidden',
+            Switch_Register: 'Register-switch_txr',
+            Switch_Login: 'Register-switch_txr SwitchHidden',
             AutomaticLogin: false,
         }
     },
     actions: {
         ToggleSwitch_Login(e) {
             if (e === 0) {
-                this.Switch_btn = 'Switch_txr'
+                this.Switch_btn = 'Prompt_box_switch_txr'
                 this.Switch_btn_hidden2 = ''
                 this.Switch_btn_hidden1 = 'SwitchHidden'
-                this.Switch_Login = 'Switch_txl'
-                this.Switch_Register = 'Switch_txl SwitchHidden'
+                this.Switch_Login = 'Register-switch_txl'
+                this.Switch_Register = 'Register-switch_txl SwitchHidden'
                 this.Circle1 = 'Circle1'
                 this.Circle2 = 'Circle2'
             } else {
-                this.Switch_btn = 'Switch_txl'
+                this.Switch_btn = 'Prompt_box_switch_txl'
                 this.Switch_btn_hidden1 = ''
                 this.Switch_btn_hidden2 = 'SwitchHidden'
-                this.Switch_Register = 'Switch_txr'
-                this.Switch_Login = 'Switch_txr SwitchHidden'
+                this.Switch_Register = 'Register-switch_txr'
+                this.Switch_Login = 'Register-switch_txr SwitchHidden'
                 this.Circle1 = ''
                 this.Circle2 = ''
             }
