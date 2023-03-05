@@ -4,6 +4,7 @@ module.exports = {
         "./index.html",
         "./src/**/*.{vue,js,ts,jsx,tsx}",
     ],
+
     theme: {
         // 扩展
         extend: {
@@ -52,6 +53,11 @@ module.exports = {
                 // 登录界面主框高
                 '600': '600px'
             },
+            // 插入距离
+            inset: {
+                '2/5': '40%',
+                '3/5': '60%',
+            }
         }
     },
     plugins: [],

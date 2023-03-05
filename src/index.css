@@ -6,18 +6,20 @@
 @layer components {
     /* 上圆过渡 */
     .Circle1 {
-        left: 40% !important;
+        @apply
+        left-2/5 !important
     }
 
     /* 下圆过渡 */
     .Circle2 {
-        left: -25% !important;
+        @apply
+        -left-1/4 !important
     }
 
     /* 文字提示框右过渡 */
     .Prompt_box_switch_txr {
-        left: 60%;
         @apply
+        left-3/5
         rounded-r-2xl
     }
 
@@ -36,7 +38,8 @@
 
     /* 注册登录框左过渡 */
     .Register-switch_txl {
-        right: 40%;
+        @apply
+        right-2/5
     }
 
     /*注册登录界面布局框架*/

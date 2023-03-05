@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-screen login">
+  <div class="result">
     <el-result
         icon="error"
         title="访问异常"
@@ -25,11 +25,15 @@ onMounted(() => {
 
 <style scoped>
 /* 错误容器 */
+.result {
+  @apply
+  h-screen
+  grid
+  place-items-center
+}
+
+/* 错误提示 */
 .error {
-  width: 400px;
-  min-width: 400px;
-  min-height: 400px;
-  height: 400px;
   @apply
   scale-225
 }

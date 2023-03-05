@@ -9,7 +9,6 @@ const routes = [
     {path: '/', redirect: '/login'},
     {path: '/login', component: login},
     {path: '/null-exception', component: null_exception},
-
 ]
 
 // 创建路由实例并定义路由配置

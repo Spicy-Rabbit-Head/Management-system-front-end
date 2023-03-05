@@ -1,17 +1,21 @@
 <template>
-  <router-view v-slot="{ Component }">
-    <transition enter-active-class="animate__animated animate__slideInLeft"
-                leave-active-class="animate__animated animate__slideOutRight">
-      <component :is="Component"/>
-    </transition>
-  </router-view>
+  <div style="height: 100%;width: 100%;">
+    <router-view v-slot="{ Component,route }">
+      <Transition mode="out-in"
+                  enter-from-class="opacity-0"
+                  leave-to-class="opacity-0"
+                  leave-active-class="transition-opacity duration-500"
+                  enter-active-class="transition-opacity duration-500"
+      >
+        <component :is="Component" :key="route.path"/>
+      </Transition>
+    </router-view>
+  </div>
 </template>
 
 <script setup>
-import 'animate.css'
 </script>
 
 
 <style scoped>
-
 </style>
