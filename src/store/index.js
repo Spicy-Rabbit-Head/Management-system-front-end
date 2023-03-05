@@ -5,12 +5,16 @@ export const LoginPinia = defineStore('LoginPinia', {
     state: () => {
         return {
             Switch_btn: 'Prompt_box_switch_txl',
-            Switch_btn_hidden1: '',
+            Switch_btn_hidden1: null,
             Switch_btn_hidden2: 'SwitchHidden',
-            Circle1: '',
-            Circle2: '',
-            FormRegister: {Username: '', Password: '', PasswordDuplication: ''},
-            FormLogin: {Username: '', Password: ''},
+            Circle1: null,
+            Circle2: null,
+            FormRegister: {
+                Username: null,
+                Password: null,
+                PasswordDuplication: null
+            },
+            FormLogin: {Username: null, Password: null},
             Switch_Register: 'Register-switch_txr',
             Switch_Login: 'Register-switch_txr SwitchHidden',
             AutomaticLogin: false,
@@ -20,7 +24,7 @@ export const LoginPinia = defineStore('LoginPinia', {
         ToggleSwitch_Login(e) {
             if (e === 0) {
                 this.Switch_btn = 'Prompt_box_switch_txr'
-                this.Switch_btn_hidden2 = ''
+                this.Switch_btn_hidden2 = null
                 this.Switch_btn_hidden1 = 'SwitchHidden'
                 this.Switch_Login = 'Register-switch_txl'
                 this.Switch_Register = 'Register-switch_txl SwitchHidden'
@@ -28,15 +32,19 @@ export const LoginPinia = defineStore('LoginPinia', {
                 this.Circle2 = 'Circle2'
             } else {
                 this.Switch_btn = 'Prompt_box_switch_txl'
-                this.Switch_btn_hidden1 = ''
+                this.Switch_btn_hidden1 = null
                 this.Switch_btn_hidden2 = 'SwitchHidden'
                 this.Switch_Register = 'Register-switch_txr'
                 this.Switch_Login = 'Register-switch_txr SwitchHidden'
-                this.Circle1 = ''
-                this.Circle2 = ''
+                this.Circle1 = null
+                this.Circle2 = null
             }
-            this.FormRegister = {Username: '', Password: '', PasswordDuplication: ''}
-            this.FormLogin = {Username: '', Password: ''}
+            this.FormRegister = {
+                Username: null,
+                Password: null,
+                PasswordDuplication: null
+            }
+            this.FormLogin = {Username: null, Password: null}
             this.AutomaticLogin = false
         }
     }
