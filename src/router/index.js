@@ -1,14 +1,23 @@
 // 引入js
 import {createRouter, createWebHashHistory} from 'vue-router'
 // 引入组件
-import login from "../views/login/login.vue";
-import null_exception from "../views/error/null_exception.vue"
+// import login from "../views/login/login.vue";
+// import null_exception from "../views/error/null_exception.vue"
 
 // 定义路由
 const routes = [
-    {path: '/', redirect: '/login'},
-    {path: '/login', component: login},
-    {path: '/null-exception', component: null_exception},
+    {
+        path: '/',
+        redirect: '/login'
+    },
+    {
+        path: '/login',
+        component: () => import('../views/login/login.vue')
+    },
+    {
+        path: '/null-exception',
+        component: () => import('../views/error/null_exception.vue')
+    },
 ]
 
 // 创建路由实例并定义路由配置

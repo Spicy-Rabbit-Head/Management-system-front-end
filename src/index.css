@@ -21,6 +21,9 @@
         @apply
         left-3/5
         rounded-r-2xl
+        max-sm:invisible
+        max-sm:opacity-0
+        max-sm:absolute
     }
 
     /* 文字提示框左过渡 */
@@ -28,18 +31,23 @@
         @apply
         left-0
         rounded-l-2xl
+        max-sm:invisible
+        max-sm:opacity-0
+        max-sm:absolute
     }
 
     /* 注册登录框右过渡 */
     .Register-switch_txr {
         @apply
-        right-0
+        max-sm:right-0
+        sm:right-0
     }
 
     /* 注册登录框左过渡 */
     .Register-switch_txl {
         @apply
-        right-2/5
+        max-sm:right-0
+        sm:right-2/5
     }
 
     /*注册登录界面布局框架*/
@@ -81,6 +89,28 @@
         tracking-wider
         bg-blue-500
         font-bold
+    }
+
+    #SwitchButton_l {
+        @apply
+        bg-login-bg
+        absolute
+        left-0
+        bottom-10
+        sm:invisible
+        sm:opacity-0
+        sm:absolute
+    }
+
+    #SwitchButton_r {
+        @apply
+        bg-login-bg
+        absolute
+        right-2
+        bottom-10
+        sm:invisible
+        sm:opacity-0
+        sm:absolute
     }
 
     /*输入框*/

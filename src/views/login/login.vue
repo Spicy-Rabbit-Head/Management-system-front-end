@@ -28,10 +28,14 @@ import Login_register from "./login_register.vue";
 .BackgroundComponentFrame {
   @apply
   bg-login-bg
-  w-1000
-  min-w-1000
+  w-300
+  min-w-300
   h-600
   min-h-600
+  sm:w-1000
+  sm:min-w-1000
+  sm:h-600
+  sm:min-h-600
   shadow-2xl
   mx-auto
   my-auto
@@ -44,10 +48,11 @@ import Login_register from "./login_register.vue";
 /* 背景组件内拟态框响应式 */
 .Response {
   @apply
+  duration-1000
   2xl:scale-90
   xl:scale-80
   lg:scale-70
   md:scale-60
-  scale-50
+  sm:scale-50
 }
 </style>

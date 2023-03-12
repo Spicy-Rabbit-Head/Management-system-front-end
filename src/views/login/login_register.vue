@@ -4,7 +4,6 @@
     <el-form
         :model="LoginPinia().FormRegister"
         class="login Form"
-
     >
       <h2 class="Title">创建账户</h2>
       <input class="InputIn" v-model="LoginPinia().FormRegister.Username"
@@ -15,6 +14,9 @@
              v-model="LoginPinia().FormRegister.PasswordDuplication"
              placeholder="再次输入密码"/>
       <el-button id="SwitchButton" round>注册</el-button>
+      <el-button id="SwitchButton_l" :icon="CaretLeft"
+                 @click="LoginPinia().ToggleSwitch_Login(0)">去登录
+      </el-button>
     </el-form>
   </div>
   <div :class="LoginPinia().Switch_Login"
@@ -31,17 +33,24 @@
       <el-checkbox class="AutomaticLogin" v-model="LoginPinia().AutomaticLogin"
                    label="勾选是否自动登录"/>
       <el-button id="SwitchButton" round>登录</el-button>
+      <el-button id="SwitchButton_r"
+                 @click="LoginPinia().ToggleSwitch_Login(1)">去注册
+        <el-icon>
+          <CaretRight/>
+        </el-icon>
+      </el-button>
     </el-form>
   </div>
 </template>
 <script setup lang="ts">
-import {LoginPinia} from '../../store'</script>
-
+import {LoginPinia} from '../../store'
+import {CaretLeft, CaretRight} from '@element-plus/icons-vue'</script>
 <style scoped>
 
 /* 注册登录框容器 */
 .Container {
   @apply
+  max-sm:w-full
   w-3/5
   h-full
   top-0
