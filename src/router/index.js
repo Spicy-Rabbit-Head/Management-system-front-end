@@ -12,7 +12,7 @@ const routes = [
     },
     {
         path: '/login',
-        component: () => import('../views/login/login.vue').then(m => m.default)
+        component: () => import('../views/login/login.vue')
     },
     {
         path: '/null-exception',

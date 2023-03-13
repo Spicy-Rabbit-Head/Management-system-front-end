@@ -47,7 +47,7 @@ export default defineConfig({
                         // 根据包名分割
                         return id.toString().split('node_modules/')[1].split('/')[0].toString()
                     }
-                }
+                },
             }
         }
     }
