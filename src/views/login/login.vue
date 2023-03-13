@@ -1,6 +1,10 @@
 <template>
   <div class="BackgroundComponent login" style="font-size: 12px">
-    <div class="BackgroundComponentFrame Response">
+    <div v-motion
+         :initial="{ opacity: 0, y: 30 }"
+         :enter="{ opacity: 1, y: 0}"
+         :delay="200"
+         class="BackgroundComponentFrame Response">
       <login_switch/>
       <login_register/>
     </div>

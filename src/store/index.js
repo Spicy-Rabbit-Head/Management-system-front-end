@@ -30,8 +30,10 @@ export const LoginPinia = defineStore('LoginPinia', {
                 this.Switch_btn_hidden1 = 'SwitchHidden'
                 this.Switch_Login = 'Register-switch_txl'
                 this.Switch_Register = 'Register-switch_txl SwitchHidden'
-                this.Circle1 = 'Circle1'
-                this.Circle2 = 'Circle2'
+                // 上圆过渡
+                this.Circle1 = '!left-2/5'
+                // 下圆过渡
+                this.Circle2 = '!-left-1/4'
             } else {
                 this.Switch_btn = 'Prompt_box_switch_txl'
                 this.Switch_btn_hidden1 = null

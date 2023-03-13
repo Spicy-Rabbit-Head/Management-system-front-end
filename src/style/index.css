@@ -4,18 +4,6 @@
 
 /*注册登录界面*/
 @layer components {
-    /* 上圆过渡 */
-    .Circle1 {
-        @apply
-        left-2/5 !important
-    }
-
-    /* 下圆过渡 */
-    .Circle2 {
-        @apply
-        -left-1/4 !important
-    }
-
     /* 文字提示框右过渡 */
     .Prompt_box_switch_txr {
         @apply
@@ -65,16 +53,6 @@
         text-3xl
         font-bold
         caret-black
-        mb-8
-    }
-
-    /*副标题*/
-    .SwitchDescription {
-        @apply
-        text-base
-        tracking-wider
-        text-center
-        text-gray-400
         mb-8
     }
 

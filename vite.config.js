@@ -8,16 +8,22 @@ import compression from "vite-plugin-compression2";
 export default defineConfig({
     plugins: [
         vue(),
+        // Element自动导入
         AutoImport({
             resolvers: [ElementPlusResolver()],
         }),
         Components({
             resolvers: [ElementPlusResolver()]
         }),
+        // 压缩
         compression({
+            // 压缩格式
             algorithm: "gzip",
+            // 压缩范围
             threshold: 10240,
+            // 排除已压缩文件
             exclude: [/\.(br)$/, /\.(gz)$/],
+            // 删除原始文件
             deleteOriginalAssets: true,
         })
     ],

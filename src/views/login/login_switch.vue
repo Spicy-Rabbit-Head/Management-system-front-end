@@ -72,4 +72,14 @@ import {LoginPinia} from '../../store'</script>
   w-72
   px-4
 }
+
+/*副标题*/
+.SwitchDescription {
+  @apply
+  text-base
+  tracking-wider
+  text-center
+  text-gray-400
+  mb-8
+}
 </style>

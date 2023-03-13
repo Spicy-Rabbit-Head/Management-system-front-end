@@ -13,7 +13,7 @@
       <input class="InputIn"
              v-model="LoginPinia().FormRegister.PasswordDuplication"
              placeholder="再次输入密码"/>
-      <el-button id="SwitchButton" round>注册</el-button>
+      <el-button id="SwitchButton" @click="rout" round>注册</el-button>
       <el-button id="SwitchButton_l" :icon="CaretLeft"
                  @click="LoginPinia().ToggleSwitch_Login(0)">去登录
       </el-button>
@@ -44,7 +44,14 @@
 </template>
 <script setup lang="ts">
 import {LoginPinia} from '../../store'
-import {CaretLeft, CaretRight} from '@element-plus/icons-vue'</script>
+import router from '../../router/index.js'
+import {CaretLeft, CaretRight} from '@element-plus/icons-vue'
+
+const rout = () => {
+  router.push({path: '/text-box'})
+}
+
+</script>
 <style scoped>
 
 /* 注册登录框容器 */

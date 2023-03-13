@@ -1,8 +1,10 @@
 module.exports = {
     plugins: {
+        // tailwind css
         tailwindcss: {},
+        // 自动前戳
         autoprefixer: {},
-        // 打包压缩
-        // ...(process.env.NODE_ENV === 'production' ? {cssnano: {}} : {})
+        // css 缩减
+        ...('production' === 'production ' ? {cssnano: {}} : {})
     },
 }

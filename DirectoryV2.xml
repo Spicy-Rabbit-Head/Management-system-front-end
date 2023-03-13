@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trees>
+    <tree path="/src/style" title="样式"/>
+    <tree path="/src/router" title="路由"/>
+    <tree path="/src/assets" title="字体图片等静态资源"/>
+    <tree path="/src/components" title="自定义通用组件"/>
+    <tree path="/src/store" title="pinia"/>
+    <tree path="/src/utils" title="工具"/>
+    <tree path="/src/api" title="接口请求统一管理"/>
+</trees>

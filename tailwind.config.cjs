@@ -4,7 +4,6 @@ module.exports = {
         "./index.html",
         "./src/**/*.{vue,js,ts,jsx,tsx}",
     ],
-
     theme: {
         // 扩展
         extend: {
