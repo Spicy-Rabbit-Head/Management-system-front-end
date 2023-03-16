@@ -17,7 +17,6 @@ app.use(router)
 app.use(pinia)
 // 使用动画
 app.use(MotionPlugin)
-
 // 挂载到主页面
 app.mount('#app')
 

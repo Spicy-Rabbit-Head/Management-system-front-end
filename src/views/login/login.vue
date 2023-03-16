@@ -1,15 +1,15 @@
 <template>
   <div class="BackgroundComponent login" style="font-size: 12px">
     <div class="BackgroundComponentFrame Response">
-      <login_switch/>
-      <login_register/>
+      <login-switch/>
+      <login-register/>
     </div>
   </div>
 </template>
 
 <script setup>
-import Login_switch from "./login_switch.vue";
-import Login_register from "./login_register.vue";
+import LoginSwitch from "./login-switch.vue";
+import LoginRegister from "./login-register.vue";
 </script>
 
 <style scoped>

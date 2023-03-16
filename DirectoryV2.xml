@@ -7,4 +7,22 @@
     <tree path="/src/store" title="pinia"/>
     <tree path="/src/utils" title="工具"/>
     <tree path="/src/api" title="接口请求统一管理"/>
+    <tree path="/src/views" title="页面"/>
+    <tree path="/src/utils/http" title=""/>
+    <tree path="/src/utils/request.js" title="封装 axios" extension="js"/>
+    <tree path="/src/utils/api" title=""/>
+    <tree path="/src/utils/api.js" title="请求" extension="js"/>
+    <tree path="/src/views/login" title="登录注册界面"/>
+    <tree path="/src/views/error" title="错误界面"/>
+    <tree path="/src/layout" title="布局"/>
+    <tree path="/src/i18n" title="国际化"/>
+    <tree path="/src/layout/aside-layout.vue" title="侧栏模式" extension="vue"/>
+    <tree path="/src/layout/header-layout.vue" title="顶栏模式"
+          extension="vue"/>
+    <tree path="/src/layout/mix-layout.vue" title="混合模式" extension="vue"/>
+    <tree path="/src/router/guard.js" title="路由守卫" extension="js"/>
+    <tree path="/src/router/index.js" title="路由配置" extension="js"/>
+    <tree path="/src/store/index.js" title="状态管理" extension="js"/>
+    <tree path="/src/style/style.css" title="初始化样式" extension="css"/>
+    <tree path="/src/style/index.css" title="Tailwind CSS" extension="css"/>
 </trees>

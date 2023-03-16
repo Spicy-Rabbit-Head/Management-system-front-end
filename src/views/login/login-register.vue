@@ -44,11 +44,13 @@
 </template>
 <script setup lang="ts">
 import {LoginPinia} from '../../store'
-import router from '../../router/index.js'
+// import router from '../../router/index.js'
 import {CaretLeft, CaretRight} from '@element-plus/icons-vue'
+import {login} from '../../api/api.js'
 
 const rout = () => {
-  router.push({path: '/text-box'})
+  login({L1: 111, L2: 222})
+  // router.push({path: '/text-box'})
 }
 
 </script>
