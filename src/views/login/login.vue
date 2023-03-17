@@ -30,8 +30,8 @@ import LoginRegister from "./login-register.vue";
   bg-login-bg
   w-300
   min-w-300
-  h-600
-  min-h-600
+  h-520
+  min-h-520
   sm:w-1000
   sm:min-w-1000
   sm:h-600
