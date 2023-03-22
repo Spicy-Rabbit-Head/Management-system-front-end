@@ -4,10 +4,9 @@
 
 ## 🚀学习 Vve3 构建管理系统前端
 
-> 管理系统后端代码库
+> 链接为管理系统后端代码库
 >
->
->    ⚓https://github.com/Spicy-Rabbit-Head/Management-system
+> ⚓https://github.com/Spicy-Rabbit-Head/Management-system
 
 ------
 
