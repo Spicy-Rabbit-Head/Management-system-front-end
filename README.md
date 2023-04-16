@@ -27,8 +27,6 @@
 <img width='60' height='60' title='tailwind' style='margin-left:15px;' src='skill/tailwind.png' />     
 </div>
 
-
-
 ------
 
 ## 🤔后端技术栈
@@ -40,5 +38,6 @@
 <img width='55' height='50' title='mybatisPlus' style='margin-left:15px;' src='skill/mybatisplus.png' />
 <img width='60' height='50' title='Knife4j' style='margin-left:15px;' src='skill/Knife4j.png' /> 
 <img width='90' height='50' title='druid & pool2' style='margin-left:15px;' src='skill/apache.png'/> 
-<img width='70' height='50' title='redis' style='margin-left:15px;' src='skill/redis.png'/>   
+<img width='70' height='50' title='redis' style='margin-left:15px;' src='skill/redis.png'/>
+<img width='100' height='50' title='jwt' style='margin-left:15px;' src='skill/jwt.png'/>   
 </div>

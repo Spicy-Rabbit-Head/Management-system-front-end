@@ -50,6 +50,7 @@
     /*主标题*/
     .Title {
         @apply
+        text-slate-800
         text-3xl
         font-bold
         caret-black
@@ -71,6 +72,7 @@
 
     #SwitchButton_l {
         @apply
+        border-none
         bg-login-bg
         absolute
         left-0
@@ -82,6 +84,7 @@
 
     #SwitchButton_r {
         @apply
+        border-none
         bg-login-bg
         absolute
         right-2

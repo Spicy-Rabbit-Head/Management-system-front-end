@@ -1,58 +1,48 @@
 <template>
-  <div class="BackgroundComponent login" style="font-size: 12px">
-    <div class="BackgroundComponentFrame Response">
-      <login-switch/>
-      <login-register/>
-    </div>
-  </div>
+    <LoginPageSwitch class="absolute top-2 right-2 z-20"/>
+    <router-view v-slot="{ Component,route }">
+        <Transition mode="out-in"
+                    enter-from-class="opacity-0"
+                    leave-to-class="opacity-0"
+                    leave-active-class="transition-opacity duration-500"
+                    enter-active-class="transition-opacity duration-500"
+        >
+            <component :is="Component" :key="route.path"/>
+        </Transition>
+    </router-view>
 </template>
 
-<script setup>
-import LoginSwitch from "./login-switch.vue";
-import LoginRegister from "./login-register.vue";
+<script setup lang="ts">
+import {onMounted, watch} from "vue";
+import {useRoute, useRouter} from "vue-router";
+import {LoginPinia} from "../../store";
+
+const route = useRoute()
+const router = useRouter()
+
+function advance(): void {
+    router.push({path: localStorage.getItem('login')})
+}
+
+onMounted(() => {
+    if (localStorage.getItem('login')) {
+        LoginPinia().type = true
+        advance()
+    } else {
+        LoginPinia().type = false
+        localStorage.setItem('login', '/login/login-basic')
+        advance()
+    }
+});
+
+watch(() => route.path, () => {
+    if (route.name === 'login') {
+        advance()
+    }
+})
+
 </script>
 
 <style scoped>
-/* 背景组件 */
-.BackgroundComponent {
-  @apply
-  bg-gradient-to-r
-  from-rose-100
-  to-teal-100
-  w-full
-  h-screen
-  font-serif
-}
 
-/* 背景组件内拟态框 */
-.BackgroundComponentFrame {
-  @apply
-  bg-login-bg
-  w-300
-  min-w-300
-  h-520
-  min-h-520
-  sm:w-1000
-  sm:min-w-1000
-  sm:h-600
-  sm:min-h-600
-  shadow-2xl
-  mx-auto
-  my-auto
-  rounded-2xl
-  text-center
-  relative
-  p-6
-}
-
-/* 背景组件内拟态框响应式 */
-.Response {
-  @apply
-  duration-1000
-  2xl:scale-90
-  xl:scale-80
-  lg:scale-70
-  md:scale-60
-  sm:scale-50
-}
 </style>

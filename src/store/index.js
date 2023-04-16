@@ -11,14 +11,15 @@ export const LoginPinia = defineStore('LoginPinia', {
             Circle1: null,
             Circle2: null,
             FormRegister: {
-                Username: null,
-                Password: null,
-                PasswordDuplication: null
+                username: null,
+                password: null,
+                passwordDuplication: null
             },
-            FormLogin: {Username: null, Password: null},
+            FormLogin: {username: null, password: null},
             Switch_Register: 'Register-switch_txr',
             Switch_Login: 'Register-switch_txr SwitchHidden',
             AutomaticLogin: false,
+            type: true,
         }
     },
     actions: {
@@ -48,7 +49,7 @@ export const LoginPinia = defineStore('LoginPinia', {
                 Password: null,
                 PasswordDuplication: null
             }
-            this.FormLogin = {Username: null, Password: null}
+            this.FormLogin = {username: null, password: null}
             this.AutomaticLogin = false
         }
     }

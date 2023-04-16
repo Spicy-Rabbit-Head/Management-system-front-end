@@ -1,7 +1,7 @@
 // 引入js
 import {createRouter, createWebHashHistory} from 'vue-router'
 // 引入组件
-// import login from "../views/login/login.vue";
+// import login from "../views/login/login-mimicry.vue";
 // import null_exception from "../views/error/null-exception.vue"
 
 // 定义路由
@@ -12,7 +12,18 @@ const routes = [
     },
     {
         path: '/login',
-        component: () => import('../views/login/login.vue')
+        name: 'login',
+        component: () => import('../views/login/login.vue'),
+        children: [
+            {
+                path: 'login-mimicry',
+                component: () => import('../views/login/mimicry/login-mimicry.vue')
+            },
+            {
+                path: 'login-basic',
+                component: () => import('../views/login/basic/login-basic.vue')
+            },
+        ]
     },
     {
         path: '/null-exception',

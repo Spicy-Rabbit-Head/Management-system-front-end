@@ -12,10 +12,16 @@ declare module '@vue/runtime-core' {
         Components: typeof import('./src/components/index.vue')['default']
         ElButton: typeof import('element-plus/es')['ElButton']
         ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
+        ElCol: typeof import('element-plus/es')['ElCol']
         ElForm: typeof import('element-plus/es')['ElForm']
         ElIcon: typeof import('element-plus/es')['ElIcon']
         ElResult: typeof import('element-plus/es')['ElResult']
+        ElRow: typeof import('element-plus/es')['ElRow']
+        ForgetPasswordButton: typeof import('./src/components/LoginPageButton.vue')['default']
+        LoginPageButton: typeof import('./src/components/LoginPageButton.vue')['default']
+        LoginPageSwitch: typeof import('./src/components/LoginPageSwitch.vue')['default']
         RouterLink: typeof import('vue-router')['RouterLink']
         RouterView: typeof import('vue-router')['RouterView']
+        ZZKButton: typeof import('./src/components/LoginPageButton.vue')['default']
     }
 }
