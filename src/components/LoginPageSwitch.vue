@@ -20,21 +20,20 @@ function typeSwitch(): void {
         localStorage.setItem('login', '/login/login-mimicry')
         router.push({path: '/login/login-mimicry'});
     } else {
-        localStorage.setItem('login', '/login/login-basic')
-        router.push({path: '/login/login-basic'});
+        localStorage.setItem('login', '/login/login-basic/basic-login')
+        router.push({path: '/login/login-basic/basic-login'});
     }
+    LoginPinia().Clear()
 }
 </script>
 
 <style scoped>
 .checkbox-wrapper-5 .check {
     --size: 40px;
-
     position: relative;
     background: -webkit-gradient(linear, left top, right top, from(#f19af3), to(#f099b5));
     background: linear-gradient(90deg, #f19af3, #f099b5);
     line-height: 0;
-    -webkit-perspective: 400px;
     perspective: 400px;
     font-size: var(--size);
 }
@@ -44,15 +43,11 @@ function typeSwitch(): void {
 .checkbox-wrapper-5 .check label::before,
 .checkbox-wrapper-5 .check label::after,
 .checkbox-wrapper-5 .check {
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     display: inline-block;
     border-radius: var(--size);
     border: 0;
-    -webkit-transition: .35s ease-in-out;
     transition: .35s ease-in-out;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     cursor: pointer;
 }
@@ -72,7 +67,6 @@ function typeSwitch(): void {
     top: calc(.1 * var(--size));
     left: calc(.1 * var(--size));
     background: linear-gradient(45deg, #dedede, #ffffff);
-    -webkit-box-shadow: 0 6px 7px rgba(0, 0, 0, 0.3);
     box-shadow: 0 6px 7px rgba(0, 0, 0, 0.3);
     outline: none;
     margin: 0;
@@ -100,10 +94,7 @@ function typeSwitch(): void {
     z-index: 2;
     font-size: calc(.6 * var(--size));
     border-radius: 0;
-    -webkit-transform-origin: 0 0 calc(-0.5 * var(--size));
-    -ms-transform-origin: 0 0 calc(-0.5 * var(--size));
     transform-origin: 0 0 calc(-0.5 * var(--size));
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
 
@@ -114,8 +105,6 @@ function typeSwitch(): void {
     height: calc(.1 * var(--size));
     width: calc(.35 * var(--size));
     font-size: calc(.2 * var(--size));
-    -webkit-transform-origin: 0 0 calc(-0.4 * var(--size));
-    -ms-transform-origin: 0 0 calc(-0.4 * var(--size));
     transform-origin: 0 0 calc(-0.4 * var(--size));
 }
 
@@ -124,7 +113,6 @@ function typeSwitch(): void {
     left: calc(1.55 * var(--size));
     top: calc(.4 * var(--size));
     line-height: calc(.1 * var(--size));
-    -webkit-transform: rotateY(360deg);
     transform: rotateY(360deg);
 }
 

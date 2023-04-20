@@ -1,33 +1,32 @@
 import {defineConfig} from 'vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import {ElementPlusResolver} from 'unplugin-vue-components/resolvers'
+import {ElementPlusResolver, NaiveUiResolver} from 'unplugin-vue-components/resolvers'
 import vue from '@vitejs/plugin-vue'
-import compression from "vite-plugin-compression2";
-// https://vitejs.dev/config/
+
 export default defineConfig({
     plugins: [
         vue(),
-        // Element自动导入
+        // 组件自动导入
         AutoImport({
-            resolvers: [ElementPlusResolver()],
+            resolvers: [ElementPlusResolver(), NaiveUiResolver()],
         }),
         Components({
-            resolvers: [ElementPlusResolver()]
+            resolvers: [ElementPlusResolver(), NaiveUiResolver()],
         }),
         // 压缩
-        compression({
-            // 压缩格式
-            algorithm: "gzip",
-            // 压缩范围
-            threshold: 10240,
-            // 排除已压缩文件
-            exclude: [/\.(br)$/, /\.(gz)$/],
-            // 删除原始文件
-            deleteOriginalAssets: true,
-        })
+        // compression({
+        //     // 压缩格式
+        //     algorithm: "gzip",
+        //     // 压缩范围
+        //     threshold: 10240,
+        //     // 排除已压缩文件
+        //     exclude: [/\.(br)$/, /\.(gz)$/],
+        //     // 删除原始文件
+        //     deleteOriginalAssets: true,
+        // })
     ],
-    base: './',
+    base: '/',
     build: {
         // 块大小限制警告
         chunkSizeWarningLimit: 2000,

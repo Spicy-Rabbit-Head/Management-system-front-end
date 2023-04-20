@@ -21,8 +21,14 @@ const routes = [
             },
             {
                 path: 'login-basic',
-                component: () => import('../views/login/basic/login-basic.vue')
-            },
+                component: () => import('../views/login/basic/login-basic.vue'),
+                children: [
+                    {
+                        path: 'basic-login',
+                        component: () => import('../views/login/basic/login-basic-Login.vue')
+                    },
+                ]
+            }
         ]
     },
     {

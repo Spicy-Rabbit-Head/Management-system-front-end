@@ -15,7 +15,10 @@ export const LoginPinia = defineStore('LoginPinia', {
                 password: null,
                 passwordDuplication: null
             },
-            FormLogin: {username: null, password: null},
+            FormLogin: {
+                username: null,
+                password: null
+            },
             Switch_Register: 'Register-switch_txr',
             Switch_Login: 'Register-switch_txr SwitchHidden',
             AutomaticLogin: false,
@@ -44,6 +47,10 @@ export const LoginPinia = defineStore('LoginPinia', {
                 this.Circle1 = null
                 this.Circle2 = null
             }
+            this.Clear()
+        },
+        // 清除缓冲
+        Clear() {
             this.FormRegister = {
                 Username: null,
                 Password: null,
@@ -51,7 +58,7 @@ export const LoginPinia = defineStore('LoginPinia', {
             }
             this.FormLogin = {username: null, password: null}
             this.AutomaticLogin = false
-        }
+        },
     }
 })
 

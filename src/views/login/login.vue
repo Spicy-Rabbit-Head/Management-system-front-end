@@ -1,13 +1,13 @@
 <template>
-    <LoginPageSwitch class="absolute top-2 right-2 z-20"/>
-    <router-view v-slot="{ Component,route }">
+    <LoginPageSwitch class="tw-absolute tw-top-2 tw-right-2 tw-z-20"/>
+    <router-view v-slot="{ Component}">
         <Transition mode="out-in"
-                    enter-from-class="opacity-0"
-                    leave-to-class="opacity-0"
-                    leave-active-class="transition-opacity duration-500"
-                    enter-active-class="transition-opacity duration-500"
+                    enter-from-class="tw-opacity-0"
+                    leave-to-class="tw-opacity-0"
+                    leave-active-class="tw-transition-opacity tw-duration-500"
+                    enter-active-class="tw-transition-opacity tw-duration-500"
         >
-            <component :is="Component" :key="route.path"/>
+            <component :is="Component"/>
         </Transition>
     </router-view>
 </template>
@@ -21,16 +21,16 @@ const route = useRoute()
 const router = useRouter()
 
 function advance(): void {
-    router.push({path: localStorage.getItem('login')})
+    let url: string = localStorage.getItem('login');
+    LoginPinia().type = url != '/login/login-basic/basic-login';
+    router.push({path: url})
 }
 
 onMounted(() => {
     if (localStorage.getItem('login')) {
-        LoginPinia().type = true
         advance()
     } else {
-        LoginPinia().type = false
-        localStorage.setItem('login', '/login/login-basic')
+        localStorage.setItem('login', '/login/login-basic/basic-login')
         advance()
     }
 });

@@ -7,128 +7,88 @@
     /* 文字提示框右过渡 */
     .Prompt_box_switch_txr {
         @apply
-        left-3/5
-        rounded-r-2xl
-        max-sm:invisible
-        max-sm:opacity-0
-        max-sm:absolute
+        tw-left-3/5
+        tw-rounded-r-2xl
+        max-sm:tw-invisible
+        max-sm:tw-opacity-0
+        max-sm:tw-absolute
     }
 
     /* 文字提示框左过渡 */
     .Prompt_box_switch_txl {
         @apply
-        left-0
-        rounded-l-2xl
-        max-sm:invisible
-        max-sm:opacity-0
-        max-sm:absolute
+        tw-left-0
+        tw-rounded-l-2xl
+        max-sm:tw-invisible
+        max-sm:tw-opacity-0
+        max-sm:tw-absolute
     }
 
     /* 注册登录框右过渡 */
     .Register-switch_txr {
         @apply
-        max-sm:right-0
-        sm:right-0
+        max-sm:tw-right-0
+        sm:tw-right-0
     }
 
     /* 注册登录框左过渡 */
     .Register-switch_txl {
         @apply
-        max-sm:right-0
-        sm:right-2/5
-    }
-
-    /*注册登录界面布局框架*/
-    .login {
-        @apply
-        flex
-        justify-center
-        items-center
-        absolute
+        max-sm:tw-right-0
+        sm:tw-right-2/5
     }
 
     /*主标题*/
     .Title {
         @apply
-        text-slate-800
-        text-3xl
-        font-bold
-        caret-black
-        mb-8
+        tw-text-slate-800
+        tw-text-3xl
+        tw-font-bold
+        tw-caret-black
+        tw-mb-8
     }
 
     /*切换按钮*/
-    #SwitchButton {
+    .SwitchButton {
         @apply
-        mt-4
-        w-40
-        h-12
-        text-xl
-        text-login-btn
-        tracking-wider
-        bg-blue-500
-        font-bold
+        tw-mt-4
+        tw-w-40
+        tw-h-12
+        tw-text-xl
+        tw-text-login-btn
+        tw-tracking-wider
+        tw-font-bold
     }
 
-    #SwitchButton_l {
+    .SwitchButton_l {
         @apply
-        border-none
-        bg-login-bg
-        absolute
-        left-0
-        bottom-10
-        sm:invisible
-        sm:opacity-0
-        sm:absolute
+        tw-border-none
+        tw-bg-login-bg
+        tw-absolute
+        tw-left-2
+        tw-bottom-10
+        sm:tw-invisible
+        sm:tw-opacity-0
+        sm:tw-absolute
     }
 
-    #SwitchButton_r {
+    .SwitchButton_r {
         @apply
-        border-none
-        bg-login-bg
-        absolute
-        right-2
-        bottom-10
-        sm:invisible
-        sm:opacity-0
-        sm:absolute
-    }
-
-    /*输入框*/
-    .InputIn {
-        @apply
-        shadow-login-in-shadow
-        caret-transparent
-        w-3/5
-        h-10
-        sm:h-12
-        m-2
-        pl-6
-        text-xl
-        tracking-wider
-        font-sans
-        outline-none
-        border-none
-        rounded-xl
-        duration-500
-        ease-in-out
-        focus:ring-4
-        focus:ring-blue-600
-        focus:w-8/12
+        tw-border-none
+        tw-bg-login-bg
+        tw-absolute
+        tw-right-2
+        tw-bottom-10
+        sm:tw-invisible
+        sm:tw-opacity-0
+        sm:tw-absolute
     }
 
     /*切换隐藏*/
     .SwitchHidden {
         @apply
-        invisible
-        opacity-0
-        absolute
-    }
-
-    /*过渡属性*/
-    .Transition_configuration {
-        @apply
-        duration-1250
-        ease-in-out
+        tw-invisible
+        tw-opacity-0
+        tw-absolute
     }
 }

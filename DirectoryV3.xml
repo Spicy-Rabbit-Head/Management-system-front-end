@@ -30,4 +30,5 @@
    <tree path="/src/views/login/login.vue" title="登录注册主路由"/>
    <tree path="/src/views/login/basic" title="登录注册基本页面"/>
    <tree path="/src/views/login/mimicry" title="登录注册拟态页面"/>
+    <tree path="/src/components/LoginPageSwitch.vue" title="登录页切换开关"/>
 </trees>

@@ -5,6 +5,6 @@ module.exports = {
         // 自动前戳
         autoprefixer: {},
         // css 缩减
-        ...('production' === 'production ' ? {cssnano: {}} : {})
+        ...({cssnano: {}})
     },
 }
