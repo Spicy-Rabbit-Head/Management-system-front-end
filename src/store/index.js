@@ -35,9 +35,9 @@ export const LoginPinia = defineStore('LoginPinia', {
                 this.Switch_Login = 'Register-switch_txl'
                 this.Switch_Register = 'Register-switch_txl SwitchHidden'
                 // 上圆过渡
-                this.Circle1 = '!left-2/5'
+                this.Circle1 = '!tw-left-2/5'
                 // 下圆过渡
-                this.Circle2 = '!-left-1/4'
+                this.Circle2 = '!-tw-left-1/4'
             } else {
                 this.Switch_btn = 'Prompt_box_switch_txl'
                 this.Switch_btn_hidden1 = null

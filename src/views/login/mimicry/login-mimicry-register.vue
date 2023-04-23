@@ -1,21 +1,21 @@
 <template>
-    <div :class="LoginPinia().Switch_Register" class="Container mimicry_login Register_Login">
+    <div :class="LoginPinia().Switch_Register" class="response-container">
         <el-form
             :model="LoginPinia().FormRegister"
-            class="mimicry_login Form"
+            class="response-form"
         >
-            <h2 class="Title">创建账户</h2>
-            <input class="InputIn" v-model="LoginPinia().FormRegister.username"
+            <h2 class="login-public-title">创建账户</h2>
+            <input class="response-input" v-model="LoginPinia().FormRegister.username"
                    placeholder="输入用户名"/>
-            <input class="InputIn" v-model="LoginPinia().FormRegister.password"
+            <input class="response-input" v-model="LoginPinia().FormRegister.password"
                    placeholder="输入密码"/>
-            <input class="InputIn"
+            <input class="response-input"
                    v-model="LoginPinia().FormRegister.passwordDuplication"
                    placeholder="再次输入密码"/>
-            <LoginPageButton class="SwitchButton">
+            <LoginPageButton class="login-public-switch-button">
                 注册
             </LoginPageButton>
-            <LoginPageButton class="SwitchButton_l tw-btn-sm"
+            <LoginPageButton class="response-switch-button-left tw-btn-sm"
                              @click="LoginPinia().ToggleSwitch_Login(0)">
                 <el-icon>
                     <!--<angle-left/>-->
@@ -25,19 +25,19 @@
         </el-form>
     </div>
     <div :class="LoginPinia().Switch_Login"
-         class="Container mimicry_login Register_Login">
+         class="response-container">
         <el-form
             :model="LoginPinia().FormLogin"
-            class="mimicry_login Form"
+            class="response-form"
         >
-            <h2 class="Title">登录账户</h2>
-            <input class="InputIn" v-model="LoginPinia().FormLogin.username"
+            <h2 class="login-public-title">登录账户</h2>
+            <input class="response-input" v-model="LoginPinia().FormLogin.username"
                    placeholder="输入用户名"/>
-            <input class="InputIn" v-model="LoginPinia().FormLogin.password"
+            <input class="response-input" v-model="LoginPinia().FormLogin.password"
                    placeholder="输入密码"/>
             <el-row class="tw-w-3/5">
-                <el-col :span="12" style="text-align: left">
-                    <el-checkbox class="AutomaticLogin"
+                <el-col :span="12" class="tw-text-left">
+                    <el-checkbox class="response-automatic-login"
                                  v-model="LoginPinia().AutomaticLogin"
                                  label="记住账户密码自动登录"/>
                 </el-col>
@@ -47,12 +47,13 @@
                     </n-button>
                 </el-col>
             </el-row>
-            <LoginPageButton class="SwitchButton">登录
+            <LoginPageButton class="login-public-switch-button">登录
             </LoginPageButton>
             <n-button color="#ff2e63"
-                      class="SwitchButton_l tw-rounded-full  tw-btn-sm tw-bg-[#ff2e63]">重置密码
+                      class="response-switch-button-left tw-rounded-full  tw-btn-sm tw-bg-[#ff2e63]">
+                重置密码
             </n-button>
-            <LoginPageButton class="SwitchButton_r tw-btn-sm"
+            <LoginPageButton class="response-switch-button-right tw-btn-sm"
                              @click="LoginPinia().ToggleSwitch_Login(1)">去注册
                 <el-icon>
                     <!--<angle-right/>-->
@@ -66,35 +67,32 @@ import {LoginPinia} from '../../../store'
 // import {AngleLeft, AngleRight} from "@vicons/fa";
 </script>
 <style scoped>
-/*布局框架*/
-.mimicry_login {
-    @apply
-    tw-flex
-    tw-justify-center
-    tw-items-center
-    tw-absolute
-}
 
 /* 注册登录框容器 */
-.Container {
+.response-container {
     @apply
     max-sm:tw-w-full
     tw-w-3/5
     tw-h-full
     tw-top-0
-    tw-p-10
+    tw-absolute
+    tw-duration-700
+    tw-ease-in-out
 }
 
 /* 注册登录表单 */
-.Form {
+.response-form {
     @apply
+    tw-flex
+    tw-justify-center
+    tw-items-center
     tw-flex-col
     tw-w-full
     tw-h-full
 }
 
 /* 自动登录框 */
-.AutomaticLogin {
+.response-automatic-login {
     @apply
     tw-h-14
     tw-text-left
@@ -102,15 +100,9 @@ import {LoginPinia} from '../../../store'
     tw-tracking-wider
 }
 
-/*过渡属性*/
-.Register_Login {
-    @apply
-    tw-duration-700
-    tw-ease-in-out
-}
 
 /*输入框*/
-.InputIn {
+.response-input {
     @apply
     tw-shadow-login-in-shadow
     tw-caret-transparent
@@ -130,5 +122,30 @@ import {LoginPinia} from '../../../store'
     focus:tw-ring-4
     focus:tw-ring-blue-600
     focus:tw-w-8/12
+}
+
+/* 按钮在左 */
+.response-switch-button-left {
+    @apply
+    tw-border-none
+    tw-absolute
+    tw-left-2
+    tw-bottom-10
+    sm:tw-invisible
+    sm:tw-opacity-0
+    sm:tw-absolute
+}
+
+/* 按钮在右 */
+.response-switch-button-right {
+    @apply
+    tw-border-none
+    tw-bg-login-bg
+    tw-absolute
+    tw-right-2
+    tw-bottom-10
+    sm:tw-invisible
+    sm:tw-opacity-0
+    sm:tw-absolute
 }
 </style>

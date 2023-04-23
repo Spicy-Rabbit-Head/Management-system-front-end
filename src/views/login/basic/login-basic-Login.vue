@@ -35,7 +35,7 @@
             </el-col>
         </el-row>
         <n-button class="tw-w-3/5 tw-bg-[#36ad6a]" type="primary">
-            {{ $t('Login.Title') }},
+            {{ $t('Login.Title') }}
         </n-button>
         <n-divider style="color: gray ;padding: 0 10%">
             {{ $t('Login.RegistrationTips') }}

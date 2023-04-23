@@ -1,6 +1,6 @@
 <template>
-    <div class="BackgroundComponent login" style="font-size: 12px">
-        <div class="BackgroundComponentFrame Response">
+    <div class="mimicry-background mimicry-layout" style="font-size: 12px">
+        <div class="mimicry-frame mimicry-response">
             <login-mimicry-switch/>
             <login-mimicry-register/>
         </div>
@@ -14,7 +14,7 @@ import LoginMimicryRegister from "./login-mimicry-register.vue";
 
 <style scoped>
 /*注册登录界面布局框架*/
-.login {
+.mimicry-layout {
     @apply
     tw-flex
     tw-justify-center
@@ -22,8 +22,8 @@ import LoginMimicryRegister from "./login-mimicry-register.vue";
     tw-absolute
 }
 
-/* 背景组件 */
-.BackgroundComponent {
+/* 注册登录框容器 */
+.mimicry-background {
     @apply
     tw-bg-gradient-to-r
     tw-from-rose-100
@@ -34,7 +34,7 @@ import LoginMimicryRegister from "./login-mimicry-register.vue";
 }
 
 /* 背景组件内拟态框 */
-.BackgroundComponentFrame {
+.mimicry-frame {
     @apply
     tw-bg-login-bg
     tw-w-300
@@ -55,7 +55,7 @@ import LoginMimicryRegister from "./login-mimicry-register.vue";
 }
 
 /* 背景组件内拟态框响应式 */
-.Response {
+.mimicry-response {
     @apply
     tw-duration-1000
     2xl:tw-scale-90
