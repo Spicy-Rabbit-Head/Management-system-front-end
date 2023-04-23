@@ -15,10 +15,10 @@
             <LoginPageButton class="SwitchButton">
                 注册
             </LoginPageButton>
-            <LoginPageButton class="SwitchButton_l btn-sm"
+            <LoginPageButton class="SwitchButton_l tw-btn-sm"
                              @click="LoginPinia().ToggleSwitch_Login(0)">
                 <el-icon>
-                    <angle-left/>
+                    <!--<angle-left/>-->
                 </el-icon>
                 去登录
             </LoginPageButton>
@@ -43,19 +43,19 @@
                 </el-col>
                 <el-col :span="12" style="text-align: right"
                         class="max-sm:tw-invisible max-sm:tw-opacity-0 max-sm:tw-absolute">
-                    <n-button color="#ff2e63" class="tw-m-2.5 btn-sm tw-bg-[#ff2e63]">重置密码
+                    <n-button color="#ff2e63" class="tw-m-2.5 tw-btn-sm tw-bg-[#ff2e63]">重置密码
                     </n-button>
                 </el-col>
             </el-row>
             <LoginPageButton class="SwitchButton">登录
             </LoginPageButton>
             <n-button color="#ff2e63"
-                      class="SwitchButton_l tw-rounded-full  btn-sm tw-bg-[#ff2e63]">重置密码
+                      class="SwitchButton_l tw-rounded-full  tw-btn-sm tw-bg-[#ff2e63]">重置密码
             </n-button>
-            <LoginPageButton class="SwitchButton_r btn-sm"
+            <LoginPageButton class="SwitchButton_r tw-btn-sm"
                              @click="LoginPinia().ToggleSwitch_Login(1)">去注册
                 <el-icon>
-                    <angle-right/>
+                    <!--<angle-right/>-->
                 </el-icon>
             </LoginPageButton>
         </el-form>
@@ -63,7 +63,7 @@
 </template>
 <script setup lang="ts">
 import {LoginPinia} from '../../../store'
-import {AngleLeft, AngleRight} from "@vicons/fa";
+// import {AngleLeft, AngleRight} from "@vicons/fa";
 </script>
 <style scoped>
 /*布局框架*/

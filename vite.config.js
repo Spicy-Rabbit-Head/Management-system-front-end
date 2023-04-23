@@ -3,6 +3,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import {ElementPlusResolver, NaiveUiResolver} from 'unplugin-vue-components/resolvers'
 import vue from '@vitejs/plugin-vue'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
+import path from 'path'
 
 export default defineConfig({
     plugins: [
@@ -14,6 +16,9 @@ export default defineConfig({
         Components({
             resolvers: [ElementPlusResolver(), NaiveUiResolver()],
         }),
+        VueI18nPlugin({
+            include: [path.resolve(__dirname, './src/i18n/**')],
+        })
         // 压缩
         // compression({
         //     // 压缩格式

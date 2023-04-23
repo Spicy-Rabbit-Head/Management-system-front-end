@@ -4,14 +4,16 @@
             <img class="basic-img"
                  src="https://images.pexels.com/photos/15286/pexels-photo.jpg? auto=compress&cs=tinysrgb&w=1600"
                  alt="">
-            <div class="basic-main">
+            <div class="basic-main"
+                 v-motion="MotionPinia().motion"
+            >
                 <router-view/>
             </div>
         </div>
     </div>
 </template>
-
 <script setup lang="ts">
+import {MotionPinia} from '../../../store'
 </script>
 
 <style scoped>

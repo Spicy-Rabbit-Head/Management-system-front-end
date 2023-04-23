@@ -4,7 +4,7 @@
               icon="error"
               title="访问异常"
               sub-title="无访问权限或无指定路径界面"
-              class="tw-scale-225"
+              class="tw-scale-100 sm:tw-scale-225"
       >
           <template #extra>
               <div>{{ CustomizeError().countdown_time }} 秒后自动跳转至登录界面</div>

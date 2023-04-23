@@ -90,3 +90,29 @@ export const CustomizeError = defineStore('CustomizeError', {
         }
     }
 })
+
+
+export const MotionPinia = defineStore('Motion', {
+    state: () => {
+        return {
+            motion: {
+                initial: {
+                    opacity: 0,
+                    y: 100,
+                },
+                enter: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                        type: 'spring',
+                        stiffness: 300,
+                        damping: 20,
+                        mass: 1,
+                        delay: 200,
+                    },
+                },
+            }
+        }
+    }
+})
+

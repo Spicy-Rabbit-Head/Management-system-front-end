@@ -1,14 +1,14 @@
 <template>
     <LoginPageSwitch class="tw-absolute tw-top-2 tw-right-2 tw-z-20"/>
     <router-view v-slot="{ Component}">
-        <Transition mode="out-in"
+        <transition mode="out-in"
                     enter-from-class="tw-opacity-0"
                     leave-to-class="tw-opacity-0"
                     leave-active-class="tw-transition-opacity tw-duration-500"
                     enter-active-class="tw-transition-opacity tw-duration-500"
         >
             <component :is="Component"/>
-        </Transition>
+        </transition>
     </router-view>
 </template>
 
