@@ -7,20 +7,20 @@
              :class="LoginPinia().Circle2"></div>
         <div class="switch-container"
              :class="LoginPinia().Switch_btn_hidden1">
-            <h2 class="login-public-title">欢迎回来 !</h2>
-            <p class="switch-description">持续在线请使用个人信息登录</p>
+            <h2 class="login-public-title">{{ $t('Login.Mimicry.RegisterTitle') }}</h2>
+            <p class="login-public-description">{{ $t('Login.Mimicry.RegisterSubtitle') }}</p>
             <LoginPageButton class="login-public-switch-button"
                              @click="LoginPinia().ToggleSwitch_Login(0)">
-                登录
+                {{ $t('Login.Mimicry.LoginButton') }}
             </LoginPageButton>
         </div>
         <div class="switch-container"
              :class="LoginPinia().Switch_btn_hidden2">
-            <h2 class="login-public-title">你好朋友 !</h2>
-            <p class="switch-description">输入你的信息进行注册</p>
+            <h2 class="login-public-title">{{ $t('Login.Mimicry.LoginTitle') }}</h2>
+            <p class="login-public-description">{{ $t('Login.Mimicry.LoginSubtitle') }}</p>
             <LoginPageButton class="login-public-switch-button"
                              @click="LoginPinia().ToggleSwitch_Login(1)">
-                注册
+                {{ $t('Login.Mimicry.RegisterButton') }}
             </LoginPageButton>
         </div>
     </div>
@@ -81,15 +81,5 @@ import {LoginPinia} from '../../../store'</script>
     tw-w-72
     tw-px-4
     tw-duration-1250
-}
-
-/*副标题*/
-.switch-description {
-    @apply
-    tw-text-base
-    tw-tracking-wider
-    tw-text-center
-    tw-text-gray-400
-    tw-mb-8
 }
 </style>

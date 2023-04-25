@@ -1,3 +1,36 @@
+# 简体中文语言包
+# 头部
+Head :
+  Title : '设备保养管理系统'
+# 异常
+Exception :
+  Title : '访问异常'
+  SubTitle : '无访问权限或无指定路径界面'
+  Text : '秒后自动跳转至登录界面'
+# 注册登录界面
 Login :
-  Title : '标题'
-  RegistrationTips : '没有账号? 去注册'
+  # 公共
+  LoginTitle : '登录账户'
+  LoginImmediately : '立即登录'
+  UsernameInputText : '请输入用户名'
+  PasswordInputText : '请输入密码'
+  ResetPassword : '重置密码'
+  RegisterAccount : '注册账户'
+  CreateAnAccount : '创建账户'
+  ReenterThePassword : '再次输入密码'
+  # 基本界面
+  Basic :
+    LoginSubtitle : '输入账户密码进行进入系统'
+    RememberMe : '记住我'
+    RegistrationTips : '没有账号? 去注册'
+  # 拟态界面
+  Mimicry :
+    AutomaticLogin : '记住账户密码自动登录'
+    GoToRegister : '去注册'
+    GoToLogin : '去登录'
+    RegisterTitle : '欢迎回来 !'
+    RegisterSubtitle : '持续在线请使用个人信息登录'
+    LoginButton : '登录'
+    LoginTitle : '你好朋友 !'
+    LoginSubtitle : '输入你的信息进行注册'
+    RegisterButton : '注册'

@@ -1,60 +1,63 @@
 <template>
     <div :class="LoginPinia().Switch_Register" class="response-container">
         <el-form
-            :model="LoginPinia().FormRegister"
-            class="response-form"
+                :model="LoginPinia().FormRegister"
+                class="response-form"
         >
-            <h2 class="login-public-title">创建账户</h2>
+            <h2 class="login-public-title">{{ $t('Login.CreateAnAccount') }}</h2>
             <input class="response-input" v-model="LoginPinia().FormRegister.username"
-                   placeholder="输入用户名"/>
+                   :placeholder="$t('Login.UsernameInputText')"/>
             <input class="response-input" v-model="LoginPinia().FormRegister.password"
-                   placeholder="输入密码"/>
+                   :placeholder="$t('Login.PasswordInputText')"/>
             <input class="response-input"
                    v-model="LoginPinia().FormRegister.passwordDuplication"
-                   placeholder="再次输入密码"/>
+                   :placeholder="$t('Login.ReenterThePassword')"/>
             <LoginPageButton class="login-public-switch-button">
-                注册
+                {{ $t('Login.RegisterAccount') }}
             </LoginPageButton>
             <LoginPageButton class="response-switch-button-left tw-btn-sm"
                              @click="LoginPinia().ToggleSwitch_Login(0)">
                 <el-icon>
                     <!--<angle-left/>-->
                 </el-icon>
-                去登录
+                {{ $t('Login.Mimicry.GoToLogin') }}
             </LoginPageButton>
         </el-form>
     </div>
     <div :class="LoginPinia().Switch_Login"
          class="response-container">
         <el-form
-            :model="LoginPinia().FormLogin"
-            class="response-form"
+                :model="LoginPinia().FormLogin"
+                class="response-form"
         >
-            <h2 class="login-public-title">登录账户</h2>
+            <h2 class="login-public-title">{{ $t('Login.LoginTitle') }}</h2>
             <input class="response-input" v-model="LoginPinia().FormLogin.username"
-                   placeholder="输入用户名"/>
+                   :placeholder="$t('Login.UsernameInputText')"/>
             <input class="response-input" v-model="LoginPinia().FormLogin.password"
-                   placeholder="输入密码"/>
+                   :placeholder="$t('Login.PasswordInputText')"/>
             <el-row class="tw-w-3/5">
                 <el-col :span="12" class="tw-text-left">
                     <el-checkbox class="response-automatic-login"
                                  v-model="LoginPinia().AutomaticLogin"
-                                 label="记住账户密码自动登录"/>
+                                 :label="$t('Login.Mimicry.AutomaticLogin')"/>
                 </el-col>
                 <el-col :span="12" style="text-align: right"
                         class="max-sm:tw-invisible max-sm:tw-opacity-0 max-sm:tw-absolute">
-                    <n-button color="#ff2e63" class="tw-m-2.5 tw-btn-sm tw-bg-[#ff2e63]">重置密码
+                    <n-button color="#ff2e63" class="tw-m-2.5 tw-btn-sm tw-bg-[#ff2e63]">
+                        {{ $t('Login.ResetPassword') }}
                     </n-button>
                 </el-col>
             </el-row>
-            <LoginPageButton class="login-public-switch-button">登录
+            <LoginPageButton class="login-public-switch-button">
+                {{ $t('Login.LoginImmediately') }}
             </LoginPageButton>
             <n-button color="#ff2e63"
                       class="response-switch-button-left tw-rounded-full  tw-btn-sm tw-bg-[#ff2e63]">
-                重置密码
+                {{ $t('Login.ResetPassword') }}
             </n-button>
             <LoginPageButton class="response-switch-button-right tw-btn-sm"
-                             @click="LoginPinia().ToggleSwitch_Login(1)">去注册
+                             @click="LoginPinia().ToggleSwitch_Login(1)">
+                {{ $t('Login.Mimicry.GoToRegister') }}
                 <el-icon>
                     <!--<angle-right/>-->
                 </el-icon>
@@ -64,7 +67,6 @@
 </template>
 <script setup lang="ts">
 import {LoginPinia} from '../../../store'
-// import {AngleLeft, AngleRight} from "@vicons/fa";
 </script>
 <style scoped>
 
@@ -140,7 +142,6 @@ import {LoginPinia} from '../../../store'
 .response-switch-button-right {
     @apply
     tw-border-none
-    tw-bg-login-bg
     tw-absolute
     tw-right-2
     tw-bottom-10

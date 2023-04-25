@@ -30,7 +30,6 @@ import LoginMimicryRegister from "./login-mimicry-register.vue";
     tw-to-teal-100
     tw-w-full
     tw-h-screen
-    tw-font-serif
 }
 
 /* 背景组件内拟态框 */

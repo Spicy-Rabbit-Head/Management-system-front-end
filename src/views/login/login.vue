@@ -36,7 +36,7 @@ onMounted(() => {
 });
 
 watch(() => route.path, () => {
-    if (route.name === 'login') {
+    if (route.name === 'Login') {
         advance()
     }
 })

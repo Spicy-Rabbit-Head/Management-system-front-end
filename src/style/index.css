@@ -59,11 +59,22 @@
         tw-tracking-wider
         tw-font-bold
     }
+
     /*切换隐藏*/
     .SwitchHidden {
         @apply
         tw-invisible
         tw-opacity-0
         tw-absolute
+    }
+
+    /*副标题*/
+    .login-public-description {
+        @apply
+        tw-text-base
+        tw-tracking-wider
+        tw-text-center
+        tw-text-gray-400
+        tw-mb-8
     }
 }
