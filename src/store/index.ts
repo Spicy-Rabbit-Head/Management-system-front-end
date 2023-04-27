@@ -1,9 +1,32 @@
 import {defineStore} from 'pinia'
-import router from "../router/index.js";
+import {useRouter} from "vue-router";
+import {post} from "@/api/request";
 
-// 登录注册界面
+// 登录注册界面接口
+interface LoginPiniaInterface {
+    Switch_btn: string,
+    Switch_btn_hidden1: null | string,
+    Switch_btn_hidden2: null | string,
+    Circle1: null | string,
+    Circle2: null | string,
+    FormRegister: {
+        username: null | string,
+        password: null | string,
+        passwordDuplication: null | string
+    },
+    FormLogin: {
+        username: null | string,
+        password: null | string
+    },
+    Switch_Register: string,
+    Switch_Login: string,
+    AutomaticLogin: boolean,
+    type: boolean,
+}
+
+// 登录注册界面实体
 export const LoginPinia = defineStore('LoginPinia', {
-    state: () => {
+    state: (): LoginPiniaInterface => {
         return {
             Switch_btn: 'Prompt_box_switch_txl',
             Switch_btn_hidden1: null,
@@ -27,7 +50,7 @@ export const LoginPinia = defineStore('LoginPinia', {
     },
     actions: {
         // 登录注册过渡切换
-        ToggleSwitch_Login(e) {
+        ToggleSwitch_Login(e: number): void {
             if (e === 0) {
                 this.Switch_btn = 'Prompt_box_switch_txr'
                 this.Switch_btn_hidden2 = null
@@ -50,21 +73,33 @@ export const LoginPinia = defineStore('LoginPinia', {
             this.Clear()
         },
         // 清除缓冲
-        Clear() {
+        Clear(): void {
             this.FormRegister = {
-                Username: null,
-                Password: null,
-                PasswordDuplication: null
+                username: null,
+                password: null,
+                passwordDuplication: null
             }
             this.FormLogin = {username: null, password: null}
             this.AutomaticLogin = false
         },
+        // 登录请求
+        login(): void {
+            post('loginRelated/login', this.FormLogin, (data: any) => {
+                console.log(data)
+            })
+        }
     }
 })
 
-// 自定义错误提示
+// 自定义错误提示接口
+interface CustomizeErrorInterface {
+    Interval: null | number,
+    countdown_time: number
+}
+
+// 自定义错误提示实体
 export const CustomizeError = defineStore('CustomizeError', {
-    state: () => {
+    state: (): CustomizeErrorInterface => {
         return {
             countdown_time: 5,
             Interval: null,
@@ -73,13 +108,14 @@ export const CustomizeError = defineStore('CustomizeError', {
     actions: {
         // 错误界面倒计时启动
         countdown_run() {
-            this.Interval = setInterval(this.countdown, 1000)
+            this.Interval = window.setInterval(this.countdown, 1000)
         },
         // 错误界面倒计时跳转
         countdown() {
             if (this.countdown_time === 1) {
-                router.push({path: '/login'}).then(r => {
-                    clearInterval(this.Interval)
+                useRouter().push({path: '/login'}).then(() => {
+                    if (this.Interval === null) return
+                    window.clearInterval(this.Interval)
                     this.countdown_time = 5
                     this.Interval = null
                 })
@@ -111,8 +147,11 @@ export const MotionPinia = defineStore('Motion', {
                         delay: 200,
                     },
                 },
+                leave: {
+                    opacity: 0,
+                    y: -100,
+                },
             }
         }
     }
 })
-

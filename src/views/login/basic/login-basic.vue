@@ -2,18 +2,20 @@
     <div>
         <div class="tw-w-screen tw-h-screen tw-flex tw-bg-white">
             <img class="basic-img"
-                 src="https://images.pexels.com/photos/15286/pexels-photo.jpg? auto=compress&cs=tinysrgb&w=1600"
+                 src="@/assets/bg-img1.jpg"
                  alt="">
-            <div class="basic-main"
-                 v-motion="MotionPinia().motion"
-            >
-                <router-view/>
+            <div class="basic-main">
+                <router-view v-slot="{ Component }">
+                    <transition mode="out-in" v-motion="MotionPinia().motion">
+                        <component :is="Component"/>
+                    </transition>
+                </router-view>
             </div>
         </div>
     </div>
 </template>
 <script setup lang="ts">
-import {MotionPinia} from '../../../store'
+import {MotionPinia} from '@/store'
 </script>
 
 <style scoped>

@@ -4,7 +4,7 @@ import Components from 'unplugin-vue-components/vite'
 import {ElementPlusResolver, NaiveUiResolver} from 'unplugin-vue-components/resolvers'
 import vue from '@vitejs/plugin-vue'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
-import path from 'path'
+import {resolve} from 'path'
 
 export default defineConfig({
     plugins: [
@@ -17,7 +17,7 @@ export default defineConfig({
             resolvers: [ElementPlusResolver(), NaiveUiResolver()],
         }),
         VueI18nPlugin({
-            include: [path.resolve(__dirname, './src/i18n/**')],
+            include: [resolve(__dirname, './src/i18n/**')],
         })
         // 压缩
         // compression({
@@ -32,6 +32,11 @@ export default defineConfig({
         // })
     ],
     base: '/',
+    resolve: {
+        alias: {
+            '@': resolve(__dirname, './src'),
+        }
+    },
     build: {
         // 块大小限制警告
         chunkSizeWarningLimit: 2000,

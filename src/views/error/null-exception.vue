@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import {CustomizeError} from "../../store"
+import {CustomizeError} from "@/store"
 import {onMounted} from "vue";
 
 onMounted(() => {

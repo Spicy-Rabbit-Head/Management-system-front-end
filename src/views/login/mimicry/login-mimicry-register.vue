@@ -48,7 +48,7 @@
                     </n-button>
                 </el-col>
             </el-row>
-            <LoginPageButton class="login-public-switch-button">
+            <LoginPageButton class="login-public-switch-button" @click="LoginPinia().login">
                 {{ $t('Login.LoginImmediately') }}
             </LoginPageButton>
             <n-button color="#ff2e63"
@@ -66,7 +66,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import {LoginPinia} from '../../../store'
+import {LoginPinia} from '@/store'
 </script>
 <style scoped>
 

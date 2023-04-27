@@ -27,4 +27,3 @@ app.use(createI18n({
 }))
 // 挂载到主页面
 app.mount('#app')
-

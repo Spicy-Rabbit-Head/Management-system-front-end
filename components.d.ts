@@ -8,19 +8,4 @@ import '@vue/runtime-core'
 export {}
 
 declare module '@vue/runtime-core' {
-    export interface GlobalComponents {
-        ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
-        ElCol: typeof import('element-plus/es')['ElCol']
-        ElDivider: typeof import('element-plus/es')['ElDivider']
-        ElForm: typeof import('element-plus/es')['ElForm']
-        ElIcon: typeof import('element-plus/es')['ElIcon']
-        ElResult: typeof import('element-plus/es')['ElResult']
-        ElRow: typeof import('element-plus/es')['ElRow']
-        LoginPageButton: typeof import('./src/components/LoginPageButton.vue')['default']
-        LoginPageSwitch: typeof import('./src/components/LoginPageSwitch.vue')['default']
-        NButton: typeof import('naive-ui')['NButton']
-        NDivider: typeof import('naive-ui')['NDivider']
-        RouterLink: typeof import('vue-router')['RouterLink']
-        RouterView: typeof import('vue-router')['RouterView']
-    }
 }

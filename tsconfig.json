@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    // 基本路径
+    "baseUrl": ".",
+    // 路径映射
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    // 生成目录
+    "target": "es2016",
+    // 模块
+    "module": "ES2022",
+    "moduleResolution": "Node",
+    "types": [
+      "vite/client"
+    ],
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  }
+}

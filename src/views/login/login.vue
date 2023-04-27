@@ -15,14 +15,18 @@
 <script setup lang="ts">
 import {onMounted, watch} from "vue";
 import {useRoute, useRouter} from "vue-router";
-import {LoginPinia} from "../../store";
+import {LoginPinia} from "@/store";
 
 const route = useRoute()
 const router = useRouter()
 
 function advance(): void {
-    let url: string = localStorage.getItem('login');
+    let url: string | null = localStorage.getItem('login');
     LoginPinia().type = url != '/login/login-basic/basic-login';
+    if (url == null) {
+        router.push({name: 'RootPath'})
+        return
+    }
     router.push({path: url})
 }
 

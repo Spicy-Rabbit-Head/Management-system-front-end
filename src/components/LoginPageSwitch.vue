@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import {useRouter} from "vue-router";
-import {LoginPinia} from "../store";
+import {LoginPinia} from "@/store";
 
 const router: any = useRouter();
 

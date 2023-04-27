@@ -1,10 +1,10 @@
 <template>
     <el-form
-        class="basic-login-form"
-        :model="LoginPinia().FormLogin"
+            class="basic-login-form"
+            :model="LoginPinia().FormLogin"
     >
         <h2 class="login-public-title">{{ $t('Login.LoginTitle') }}</h2>
-        <p class="login-public-description tw-mb-0">{{ $t('Login.Basic.LoginSubtitle') }}</p>
+        <p class="login-public-description tw-mb-0">{{ $t('Login.Basic.LoginSubtitle') + 111 }}</p>
         <div class="basic-input">
             <input type="text" required="" v-model="LoginPinia().FormLogin.username">
             <label>
@@ -41,19 +41,17 @@
         <n-divider style="color: gray ;padding: 0 10%">
             {{ $t('Login.Basic.RegistrationTips') }}
         </n-divider>
-        <n-button class="tw-w-3/5 tw-bg-[#f0a020]" type="warning"
-                  @click="$router.push({name: 'BasicRegister'})"
-        >
+        <n-button class="tw-w-3/5 tw-bg-[#f0a020]" type="warning">
             {{ $t('Login.RegisterAccount') }}
         </n-button>
     </el-form>
 </template>
 
 <script setup lang="ts">
-import {LoginPinia} from '@/store'
+
+import {LoginPinia} from "@/store";
 
 let time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms']
-
 </script>
 
 <style scoped>

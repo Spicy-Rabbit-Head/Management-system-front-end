@@ -27,7 +27,8 @@
 </template>
 
 <script setup lang="ts">
-import {LoginPinia} from '../../../store'</script>
+import {LoginPinia} from '@/store'
+</script>
 
 <style scoped>
 /* 文字提示框 */
