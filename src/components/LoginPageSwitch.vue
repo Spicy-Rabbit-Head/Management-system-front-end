@@ -17,11 +17,11 @@ const router: any = useRouter();
 function typeSwitch(): void {
     LoginPinia().type = !LoginPinia().type;
     if (LoginPinia().type) {
-        localStorage.setItem('login', '/login/login-mimicry')
-        router.push({path: '/login/login-mimicry'});
+        localStorage.setItem('login', 'LoginMimicry')
+        router.push({name: 'LoginMimicry'});
     } else {
-        localStorage.setItem('login', '/login/login-basic/basic-login')
-        router.push({path: '/login/login-basic/basic-login'});
+        localStorage.setItem('login', 'BasicLogin')
+        router.push({name: 'BasicLogin'});
     }
     LoginPinia().Clear()
 }

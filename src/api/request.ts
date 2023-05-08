@@ -5,14 +5,20 @@ import {ElMessage} from "element-plus";
 // 创建一个 axios 实例
 const service = axios.create({
     baseURL: import.meta.env.VITE_URL, // 基础 URL
-    timeout: 5000 // 请求超时时间
+    timeout: 5000, // 请求超时时间
+    responseEncoding: "UTF-8"
 })
 
 // 请求拦截器
 service.interceptors.request.use(
     config => {
         console.log("开始请求")
-        config.headers.Authorization = '123456'
+        let token: string | null = window.localStorage.getItem("token")
+        if (token) {
+            config.headers.set("token", token)
+        } else {
+            config.headers.set("token", window.sessionStorage.getItem("token"))
+        }
         // 在发送请求之前做些什么
         return config
     },
@@ -42,7 +48,7 @@ const defaultFailure = () => ElMessage.warning("请求失败")
 // 封装 post 请求
 function post(url: string, data: any, success: any, failure = defaultFailure, error = defaultError) {
     service.post(url, data).then(({data}) => {
-        if (data.success) {
+        if (data.status) {
             success(data)
         } else {
             failure()
@@ -53,7 +59,7 @@ function post(url: string, data: any, success: any, failure = defaultFailure, er
 // 封装 get 请求
 function get(url: string, success: any, failure = defaultFailure, error = defaultError) {
     service.get(url).then(({data}) => {
-        if (data.success) {
+        if (data.status) {
             success(data)
         } else {
             failure()

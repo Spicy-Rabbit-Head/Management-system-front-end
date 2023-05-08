@@ -1,65 +1,300 @@
-html,
-body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
-    Microsoft YaHei, Arial, sans-serif;
-    background-color: white;
-}
-
-div {
-    background-color: white;
-}
-
-#app {
-    height: 100%;
-}
-
+/*
+1. 防止填充和边框影响元素宽度
+2. 允许通过添加border-width来为元素添加边框
+*/
 *,
-*:before,
-*:after {
-    box-sizing: inherit;
+::before,
+::after {
+    box-sizing: border-box; /* 1 */
+    border-width: 0; /* 2 */
+    border-style: solid; /* 2 */
+    border-color: theme('borderColor.DEFAULT', currentColor); /* 2 */
+}
+
+::before,
+::after {
+    --tw-content: '';
+}
+
+/*
+1. 在所有浏览器中使用一致的合理行高
+2. 防止在iOS中改变方向后调整字体大小
+3. 使用更易读的标签大小
+4. 默认情况下使用用户配置的“sans”字体族
+5. 默认情况下使用用户配置的' sans ' font-feature-settings
+6. 默认情况下使用用户配置的' sans ' font-variation-settings
+*/
+html {
+    line-height: 1.5; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+    -moz-tab-size: 4; /* 3 */
+    tab-size: 4; /* 3 */
+    font-family: theme('fontFamily.sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"); /* 4 */
+    font-feature-settings: theme('fontFamily.sans[1].fontFeatureSettings', normal); /* 5 */
+    font-variation-settings: theme('fontFamily.sans[1].fontVariationSettings', normal); /* 6 */
+}
+
+/*
+1. 在所有浏览器中删除页边距
+2. 从' html '继承line-height，这样用户就可以直接在' html '元素上设置它们为一个类
+*/
+body {
+    margin: 0; /* 1 */
+    line-height: inherit; /* 2 */
+}
+
+/*
+1. 在Firefox中添加正确的高度
+2. 修正了Firefox中边框颜色的继承问题
+3. 确保默认情况下水平规则是可见的
+*/
+hr {
+    height: 0; /* 1 */
+    color: inherit; /* 2 */
+    border-top-width: 1px; /* 3 */
+}
+
+/* 在Chrome, Edge和Safari中添加正确的文本装饰 */
+abbr:where([title]) {
+    text-decoration: underline dotted;
+}
+
+/* 删除标题的默认字体大小和粗细 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+/* 重置链接以优化可选择的样式而不是可选择的样式 */
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+/* 在Edge和Safari中添加正确的字体粗细 */
+
+b,
+strong {
+    font-weight: bolder;
+}
+
+/*
+1. 默认情况下使用用户配置的' mono '字体系列
+2. 修正所有浏览器中奇怪的“em”字体大小
+*/
+
+code,
+kbd,
+samp,
+pre {
+    font-family: theme('fontFamily.mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace); /* 1 */
+    font-size: 1em; /* 2 */
+}
+
+/* 在所有浏览器中添加正确的字体大小 */
+small {
+    font-size: 80%;
+}
+
+/* 防止' sub '和' sup '元素在所有浏览器中影响行高 */
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+sup {
+    top: -0.5em;
+}
+
+/*
+1. 删除文本缩进从表格内容在Chrome和Safari
+2. 正确的表边框颜色继承在所有Chrome和Safari
+3. 默认情况下，删除表边界之间的空白。
+*/
+
+table {
+    text-indent: 0; /* 1 */
+    border-color: inherit; /* 2 */
+    border-collapse: collapse; /* 3 */
+}
+
+/*
+1. 在所有浏览器中更改字体样式
+2. 在Firefox和Safari中删除页边距
+3. 删除所有浏览器中的默认填充
+*/
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 1 */
+    font-weight: inherit; /* 1 */
+    line-height: inherit; /* 1 */
+    color: inherit; /* 1 */
+    margin: 0; /* 2 */
+    padding: 0; /* 3 */
+}
+
+/* 删除Edge和Firefox中文本转换的继承 */
+button,
+select {
+    text-transform: none;
+}
+
+/* 对所有可聚焦的元素使用现代的Firefox焦点样式 */
+:-moz-focusring {
+    outline: auto;
+}
+
+/* 删除Firefox中额外的':invalid '样式 */
+:-moz-ui-invalid {
+    box-shadow: none;
+}
+
+/* 在Chrome和Firefox中添加正确的垂直对齐 */
+progress {
+    vertical-align: baseline;
+}
+
+/* 修正Safari中自增和自减按钮的光标样式 */
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+    height: auto;
+}
+
+/*
+1. 更正在Chrome和Safari中的奇怪外观
+2. 在Safari中修正轮廓样式
+*/
+
+[type='search'] {
+    -webkit-appearance: textfield; /* 1 */
+    outline-offset: -2px; /* 2 */
+}
+
+/* 在macOS上移除Chrome和Safari中的内填充 */
+::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/*
+1. 修正iOS和Safari中无法设置可点击类型的问题
+2. 在Safari中更改字体属性为“inherit”
+*/
+::-webkit-file-upload-button {
+    -webkit-appearance: button; /* 1 */
+    font: inherit; /* 2 */
+}
+
+summary {
+    display: list-item;
+}
+
+/* 移除适当元素的默认间距和边框 */
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+    margin: 0;
+}
+
+fieldset {
     margin: 0;
     padding: 0;
 }
 
-a:focus,
-a:active {
-    outline: none;
+legend {
+    padding: 0;
 }
 
-a,
-a:focus,
-a:hover {
+ol,
+ul,
+menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* 默认情况下，防止水平调整文本区域的大小 */
+textarea {
+    resize: vertical;
+}
+
+/*
+1. 重置Firefox中默认占位符的不透明度
+2. 将默认占位符颜色设置为用户配置的灰色400颜色
+*/
+
+input::placeholder,
+textarea::placeholder {
+    opacity: 1; /* 1 */
+    color: theme('colors.gray.400', #9ca3af); /* 2 */
+}
+
+/*
+为按钮设置默认光标
+*/
+
+button,
+[role="button"] {
     cursor: pointer;
-    color: inherit;
-    text-decoration: none;
 }
 
-div:focus {
-    outline: none;
+/* 确保禁用按钮不会得到指针光标 */
+:disabled {
+    cursor: default;
 }
 
-.clearfix :after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: ' ';
-    clear: both;
-    height: 0;
+/*
+1. 将被替换的元素默认设置为display: block)
+2. 添加' vertical align: middle '来在默认情况下更合理地对齐被替换的元素
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+    display: block; /* 1 */
+    vertical-align: middle; /* 2 */
 }
 
-div#driver-popover-item .driver-popover-title {
-    color: #1890ff;
+/* 将图像和视频约束到父宽度，并保留其固有的宽高比 */
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
 }
 
-div#driver-popover-item .driver-popover-footer .driver-next-btn {
-    background-color: #1890ff;
-    color: white;
-    text-shadow: none;
-    border-radius: 4px;
+/* 默认情况下，让带有HTML hidden属性的元素保持隐藏状态 */
+[hidden] {
+    display: none;
 }

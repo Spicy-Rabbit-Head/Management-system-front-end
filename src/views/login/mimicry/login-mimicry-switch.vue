@@ -9,19 +9,19 @@
              :class="LoginPinia().Switch_btn_hidden1">
             <h2 class="login-public-title">{{ $t('Login.Mimicry.RegisterTitle') }}</h2>
             <p class="login-public-description">{{ $t('Login.Mimicry.RegisterSubtitle') }}</p>
-            <LoginPageButton class="login-public-switch-button"
-                             @click="LoginPinia().ToggleSwitch_Login(0)">
+            <n-button type="info" class="login-public-switch-button"
+                      @click="LoginPinia().ToggleSwitch_Login(0)">
                 {{ $t('Login.Mimicry.LoginButton') }}
-            </LoginPageButton>
+            </n-button>
         </div>
         <div class="switch-container"
              :class="LoginPinia().Switch_btn_hidden2">
             <h2 class="login-public-title">{{ $t('Login.Mimicry.LoginTitle') }}</h2>
             <p class="login-public-description">{{ $t('Login.Mimicry.LoginSubtitle') }}</p>
-            <LoginPageButton class="login-public-switch-button"
-                             @click="LoginPinia().ToggleSwitch_Login(1)">
+            <n-button type="info" class="login-public-switch-button"
+                      @click="LoginPinia().ToggleSwitch_Login(1)">
                 {{ $t('Login.Mimicry.RegisterButton') }}
-            </LoginPageButton>
+            </n-button>
         </div>
     </div>
 </template>

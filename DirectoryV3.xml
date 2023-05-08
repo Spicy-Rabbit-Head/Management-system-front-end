@@ -19,14 +19,17 @@
          extension="vue"/>
    <tree path="/src/layout/mix-layout.vue" title="混合模式" extension="vue"/>
    <tree path="/src/router/guard.ts" title="路由守卫" extension="ts"/>
-   <tree path="/src/router/index.ts" title="路由配置" extension="ts"/>
-   <tree path="/src/store/index.js" title="状态管理" extension="js"/>
-   <tree path="/src/style/style.css" title="初始化样式" extension="css"/>
-   <tree path="/src/style/index.css" title="Tailwind CSS" extension="css"/>
-   <tree path="/src/components/LoginPageButton.vue" title="登录页按钮"
-         extension="vue"/>
-   <tree path="/src/views/login/login.vue" title="登录注册主路由"/>
-   <tree path="/src/views/login/basic" title="登录注册基本页面"/>
-   <tree path="/src/views/login/mimicry" title="登录注册拟态页面"/>
-   <tree path="/src/components/LoginPageSwitch.vue" title="登录页切换开关"/>
+    <tree path="/src/router/index.ts" title="路由配置" extension="ts"/>
+    <tree path="/src/store/index.js" title="状态管理" extension="js"/>
+    <tree path="/src/style/style.css" title="初始化样式" extension="css"/>
+    <tree path="/src/style/index.css" title="Tailwind CSS" extension="css"/>
+    <tree path="/src/components/LoginPageButton.vue" title="登录页按钮"
+          extension="vue"/>
+    <tree path="/src/views/login/login.vue" title="登录注册主路由"/>
+    <tree path="/src/views/login/basic" title="登录注册基本页面"/>
+    <tree path="/src/views/login/mimicry" title="登录注册拟态页面"/>
+    <tree path="/src/components/LoginPageSwitch.vue" title="登录页切换开关"/>
+    <tree path="/src/views/homePage" title="首页"/>
+    <tree path="/src/utils/verification.ts" title="vest 验证" extension="" presentableText=""
+          tooltipTitle="" icon="" textColor="" backgroundColor=""/>
 </trees>

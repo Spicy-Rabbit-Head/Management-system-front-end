@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia'
-import {useRouter} from "vue-router";
 import {post} from "@/api/request";
+import router from "@/router";
 
 // 登录注册界面接口
 interface LoginPiniaInterface {
@@ -84,49 +84,18 @@ export const LoginPinia = defineStore('LoginPinia', {
         },
         // 登录请求
         login(): void {
-            post('loginRelated/login', this.FormLogin, (data: any) => {
-                console.log(data)
-            })
-        }
-    }
-})
-
-// 自定义错误提示接口
-interface CustomizeErrorInterface {
-    Interval: null | number,
-    countdown_time: number
-}
-
-// 自定义错误提示实体
-export const CustomizeError = defineStore('CustomizeError', {
-    state: (): CustomizeErrorInterface => {
-        return {
-            countdown_time: 5,
-            Interval: null,
-        }
-    },
-    actions: {
-        // 错误界面倒计时启动
-        countdown_run() {
-            this.Interval = window.setInterval(this.countdown, 1000)
-        },
-        // 错误界面倒计时跳转
-        countdown() {
-            if (this.countdown_time === 1) {
-                useRouter().push({path: '/login'}).then(() => {
-                    if (this.Interval === null) return
-                    window.clearInterval(this.Interval)
-                    this.countdown_time = 5
-                    this.Interval = null
+            post('loginRelated/login', this.FormLogin, (data: any): void => {
+                router.push({name: 'Home'}).then(() => {
+                    if (this.AutomaticLogin) {
+                        window.localStorage.setItem('token', data.data)
+                    } else {
+                        window.sessionStorage.setItem('token', data.data)
+                    }
                 })
-
-            } else {
-                this.countdown_time--
-            }
-        }
+            })
+        },
     }
 })
-
 
 export const MotionPinia = defineStore('Motion', {
     state: () => {

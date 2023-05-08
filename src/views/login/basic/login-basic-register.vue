@@ -1,12 +1,9 @@
 <template>
-    <el-form
-            class="basic-login-form"
-            :model="LoginPinia().FormLogin"
-    >
-        <h2 class="login-public-title">{{ $t('Login.LoginTitle') }}</h2>
-        <p class="login-public-description tw-mb-0">{{ $t('Login.Basic.LoginSubtitle') + 111 }}</p>
+    <form class="basic-login-form">
+        <h2 class="login-public-title">{{ $t('Login.RegisterAccount') }}</h2>
+        <p class="login-public-description tw-mb-0">{{ $t('Login.Basic.RegisterSubtitle') }}</p>
         <div class="basic-input">
-            <input type="text" required="" v-model="LoginPinia().FormLogin.username">
+            <input type="text" required="" v-model="LoginPinia().FormRegister.username">
             <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -15,7 +12,7 @@
             </label>
         </div>
         <div class="basic-input">
-            <input type="text" required="" v-model="LoginPinia().FormLogin.password">
+            <input type="text" required="" v-model="LoginPinia().FormRegister.password">
             <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -23,33 +20,44 @@
                 </span>
             </label>
         </div>
-        <el-row class="tw-w-3/5">
-            <el-col :span="12" class="tw-text-left">
-                <el-checkbox v-model="LoginPinia().AutomaticLogin"
-                             class="tw-my-1"
-                             :label="$t('Login.Basic.RememberMe')"/>
-            </el-col>
-            <el-col :span="12" class="tw-text-right">
-                <n-button color="#ff2e63" class="tw-my-2.5 tw-btn-xs tw-bg-[#ff2e63]">
-                    {{ $t('Login.ResetPassword') }}
-                </n-button>
-            </el-col>
-        </el-row>
-        <n-button class="tw-w-3/5 tw-bg-[#36ad6a]" type="primary">
-            {{ $t('Login.LoginImmediately') }}
-        </n-button>
-        <n-divider style="color: gray ;padding: 0 10%">
-            {{ $t('Login.Basic.RegistrationTips') }}
-        </n-divider>
-        <n-button class="tw-w-3/5 tw-bg-[#f0a020]" type="warning">
+        <div class="basic-input">
+            <input type="text" required="" v-model="LoginPinia().FormRegister.passwordDuplication">
+            <label>
+                <span :style="{transitionDelay: time[index]}"
+                      :key="index"
+                      v-for="(item,index) in $t('Login.ReenterThePassword')">{{ item }}
+                </span>
+            </label>
+        </div>
+        <n-button class="!tw-w-3/5" type="primary" @click="verification">
             {{ $t('Login.RegisterAccount') }}
         </n-button>
-    </el-form>
+        <n-divider style="color: gray ;padding: 0 10%">
+            {{ $t('Login.Basic.LoginTips') }}
+        </n-divider>
+        <n-button class="!tw-w-3/5" type="warning"
+                  @click="$router.push({name: 'BasicLogin'})"
+        >
+            {{ $t('Login.LoginTitle') }}
+        </n-button>
+    </form>
 </template>
 
 <script setup lang="ts">
-
 import {LoginPinia} from "@/store";
+import {Toast} from "vexip-ui";
+import {verificationRegister} from "@/utils/verification";
+
+const verification = () => {
+    let register = verificationRegister(0);
+    if (register) {
+        Toast.success({
+            content: "注册成功",
+            closable: true,
+            showMask: true,
+        })
+    }
+}
 
 let time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms']
 </script>

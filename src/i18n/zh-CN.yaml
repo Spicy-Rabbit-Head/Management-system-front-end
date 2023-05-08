@@ -23,6 +23,8 @@ Login :
     LoginSubtitle : '输入账户密码进行进入系统'
     RememberMe : '记住我'
     RegistrationTips : '没有账号? 去注册'
+    LoginTips : '已有账户? 去登录'
+    RegisterSubtitle : '请在下方输入信息进行注册'
   # 拟态界面
   Mimicry :
     AutomaticLogin : '记住账户密码自动登录'

@@ -11,14 +11,14 @@ export default defineConfig({
         vue(),
         // 组件自动导入
         AutoImport({
-            resolvers: [ElementPlusResolver(), NaiveUiResolver()],
+            resolvers: [ElementPlusResolver(), NaiveUiResolver()]
         }),
         Components({
             resolvers: [ElementPlusResolver(), NaiveUiResolver()],
         }),
         VueI18nPlugin({
             include: [resolve(__dirname, './src/i18n/**')],
-        })
+        }),
         // 压缩
         // compression({
         //     // 压缩格式

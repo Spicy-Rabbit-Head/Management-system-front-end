@@ -1,9 +1,6 @@
 <template>
     <div :class="LoginPinia().Switch_Register" class="response-container">
-        <el-form
-                :model="LoginPinia().FormRegister"
-                class="response-form"
-        >
+        <form class="response-form">
             <h2 class="login-public-title">{{ $t('Login.CreateAnAccount') }}</h2>
             <input class="response-input" v-model="LoginPinia().FormRegister.username"
                    :placeholder="$t('Login.UsernameInputText')"/>
@@ -12,24 +9,22 @@
             <input class="response-input"
                    v-model="LoginPinia().FormRegister.passwordDuplication"
                    :placeholder="$t('Login.ReenterThePassword')"/>
-            <LoginPageButton class="login-public-switch-button">
+            <n-button type="info" class="login-public-switch-button"
+                      @click="verification(0)">
                 {{ $t('Login.RegisterAccount') }}
-            </LoginPageButton>
-            <LoginPageButton class="response-switch-button-left tw-btn-sm"
-                             @click="LoginPinia().ToggleSwitch_Login(0)">
+            </n-button>
+            <n-button type="info" class="response-switch-button-left"
+                      @click="LoginPinia().ToggleSwitch_Login(0)">
                 <el-icon>
                     <!--<angle-left/>-->
                 </el-icon>
                 {{ $t('Login.Mimicry.GoToLogin') }}
-            </LoginPageButton>
-        </el-form>
+            </n-button>
+        </form>
     </div>
     <div :class="LoginPinia().Switch_Login"
          class="response-container">
-        <el-form
-                :model="LoginPinia().FormLogin"
-                class="response-form"
-        >
+        <form class="response-form">
             <h2 class="login-public-title">{{ $t('Login.LoginTitle') }}</h2>
             <input class="response-input" v-model="LoginPinia().FormLogin.username"
                    :placeholder="$t('Login.UsernameInputText')"/>
@@ -48,25 +43,45 @@
                     </n-button>
                 </el-col>
             </el-row>
-            <LoginPageButton class="login-public-switch-button" @click="LoginPinia().login">
+            <n-button type="info" class="login-public-switch-button"
+                      @click="verification(1)">
                 {{ $t('Login.LoginImmediately') }}
-            </LoginPageButton>
+            </n-button>
             <n-button color="#ff2e63"
-                      class="response-switch-button-left tw-rounded-full  tw-btn-sm tw-bg-[#ff2e63]">
+                      class="response-switch-button-left">
                 {{ $t('Login.ResetPassword') }}
             </n-button>
-            <LoginPageButton class="response-switch-button-right tw-btn-sm"
-                             @click="LoginPinia().ToggleSwitch_Login(1)">
+            <n-button type="info" class="response-switch-button-right"
+                      @click="LoginPinia().ToggleSwitch_Login(1)">
                 {{ $t('Login.Mimicry.GoToRegister') }}
                 <el-icon>
                     <!--<angle-right/>-->
                 </el-icon>
-            </LoginPageButton>
-        </el-form>
+            </n-button>
+        </form>
     </div>
 </template>
 <script setup lang="ts">
 import {LoginPinia} from '@/store'
+import {Toast} from "vexip-ui";
+import {verificationRegister} from "@/utils/verification";
+
+function verification(i: number) {
+    let register = verificationRegister(i);
+    let text: string;
+    if (i == 0) {
+        text = "注册成功"
+    } else {
+        text = "登录成功"
+    }
+    if (register) {
+        Toast.success({
+            content: text,
+            closable: true,
+            showMask: true,
+        })
+    }
+}
 </script>
 <style scoped>
 
@@ -85,6 +100,7 @@ import {LoginPinia} from '@/store'
 /* 注册登录表单 */
 .response-form {
     @apply
+    tw-text-center
     tw-flex
     tw-justify-center
     tw-items-center
@@ -102,20 +118,18 @@ import {LoginPinia} from '@/store'
     tw-tracking-wider
 }
 
-
+/*tw-caret-transparent*/
 /*输入框*/
 .response-input {
     @apply
     tw-shadow-login-in-shadow
-    tw-caret-transparent
     tw-w-3/5
+    tw-my-2
     tw-h-10
     sm:tw-h-12
-    tw-m-2
     tw-pl-6
     tw-text-xl
     tw-tracking-wider
-    tw-font-sans
     tw-outline-none
     tw-border-none
     tw-rounded-xl

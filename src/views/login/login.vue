@@ -21,20 +21,21 @@ const route = useRoute()
 const router = useRouter()
 
 function advance(): void {
-    let url: string | null = localStorage.getItem('login');
-    LoginPinia().type = url != '/login/login-basic/basic-login';
+    let url: string | null = window.localStorage.getItem('login');
+    LoginPinia().type = url != 'BasicLogin';
     if (url == null) {
         router.push({name: 'RootPath'})
         return
     }
-    router.push({path: url})
+    router.push({name: url})
 }
 
 onMounted(() => {
-    if (localStorage.getItem('login')) {
+    window.sessionStorage.removeItem('token')
+    if (window.localStorage.getItem('login')) {
         advance()
     } else {
-        localStorage.setItem('login', '/login/login-basic/basic-login')
+        window.localStorage.setItem('login', 'BasicLogin')
         advance()
     }
 });
