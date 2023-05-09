@@ -3,5 +3,15 @@ interface VerificationInterface {
     message?: string;
 }
 
+interface PasswordResetInterface {
+    resetStatus: number;
+    username: string;
+    password: string;
+}
 
-export {VerificationInterface}
+
+export
+{
+    VerificationInterface,
+    PasswordResetInterface
+}

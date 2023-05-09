@@ -7,7 +7,7 @@
             <input class="response-input" v-model="LoginPinia().FormRegister.password"
                    :placeholder="$t('Login.PasswordInputText')"/>
             <input class="response-input"
-                   v-model="LoginPinia().FormRegister.passwordDuplication"
+                   v-model="LoginPinia().FormRegister.repeatPassword"
                    :placeholder="$t('Login.ReenterThePassword')"/>
             <n-button type="info" class="login-public-switch-button"
                       @click="verification(0)">
@@ -48,7 +48,8 @@
                 {{ $t('Login.LoginImmediately') }}
             </n-button>
             <n-button color="#ff2e63"
-                      class="response-switch-button-left">
+                      class="response-switch-button-left"
+                      @click="LoginPinia().showPasswordReset = true">
                 {{ $t('Login.ResetPassword') }}
             </n-button>
             <n-button type="info" class="response-switch-button-right"

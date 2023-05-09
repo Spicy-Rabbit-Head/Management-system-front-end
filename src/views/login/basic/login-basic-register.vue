@@ -21,7 +21,7 @@
             </label>
         </div>
         <div class="basic-input">
-            <input type="text" required="" v-model="LoginPinia().FormRegister.passwordDuplication">
+            <input type="text" required="" v-model="LoginPinia().FormRegister.repeatPassword">
             <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -45,17 +45,12 @@
 
 <script setup lang="ts">
 import {LoginPinia} from "@/store";
-import {Toast} from "vexip-ui";
 import {verificationRegister} from "@/utils/verification";
 
 const verification = () => {
     let register = verificationRegister(0);
     if (register) {
-        Toast.success({
-            content: "注册成功",
-            closable: true,
-            showMask: true,
-        })
+        LoginPinia().register();
     }
 }
 

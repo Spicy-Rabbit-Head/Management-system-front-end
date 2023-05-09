@@ -36,3 +36,11 @@ Login :
     LoginTitle : '你好朋友 !'
     LoginSubtitle : '输入你的信息进行注册'
     RegisterButton : '注册'
+  PasswordReset :
+    Title : '重置密码'
+    InputTitle : '输入账户名进行重置'
+    InputPassword : '输入新密码'
+    ResetState1 : '等待发起重置请求'
+    ResetState2 : '等待管理员审核'
+    ResetState3 : '请输入新密码进行重置'
+    ResetGet : '发出重置请求'

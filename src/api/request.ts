@@ -46,12 +46,12 @@ const defaultError = () => ElMessage.error("服务器异常")
 const defaultFailure = () => ElMessage.warning("请求失败")
 
 // 封装 post 请求
-function post(url: string, data: any, success: any, failure = defaultFailure, error = defaultError) {
+function post(url: string, data: any, success: any, failure: any = defaultFailure, error = defaultError) {
     service.post(url, data).then(({data}) => {
         if (data.status) {
             success(data)
         } else {
-            failure()
+            failure(data)
         }
     }).catch(error)
 }

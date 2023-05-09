@@ -1,6 +1,7 @@
 import {defineStore} from 'pinia'
 import {post} from "@/api/request";
 import router from "@/router";
+import {Toast} from "vexip-ui";
 
 // 登录注册界面接口
 interface LoginPiniaInterface {
@@ -12,7 +13,7 @@ interface LoginPiniaInterface {
     FormRegister: {
         username: null | string,
         password: null | string,
-        passwordDuplication: null | string
+        repeatPassword: null | string
     },
     FormLogin: {
         username: null | string,
@@ -22,6 +23,7 @@ interface LoginPiniaInterface {
     Switch_Login: string,
     AutomaticLogin: boolean,
     type: boolean,
+    showPasswordReset: boolean,
 }
 
 // 登录注册界面实体
@@ -36,7 +38,7 @@ export const LoginPinia = defineStore('LoginPinia', {
             FormRegister: {
                 username: null,
                 password: null,
-                passwordDuplication: null
+                repeatPassword: null
             },
             FormLogin: {
                 username: null,
@@ -46,6 +48,7 @@ export const LoginPinia = defineStore('LoginPinia', {
             Switch_Login: 'Register-switch_txr SwitchHidden',
             AutomaticLogin: false,
             type: true,
+            showPasswordReset: false,
         }
     },
     actions: {
@@ -77,7 +80,7 @@ export const LoginPinia = defineStore('LoginPinia', {
             this.FormRegister = {
                 username: null,
                 password: null,
-                passwordDuplication: null
+                repeatPassword: null
             }
             this.FormLogin = {username: null, password: null}
             this.AutomaticLogin = false
@@ -94,6 +97,23 @@ export const LoginPinia = defineStore('LoginPinia', {
                 })
             })
         },
+        // 注册请求
+        register(): void {
+            post('loginRelated/register', this.FormRegister, (): void => {
+                Toast.success({
+                    content: "注册成功,请登录",
+                    closable: true,
+                    showMask: true,
+                })
+                router.push({name: 'BasicLogin'}).then()
+            }, (data: any): void => {
+                Toast.error({
+                    content: data.message,
+                    closable: true,
+                    showMask: true,
+                })
+            })
+        }
     }
 })
 

@@ -49,8 +49,8 @@ const suite = create((data = {}, currentField) => {
         enforce(data.password).notMatches(/\s/)
     });
 
-    test('passwordDuplication', '密码校验不相等', () => {
-        enforce(data.passwordDuplication).equals(data.password);
+    test('repeatPassword', '密码校验不相等', () => {
+        enforce(data.repeatPassword).equals(data.password);
     });
 })
 export {verificationRegister}
