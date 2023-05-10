@@ -27,7 +27,8 @@
                 </n-checkbox>
             </el-col>
             <el-col :span="12" class="tw-text-right">
-                <n-button color="#ff2e63" size="medium" class="tw-mt-1.5">
+                <n-button color="#ff2e63" size="medium" class="tw-mt-1.5"
+                          @click="LoginPinia().showPasswordReset = true">
                     {{ $t('Login.ResetPassword') }}
                 </n-button>
             </el-col>

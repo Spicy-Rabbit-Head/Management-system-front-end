@@ -44,3 +44,5 @@ Login :
     ResetState2 : '等待管理员审核'
     ResetState3 : '请输入新密码进行重置'
     ResetGet : '发出重置请求'
+    StatusRefresh : '刷新状态'
+    ImmediateReset : '立即重置'
