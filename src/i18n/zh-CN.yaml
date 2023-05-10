@@ -37,9 +37,12 @@ Login :
     LoginSubtitle : '输入你的信息进行注册'
     RegisterButton : '注册'
   PasswordReset :
-    Title : '重置密码'
-    InputTitle : '输入账户名进行重置'
+    Steps1 : '邮箱验证'
+    Steps2 : '密码重置'
+    StepsTips1 : '输入用户名向邮箱发送验证码验证'
+    StepsTips2 : '输入新密码完成密码重置'
     InputPassword : '输入新密码'
+
     ResetState1 : '等待发起重置请求'
     ResetState2 : '等待管理员审核'
     ResetState3 : '请输入新密码进行重置'

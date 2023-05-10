@@ -17,7 +17,7 @@
 import {onMounted, watch} from "vue";
 import {useRoute, useRouter} from "vue-router";
 import {LoginPinia} from "@/store";
-import PasswordReset from "@/components/password-reset.vue";
+import PasswordReset from "./password-reset.vue";
 import LoginPageSwitch from "@/components/LoginPageSwitch.vue";
 
 const route = useRoute()
