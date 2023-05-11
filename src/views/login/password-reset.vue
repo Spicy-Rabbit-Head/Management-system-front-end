@@ -1,26 +1,28 @@
 <template>
     <div class="basic-login-form">
-        <n-button type="error" class="tw-flex !tw-absolute tw-left-4 tw-top-4">退出重置</n-button>
+        <n-button v-show="exitDisplay" type="error" class="tw-flex !tw-absolute tw-left-4 tw-top-4"
+                  @click="$router.push({name:'BasicLogin'})">退出重置
+        </n-button>
         <n-tabs
-                class="card-tabs"
-                default-value="emailReset"
-                size="large"
-                justify-content="center"
-                animated
+            class="card-tabs"
+            default-value="emailReset"
+            size="large"
+            justify-content="center"
+            animated
         >
             <n-tab-pane name="emailReset" tab="邮箱重置">
-                <el-steps :active="current" finish-status="success" process-status="process"
+                <el-steps :active="emailCurrent" finish-status="success" process-status="process"
                           align-center>
                     <el-step :title="$t('Login.PasswordReset.Steps1')" icon=""/>
                     <el-step :title="$t('Login.PasswordReset.Steps2')" icon=""/>
                 </el-steps>
                 <div class="tw-w-10/12 tw-mx-auto">
-                    <div v-if="current == 0">
+                    <div v-if="emailCurrent == 0">
                         <p class="tips tw-my-6">{{ $t('Login.PasswordReset.StepsTips1') }}</p>
                         <n-input placeholder="输入账户名"/>
                         <n-input-group class="tw-my-6">
                             <n-input placeholder="输入验证码"/>
-                            <n-button type="primary" :loading="currentLoading"
+                            <n-button type="primary" :loading="emailCurrentLoading"
                                       @click="sendVerificationCode">
                                 <template #icon>
                                     <n-icon>
@@ -30,11 +32,11 @@
                                 发送验证码
                             </n-button>
                         </n-input-group>
-                        <n-button type="primary" block strong @click="current = 1">
+                        <n-button type="primary" block strong @click="emailCurrent = 1">
                             下一步
                         </n-button>
                     </div>
-                    <div v-else>
+                    <div v-else-if="emailCurrent == 1">
                         <p class="tips tw-my-6">{{ $t('Login.PasswordReset.StepsTips2') }}</p>
                         <n-input class="tw-mb-6" placeholder="输入新密码"/>
                         <n-button type="primary" block strong>
@@ -44,37 +46,135 @@
                 </div>
             </n-tab-pane>
             <n-tab-pane name="administratorAssistedReset" tab="管理员辅助重置">
-                <n-form>
-                    <n-form-item-row label="用户名">
-                        <n-input/>
-                    </n-form-item-row>
-                    <n-form-item-row label="密码">
-                        <n-input/>
-                    </n-form-item-row>
-                    <n-form-item-row label="重复密码">
-                        <n-input/>
-                    </n-form-item-row>
-                </n-form>
-                <n-button type="primary" block secondary strong>
-                    注册
-                </n-button>
+                <el-steps :active="auxiliaryCurrentState.Current" finish-status="success"
+                          process-status="process"
+                          align-center>
+                    <el-step :title="$t('Login.PasswordReset.AuxiliarySteps1')" icon=""/>
+                    <el-step :title="$t('Login.PasswordReset.AuxiliarySteps2')" icon=""/>
+                    <el-step :title="$t('Login.PasswordReset.AuxiliarySteps3')" icon=""/>
+                </el-steps>
+                <div class="tw-w-10/12 tw-mx-auto">
+                    <div v-if="auxiliaryCurrentState.Current == 0">
+                        <p class="tips tw-my-6">{{ $t('Login.PasswordReset.AuxiliaryTips1') }}</p>
+                        <n-input class="tw-mb-6" placeholder="输入账户名"/>
+                        <n-button type="primary" block strong
+                                  @click="auxiliaryStateUpdate(0)">
+                            发生重置请求
+                        </n-button>
+                    </div>
+                    <div v-else-if="auxiliaryCurrentState.Current == 1">
+                        <p class="tips tw-my-6">{{ $t('Login.PasswordReset.StepsTips2') }}</p>
+                        <div>
+                            <n-tag size="large" class="tw-mb-6"
+                                   :type="auxiliaryCurrentState.tagState">
+                                <p v-if="auxiliaryCurrentState.tagState == 'warning'">
+                                    管理员审核中</p>
+                                <p v-if="auxiliaryCurrentState.tagState == 'error'">审核不通过</p>
+                                <p v-if="auxiliaryCurrentState.tagState == 'success'">审核通过</p>
+                            </n-tag>
+                            <n-button class="tw-float-right" type="primary"
+                                      :loading="auxiliaryCurrentLoading"
+                                      @click="refreshState">
+                                <template #icon>
+                                    <n-icon>
+
+                                    </n-icon>
+                                </template>
+                                刷新状态
+                            </n-button>
+                        </div>
+                        <n-button type="primary" block strong
+                                  @click="auxiliaryStateUpdate(1)"
+                                  :disabled="auxiliaryCurrentState.resetState">
+                            下一步
+                        </n-button>
+                    </div>
+                    <div v-else-if="auxiliaryCurrentState.Current == 2">
+                        <p class="tips tw-my-6">{{ $t('Login.PasswordReset.StepsTips2') }}</p>
+                        <n-input class="tw-mb-6" placeholder="输入新密码"/>
+                        <n-button type="primary" block strong>
+                            确认重置
+                        </n-button>
+                    </div>
+                    <n-button class="!tw-mt-6" type="error" block
+                              @click="clearCache">
+                        清除缓存,重新开始
+                    </n-button>
+                </div>
             </n-tab-pane>
         </n-tabs>
     </div>
 </template>
 <script lang="ts" setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
+import {PasswordResetInterface} from "@/type/interface";
 
-const current = ref<number>(0)
-const currentStatus = ref<'wait' | 'process' | 'finish' | 'error'>('process')
-const currentLoading = ref<boolean>(false)
+defineProps({exitDisplay: {type: Boolean, default: false}})
+// 邮件重置步骤数
+const emailCurrent = ref<number>(0)
+// 邮箱重置加载状态
+const emailCurrentLoading = ref<boolean>(false)
+// 辅助重置加载状态
+const auxiliaryCurrentLoading = ref<boolean>(false)
+const auxiliaryCurrentState = ref<PasswordResetInterface>({
+    // 辅助重置步骤数
+    Current: 0,
+    // 辅助重置按钮审核状态 true为禁用
+    resetState: true,
+    // 辅助重置审核状态
+    tagState: 'warning'
+})
 
+// 读取缓存状态
+onMounted(() => {
+    let item: string | null = window.localStorage.getItem('auxiliaryCurrentState');
+    if (item) {
+        auxiliaryCurrentState.value = JSON.parse(item)
+    }
+    // 状态非法清除缓存
+    if (auxiliaryCurrentState.value.Current > 2 || auxiliaryCurrentState.value.Current < 0) {
+        clearCache()
+    }
+})
+
+// 发送邮件验证码
 function sendVerificationCode() {
-    currentLoading.value = true
+    emailCurrentLoading.value = true
     setTimeout(() => {
-        currentLoading.value = false
+        emailCurrentLoading.value = false
     }, 5000)
 }
+
+// 刷新辅助重置状态
+function refreshState() {
+    auxiliaryCurrentLoading.value = true
+    setTimeout(() => {
+        auxiliaryCurrentLoading.value = false
+        auxiliaryCurrentState.value.tagState = 'success'
+        auxiliaryCurrentState.value.resetState = false
+    }, 3000)
+}
+
+// 辅助重置步骤更新
+function auxiliaryStateUpdate(i: number) {
+    if (i == 0) {
+        auxiliaryCurrentState.value.Current = 1
+    } else if (i == 1) {
+        auxiliaryCurrentState.value.Current = 2
+    }
+    window.localStorage.setItem('auxiliaryCurrentState', JSON.stringify(auxiliaryCurrentState.value))
+}
+
+// 清除缓存
+function clearCache() {
+    window.localStorage.removeItem('auxiliaryCurrentState')
+    auxiliaryCurrentState.value = {
+        Current: 0,
+        resetState: true,
+        tagState: 'warning'
+    }
+}
+
 </script>
 <style scoped>
 .basic-login-form {

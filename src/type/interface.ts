@@ -4,9 +4,9 @@ interface VerificationInterface {
 }
 
 interface PasswordResetInterface {
-    resetStatus: number;
-    username: string;
-    password: string;
+    Current: number;
+    resetState: boolean;
+    tagState: 'default' | 'primary' | 'info' | 'success' | 'warning' | 'error';
 }
 
 

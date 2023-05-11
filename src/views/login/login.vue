@@ -1,6 +1,5 @@
 <template>
     <LoginPageSwitch class="tw-absolute tw-top-2 tw-right-2 tw-z-20"/>
-    <PasswordReset/>
     <router-view v-slot="{ Component}">
         <transition mode="out-in"
                     enter-from-class="tw-opacity-0"
@@ -17,7 +16,6 @@
 import {onMounted, watch} from "vue";
 import {useRoute, useRouter} from "vue-router";
 import {LoginPinia} from "@/store";
-import PasswordReset from "./password-reset.vue";
 import LoginPageSwitch from "@/components/LoginPageSwitch.vue";
 
 const route = useRoute()

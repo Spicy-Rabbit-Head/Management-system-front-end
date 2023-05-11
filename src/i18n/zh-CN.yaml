@@ -41,6 +41,11 @@ Login :
     Steps2 : '密码重置'
     StepsTips1 : '输入用户名向邮箱发送验证码验证'
     StepsTips2 : '输入新密码完成密码重置'
+    AuxiliarySteps1 : '重置请求'
+    AuxiliarySteps2 : '管理员审核'
+    AuxiliarySteps3 : '密码重置'
+    AuxiliaryTips1 : '输入用户名发送重置请求'
+
     InputPassword : '输入新密码'
 
     ResetState1 : '等待发起重置请求'

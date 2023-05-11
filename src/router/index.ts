@@ -49,6 +49,11 @@ const routes = [
                         path: 'basic-register',
                         name: 'BasicRegister',
                         component: () => import('@/views/login/basic/login-basic-register.vue')
+                    },
+                    {
+                        path: 'basic-reset',
+                        name: 'BasicReset',
+                        component: () => import('@/views/login/password-reset.vue')
                     }
                 ]
             }
