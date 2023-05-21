@@ -64,6 +64,25 @@ module.exports = {
             inset: {
                 '2/5': '40%',
                 '3/5': '60%',
+            },
+            // 媒体查询
+            screens: {
+                'xs': '370px',
+            },
+            // 关键帧
+            keyframes: {
+                textAnimation: {
+                    '0%,10%,100%': {width: '0'},
+                    '70%,90%': {width: '100%'},
+                }
+            },
+            // 动画
+            animation: {
+                'text-animation-effects': 'textAnimation 6s linear infinite',
+            },
+            // 背景渐变
+            backgroundImage: {
+                'login-typing-bg': 'linear-gradient(to right, #ec008c , #fc6767);',
             }
         }
     },

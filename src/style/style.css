@@ -25,6 +25,7 @@
 6. 默认情况下使用用户配置的' sans ' font-variation-settings
 */
 html {
+    font-size: 16px;
     line-height: 1.5; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
     -moz-tab-size: 4; /* 3 */

@@ -43,10 +43,9 @@ service.interceptors.response.use(
 )
 // 封装消息提示
 const defaultError = () => ElMessage.error("服务器异常")
-const defaultFailure = () => ElMessage.warning("请求失败")
 
 // 封装 post 请求
-function post(url: string, data: any, success: any, failure: any = defaultFailure, error = defaultError) {
+function post(url: string, data: any, success: any, failure: any, error = defaultError) {
     service.post(url, data).then(({data}) => {
         if (data.status) {
             success(data)
@@ -57,12 +56,12 @@ function post(url: string, data: any, success: any, failure: any = defaultFailur
 }
 
 // 封装 get 请求
-function get(url: string, success: any, failure = defaultFailure, error = defaultError) {
+function get(url: string, success: any, failure: any, error = defaultError) {
     service.get(url).then(({data}) => {
         if (data.status) {
             success(data)
         } else {
-            failure()
+            failure(data)
         }
     }).catch(error)
 }

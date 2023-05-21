@@ -13,9 +13,8 @@ function verificationRegister(code: number): boolean {
     for (let prop in traversal) {
         result = suite(traversal, prop)
         if (result.hasErrors(prop)) {
-            Toast.success({
+            Toast.warning({
                 content: result.getErrors(prop)[0],
-                closable: true,
                 showMask: true,
             })
             return false

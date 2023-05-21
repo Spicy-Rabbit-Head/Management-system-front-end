@@ -5,111 +5,124 @@ import {Toast} from "vexip-ui";
 
 // 登录注册界面接口
 interface LoginPiniaInterface {
-    Switch_btn: string,
-    Switch_btn_hidden1: null | string,
-    Switch_btn_hidden2: null | string,
-    Circle1: null | string,
-    Circle2: null | string,
-    FormRegister: {
-        username: null | string,
-        password: null | string,
-        repeatPassword: null | string
+    LoginScreen: {
+        switchButton: string,
+        switchButtonHidden1: null | string,
+        switchButtonHidden2: null | string,
+        circle1: null | string,
+        circle2: null | string,
+        switchRegister: string,
+        switchLogin: string,
     },
     FormLogin: {
         username: null | string,
-        password: null | string
+        password: null | string,
+        repeatPassword?: null | string
     },
-    Switch_Register: string,
-    Switch_Login: string,
-    AutomaticLogin: boolean,
+    automaticLogin: boolean,
     type: boolean,
-    showPasswordReset: boolean,
 }
 
 // 登录注册界面实体
 export const LoginPinia = defineStore('LoginPinia', {
     state: (): LoginPiniaInterface => {
         return {
-            Switch_btn: 'Prompt_box_switch_txl',
-            Switch_btn_hidden1: null,
-            Switch_btn_hidden2: 'SwitchHidden',
-            Circle1: null,
-            Circle2: null,
-            FormRegister: {
+            FormLogin: {
                 username: null,
                 password: null,
                 repeatPassword: null
             },
-            FormLogin: {
-                username: null,
-                password: null
+            LoginScreen: {
+                switchButton: 'prompt-box-switch-l',
+                switchButtonHidden1: null,
+                switchButtonHidden2: 'switch-hidden',
+                circle1: null,
+                circle2: null,
+                switchRegister: 'register-switch-r',
+                switchLogin: 'register-switch-r switch-hidden',
             },
-            Switch_Register: 'Register-switch_txr',
-            Switch_Login: 'Register-switch_txr SwitchHidden',
-            AutomaticLogin: false,
+            automaticLogin: false,
             type: true,
-            showPasswordReset: false,
         }
     },
     actions: {
-        // 登录注册过渡切换
+        // 拟态登录注册过渡切换
         ToggleSwitch_Login(e: number): void {
             if (e === 0) {
-                this.Switch_btn = 'Prompt_box_switch_txr'
-                this.Switch_btn_hidden2 = null
-                this.Switch_btn_hidden1 = 'SwitchHidden'
-                this.Switch_Login = 'Register-switch_txl'
-                this.Switch_Register = 'Register-switch_txl SwitchHidden'
-                // 上圆过渡
-                this.Circle1 = '!tw-left-2/5'
-                // 下圆过渡
-                this.Circle2 = '!-tw-left-1/4'
+                this.LoginScreen = {
+                    switchButton: 'prompt-box-switch-r',
+                    switchButtonHidden2: null,
+                    switchButtonHidden1: 'switch-hidden',
+                    switchLogin: 'register-switch-l',
+                    switchRegister: 'register-switch-l switch-hidden',
+                    // 上圆过渡
+                    circle1: '!tw-left-2/5',
+                    // 下圆过渡
+                    circle2: '!-tw-left-1/4',
+                }
             } else {
-                this.Switch_btn = 'Prompt_box_switch_txl'
-                this.Switch_btn_hidden1 = null
-                this.Switch_btn_hidden2 = 'SwitchHidden'
-                this.Switch_Register = 'Register-switch_txr'
-                this.Switch_Login = 'Register-switch_txr SwitchHidden'
-                this.Circle1 = null
-                this.Circle2 = null
+                this.LoginScreen = {
+                    switchButton: 'prompt-box-switch-l',
+                    switchButtonHidden1: null,
+                    switchButtonHidden2: 'switch-hidden',
+                    circle1: null,
+                    circle2: null,
+                    switchRegister: 'register-switch-r',
+                    switchLogin: 'register-switch-r switch-hidden',
+                }
             }
             this.Clear()
         },
         // 清除缓冲
         Clear(): void {
-            this.FormRegister = {
-                username: null,
-                password: null,
-                repeatPassword: null
-            }
-            this.FormLogin = {username: null, password: null}
-            this.AutomaticLogin = false
+            this.FormLogin = {username: null, password: null, repeatPassword: null}
+            this.automaticLogin = false
+        },
+        // 简单界面切换
+        basicSwitch(str: string): void {
+            router.push({name: str}).then(() => {
+                this.Clear()
+            })
         },
         // 登录请求
         login(): void {
             post('loginRelated/login', this.FormLogin, (data: any): void => {
                 router.push({name: 'Home'}).then(() => {
-                    if (this.AutomaticLogin) {
+                    if (this.automaticLogin) {
+                        window.sessionStorage.removeItem('token')
                         window.localStorage.setItem('token', data.data)
                     } else {
+                        window.localStorage.removeItem('token')
                         window.sessionStorage.setItem('token', data.data)
                     }
+                    this.Clear()
+                })
+                Toast.success({
+                    content: "登录成功",
+                    showMask: true,
+                })
+            }, (data: any): void => {
+                Toast.error({
+                    content: data.message,
+                    showMask: true,
                 })
             })
         },
         // 注册请求
-        register(): void {
-            post('loginRelated/register', this.FormRegister, (): void => {
+        register(i: boolean): void {
+            post('loginRelated/register', this.FormLogin, (): void => {
                 Toast.success({
                     content: "注册成功,请登录",
-                    closable: true,
                     showMask: true,
                 })
-                router.push({name: 'BasicLogin'}).then()
+                if (i) {
+                    this.ToggleSwitch_Login(0)
+                } else {
+                    router.push({name: 'BasicLogin'}).then()
+                }
             }, (data: any): void => {
                 Toast.error({
                     content: data.message,
-                    closable: true,
                     showMask: true,
                 })
             })
@@ -135,11 +148,7 @@ export const MotionPinia = defineStore('Motion', {
                         mass: 1,
                         delay: 200,
                     },
-                },
-                leave: {
-                    opacity: 0,
-                    y: -100,
-                },
+                }
             }
         }
     }

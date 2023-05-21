@@ -11,7 +11,7 @@ export default defineConfig({
         vue(),
         // 组件自动导入
         AutoImport({
-            resolvers: [ElementPlusResolver(), NaiveUiResolver()]
+            resolvers: [ElementPlusResolver(), NaiveUiResolver()],
         }),
         Components({
             resolvers: [ElementPlusResolver(), NaiveUiResolver()],

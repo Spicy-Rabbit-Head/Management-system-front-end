@@ -32,7 +32,6 @@ function advance(): void {
 }
 
 onMounted(() => {
-    window.sessionStorage.removeItem('token')
     if (window.localStorage.getItem('login')) {
         advance()
     } else {

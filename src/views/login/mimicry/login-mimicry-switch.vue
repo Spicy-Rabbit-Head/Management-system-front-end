@@ -1,33 +1,36 @@
 <template>
     <div class="switch"
-         :class=" LoginPinia().Switch_btn">
-        <div class="switch-circle"
-             :class="LoginPinia().Circle1"></div>
-        <div class="switch-circle switch-circle-top"
-             :class="LoginPinia().Circle2"></div>
-        <div class="switch-container"
-             :class="LoginPinia().Switch_btn_hidden1">
-            <h2 class="login-public-title">{{ $t('Login.Mimicry.RegisterTitle') }}</h2>
-            <p class="login-public-description">{{ $t('Login.Mimicry.RegisterSubtitle') }}</p>
-            <n-button type="info" class="login-public-switch-button"
-                      @click="LoginPinia().ToggleSwitch_Login(0)">
-                {{ $t('Login.Mimicry.LoginButton') }}
-            </n-button>
-        </div>
-        <div class="switch-container"
-             :class="LoginPinia().Switch_btn_hidden2">
-            <h2 class="login-public-title">{{ $t('Login.Mimicry.LoginTitle') }}</h2>
-            <p class="login-public-description">{{ $t('Login.Mimicry.LoginSubtitle') }}</p>
-            <n-button type="info" class="login-public-switch-button"
-                      @click="LoginPinia().ToggleSwitch_Login(1)">
-                {{ $t('Login.Mimicry.RegisterButton') }}
-            </n-button>
-        </div>
+         :class=" loginPinia.LoginScreen.switchButton">
+      <div class="switch-circle"
+           :class="loginPinia.LoginScreen.circle1"></div>
+      <div class="switch-circle switch-circle-top"
+           :class="loginPinia.LoginScreen.circle2"></div>
+      <div class="switch-container"
+           :class="loginPinia.LoginScreen.switchButtonHidden1">
+        <h2 class="login-public-title">{{ $t('Login.Mimicry.RegisterTitle') }}</h2>
+        <p class="login-public-description">{{ $t('Login.Mimicry.RegisterSubtitle') }}</p>
+        <n-button type="info" size="large" class="login-public-switch-button"
+                  @click="loginPinia.ToggleSwitch_Login(0)">
+          {{ $t('Login.Mimicry.LoginButton') }}
+        </n-button>
+      </div>
+      <div class="switch-container"
+           :class="loginPinia.LoginScreen.switchButtonHidden2">
+        <h2 class="login-public-title">{{ $t('Login.Mimicry.LoginTitle') }}</h2>
+        <p class="login-public-description">{{ $t('Login.Mimicry.LoginSubtitle') }}</p>
+        <n-button type="info" size="large" class="login-public-switch-button"
+                  @click="loginPinia.ToggleSwitch_Login(1)">
+          {{ $t('Login.Mimicry.RegisterButton') }}
+        </n-button>
+      </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import {LoginPinia} from '@/store'
+
+const loginPinia = LoginPinia()
+
 </script>
 
 <style scoped>

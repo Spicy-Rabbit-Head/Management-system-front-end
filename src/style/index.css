@@ -5,7 +5,7 @@
 /*注册登录界面*/
 @layer components {
     /* 文字提示框右过渡 */
-    .Prompt_box_switch_txr {
+    .prompt-box-switch-r {
         @apply
         tw-left-3/5
         tw-rounded-r-2xl
@@ -15,7 +15,7 @@
     }
 
     /* 文字提示框左过渡 */
-    .Prompt_box_switch_txl {
+    .prompt-box-switch-l {
         @apply
         tw-left-0
         tw-rounded-l-2xl
@@ -25,14 +25,14 @@
     }
 
     /* 注册登录框右过渡 */
-    .Register-switch_txr {
+    .register-switch-r {
         @apply
         max-sm:tw-right-0
         sm:tw-right-0
     }
 
     /* 注册登录框左过渡 */
-    .Register-switch_txl {
+    .register-switch-l {
         @apply
         max-sm:tw-right-0
         sm:tw-right-2/5
@@ -54,16 +54,15 @@
         tw-mt-4
         tw-w-40
         tw-h-12
-        tw-text-xl
         tw-text-login-btn
         tw-tracking-wider
         tw-font-bold
         tw-rounded-full
-        !important
+        tw-text-[1.5rem]
     }
 
     /*切换隐藏*/
-    .SwitchHidden {
+    .switch-hidden {
         @apply
         tw-invisible
         tw-opacity-0
@@ -78,5 +77,16 @@
         tw-text-center
         tw-text-gray-400
         tw-mb-8
+    }
+
+    /* 简单登录容器 */
+    .basic-login-form {
+        @apply
+        tw-flex
+        tw-items-center
+        tw-justify-center
+        tw-flex-col
+        tw-w-full
+        tw-h-full
     }
 }
