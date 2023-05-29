@@ -1,7 +1,7 @@
 import {defineStore} from 'pinia'
 import {post} from "@/api/request";
-import router from "@/router";
-import {Toast} from "vexip-ui";
+import {Router, useRouter} from "vue-router";
+import {showToast} from "@/utils/componentPlugins";
 
 // 登录注册界面接口
 interface LoginPiniaInterface {
@@ -21,17 +21,24 @@ interface LoginPiniaInterface {
     },
     automaticLogin: boolean,
     type: boolean,
+    loginStatus: boolean,
+    router: Router,
+    loading: boolean,
+    isAuthenticated: boolean,
+    currentRoute: string,
 }
 
 // 登录注册界面实体
 export const LoginPinia = defineStore('LoginPinia', {
     state: (): LoginPiniaInterface => {
         return {
+            // 登录注册实体
             FormLogin: {
                 username: null,
                 password: null,
                 repeatPassword: null
             },
+            // 登录注册界面切换实体
             LoginScreen: {
                 switchButton: 'prompt-box-switch-l',
                 switchButtonHidden1: null,
@@ -41,8 +48,20 @@ export const LoginPinia = defineStore('LoginPinia', {
                 switchRegister: 'register-switch-r',
                 switchLogin: 'register-switch-r switch-hidden',
             },
+            // 自动登录状态
             automaticLogin: false,
+            // 登录注册界面切换状态 true拟态 false简单
             type: true,
+            // 登录状态
+            loginStatus: false,
+            // 路由
+            router: useRouter(),
+            // 全屏加载状态
+            loading: true,
+            // 是否登录
+            isAuthenticated: false,
+            // 当前路由
+            currentRoute: '',
         }
     },
     actions: {
@@ -80,14 +99,14 @@ export const LoginPinia = defineStore('LoginPinia', {
         },
         // 简单界面切换
         basicSwitch(str: string): void {
-            router.push({name: str}).then(() => {
+            this.router.push({name: str}).then(() => {
                 this.Clear()
             })
         },
         // 登录请求
         login(): void {
             post('loginRelated/login', this.FormLogin, (data: any): void => {
-                router.push({name: 'Home'}).then(() => {
+                this.router.push({name: 'Home'}).then(() => {
                     if (this.automaticLogin) {
                         window.sessionStorage.removeItem('token')
                         window.localStorage.setItem('token', data.data)
@@ -97,34 +116,21 @@ export const LoginPinia = defineStore('LoginPinia', {
                     }
                     this.Clear()
                 })
-                Toast.success({
-                    content: "登录成功",
-                    showMask: true,
-                })
             }, (data: any): void => {
-                Toast.error({
-                    content: data.message,
-                    showMask: true,
-                })
+                showToast(data.message, 'error')
             })
         },
         // 注册请求
         register(i: boolean): void {
             post('loginRelated/register', this.FormLogin, (): void => {
-                Toast.success({
-                    content: "注册成功,请登录",
-                    showMask: true,
-                })
+                showToast("注册成功,请登录", 'success')
                 if (i) {
                     this.ToggleSwitch_Login(0)
                 } else {
-                    router.push({name: 'BasicLogin'}).then()
+                    this.router.push({name: 'BasicLogin'}).then()
                 }
             }, (data: any): void => {
-                Toast.error({
-                    content: data.message,
-                    showMask: true,
-                })
+                showToast(data.message, 'error')
             })
         }
     }

@@ -1,7 +1,8 @@
 <template>
   <div class="basic-login-form tw-px-8">
     <n-button v-show="exitDisplay" type="error" class="tw-flex tw-absolute tw-left-4 tw-top-4 tw-text-[1rem]"
-              @click="$router.push({name:'BasicLogin'})">退出重置
+              @click="$router.push({name:'BasicLogin'})">
+      {{ $t('Login.PasswordReset.ExitReset') }}
     </n-button>
     <n-tabs
         class="card-tabs"
@@ -9,8 +10,9 @@
         size="large"
         justify-content="center"
         animated
+        :tabs-padding="0"
     >
-      <n-tab-pane name="emailReset" tab="邮箱重置">
+      <n-tab-pane name="emailReset" :tab="$t('Login.PasswordReset.Tab1')">
         <el-steps :active="emailCurrent" finish-status="success" process-status="process"
                   align-center>
           <el-step :title="$t('Login.PasswordReset.Steps1')" icon=""/>
@@ -19,9 +21,9 @@
         <div class="tw-w-11/12 tw-mx-auto">
           <div v-if="emailCurrent == 0">
             <p class="tips tw-my-6">{{ $t('Login.PasswordReset.StepsTips1') }}</p>
-            <n-input placeholder="输入账户名" class="tw-text-[1rem]"/>
+            <n-input :placeholder="$t('Login.PasswordReset.EnterAccountName')" class="tw-text-[1rem]"/>
             <n-input-group class="tw-my-6">
-              <n-input placeholder="输入验证码" class="tw-text-[1rem]"/>
+              <n-input :placeholder="$t('Login.PasswordReset.InputValidationCode')" class="tw-text-[1rem]"/>
               <n-button type="primary" class="tw-text-[1rem]" :loading="emailCurrentLoading"
                         @click="sendVerificationCode">
                 <template #icon>
@@ -29,24 +31,24 @@
 
                   </n-icon>
                 </template>
-                发送验证码
+                {{ $t('Login.PasswordReset.SendVerificationCode') }}
               </n-button>
             </n-input-group>
             <n-button type="primary" class="tw-text-[1.25rem]" block strong @click="emailCurrent = 1">
-              下一步
+              {{ $t('Login.PasswordReset.NextSteps') }}
             </n-button>
           </div>
           <div v-else-if="emailCurrent == 1">
             <p class="tips tw-my-6">{{ $t('Login.PasswordReset.StepsTips2') }}</p>
-            <n-input placeholder="输入新密码" class="tw-text-[1rem]"/>
-            <n-input class="tw-my-6 tw-text-[1rem]" placeholder="再次输入新密码"/>
+            <n-input :placeholder="$t('Login.PasswordReset.EnterNewPassword')" class="tw-text-[1rem]"/>
+            <n-input class="tw-my-6 tw-text-[1rem]" :placeholder="$t('Login.PasswordReset.EnterTheNewPasswordAgain')"/>
             <n-button type="primary" class="tw-text-[1.25rem]" block strong>
-              确认重置
+              {{ $t('Login.PasswordReset.ConfirmReset') }}
             </n-button>
           </div>
         </div>
       </n-tab-pane>
-      <n-tab-pane name="administratorAssistedReset" tab="管理员辅助重置">
+      <n-tab-pane name="administratorAssistedReset" :tab="$t('Login.PasswordReset.Tab2')">
         <el-steps :active="auxiliaryCurrentState.Current" finish-status="success"
                   process-status="process"
                   align-center>
@@ -56,11 +58,11 @@
         </el-steps>
         <div class="tw-w-11/12 tw-mx-auto">
           <div v-if="auxiliaryCurrentState.Current == 0">
-            <p class="tips tw-my-6">{{ $t('Login.PasswordReset.AuxiliaryTips1') }}</p>
-            <n-input class="tw-mb-6 tw-text-[1rem]" placeholder="输入账户名"/>
+            <p class="tips tw-my-6">{{ $t('Login.PasswordReset.StepsTips3') }}</p>
+            <n-input class="tw-mb-6 tw-text-[1rem]" :placeholder="$t('Login.PasswordReset.EnterAccountName')"/>
             <n-button type="primary" class="tw-text-[1.25rem]" block strong
                       @click="auxiliaryStateUpdate(0)">
-              发生重置请求
+              {{ $t('Login.PasswordReset.ResetRequestOccurred') }}
             </n-button>
           </div>
           <div v-else-if="auxiliaryCurrentState.Current == 1">
@@ -70,11 +72,11 @@
                      class="tw-w-full tw-text-[0.875rem] tw-mb-6 xs:!tw-w-auto tw-justify-center"
                      :type="auxiliaryCurrentState.tagState">
                 <p v-if="auxiliaryCurrentState.tagState == 'warning'">
-                  管理员审核中</p>
+                  {{ $t('Login.PasswordReset.AuditStatus1') }}</p>
                 <p v-if="auxiliaryCurrentState.tagState == 'error'">
-                  审核不通过</p>
+                  {{ $t('Login.PasswordReset.AuditStatus2') }}</p>
                 <p v-if="auxiliaryCurrentState.tagState == 'success'">
-                  审核通过</p>
+                  {{ $t('Login.PasswordReset.AuditStatus3') }}</p>
               </n-tag>
               <n-button
                   class="tw-w-full !tw-mb-6 xs:!tw-w-auto xs:!tw-mb-0 xs:tw-float-right tw-text-[0.875rem]"
@@ -86,26 +88,26 @@
 
                   </n-icon>
                 </template>
-                刷新状态
+                {{ $t('Login.PasswordReset.RefreshStatus') }}
               </n-button>
             </div>
             <n-button type="primary" block strong class="tw-text-[1.25rem]"
                       @click="auxiliaryStateUpdate(1)"
                       :disabled="auxiliaryCurrentState.resetState">
-              下一步
+              {{ $t('Login.PasswordReset.NextSteps') }}
             </n-button>
           </div>
           <div v-else-if="auxiliaryCurrentState.Current == 2">
             <p class="tips tw-my-6">{{ $t('Login.PasswordReset.StepsTips2') }}</p>
-            <n-input placeholder="输入新密码" class="tw-text-[1rem]"/>
-            <n-input class="tw-my-6 tw-text-[1rem]" placeholder="再次输入新密码"/>
+            <n-input :placeholder="$t('Login.PasswordReset.EnterNewPassword')" class="tw-text-[1rem]"/>
+            <n-input class="tw-my-6 tw-text-[1rem]" :placeholder="$t('Login.PasswordReset.EnterTheNewPasswordAgain')"/>
             <n-button type="primary" class="tw-text-[1.25rem]" block strong>
-              确认重置
+              {{ $t('Login.PasswordReset.ConfirmReset') }}
             </n-button>
           </div>
           <n-button class="!tw-mt-6 tw-text-[1.25rem]" type="error" block
                     @click="clearCache">
-            清除缓存,重新开始
+            {{ $t('Login.PasswordReset.ClearCache') }}
           </n-button>
         </div>
       </n-tab-pane>

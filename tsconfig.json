@@ -1,24 +1,54 @@
 {
   "compilerOptions": {
-    // 基本路径
-    "baseUrl": ".",
-    // 路径映射
+    // 生成目录
+    "target": "esnext",
+    // 模块
+    "module": "esnext",
+    // 不允许js文件
+    "allowJs": false,
+    "strict": true,
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "useDefineForClassFields": true,
+    "isolatedModules": true,
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "outDir": "dist",
+    "jsx": "preserve",
+    "baseUrl": "src",
     "paths": {
       "@/*": [
-        "src/*"
+        "./*"
       ]
     },
-    // 生成目录
-    "target": "es2016",
+    //    "target": "es2016",
     // 模块
-    "module": "ES2022",
-    "moduleResolution": "Node",
+    //    "module": "ES2022",
     "types": [
-      "vite/client"
+      "unplugin-icons/types/vue",
+      "vite/client",
+      "vexip-ui/types"
     ],
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true
-  }
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/type/auto-imports.d.ts",
+    "src/type/components.d.ts"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

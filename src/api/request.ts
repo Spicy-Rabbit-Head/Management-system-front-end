@@ -1,6 +1,6 @@
 // 封装 axios
 import axios from 'axios'
-import {ElMessage} from "element-plus";
+import {ElMessage} from "element-plus"
 
 // 创建一个 axios 实例
 const service = axios.create({
@@ -56,7 +56,7 @@ function post(url: string, data: any, success: any, failure: any, error = defaul
 }
 
 // 封装 get 请求
-function get(url: string, success: any, failure: any, error = defaultError) {
+function get(url: string, success: any, failure: any, error: any = defaultError) {
     service.get(url).then(({data}) => {
         if (data.status) {
             success(data)

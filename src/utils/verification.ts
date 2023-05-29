@@ -1,22 +1,17 @@
 import {create, eager, enforce, only, test} from "vest";
 import {LoginPinia} from "@/store";
-import {Toast} from "vexip-ui";
+import {showToast} from "@/utils/componentPlugins";
+
+const loginPinia = LoginPinia()
 
 function verificationRegister(code: number): boolean {
     let result;
-    let traversal;
-    if (code == 0) {
-        traversal = LoginPinia().FormRegister
-    } else {
-        traversal = LoginPinia().FormLogin
-    }
+    let traversal = loginPinia.FormLogin
     for (let prop in traversal) {
+        if (code) if (prop === 'repeatPassword') continue
         result = suite(traversal, prop)
         if (result.hasErrors(prop)) {
-            Toast.warning({
-                content: result.getErrors(prop)[0],
-                showMask: true,
-            })
+            showToast(result.getErrors(prop)[0])
             return false
         }
     }

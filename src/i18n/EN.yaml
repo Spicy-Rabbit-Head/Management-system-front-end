@@ -1,0 +1,70 @@
+# 英文(美国)语言包
+# 注册登录界面
+Head:
+  Title: 'Equipment maintenance management system'
+# 异常
+Exception:
+  Title: 'Access exception'
+  SubTitle: 'No access or no specified path interface'
+  Text: 'The login page is displayed automatically in seconds'
+# 注册登录界面
+Login:
+  # 公共
+  LoginTitle: 'Login account'
+  LoginImmediately: 'Login'
+  UsernameInputText: 'Username'
+  PasswordInputText: 'Password'
+  ResetPassword: 'Reset'
+  RegisterAccount: 'Register'
+  CreateAnAccount: 'Create an account'
+  ReenterThePassword: 'Password'
+  # 基本界面
+  Basic:
+    LoginSubtitle: 'Input information login'
+    RememberMe: 'Remember'
+    RegistrationTips: "Don't have an account?Go to register"
+    LoginTips: 'Have an account? Go log in'
+    RegisterSubtitle: 'Please enter information below to register'
+  # 拟态界面
+  Mimicry:
+    AutomaticLogin: 'Remember me'
+    GoToRegister: 'Go register'
+    GoToLogin: 'Go log in'
+    RegisterTitle: 'Welcome back'
+    RegisterSubtitle: 'Please log in with your personal information'
+    LoginButton: 'Login'
+    LoginTitle: 'Hello friend !'
+    LoginSubtitle: 'Enter your information to register'
+    RegisterButton: 'register'
+  # 重置密码界面
+  PasswordReset:
+    Steps1: 'Verification'
+    Steps2: 'Reset'
+    StepsTips1: 'Enter the user name and send a verification code to the mailbox'
+    StepsTips2: 'Enter a new password to reset the password'
+    StepsTips3: 'Enter the user name to reset'
+    AuxiliarySteps1: 'request'
+    AuxiliarySteps2: 'audit'
+    AuxiliarySteps3: 'reset'
+    ExitReset: 'Exit reset'
+    Tab1: 'Email'
+    Tab2: 'Administrator assisted'
+    EnterAccountName: 'Enter account name'
+    InputValidationCode: 'Input verification code'
+    SendVerificationCode: 'Send code'
+    NextSteps: 'Next steps'
+    EnterNewPassword: 'Enter new password'
+    EnterTheNewPasswordAgain: 'Enter the new password again'
+    ConfirmReset: 'Confirm reset'
+    ResetRequestOccurred: 'Reset request occurred'
+    AuditStatus1: 'Administrator review'
+    AuditStatus2: 'Not approved'
+    AuditStatus3: 'Be approved'
+    RefreshStatus: 'Refresh'
+    ClearCache: 'Clear cache'
+  # 打字动画
+  Typing:
+    Animation1: 'Welcome ! !'
+    Animation2: 'Welcome to the management platform !👋'
+    Animation3: 'Here, manage everything ! !'
+    Animation4: 'Welcome to the management platform  !'

@@ -118,6 +118,11 @@ function verification(i: number) {
 
 /* 自动登录框 */
 .response-automatic-login {
+  & :deep(.el-checkbox__label) {
+    @apply
+    tw-text-[0.875rem]
+  }
+
   @apply
   tw-h-14
   tw-text-left

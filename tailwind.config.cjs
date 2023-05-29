@@ -83,10 +83,9 @@ module.exports = {
             // 背景渐变
             backgroundImage: {
                 'login-typing-bg': 'linear-gradient(to right, #ec008c , #fc6767);',
-            }
+            },
         }
     },
-    plugins: [require("daisyui")],
     corePlugins: {
         preflight: false,
     }

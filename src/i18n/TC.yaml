@@ -1,0 +1,72 @@
+# 繁体中文(台湾)语言包
+# 注册登录界面
+Head:
+  Title: '設備保養管理系統'
+# 异常
+Exception:
+  Title: '訪問異常'
+  SubTitle: '無訪問許可權或無指定路徑介面'
+  Text: '秒後自動跳轉至登錄介面'
+# 注册登录界面
+Login:
+  # 公共
+  LoginTitle: '登錄帳戶'
+  LoginImmediately: '立即登錄'
+  UsernameInputText: '請輸入用戶名'
+  PasswordInputText: '請輸入密碼'
+  ResetPassword: '重置密碼'
+  RegisterAccount: '註冊賬戶'
+  CreateAnAccount: '創建賬戶'
+  ReenterThePassword: '再次輸入密碼'
+  # 基本界面
+  Basic:
+    LoginSubtitle: '輸入賬戶密碼進行進入系統'
+    RememberMe: '記住我'
+    RegistrationTips: '沒有賬號? 去註冊'
+    LoginTips: '已有賬戶? 去登錄'
+    RegisterSubtitle: '請在下方輸入信息進行註冊'
+  # 拟态界面
+  Mimicry:
+    AutomaticLogin: '記住賬戶密碼自動登錄'
+    GoToRegister: '去註冊'
+    GoToLogin: '去登錄'
+    RegisterTitle: '歡迎回來 !'
+    RegisterSubtitle: '持續在線請使用個人信息登錄'
+    LoginButton: '登錄'
+    LoginTitle: '你好朋友 !'
+    LoginSubtitle: '輸入你的信息進行註冊'
+    RegisterButton: '註冊'
+  # 重置密码界面
+  PasswordReset:
+    Steps1: '郵箱驗證'
+    Steps2: '密碼重置'
+    StepsTips1: '輸入用戶名向郵箱發送驗證碼驗證'
+    StepsTips2: '輸入新密碼完成密碼重置'
+    StepsTips3: '輸入用戶名發送重置請求'
+    AuxiliarySteps1: '重置請求'
+    AuxiliarySteps2: '管理員審核'
+    AuxiliarySteps3: '密碼重置'
+    ExitReset: '退出重置'
+    Tab1: '郵箱驗證'
+    Tab2: '管理員輔助重置'
+    EnterAccountName: '輸入賬戶名'
+    InputValidationCode: '輸入驗證碼'
+    SendVerificationCode: '發送驗證碼'
+    NextSteps: '下一步'
+    EnterNewPassword: '輸入新密碼'
+    EnterTheNewPasswordAgain: '再次輸入新密碼'
+    ConfirmReset: '確認重置'
+    ResetRequestOccurred: '發生重置請求'
+    AuditStatus1: '管理員審核中'
+    AuditStatus2: '審核不通過'
+    AuditStatus3: '審核通過'
+    RefreshStatus: '刷新狀態'
+    ClearCache: '清除緩存,重新開始'
+
+
+  # 打字动画
+  Typing:
+    Animation1: '歡迎 ! !'
+    Animation2: '歡迎來到設備保養管理平臺 !👋'
+    Animation3: '在這裏，你可以管理設備保養相關的所有事務 ! !'
+    Animation4: '歡迎來到設備保養管理平臺 !'

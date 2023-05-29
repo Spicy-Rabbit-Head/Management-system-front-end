@@ -4,7 +4,9 @@ import Components from 'unplugin-vue-components/vite'
 import {ElementPlusResolver, NaiveUiResolver} from 'unplugin-vue-components/resolvers'
 import vue from '@vitejs/plugin-vue'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
-import {resolve} from 'path'
+import {join, resolve} from 'path'
+import Icons from 'unplugin-icons/vite'
+import IconResolver from 'unplugin-icons/resolver'
 
 export default defineConfig({
     plugins: [
@@ -12,13 +14,20 @@ export default defineConfig({
         // 组件自动导入
         AutoImport({
             resolvers: [ElementPlusResolver(), NaiveUiResolver()],
+            dts: 'src/type/auto-imports.d.ts',
         }),
         Components({
-            resolvers: [ElementPlusResolver(), NaiveUiResolver()],
+            resolvers: [ElementPlusResolver(), NaiveUiResolver(),
+                IconResolver({
+                    prefix: 'icon',
+                    enabledCollections: ['ep', 'ant-design'],
+                })],
+            dts: 'src/type/components.d.ts',
         }),
         VueI18nPlugin({
             include: [resolve(__dirname, './src/i18n/**')],
         }),
+        Icons({compiler: 'vue3'}),
         // 压缩
         // compression({
         //     // 压缩格式
@@ -31,10 +40,10 @@ export default defineConfig({
         //     deleteOriginalAssets: true,
         // })
     ],
-    base: '/',
+    // base: '/',
     resolve: {
         alias: {
-            '@': resolve(__dirname, './src'),
+            '@': join(__dirname, 'src'),
         }
     },
     build: {

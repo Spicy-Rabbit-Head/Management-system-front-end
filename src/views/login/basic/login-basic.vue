@@ -3,8 +3,9 @@
     <div class="basic-img-container">
       <div class="basic-typing">
         <v-typical
+            :key="typingOn"
             class="blink"
-            :steps="[1000, $t('Login.Typing.Animation1'), 2000, $t('Login.Typing.Animation2'), 3000, $t('Login.Typing.Animation3'), 2000]"
+            :steps="typing"
             :loop="Infinity"
         ></v-typical>
       </div>
@@ -14,9 +15,8 @@
     </div>
     <div class="basic-main">
       <router-view v-slot="{ Component }">
-        <!--        <transition mode="out-in" v-motion="MotionPinia().motion">-->
-        <transition mode="out-in">
-          <component :is="Component"/>
+        <transition enter-from-class="slide-fade-enter-from" leave-to-class="slide-fade-leave-to">
+          <component class="child-view" :is="Component"/>
         </transition>
       </router-view>
     </div>
@@ -24,12 +24,18 @@
 </template>
 <script setup lang="ts">
 import {VTypical} from "vue-typical";
-// import {useI18n} from "vue-i18n";
-// import {MotionPinia} from '@/store'
-// const {t} = useI18n()
-// const list = [1000, t('Login.Typing.Animation1'), 2000, t('Login.Typing.Animation2'), 3000, t('Login.Typing.Animation3'), 2000]
+import {useI18n} from "vue-i18n";
+import {ref, watch} from "vue";
 
 
+const {t, locale} = useI18n()
+const typingOn = ref(0)
+const typing = ref([1000, t('Login.Typing.Animation1'), 2000, t('Login.Typing.Animation2'), 3000, t('Login.Typing.Animation3'), 2000])
+
+watch(locale, () => {
+  typing.value = [1000, t('Login.Typing.Animation1'), 2000, t('Login.Typing.Animation2'), 3000, t('Login.Typing.Animation3'), 2000]
+  typingOn.value++
+})
 </script>
 
 <style scoped>

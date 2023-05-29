@@ -299,3 +299,8 @@ video {
 [hidden] {
     display: none;
 }
+
+/* svg默认轮廓置空 */
+svg {
+    outline: none;
+}

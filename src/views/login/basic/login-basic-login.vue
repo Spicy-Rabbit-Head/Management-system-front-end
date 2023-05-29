@@ -21,12 +21,12 @@
       </label>
     </div>
     <el-row class="tw-w-3/5 tw-my-2">
-      <el-col :span="12" class="tw-text-left tw-mt-1.5">
+      <el-col :span="13" class="tw-text-left tw-mt-1.5">
         <n-checkbox class="tw-text-[0.875rem]" v-model:checked="loginPinia.automaticLogin">
           {{ $t('Login.Basic.RememberMe') }}
         </n-checkbox>
       </el-col>
-      <el-col :span="12" class="tw-text-right">
+      <el-col :span="11" class="tw-text-right">
         <n-button color="#ff2e63" class="tw-text-[0.875rem]"
                   @click="$router.push({name:'BasicReset'})">
           {{ $t('Login.ResetPassword') }}
@@ -60,7 +60,7 @@ const verification = () => {
 }
 
 
-const time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms']
+const time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms', '300ms', '350ms']
 
 </script>
 

@@ -55,7 +55,7 @@ function verification() {
   }
 }
 
-let time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms']
+let time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms', '300ms', '350ms']
 </script>
 
 <style scoped>
