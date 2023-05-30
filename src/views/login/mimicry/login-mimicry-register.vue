@@ -15,9 +15,9 @@
       </n-button>
       <n-button type="info" class="response-switch-button-left"
                 @click="loginPinia.ToggleSwitch_Login(0)">
-        <el-icon>
-          <!--<angle-left/>-->
-        </el-icon>
+        <template #icon>
+          <IconAntDesignSwapLeftOutlined/>
+        </template>
         {{ $t('Login.Mimicry.GoToLogin') }}
       </n-button>
     </form>
@@ -44,7 +44,7 @@
           </n-button>
         </el-col>
       </el-row>
-      <n-button type="info" size="large" class="login-public-switch-button"
+      <n-button type="info" size="large" :loading="loginPinia.loginLoading" class="login-public-switch-button"
                 @click="verification(1)">
         {{ $t('Login.LoginImmediately') }}
       </n-button>
@@ -53,12 +53,12 @@
                 @click="showModal = true">
         {{ $t('Login.ResetPassword') }}
       </n-button>
-      <n-button type="info" class="response-switch-button-right"
+      <n-button type="info" icon-placement="right" class="response-switch-button-right"
                 @click="loginPinia.ToggleSwitch_Login(1)">
         {{ $t('Login.Mimicry.GoToRegister') }}
-        <el-icon>
-          <!--<angle-right/>-->
-        </el-icon>
+        <template #icon>
+          <IconAntDesignSwapRightOutlined/>
+        </template>
       </n-button>
     </form>
   </div>
@@ -75,6 +75,8 @@ import {LoginPinia} from '@/store'
 import {verificationRegister} from "@/utils/verification";
 import PasswordReset from "@/views/login/password-reset.vue";
 import {ref} from "vue";
+import IconAntDesignSwapRightOutlined from '~icons/ant-design/swap-right-outlined'
+import IconAntDesignSwapLeftOutlined from '~icons/ant-design/swap-left-outlined'
 
 const loginPinia = LoginPinia();
 const showModal = ref<boolean>(false);
@@ -85,6 +87,7 @@ function verification(i: number) {
     if (i == 0) {
       loginPinia.register(true)
     } else {
+      loginPinia.loginLoading = true
       loginPinia.login()
     }
   }

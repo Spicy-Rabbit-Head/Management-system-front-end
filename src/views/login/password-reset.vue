@@ -27,9 +27,7 @@
               <n-button type="primary" class="tw-text-[1rem]" :loading="emailCurrentLoading"
                         @click="sendVerificationCode">
                 <template #icon>
-                  <n-icon>
-
-                  </n-icon>
+                  <IconAntDesignSendOutlined/>
                 </template>
                 {{ $t('Login.PasswordReset.SendVerificationCode') }}
               </n-button>
@@ -84,9 +82,7 @@
                   :loading="auxiliaryCurrentLoading"
                   @click="refreshState">
                 <template #icon>
-                  <n-icon>
-
-                  </n-icon>
+                  <IconAntDesignSyncOutlined/>
                 </template>
                 {{ $t('Login.PasswordReset.RefreshStatus') }}
               </n-button>
@@ -117,6 +113,8 @@
 <script lang="ts" setup>
 import {onMounted, ref} from "vue";
 import {PasswordResetInterface} from "@/type/interface";
+import IconAntDesignSendOutlined from "~icons/ant-design/send-outlined";
+import IconAntDesignSyncOutlined from "~icons/ant-design/sync-outlined";
 // 退出重置按钮显示状态 false为隐藏 默认显示
 defineProps({exitDisplay: {type: Boolean, default: true}})
 // 邮件重置步骤数

@@ -9,8 +9,13 @@
 <script setup lang="ts">
 import {useRouter} from "vue-router";
 import {get} from "@/api/request.js";
+import {onMounted} from "vue";
+// import {showLoginNotification} from "@/utils/componentPlugins";
 
 const router = useRouter()
+onMounted(() => {
+  // showLoginNotification('success')
+})
 
 function exit() {
   get('/loginRelated/logout', () => {

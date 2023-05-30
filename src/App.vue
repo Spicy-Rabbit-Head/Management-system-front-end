@@ -1,9 +1,13 @@
 <template>
   <full-screen-loading/>
   <div class="tw-w-screen tw-h-screen tw-bg-gray-200 !tw-font-mono tw-font-semibold tw-tracking-wide">
-    <n-config-provider :theme-overrides="themeOverrides">
-      <router-view/>
-    </n-config-provider>
+    <!-- naive ui 全局通知 -->
+    <n-notification-provider :container-style="{ '--color': 'red' }">
+      <!-- naive ui 全局配置 -->
+      <n-config-provider :theme-overrides="themeOverrides">
+        <router-view/>
+      </n-config-provider>
+    </n-notification-provider>
   </div>
 </template>
 
@@ -39,7 +43,7 @@ get('loginRelated/isLogin', () => {
   router.push({name: 'Home'})
 }, () => {
   let url = window.localStorage.getItem('login') || 'LoginBasic';
-  LoginPinia().type = url != 'LoginBasic';
+  loginPinia.type = url != 'LoginBasic';
   router.push({name: url})
 })
 
@@ -68,4 +72,7 @@ onMounted(() => {
 
 
 <style scoped>
+b {
+  border-radius: 50px;
+}
 </style>
