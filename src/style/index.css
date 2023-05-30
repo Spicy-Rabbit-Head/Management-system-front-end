@@ -2,6 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+/*全局样式*/
+@layer components {
+    .flex-base {
+        @apply
+        tw-flex
+        tw-items-center
+        tw-justify-center
+    }
+
+    /* 动画过渡 */
+    #app {
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+        min-height: 100vh;
+        min-width: 100vw;
+    }
+
+    /* 路由动画 */
+    .child-view {
+        position: absolute;
+        width: 100%;
+        overflow: hidden;
+        transition: all .8s cubic-bezier(.55, 0, .1, 1);
+    }
+
+    /* 离开 */
+    .slide-fade-leave-to {
+        opacity: 0;
+        transform: translateX(50px)
+    }
+
+    /* 进入 */
+    .slide-fade-enter-from {
+        opacity: 0;
+        transform: translateX(-50px)
+    }
+
+    /*全局加载动画离开过渡*/
+    .loading-fade-leave-to {
+        opacity: 0;
+    }
+
+    /*全局加载动画进入过渡*/
+    .loading-fade-enter-from {
+        opacity: 0;
+    }
+}
+
+
 /*注册登录界面*/
 @layer components {
     /* 文字提示框右过渡 */
@@ -88,44 +138,5 @@
         tw-flex-col
         tw-w-full
         tw-h-full
-    }
-
-    /* 动画过渡 */
-    #app {
-        overflow: hidden;
-        width: 100%;
-        position: relative;
-        min-height: 100vh;
-        min-width: 100vw;
-    }
-
-    /* 路由动画 */
-    .child-view {
-        position: absolute;
-        width: 100%;
-        overflow: hidden;
-        transition: all .8s cubic-bezier(.55, 0, .1, 1);
-    }
-
-    /* 离开 */
-    .slide-fade-leave-to {
-        opacity: 0;
-        transform: translateX(50px)
-    }
-
-    /* 进入 */
-    .slide-fade-enter-from {
-        opacity: 0;
-        transform: translateX(-50px)
-    }
-
-    /*全局加载动画离开过渡*/
-    .loading-fade-leave-to {
-        opacity: 0;
-    }
-
-    /*全局加载动画进入过渡*/
-    .loading-fade-enter-from {
-        opacity: 0;
     }
 }

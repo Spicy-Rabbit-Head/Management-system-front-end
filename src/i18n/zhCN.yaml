@@ -68,3 +68,16 @@ Login:
     Animation2: '欢迎来到设备保养管理平台 !👋'
     Animation3: '在这里，你可以管理设备保养相关的所有事务 ! !'
     Animation4: '欢迎来到设备保养管理平台 !'
+#菜单标题
+SignName: '设备保养管理系统'
+#HTML标题
+Title:
+  NullException: '异常页-设备保养管理系统'
+  LoginMimicry: '拟态登录页-设备保养管理系统'
+  BasicLogin: '简约登录页-设备保养管理系统'
+  BasicRegister: '简约注册页-设备保养管理系统'
+  BasicReset: '重置密码页-设备保养管理系统'
+  Home: '首页-设备保养管理系统'
+# 全局提示
+FullScreenMode:
+  Tip: '全屏切换'

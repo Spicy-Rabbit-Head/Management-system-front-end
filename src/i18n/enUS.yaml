@@ -68,3 +68,13 @@ Login:
     Animation2: 'Welcome to the management platform !👋'
     Animation3: 'Here, manage everything ! !'
     Animation4: 'Welcome to the management platform  !'
+#菜单标题
+SignName: 'Equipment maintenance management system'
+#HTML标题
+Title:
+  NullException: 'Exception Page - Equipment maintenance management system'
+  LoginMimicry: 'Mimicry login Page - Equipment maintenance management system'
+  BasicLogin: 'Simple login page - Equipment maintenance management system'
+  BasicRegister: 'Simple registration page - Equipment maintenance management system'
+  BasicReset: 'Reset Password page - Equipment maintenance Management System'
+  Home: 'Home Page - Equipment maintenance management system'

@@ -4,7 +4,7 @@ import {Router, useRouter} from "vue-router";
 import {showToast} from "@/utils/componentPlugins";
 
 // 登录注册界面接口
-interface LoginPiniaInterface {
+interface LoginStoreInterface {
     LoginScreen: {
         switchButton: string,
         switchButtonHidden1: null | string,
@@ -21,16 +21,17 @@ interface LoginPiniaInterface {
     },
     automaticLogin: boolean,
     type: boolean,
-    loginStatus: boolean,
     router: Router,
     loading: boolean,
     isAuthenticated: boolean,
     currentRoute: string,
+    loginLoading: boolean,
+    loginException: null | number
 }
 
 // 登录注册界面实体
-export const LoginPinia = defineStore('LoginPinia', {
-    state: (): LoginPiniaInterface => {
+export const LoginStore = defineStore('LoginStore', {
+    state: (): LoginStoreInterface => {
         return {
             // 登录注册实体
             FormLogin: {
@@ -52,8 +53,6 @@ export const LoginPinia = defineStore('LoginPinia', {
             automaticLogin: false,
             // 登录注册界面切换状态 true拟态 false简单
             type: true,
-            // 登录状态
-            loginStatus: false,
             // 路由
             router: useRouter(),
             // 全屏加载状态
@@ -62,6 +61,10 @@ export const LoginPinia = defineStore('LoginPinia', {
             isAuthenticated: false,
             // 当前路由
             currentRoute: '',
+            // 登录加载状态
+            loginLoading: false,
+            // 登录异常
+            loginException: null
         }
     },
     actions: {
@@ -99,14 +102,18 @@ export const LoginPinia = defineStore('LoginPinia', {
         },
         // 简单界面切换
         basicSwitch(str: string): void {
-            this.router.push({name: str}).then(() => {
+            this.router.replace({name: str}).then(() => {
                 this.Clear()
             })
         },
         // 登录请求
         login(): void {
+            window.setTimeout(() => {
+                this.loginLoading = false
+            }, 3000)
             post('loginRelated/login', this.FormLogin, (data: any): void => {
-                this.router.push({name: 'Home'}).then(() => {
+                this.isAuthenticated = true
+                this.router.replace({name: 'Home'}).then(() => {
                     if (this.automaticLogin) {
                         window.sessionStorage.removeItem('token')
                         window.localStorage.setItem('token', data.data)
@@ -127,7 +134,7 @@ export const LoginPinia = defineStore('LoginPinia', {
                 if (i) {
                     this.ToggleSwitch_Login(0)
                 } else {
-                    this.router.push({name: 'BasicLogin'}).then()
+                    this.router.replace({name: 'BasicLogin'}).then()
                 }
             }, (data: any): void => {
                 showToast(data.message, 'error')
@@ -135,6 +142,22 @@ export const LoginPinia = defineStore('LoginPinia', {
         }
     }
 })
+
+// 全局共享状态
+interface GlobalStoreInterface {
+    menuStatus: boolean,
+}
+
+// 全局共享状态实体
+export const GlobalStore = defineStore('GlobalStore', {
+    state: (): GlobalStoreInterface => {
+        return {
+            // 菜单栏状态 (false展开 true收起)
+            menuStatus: false,
+        }
+    }
+})
+
 
 export const MotionPinia = defineStore('Motion', {
     state: () => {

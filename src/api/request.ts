@@ -1,6 +1,13 @@
 // 封装 axios
 import axios from 'axios'
 import {ElMessage} from "element-plus"
+import {LoginStore} from "@/store";
+import {nextTick} from "vue";
+
+let loginStore: any;
+nextTick(() => {
+    loginStore = LoginStore()
+}).then()
 
 // 创建一个 axios 实例
 const service = axios.create({
@@ -33,6 +40,12 @@ service.interceptors.response.use(
     response => {
         console.log("请求成功")
         // 对响应数据做点什么
+        let code = response.data.code
+        if (code === 100000 || code === 100001) {
+            window.localStorage.removeItem("token")
+            window.sessionStorage.removeItem("token")
+            loginStore.loginException = response.data.code
+        }
         return response
     },
     error => {

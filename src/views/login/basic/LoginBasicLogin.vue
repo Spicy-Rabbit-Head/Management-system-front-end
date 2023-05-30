@@ -1,9 +1,12 @@
 <template>
+  <!-- 简约登录页 -->
   <form class="basic-login-form">
+    <!-- 标题 -->
     <h2 class="login-public-title">{{ $t('Login.LoginTitle') }}</h2>
     <p class="login-public-description tw-mb-0">{{ $t('Login.Basic.LoginSubtitle') }}</p>
+    <!-- 用户输入 -->
     <div class="basic-input">
-      <input type="text" required="" v-model="loginPinia.FormLogin.username">
+      <input type="text" required="" v-model="loginStore.FormLogin.username">
       <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -11,8 +14,9 @@
                 </span>
       </label>
     </div>
+    <!-- 密码输入 -->
     <div class="basic-input">
-      <input type="text" required="" v-model="loginPinia.FormLogin.password">
+      <input type="text" required="" v-model="loginStore.FormLogin.password">
       <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -22,25 +26,25 @@
     </div>
     <el-row class="tw-w-3/5 tw-my-2">
       <el-col :span="13" class="tw-text-left tw-mt-1.5">
-        <n-checkbox class="tw-text-[0.875rem]" v-model:checked="loginPinia.automaticLogin">
+        <n-checkbox class="tw-text-[0.875rem]" v-model:checked="loginStore.automaticLogin">
           {{ $t('Login.Basic.RememberMe') }}
         </n-checkbox>
       </el-col>
       <el-col :span="11" class="tw-text-right">
         <n-button color="#ff2e63" class="tw-text-[0.875rem]"
-                  @click="$router.push({name:'BasicReset'})">
+                  @click="$router.replace({name:'BasicReset'})">
           {{ $t('Login.ResetPassword') }}
         </n-button>
       </el-col>
     </el-row>
-    <n-button class="tw-w-3/5 tw-text-[1rem]" type="primary" @click="verification">
+    <n-button class="tw-w-3/5 tw-text-[1rem]" :loading="loginStore.loginLoading" type="primary" @click="verification">
       {{ $t('Login.LoginImmediately') }}
     </n-button>
     <n-divider style="color: gray ;padding: 0 10%" class="tw-text-[0.875rem]">
       {{ $t('Login.Basic.RegistrationTips') }}
     </n-divider>
     <n-button class="tw-w-3/5 tw-text-[1rem]" type="warning"
-              @click="loginPinia.basicSwitch('BasicRegister')"
+              @click="loginStore.basicSwitch('BasicRegister')"
     >
       {{ $t('Login.RegisterAccount') }}
     </n-button>
@@ -48,18 +52,20 @@
 </template>
 
 <script setup lang="ts">
-import {LoginPinia} from '@/store'
+import {LoginStore} from '@/store'
 import {verificationRegister} from "@/utils/verification";
 
-const loginPinia = LoginPinia();
+const loginStore = LoginStore();
+// 登录验证
 const verification = () => {
   let register = verificationRegister(1);
   if (register) {
-    loginPinia.login()
+    loginStore.loginLoading = true
+    loginStore.login()
   }
 }
 
-
+// 输入框动画
 const time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms', '300ms', '350ms']
 
 </script>

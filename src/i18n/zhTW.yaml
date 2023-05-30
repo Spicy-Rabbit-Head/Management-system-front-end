@@ -62,11 +62,19 @@ Login:
     AuditStatus3: '審核通過'
     RefreshStatus: '刷新狀態'
     ClearCache: '清除緩存,重新開始'
-
-
   # 打字动画
   Typing:
     Animation1: '歡迎 ! !'
     Animation2: '歡迎來到設備保養管理平臺 !👋'
     Animation3: '在這裏，你可以管理設備保養相關的所有事務 ! !'
     Animation4: '歡迎來到設備保養管理平臺 !'
+#菜单标题
+SignName: '設備保養管理系統'
+# HTML标题
+Title:
+  NullException: '異常頁-設備保養管理系統'
+  LoginMimicry: '擬態登錄頁-設備保養管理系統'
+  BasicLogin: '簡約登錄頁-設備保養管理系統'
+  BasicRegister: '簡約注冊頁-設備保養管理系統'
+  BasicReset: '重置密碼頁-設備保養管理系統'
+  Home: '首頁-設備保養管理系統'

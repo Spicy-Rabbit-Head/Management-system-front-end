@@ -1,7 +1,7 @@
 <template>
   <div class="checkbox-wrapper-5">
     <div class="check">
-      <input type="checkbox" id="check-5" v-model="loginPinia.type"
+      <input type="checkbox" id="check-5" v-model="loginStore.type"
              @click="typeSwitch">
       <label for="check-5"></label>
     </div>
@@ -10,21 +10,22 @@
 
 <script setup lang="ts">
 import {useRouter} from "vue-router";
-import {LoginPinia} from "@/store";
+import {LoginStore} from "@/store";
 
 const router: any = useRouter();
-const loginPinia = LoginPinia();
+const loginStore = LoginStore();
 
+// 切换登录页面
 function typeSwitch(): void {
-  LoginPinia().type = !LoginPinia().type;
-  if (LoginPinia().type) {
+  loginStore.type = !loginStore.type;
+  if (loginStore.type) {
     localStorage.setItem('login', 'LoginMimicry')
     router.push({name: 'LoginMimicry'});
   } else {
     localStorage.setItem('login', 'LoginBasic')
     router.push({name: 'LoginBasic'});
   }
-  LoginPinia().Clear()
+  loginStore.Clear()
 }
 </script>
 

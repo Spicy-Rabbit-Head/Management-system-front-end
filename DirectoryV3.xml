@@ -1,41 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <trees>
-   <tree path="/src/style" title="样式"/>
-   <tree path="/src/router" title="路由"/>
-   <tree path="/src/assets" title="字体图片等静态资源"/>
-   <tree path="/src/components" title="自定义通用组件"/>
-   <tree path="/src/store" title="pinia"/>
-   <tree path="/src/utils" title="工具"/>
-   <tree path="/src/api" title="接口请求统一管理"/>
-   <tree path="/src/views" title="页面"/>
-   <tree path="/src/utils/request.ts" title="封装 axios" extension="ts"/>
-   <tree path="/src/utils/api.js" title="请求" extension="js"/>
-   <tree path="/src/views/login" title="登录注册界面"/>
-   <tree path="/src/views/error" title="错误界面"/>
-   <tree path="/src/layout" title="布局"/>
-   <tree path="/src/i18n" title="国际化"/>
-   <tree path="/src/layout/aside-layout.vue" title="侧栏模式" extension="vue"/>
-   <tree path="/src/layout/header-layout.vue" title="顶栏模式"
-         extension="vue"/>
-   <tree path="/src/layout/mix-layout.vue" title="混合模式" extension="vue"/>
-   <tree path="/src/router/guard.ts" title="路由守卫" extension="ts"/>
+    <tree path="/src/style" title="样式"/>
+    <tree path="/src/router" title="路由"/>
+    <tree path="/src/assets" title="字体图片等静态资源"/>
+    <tree path="/src/components" title="自定义通用组件"/>
+    <tree path="/src/store" title="pinia"/>
+    <tree path="/src/utils" title="工具"/>
+    <tree path="/src/api" title="接口请求统一管理"/>
+    <tree path="/src/views" title="页面"/>
+    <tree path="/src/utils/request.ts" title="封装 axios" extension="ts"/>
+    <tree path="/src/utils/api.js" title="请求" extension="js"/>
+    <tree path="/src/views/login" title="登录注册界面"/>
+    <tree path="/src/views/error" title="错误界面"/>
+    <tree path="/src/layout" title="布局"/>
+    <tree path="/src/i18n" title="国际化"/>
+    <tree path="/src/layout/SidebarLayout.vue" title="侧栏模式"/>
+    <tree path="/src/layout/TopColumnLayout.vue" title="顶栏模式"
+          extension="vue"/>
+    <tree path="/src/layout/MixedLayout.vue" title="混合模式" extension="vue"/>
+    <tree path="/src/router/guard.ts" title="路由守卫" extension="ts"/>
     <tree path="/src/router/index.ts" title="路由配置" extension="ts"/>
     <tree path="/src/store/index.js" title="状态管理" extension="js"/>
     <tree path="/src/style/style.css" title="初始化样式" extension="css"/>
     <tree path="/src/style/index.css" title="Tailwind CSS" extension="css"/>
     <tree path="/src/components/LoginPageButton.vue" title="登录页按钮"
           extension="vue"/>
-    <tree path="/src/views/login/login.vue" title="登录注册主路由"/>
+    <tree path="/src/views/login/Login.vue" title="登录注册主路由"/>
     <tree path="/src/views/login/basic" title="登录注册基本页面"/>
     <tree path="/src/views/login/mimicry" title="登录注册拟态页面"/>
     <tree path="/src/components/LoginPageSwitch.vue" title="登录页切换开关"/>
     <tree path="/src/views/homePage" title="首页"/>
     <tree path="/src/utils/verification.ts" title="vest 验证" extension="" presentableText=""
           tooltipTitle="" icon="" textColor="" backgroundColor=""/>
-    <tree path="/src/components/password-reset.vue" title="密码重置"/>
-    <tree path="/src/views/login/password-reset.vue" title="密码重置"/>
+    <tree path="/src/views/login/PasswordReset.vue" title="密码重置"/>
     <tree path="/src/components/FullScreenLoading.vue" title="全局加载页面"/>
     <tree path="/src/components/LanguageSwitching.vue" title="语言切换组件"/>
     <tree path="/src/utils/componentPlugins.ts" title="插件式组件工具类" extension="" presentableText="" tooltipTitle=""
           icon="" textColor="" backgroundColor=""/>
+    <tree path="/src/utils/loadingProgress.ts" title="全局加载进度" extension="" presentableText="" tooltipTitle=""
+          icon="" textColor="" backgroundColor=""/>
+    <tree path="/src/layout/item" title="布局项"/>
+    <tree path="/src/layout/item/AsideTop.vue" title="左侧顶 (logo)" extension="" presentableText="" tooltipTitle=""
+          icon=""
+          textColor="" backgroundColor=""/>
+    <tree path="/src/layout/item/HeaderRight.vue" title="头部右侧 (切换组件)" extension="" presentableText=""
+          tooltipTitle="" icon="" textColor="" backgroundColor=""/>
+    <tree path="/src/layout/item/HeaderUser.vue" title="头部用户 (用户头像及工具栏)"/>
+    <tree path="/src/layout/item/HeaderLeft.vue" title="头部左侧 (面包屑)"/>
+    <tree path="/src/layout/item/AsideBottom.vue" title="左侧底 (菜单栏按钮)"/>
+    <tree path="/src/views/login/login.vue" title="登录注册根页面"/>
+    <tree path="/src/components/FullScreenMode.vue" title="全屏模式"/>
+    <tree path="/src/components/GlobalTooltip.vue" title="全局提升"/>
+    <tree path="/src/components/FormDrawer.vue" title="全局表单抽屉"/>
+    <tree path="/src/layout/item/AsideMain.vue" title="左侧主体 (菜单)"/>
+    <tree path="/src/components/DynamicMenu.vue" title="动态菜单"/>
+    <tree path="/src/icons" title="图标"/>
 </trees>

@@ -1,9 +1,12 @@
 <template>
+  <!-- 简约注册页 -->
   <form class="basic-login-form">
+    <!-- 标题 -->
     <h2 class="login-public-title">{{ $t('Login.RegisterAccount') }}</h2>
     <p class="login-public-description tw-mb-0">{{ $t('Login.Basic.RegisterSubtitle') }}</p>
+    <!-- 用户输入 -->
     <div class="basic-input">
-      <input type="text" required="" v-model="loginPinia.FormLogin.username">
+      <input type="text" required="" v-model="loginStore.FormLogin.username">
       <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -11,8 +14,9 @@
                 </span>
       </label>
     </div>
+    <!-- 密码输入 -->
     <div class="basic-input">
-      <input type="text" required="" v-model="loginPinia.FormLogin.password">
+      <input type="text" required="" v-model="loginStore.FormLogin.password">
       <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -20,8 +24,9 @@
                 </span>
       </label>
     </div>
+    <!-- 重复密码输入 -->
     <div class="basic-input">
-      <input type="text" required="" v-model="loginPinia.FormLogin.repeatPassword">
+      <input type="text" required="" v-model="loginStore.FormLogin.repeatPassword">
       <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -36,25 +41,27 @@
       {{ $t('Login.Basic.LoginTips') }}
     </n-divider>
     <n-button class="tw-w-3/5 tw-text-[1rem]" type="warning"
-              @click="loginPinia.basicSwitch('BasicLogin')">
+              @click="loginStore.basicSwitch('BasicLogin')">
       {{ $t('Login.LoginTitle') }}
     </n-button>
   </form>
 </template>
 
 <script setup lang="ts">
-import {LoginPinia} from "@/store";
+import {LoginStore} from "@/store";
 import {verificationRegister} from "@/utils/verification";
 
-const loginPinia = LoginPinia();
+const loginStore = LoginStore();
 
+// 注册验证
 function verification() {
   let register = verificationRegister(0);
   if (register) {
-    loginPinia.register(false);
+    loginStore.register(false);
   }
 }
 
+// 输入框动画
 let time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms', '300ms', '350ms']
 </script>
 

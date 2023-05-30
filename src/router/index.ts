@@ -1,15 +1,17 @@
 // 引入js
 import {createRouter, createWebHistory, Router, RouteRecordRaw} from 'vue-router'
-import {LoginPinia} from "@/store";
+import {LoginStore} from "@/store";
+import {nextTick} from "vue";
 
-// import NullException from "@/views/error/null-exception.vue";
-// import Login from "@/views/login/login.vue";
-// import LoginMimicry from "@/views/login/mimicry/login-mimicry.vue";
-// import LoginBasic from "@/views/login/basic/login-basic.vue";
+let loginStore: any
+nextTick(() => {
+    loginStore = LoginStore()
+}).then()
 
 function FullScreenLoadingRun() {
-    LoginPinia().loading = true
+    loginStore.loading = true
 }
+
 
 // 定义路由
 const routes = [
@@ -23,14 +25,15 @@ const routes = [
     {
         path: '/null-exception',
         name: 'NullException',
-        component: () => import("@/views/error/null-exception.vue")
+        meta: {title: 'Title.NullException'},
+        component: () => import("@/views/error/NullException.vue")
         // component: NullException
     },
     // 登录页面根目录
     {
         path: '/login',
         name: 'Login',
-        component: () => import('@/views/login/login.vue'),
+        component: () => import('@/views/login/Login.vue'),
         // component: Login,
         beforeEnter: FullScreenLoadingRun,
         children: [
@@ -38,31 +41,35 @@ const routes = [
             {
                 path: 'login-mimicry',
                 name: 'LoginMimicry',
-                component: () => import('@/views/login/mimicry/login-mimicry.vue')
+                meta: {title: 'Title.LoginMimicry'},
+                component: () => import('@/views/login/mimicry/LoginMimicry.vue')
                 // component: LoginMimicry
             },
             // 基础登录页面
             {
                 path: 'login-basic',
                 name: 'LoginBasic',
-                component: () => import('@/views/login/basic/login-basic.vue'),
+                component: () => import('@/views/login/basic/LoginBasic.vue'),
                 // component: LoginBasic,
                 redirect: {name: 'BasicLogin'},
                 children: [
                     {
                         path: 'basic-login',
                         name: 'BasicLogin',
-                        component: () => import('@/views/login/basic/login-basic-Login.vue')
+                        meta: {title: 'Title.BasicLogin'},
+                        component: () => import('@/views/login/basic/LoginBasicLogin.vue')
                     },
                     {
                         path: 'basic-register',
                         name: 'BasicRegister',
-                        component: () => import('@/views/login/basic/login-basic-register.vue')
+                        meta: {title: 'Title.BasicRegister'},
+                        component: () => import('@/views/login/basic/LoginBasicRegister.vue')
                     },
                     {
                         path: 'basic-reset',
                         name: 'BasicReset',
-                        component: () => import('@/views/login/password-reset.vue')
+                        meta: {title: 'Title.BasicReset'},
+                        component: () => import('@/views/login/PasswordReset.vue')
                     }
                 ]
             }
@@ -72,7 +79,8 @@ const routes = [
     {
         path: '/home',
         name: 'Home',
-        component: () => import('@/views/homePage/home.vue'),
+        meta: {title: 'Title.Home'},
+        component: () => import('@/views/homePage/Home.vue'),
         beforeEnter: FullScreenLoadingRun,
     },
     // 匹配所有路径,如果没有匹配到,则重定向到404页面
@@ -89,25 +97,31 @@ const router: Router = createRouter({
 })
 
 // 前置全局守卫
-router.beforeEach((_to, from, next) => {
-        console.log("路由跳转开始")
-        console.log(from.path)
-        next()
+router.beforeEach((to, from, next) => {
+    console.log("路由跳转开始")
+    console.log(from.path)
+    console.log(to.matched)
+    if (loginStore.isAuthenticated && to.path.includes('/login')) {
+        return;
     }
-)
-
+    if (!loginStore.isAuthenticated && to.path.includes('/home')) {
+        return;
+    }
+    next()
+})
+// 后置全局守卫
 router.afterEach((to) => {
-    if (LoginPinia().loading) {
-        LoginPinia().loading = false
+    if (loginStore.loading) {
+        loginStore.loading = false
     }
     console.log(to.path)
     console.log("路由跳转结束")
 })
-
+// 路由跳转错误
 router.onError((error) => {
     console.log("路由跳转错误:")
     console.log(error)
-    router.push({name: 'NullException'}).then()
+    router.replace({name: 'NullException'}).then()
 })
 
 

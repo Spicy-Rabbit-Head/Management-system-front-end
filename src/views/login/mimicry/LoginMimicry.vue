@@ -1,11 +1,14 @@
 <template>
+  <!-- 拟态页主体 -->
   <div class="mimicry-background mimicry-layout">
+    <!-- 自动文字 -->
     <h2 :data-text="$t('Login.Typing.Animation4')" class="mimicry-typing">
       {{ $t("Login.Typing.Animation4") }}
     </h2>
     <h2 :data-text="$t('Login.Typing.Animation3')" class="mimicry-typing tw-mt-10">
       {{ $t("Login.Typing.Animation3") }}
     </h2>
+    <!-- 拟态组件 -->
     <div class="mimicry-frame mimicry-response">
       <login-mimicry-switch/>
       <login-mimicry-register/>
@@ -14,8 +17,8 @@
 </template>
 
 <script setup>
-import LoginMimicrySwitch from "./login-mimicry-switch.vue";
-import LoginMimicryRegister from "./login-mimicry-register.vue";
+import LoginMimicrySwitch from "./LoginMimicrySwitch.vue";
+import LoginMimicryRegister from "./LoginMimicryRegister.vue";
 </script>
 
 <style scoped>
@@ -70,6 +73,7 @@ import LoginMimicryRegister from "./login-mimicry-register.vue";
   sm:tw-scale-50
 }
 
+/* 拟态页自动文字样式 */
 .mimicry-typing {
   @apply
   tw-hidden

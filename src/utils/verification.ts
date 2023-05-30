@@ -1,12 +1,12 @@
 import {create, eager, enforce, only, test} from "vest";
-import {LoginPinia} from "@/store";
+import {LoginStore} from "@/store";
 import {showToast} from "@/utils/componentPlugins";
 
-const loginPinia = LoginPinia()
+const loginStore = LoginStore()
 
 function verificationRegister(code: number): boolean {
     let result;
-    let traversal = loginPinia.FormLogin
+    let traversal = loginStore.FormLogin
     for (let prop in traversal) {
         if (code) if (prop === 'repeatPassword') continue
         result = suite(traversal, prop)

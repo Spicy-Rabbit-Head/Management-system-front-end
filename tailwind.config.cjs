@@ -32,7 +32,9 @@ module.exports = {
             // 盒子阴影
             boxShadow: {
                 // 登录界面输入框阴影
-                'login-in-shadow': 'inset 2px 2px 4px #d1d9e6,inset -2px -2px 4px #f9f9f9'
+                'login-in-shadow': 'inset 2px 2px 4px #d1d9e6,inset -2px -2px 4px #f9f9f9',
+                // 环绕阴影
+                'surround': '0px 0px 10px rgb(0 0 0 / 0.25)'
             },
             // 宽
             width: {
@@ -74,11 +76,16 @@ module.exports = {
                 textAnimation: {
                     '0%,10%,100%': {width: '0'},
                     '70%,90%': {width: '100%'},
+                },
+                layoutAsideTitle: {
+                    '0%': {opacity: '0'},
+                    '100%': {opacity: '1'},
                 }
             },
             // 动画
             animation: {
                 'text-animation-effects': 'textAnimation 6s linear infinite',
+                'layout-aside-title-animation': 'layoutAsideTitle 1s ease-in-out',
             },
             // 背景渐变
             backgroundImage: {

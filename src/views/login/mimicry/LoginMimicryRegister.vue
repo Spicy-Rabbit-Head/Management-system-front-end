@@ -1,39 +1,41 @@
 <template>
-  <div :class="loginPinia.LoginScreen.switchRegister" class="response-container">
+  <!-- 拟态注册 -->
+  <div :class="loginStore.LoginScreen.switchRegister" class="response-container">
     <form class="response-form">
       <h2 class="login-public-title">{{ $t('Login.CreateAnAccount') }}</h2>
-      <input class="response-input" v-model="loginPinia.FormLogin.username"
+      <input class="response-input" v-model="loginStore.FormLogin.username"
              :placeholder="$t('Login.UsernameInputText')"/>
-      <input class="response-input" v-model="loginPinia.FormLogin.password"
+      <input class="response-input" v-model="loginStore.FormLogin.password"
              :placeholder="$t('Login.PasswordInputText')"/>
       <input class="response-input"
-             v-model="loginPinia.FormLogin.repeatPassword"
+             v-model="loginStore.FormLogin.repeatPassword"
              :placeholder="$t('Login.ReenterThePassword')"/>
       <n-button type="info" class="login-public-switch-button"
                 @click="verification(0)">
         {{ $t('Login.RegisterAccount') }}
       </n-button>
       <n-button type="info" class="response-switch-button-left"
-                @click="loginPinia.ToggleSwitch_Login(0)">
-        <el-icon>
-          <!--<angle-left/>-->
-        </el-icon>
+                @click="loginStore.ToggleSwitch_Login(0)">
+        <template #icon>
+          <IconAntDesignSwapLeftOutlined/>
+        </template>
         {{ $t('Login.Mimicry.GoToLogin') }}
       </n-button>
     </form>
   </div>
-  <div :class="loginPinia.LoginScreen.switchLogin"
+  <!-- 拟态登录 -->
+  <div :class="loginStore.LoginScreen.switchLogin"
        class="response-container">
     <form class="response-form">
       <h2 class="login-public-title">{{ $t('Login.LoginTitle') }}</h2>
-      <input class="response-input" v-model="loginPinia.FormLogin.username"
+      <input class="response-input" v-model="loginStore.FormLogin.username"
              :placeholder="$t('Login.UsernameInputText')"/>
-      <input class="response-input" v-model="loginPinia.FormLogin.password"
+      <input class="response-input" v-model="loginStore.FormLogin.password"
              :placeholder="$t('Login.PasswordInputText')"/>
       <el-row class="tw-w-3/5">
         <el-col :span="12" class="tw-text-left">
           <el-checkbox class="response-automatic-login"
-                       v-model="loginPinia.automaticLogin"
+                       v-model="loginStore.automaticLogin"
                        :label="$t('Login.Mimicry.AutomaticLogin')"/>
         </el-col>
         <el-col :span="12" style="text-align: right"
@@ -44,7 +46,7 @@
           </n-button>
         </el-col>
       </el-row>
-      <n-button type="info" size="large" class="login-public-switch-button"
+      <n-button type="info" size="large" :loading="loginStore.loginLoading" class="login-public-switch-button"
                 @click="verification(1)">
         {{ $t('Login.LoginImmediately') }}
       </n-button>
@@ -53,15 +55,16 @@
                 @click="showModal = true">
         {{ $t('Login.ResetPassword') }}
       </n-button>
-      <n-button type="info" class="response-switch-button-right"
-                @click="loginPinia.ToggleSwitch_Login(1)">
+      <n-button type="info" icon-placement="right" class="response-switch-button-right"
+                @click="loginStore.ToggleSwitch_Login(1)">
         {{ $t('Login.Mimicry.GoToRegister') }}
-        <el-icon>
-          <!--<angle-right/>-->
-        </el-icon>
+        <template #icon>
+          <IconAntDesignSwapRightOutlined/>
+        </template>
       </n-button>
     </form>
   </div>
+  <!-- 弹窗重置密码页 -->
   <el-dialog
       class="!tw-w-[96%] sm:!tw-w-2/3 lg:!tw-w-2/5 2xl:!tw-w-1/3"
       v-model="showModal"
@@ -71,21 +74,26 @@
   </el-dialog>
 </template>
 <script setup lang="ts">
-import {LoginPinia} from '@/store'
+import {LoginStore} from '@/store'
 import {verificationRegister} from "@/utils/verification";
-import PasswordReset from "@/views/login/password-reset.vue";
+import PasswordReset from "@/views/login/PasswordReset.vue";
 import {ref} from "vue";
+import IconAntDesignSwapRightOutlined from '~icons/ant-design/swap-right-outlined'
+import IconAntDesignSwapLeftOutlined from '~icons/ant-design/swap-left-outlined'
 
-const loginPinia = LoginPinia();
+const loginStore = LoginStore();
+// 弹窗重置密码页
 const showModal = ref<boolean>(false);
 
+// 注册登录验证
 function verification(i: number) {
   let register = verificationRegister(i);
   if (register) {
     if (i == 0) {
-      loginPinia.register(true)
+      loginStore.register(true)
     } else {
-      loginPinia.login()
+      loginStore.loginLoading = true
+      loginStore.login()
     }
   }
 }

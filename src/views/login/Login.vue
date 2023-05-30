@@ -1,6 +1,9 @@
 <template>
-  <LoginPageSwitch class="tw-absolute tw-top-2 tw-right-2 tw-z-20"/>
-  <LanguageSwitching class="tw-absolute tw-top-2 tw-right-24 tw-z-20"/>
+  <!-- 注册登录界面风格切换 -->
+  <login-page-switch class="tw-absolute tw-top-2 tw-right-2 tw-z-20"/>
+  <!-- 语言切换 -->
+  <language-switching class="tw-absolute tw-top-2.5 tw-right-24 tw-z-20"/>
+  <!-- 登录界面路由 -->
   <router-view v-slot="{ Component}">
     <transition mode="out-in"
                 enter-from-class="tw-opacity-0"

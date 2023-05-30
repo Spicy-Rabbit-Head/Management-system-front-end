@@ -1,6 +1,6 @@
 <template>
   <transition leave-to-class="loading-fade-leave-to">
-    <div v-if="loginPinia.loading"
+    <div v-if="loginStore.loading"
          class="loading">
       <div class="wrapper">
         <div class="circle"></div>
@@ -15,9 +15,9 @@
 </template>
 
 <script setup lang="ts">
-import {LoginPinia} from "@/store";
+import {LoginStore} from "@/store";
 
-const loginPinia = LoginPinia();
+const loginStore = LoginStore();
 
 </script>
 
@@ -34,7 +34,7 @@ const loginPinia = LoginPinia();
   tw-justify-center
   tw-items-center
   tw-transition-opacity
-  tw-duration-1000
+  tw-duration-1250
 }
 
 .wrapper {

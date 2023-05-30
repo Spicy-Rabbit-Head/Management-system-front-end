@@ -1,9 +1,11 @@
 <template>
   <div class="basic-login-form tw-px-8">
+    <!-- 退出重置按钮 -->
     <n-button v-show="exitDisplay" type="error" class="tw-flex tw-absolute tw-left-4 tw-top-4 tw-text-[1rem]"
-              @click="$router.push({name:'BasicLogin'})">
+              @click="$router.replace({name:'BasicLogin'})">
       {{ $t('Login.PasswordReset.ExitReset') }}
     </n-button>
+    <!-- 重置方法标签页 -->
     <n-tabs
         class="card-tabs"
         default-value="emailReset"
@@ -12,13 +14,17 @@
         animated
         :tabs-padding="0"
     >
+      <!-- 邮箱验证页 -->
       <n-tab-pane name="emailReset" :tab="$t('Login.PasswordReset.Tab1')">
+        <!-- 邮箱验证步骤条 -->
         <el-steps :active="emailCurrent" finish-status="success" process-status="process"
                   align-center>
           <el-step :title="$t('Login.PasswordReset.Steps1')" icon=""/>
           <el-step :title="$t('Login.PasswordReset.Steps2')" icon=""/>
         </el-steps>
+        <!-- 邮箱验证步骤内容 -->
         <div class="tw-w-11/12 tw-mx-auto">
+          <!-- 邮箱验证步骤-验证码 -->
           <div v-if="emailCurrent == 0">
             <p class="tips tw-my-6">{{ $t('Login.PasswordReset.StepsTips1') }}</p>
             <n-input :placeholder="$t('Login.PasswordReset.EnterAccountName')" class="tw-text-[1rem]"/>
@@ -27,9 +33,7 @@
               <n-button type="primary" class="tw-text-[1rem]" :loading="emailCurrentLoading"
                         @click="sendVerificationCode">
                 <template #icon>
-                  <n-icon>
-
-                  </n-icon>
+                  <IconAntDesignSendOutlined/>
                 </template>
                 {{ $t('Login.PasswordReset.SendVerificationCode') }}
               </n-button>
@@ -38,6 +42,7 @@
               {{ $t('Login.PasswordReset.NextSteps') }}
             </n-button>
           </div>
+          <!-- 邮箱验证步骤-重置密码 -->
           <div v-else-if="emailCurrent == 1">
             <p class="tips tw-my-6">{{ $t('Login.PasswordReset.StepsTips2') }}</p>
             <n-input :placeholder="$t('Login.PasswordReset.EnterNewPassword')" class="tw-text-[1rem]"/>
@@ -48,7 +53,9 @@
           </div>
         </div>
       </n-tab-pane>
+      <!-- 辅助验证页 -->
       <n-tab-pane name="administratorAssistedReset" :tab="$t('Login.PasswordReset.Tab2')">
+        <!-- 辅助验证步骤条 -->
         <el-steps :active="auxiliaryCurrentState.Current" finish-status="success"
                   process-status="process"
                   align-center>
@@ -56,7 +63,9 @@
           <el-step :title="$t('Login.PasswordReset.AuxiliarySteps2')" icon=""/>
           <el-step :title="$t('Login.PasswordReset.AuxiliarySteps3')" icon=""/>
         </el-steps>
+        <!-- 辅助验证步骤内容 -->
         <div class="tw-w-11/12 tw-mx-auto">
+          <!-- 辅助验证步骤-账号 -->
           <div v-if="auxiliaryCurrentState.Current == 0">
             <p class="tips tw-my-6">{{ $t('Login.PasswordReset.StepsTips3') }}</p>
             <n-input class="tw-mb-6 tw-text-[1rem]" :placeholder="$t('Login.PasswordReset.EnterAccountName')"/>
@@ -65,6 +74,7 @@
               {{ $t('Login.PasswordReset.ResetRequestOccurred') }}
             </n-button>
           </div>
+          <!-- 辅助验证步骤-管理员确认 -->
           <div v-else-if="auxiliaryCurrentState.Current == 1">
             <p class="tips tw-my-6">{{ $t('Login.PasswordReset.StepsTips2') }}</p>
             <div>
@@ -84,9 +94,7 @@
                   :loading="auxiliaryCurrentLoading"
                   @click="refreshState">
                 <template #icon>
-                  <n-icon>
-
-                  </n-icon>
+                  <IconAntDesignSyncOutlined/>
                 </template>
                 {{ $t('Login.PasswordReset.RefreshStatus') }}
               </n-button>
@@ -97,6 +105,7 @@
               {{ $t('Login.PasswordReset.NextSteps') }}
             </n-button>
           </div>
+          <!-- 辅助验证步骤-重置密码 -->
           <div v-else-if="auxiliaryCurrentState.Current == 2">
             <p class="tips tw-my-6">{{ $t('Login.PasswordReset.StepsTips2') }}</p>
             <n-input :placeholder="$t('Login.PasswordReset.EnterNewPassword')" class="tw-text-[1rem]"/>
@@ -105,6 +114,7 @@
               {{ $t('Login.PasswordReset.ConfirmReset') }}
             </n-button>
           </div>
+          <!-- 辅助验证步骤-清除缓存 -->
           <n-button class="!tw-mt-6 tw-text-[1.25rem]" type="error" block
                     @click="clearCache">
             {{ $t('Login.PasswordReset.ClearCache') }}
@@ -117,6 +127,8 @@
 <script lang="ts" setup>
 import {onMounted, ref} from "vue";
 import {PasswordResetInterface} from "@/type/interface";
+import IconAntDesignSendOutlined from "~icons/ant-design/send-outlined";
+import IconAntDesignSyncOutlined from "~icons/ant-design/sync-outlined";
 // 退出重置按钮显示状态 false为隐藏 默认显示
 defineProps({exitDisplay: {type: Boolean, default: true}})
 // 邮件重置步骤数
@@ -125,6 +137,7 @@ const emailCurrent = ref<number>(0)
 const emailCurrentLoading = ref<boolean>(false)
 // 辅助重置加载状态
 const auxiliaryCurrentLoading = ref<boolean>(false)
+// 辅助重置当前状态
 const auxiliaryCurrentState = ref<PasswordResetInterface>({
   // 辅助重置步骤数
   Current: 0,
@@ -186,6 +199,7 @@ function clearCache() {
 
 </script>
 <style scoped>
+/* 提示样式 */
 .tips {
   @apply
   tw-text-[0.875rem]

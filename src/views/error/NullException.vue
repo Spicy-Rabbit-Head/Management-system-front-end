@@ -39,7 +39,7 @@ onMounted(() => {
 // 错误界面倒计时跳转
 function countdown() {
   if (timing.countdown_time === 0) {
-    router.push({name: 'Login'}).then(() => {
+    router.replace({name: 'Login'}).then(() => {
       if (timing.Interval === null) return
       window.clearInterval(timing.Interval)
       timing.countdown_time = 5
