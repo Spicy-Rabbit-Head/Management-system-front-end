@@ -55,4 +55,5 @@
     <tree path="/src/layout/item/AsideMain.vue" title="左侧主体 (菜单)"/>
     <tree path="/src/components/DynamicMenu.vue" title="动态菜单"/>
     <tree path="/src/icons" title="图标"/>
+    <tree path="/src/layout/item/MainTabNav.vue" title="主体导航标签"/>
 </trees>

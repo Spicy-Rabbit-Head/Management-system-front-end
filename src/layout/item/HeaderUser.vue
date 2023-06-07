@@ -5,7 +5,7 @@
     <vex-avatar class="tw-cursor-pointer" :size="40" src="/vite.svg"/>
     <!-- 功能列表 -->
     <template #drop>
-      <div class=" tw-shadow-surround tw-rounded-md tw-mr-2 tw-mt-2">
+      <div class="tw-bg-white tw-shadow-surround tw-rounded-md tw-mr-2 tw-mt-2">
         <div class="tw-border-b-2 tw-p-3">
           <p class="tw-font-bold tw-text-base">小白猫</p>
           <p>qq1192469846@gmail.com</p>
