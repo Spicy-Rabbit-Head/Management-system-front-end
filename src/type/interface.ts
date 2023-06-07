@@ -1,8 +1,3 @@
-interface VerificationInterface {
-    state: boolean;
-    message?: string;
-}
-
 interface PasswordResetInterface {
     Current: number;
     resetState: boolean;
@@ -12,6 +7,5 @@ interface PasswordResetInterface {
 
 export
 {
-    VerificationInterface,
     PasswordResetInterface
 }
