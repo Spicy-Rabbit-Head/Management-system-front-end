@@ -6,7 +6,7 @@
     <p class="login-public-description tw-mb-0">{{ $t('Login.Basic.LoginSubtitle') }}</p>
     <!-- 用户输入 -->
     <div class="basic-input">
-      <input type="text" required="" v-model="loginStore.FormLogin.username">
+      <input type="text" required="" v-model="loginStore.formLogin.username">
       <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -16,7 +16,7 @@
     </div>
     <!-- 密码输入 -->
     <div class="basic-input">
-      <input type="text" required="" v-model="loginStore.FormLogin.password">
+      <input type="text" required="" v-model="loginStore.formLogin.password">
       <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"

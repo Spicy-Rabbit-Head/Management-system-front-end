@@ -32,6 +32,6 @@ app.use(Toast)
 // 挂载到主页面
 // 挂载全局图标
 for (const [key, component] of Object.entries(icons)) {
-    app.component(key, component)
+    app.component('Z' + key, component)
 }
 app.mount('#app')

@@ -1,46 +1,21 @@
 import {defineStore} from 'pinia'
 import {post} from "@/api/request";
-import {Router, useRouter} from "vue-router";
+import {useRouter} from "vue-router";
 import {showToast} from "@/utils/componentPlugins";
-
-// 登录注册界面接口
-interface LoginStoreInterface {
-    LoginScreen: {
-        switchButton: string,
-        switchButtonHidden1: null | string,
-        switchButtonHidden2: null | string,
-        circle1: null | string,
-        circle2: null | string,
-        switchRegister: string,
-        switchLogin: string,
-    },
-    FormLogin: {
-        username: null | string,
-        password: null | string,
-        repeatPassword?: null | string
-    },
-    automaticLogin: boolean,
-    type: boolean,
-    router: Router,
-    loading: boolean,
-    isAuthenticated: boolean,
-    currentRoute: string,
-    loginLoading: boolean,
-    loginException: null | number
-}
+import {GlobalStoreInterface, LoginStoreInterface} from "@/type/interface";
 
 // 登录注册界面实体
 export const LoginStore = defineStore('LoginStore', {
     state: (): LoginStoreInterface => {
         return {
             // 登录注册实体
-            FormLogin: {
+            formLogin: {
                 username: null,
                 password: null,
                 repeatPassword: null
             },
             // 登录注册界面切换实体
-            LoginScreen: {
+            loginScreen: {
                 switchButton: 'prompt-box-switch-l',
                 switchButtonHidden1: null,
                 switchButtonHidden2: 'switch-hidden',
@@ -71,7 +46,7 @@ export const LoginStore = defineStore('LoginStore', {
         // 拟态登录注册过渡切换
         ToggleSwitch_Login(e: number): void {
             if (e === 0) {
-                this.LoginScreen = {
+                this.loginScreen = {
                     switchButton: 'prompt-box-switch-r',
                     switchButtonHidden2: null,
                     switchButtonHidden1: 'switch-hidden',
@@ -83,7 +58,7 @@ export const LoginStore = defineStore('LoginStore', {
                     circle2: '!-tw-left-1/4',
                 }
             } else {
-                this.LoginScreen = {
+                this.loginScreen = {
                     switchButton: 'prompt-box-switch-l',
                     switchButtonHidden1: null,
                     switchButtonHidden2: 'switch-hidden',
@@ -97,7 +72,7 @@ export const LoginStore = defineStore('LoginStore', {
         },
         // 清除缓冲
         Clear(): void {
-            this.FormLogin = {username: null, password: null, repeatPassword: null}
+            this.formLogin = {username: null, password: null, repeatPassword: null}
             this.automaticLogin = false
         },
         // 简单界面切换
@@ -111,7 +86,7 @@ export const LoginStore = defineStore('LoginStore', {
             window.setTimeout(() => {
                 this.loginLoading = false
             }, 3000)
-            post('loginRelated/login', this.FormLogin, (data: any): void => {
+            post('loginRelated/login', this.formLogin, (data: any): void => {
                 this.isAuthenticated = true
                 this.router.replace({name: 'Home'}).then(() => {
                     if (this.automaticLogin) {
@@ -129,7 +104,7 @@ export const LoginStore = defineStore('LoginStore', {
         },
         // 注册请求
         register(i: boolean): void {
-            post('loginRelated/register', this.FormLogin, (): void => {
+            post('loginRelated/register', this.formLogin, (): void => {
                 showToast("注册成功,请登录", 'success')
                 if (i) {
                     this.ToggleSwitch_Login(0)
@@ -143,11 +118,6 @@ export const LoginStore = defineStore('LoginStore', {
     }
 })
 
-// 全局共享状态
-interface GlobalStoreInterface {
-    menuStatus: boolean,
-}
-
 // 全局共享状态实体
 export const GlobalStore = defineStore('GlobalStore', {
     state: (): GlobalStoreInterface => {
@@ -155,30 +125,5 @@ export const GlobalStore = defineStore('GlobalStore', {
             // 菜单栏状态 (false展开 true收起)
             menuStatus: false,
         }
-    }
-})
-
-
-export const MotionPinia = defineStore('Motion', {
-    state: () => {
-        return {
-            motion: {
-                initial: {
-                    opacity: 0,
-                    y: 100,
-                },
-                enter: {
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                        type: 'spring',
-                        stiffness: 300,
-                        damping: 20,
-                        mass: 1,
-                        delay: 200,
-                    },
-                }
-            }
-        }
-    }
+    },
 })

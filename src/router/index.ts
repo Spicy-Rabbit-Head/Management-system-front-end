@@ -27,14 +27,12 @@ const routes = [
         name: 'NullException',
         meta: {title: 'Title.NullException'},
         component: () => import("@/views/error/NullException.vue")
-        // component: NullException
     },
     // 登录页面根目录
     {
         path: '/login',
         name: 'Login',
         component: () => import('@/views/login/Login.vue'),
-        // component: Login,
         beforeEnter: FullScreenLoadingRun,
         children: [
             // 拟态登录页面
@@ -43,14 +41,12 @@ const routes = [
                 name: 'LoginMimicry',
                 meta: {title: 'Title.LoginMimicry'},
                 component: () => import('@/views/login/mimicry/LoginMimicry.vue')
-                // component: LoginMimicry
             },
             // 基础登录页面
             {
                 path: 'login-basic',
                 name: 'LoginBasic',
                 component: () => import('@/views/login/basic/LoginBasic.vue'),
-                // component: LoginBasic,
                 redirect: {name: 'BasicLogin'},
                 children: [
                     {

@@ -1,15 +1,15 @@
 <template>
   <!-- 拟态切换页 -->
   <div class="switch"
-       :class=" loginStore.LoginScreen.switchButton">
+       :class=" loginStore.loginScreen.switchButton">
     <!-- 装饰园 -->
     <div class="switch-circle"
-         :class="loginStore.LoginScreen.circle1"></div>
+         :class="loginStore.loginScreen.circle1"></div>
     <div class="switch-circle switch-circle-top"
-         :class="loginStore.LoginScreen.circle2"></div>
+         :class="loginStore.loginScreen.circle2"></div>
     <!-- 切换主体 -->
     <div class="switch-container"
-         :class="loginStore.LoginScreen.switchButtonHidden1">
+         :class="loginStore.loginScreen.switchButtonHidden1">
       <h2 class="login-public-title">{{ $t('Login.Mimicry.RegisterTitle') }}</h2>
       <p class="login-public-description">{{ $t('Login.Mimicry.RegisterSubtitle') }}</p>
       <n-button type="info" size="large" class="login-public-switch-button"
@@ -18,7 +18,7 @@
       </n-button>
     </div>
     <div class="switch-container"
-         :class="loginStore.LoginScreen.switchButtonHidden2">
+         :class="loginStore.loginScreen.switchButtonHidden2">
       <h2 class="login-public-title">{{ $t('Login.Mimicry.LoginTitle') }}</h2>
       <p class="login-public-description">{{ $t('Login.Mimicry.LoginSubtitle') }}</p>
       <n-button type="info" size="large" class="login-public-switch-button"

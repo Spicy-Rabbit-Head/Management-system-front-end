@@ -1,6 +1,6 @@
 <template>
   <!-- 动态菜单 -->
-  <vex-menu :reduced="globalStore.menuStatus" accordion transfer marker-type="left">
+  <vex-menu :reduced="globalStore.menuStatus" @select="routeTrigger" accordion transfer marker-type="left">
     <!-- 分组 -->
     <vex-menu-group v-for="(item1) in options" :label="item1.label" :key="item1.label">
       <!-- 一级菜单 -->
@@ -11,8 +11,8 @@
         </template>
         {{ item2.name }}
         <!-- 二级菜单(如果有) -->
-        <template #group v-if="item2['children'] && item2['children'].length > 0">
-          <vex-menu-item v-for="(item3) in item2['children']"
+        <template #group v-if="item2.children && item2.children.length > 0">
+          <vex-menu-item v-for="(item3) in item2.children"
                          :label="item3.label" :key="item3.name">
             <template #icon>
               <component :is="item3.icon"/>
@@ -28,10 +28,14 @@
 <script setup lang="ts">
 import {Menu as VexMenu, MenuGroup as VexMenuGroup, MenuItem as VexMenuItem} from "vexip-ui";
 import {GlobalStore} from "@/store";
+import {DynamicMenuInterface} from "@/type/interface";
+import {options} from "axios";
+import {useTagsNav} from "@/utils/useTagsNav";
 
 const globalStore = GlobalStore();
+const {routeTrigger} = useTagsNav();
 
-const options = [
+const options: DynamicMenuInterface[] = [
   {
     label: '分组 0',
     children: [

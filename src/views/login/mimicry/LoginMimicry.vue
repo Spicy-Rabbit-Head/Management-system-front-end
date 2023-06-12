@@ -1,5 +1,5 @@
+<!-- 拟态页主体 -->
 <template>
-  <!-- 拟态页主体 -->
   <div class="mimicry-background mimicry-layout">
     <!-- 自动文字 -->
     <h2 :data-text="$t('Login.Typing.Animation4')" class="mimicry-typing">

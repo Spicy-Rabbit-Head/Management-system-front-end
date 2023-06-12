@@ -4,7 +4,7 @@
   <!-- 语言切换 -->
   <language-switching class="tw-absolute tw-top-2.5 tw-right-24 tw-z-20"/>
   <!-- 登录界面路由 -->
-  <router-view v-slot="{ Component}">
+  <router-view v-slot="{ Component }">
     <transition mode="out-in"
                 enter-from-class="tw-opacity-0"
                 leave-to-class="tw-opacity-0"

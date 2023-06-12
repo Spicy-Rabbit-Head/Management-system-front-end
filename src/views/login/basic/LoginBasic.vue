@@ -1,5 +1,5 @@
+<!-- 简约注册登录页容器 -->
 <template>
-  <!-- 简约注册登录页容器 -->
   <div class="tw-w-full tw-h-full tw-bg-white tw-flex">
     <div class="basic-img-container">
       <!-- 自动文字 -->

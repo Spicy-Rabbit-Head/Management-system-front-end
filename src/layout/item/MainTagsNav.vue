@@ -4,10 +4,12 @@
       <component v-if="index1 !=1" :is="item1.icon" @click.stop="tabsTrigger(index1)" class="tw-w-1/2 tw-h-1/2"/>
       <div v-else class="tw-h-8 tw-w-full  tw-overflow-hidden">
         <div ref="tabsWrapper" class="tw-h-10 tw-flex tw-items-start tw-overflow-x-auto tw-scroll-smooth tw-whitespace-nowrap">
-          <div v-for="item2 in item1.tab" :key="item2.id" class="tabs-item">
-            {{ item2.label }}
-            <icon-ep-close v-if="item2.id" class="hover:tw-text-red-400 tw-ml-2"/>
-          </div>
+          <transition-group name="list">
+            <div v-for="(item2,index2) in tagsNav.tabsData" :class="item2.state" :key="item2.id" class="tabs-item">
+              {{ item2.label }}
+              <icon-ep-close v-if="item2.id" @click.stop="tagsNav.deleteTag(index2)" class="hover:tw-text-red-400 tw-ml-2"/>
+            </div>
+          </transition-group>
         </div>
       </div>
     </div>
@@ -15,25 +17,34 @@
 </template>
 
 <script setup lang="ts">
-import {markRaw, ref} from "vue";
+import {markRaw, nextTick, reactive, ref} from "vue";
 import IconEpArrowLeftBold from "~icons/ep/arrow-left-bold"
 import IconEpArrowRightBold from "~icons/ep/arrow-right-bold"
 import IconEpArrowDownBold from "~icons/ep/arrow-down-bold"
 import IconEpClose from "~icons/ep/close"
 import {TabNavInterface} from "@/type/interface";
+import {useTagsNav} from "@/utils/useTagsNav";
 
-const tabsWrapper = ref<HTMLDivElement [] | null>([])
-const deleteIndex = ref(-1);
+const tagsWrapper = ref<HTMLDivElement [] | null>([])
+
+// 获取视图更新后dom
+await nextTick();
+const tagsNav = useTagsNav()
+nextTick(() => {
+  if (tagsWrapper.value) {
+    tagsNav.wrapper.value = tagsWrapper.value[0]
+  }
+})
 
 // 选项卡触发
 function tabsTrigger(i: number) {
-  if (tabsWrapper.value) {
+  if (tagsWrapper.value) {
     switch (i) {
       case 0 :
-        tabsWrapper.value[0].scrollLeft -= 100;
+        tagsWrapper.value[0].scrollLeft -= 100;
         break;
       case 2 :
-        tabsWrapper.value[0].scrollLeft += 100
+        tagsWrapper.value[0].scrollLeft += 100
         break;
       case 3 :
         console.log('下拉菜单');
@@ -42,59 +53,23 @@ function tabsTrigger(i: number) {
 }
 
 // 选项卡数据
-const tabs = markRaw<TabNavInterface[]>([
+const tabs = reactive<TabNavInterface[]>([
   {
     title: '上一个',
-    icon: IconEpArrowLeftBold
+    icon: markRaw(IconEpArrowLeftBold)
   },
   {
-    title: '标签',
-    tab: [
-      {
-        id: 0,
-        label: '首页',
-      },
-      {
-        id: 1,
-        label: '标签1',
-      },
-      {
-        id: 2,
-        label: '标签2',
-      },
-      {
-        id: 3,
-        label: '标签3',
-      },
-      {
-        id: 4,
-        label: '标签4',
-      },
-      {
-        id: 5,
-        label: '标签5',
-      }
-    ]
+    title: '标签'
   },
   {
     title: '下一个',
-    icon: IconEpArrowRightBold
+    icon: markRaw(IconEpArrowRightBold)
   },
   {
     title: '下拉菜单',
-    icon: IconEpArrowDownBold
+    icon: markRaw(IconEpArrowDownBold)
   },
 ])
-
-// 显示删除图标
-function showDeleteIcon(id: number) {
-  deleteIndex.value = id;
-}
-
-// 隐藏删除图标
-function hideDeleteIcon() {
-  deleteIndex.value = -1;
-}
 </script>
 
 <style scoped>
@@ -126,14 +101,21 @@ function hideDeleteIcon() {
   hover:tw-cursor-pointer
 }
 
-
-.tab-enter-active,
-.tab-leave-active {
-  transition: all 2s ease;
+.list-move, /* 对移动中的元素应用的过渡 */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
 }
 
-.tab-enter-from,
-.tab-leave-to {
+.list-enter-from,
+.list-leave-to {
   opacity: 0;
+  transform: translateX(30px);
+}
+
+/* 确保将离开的元素从布局流中删除
+  以便能够正确地计算移动的动画。 */
+.list-leave-active {
+  position: absolute;
 }
 </style>

@@ -48,7 +48,7 @@ import HeaderRight from "@/layout/item/HeaderRight.vue";
 import HeaderUser from "@/layout/item/HeaderUser.vue";
 import AsideBottom from "@/layout/item/AsideBottom.vue";
 import AsideMain from "@/layout/item/AsideMain.vue";
-import MainTabNav from "@/layout/item/MainTabNav.vue";
+import MainTabNav from "@/layout/item/MainTagsNav.vue";
 
 const globalStore = GlobalStore();
 </script>

@@ -56,7 +56,7 @@
       <!-- 辅助验证页 -->
       <n-tab-pane name="administratorAssistedReset" :tab="$t('Login.PasswordReset.Tab2')">
         <!-- 辅助验证步骤条 -->
-        <el-steps :active="auxiliaryCurrentState.Current" finish-status="success"
+        <el-steps :active="auxiliaryCurrentState.current" finish-status="success"
                   process-status="process"
                   align-center>
           <el-step :title="$t('Login.PasswordReset.AuxiliarySteps1')" icon=""/>
@@ -66,7 +66,7 @@
         <!-- 辅助验证步骤内容 -->
         <div class="tw-w-11/12 tw-mx-auto">
           <!-- 辅助验证步骤-账号 -->
-          <div v-if="auxiliaryCurrentState.Current == 0">
+          <div v-if="auxiliaryCurrentState.current == 0">
             <p class="tips tw-my-6">{{ $t('Login.PasswordReset.StepsTips3') }}</p>
             <n-input class="tw-mb-6 tw-text-[1rem]" :placeholder="$t('Login.PasswordReset.EnterAccountName')"/>
             <n-button type="primary" class="tw-text-[1.25rem]" block strong
@@ -75,7 +75,7 @@
             </n-button>
           </div>
           <!-- 辅助验证步骤-管理员确认 -->
-          <div v-else-if="auxiliaryCurrentState.Current == 1">
+          <div v-else-if="auxiliaryCurrentState.current == 1">
             <p class="tips tw-my-6">{{ $t('Login.PasswordReset.StepsTips2') }}</p>
             <div>
               <n-tag size="large"
@@ -106,7 +106,7 @@
             </n-button>
           </div>
           <!-- 辅助验证步骤-重置密码 -->
-          <div v-else-if="auxiliaryCurrentState.Current == 2">
+          <div v-else-if="auxiliaryCurrentState.current == 2">
             <p class="tips tw-my-6">{{ $t('Login.PasswordReset.StepsTips2') }}</p>
             <n-input :placeholder="$t('Login.PasswordReset.EnterNewPassword')" class="tw-text-[1rem]"/>
             <n-input class="tw-my-6 tw-text-[1rem]" :placeholder="$t('Login.PasswordReset.EnterTheNewPasswordAgain')"/>
@@ -140,7 +140,7 @@ const auxiliaryCurrentLoading = ref<boolean>(false)
 // 辅助重置当前状态
 const auxiliaryCurrentState = ref<PasswordResetInterface>({
   // 辅助重置步骤数
-  Current: 0,
+  current: 0,
   // 辅助重置按钮审核状态 true为禁用
   resetState: true,
   // 辅助重置审核状态
@@ -154,7 +154,7 @@ onMounted(() => {
     auxiliaryCurrentState.value = JSON.parse(item)
   }
   // 状态非法清除缓存
-  if (auxiliaryCurrentState.value.Current > 2 || auxiliaryCurrentState.value.Current < 0) {
+  if (auxiliaryCurrentState.value.current > 2 || auxiliaryCurrentState.value.current < 0) {
     clearCache()
   }
 })
@@ -180,9 +180,9 @@ function refreshState() {
 // 辅助重置步骤更新
 function auxiliaryStateUpdate(i: number) {
   if (i == 0) {
-    auxiliaryCurrentState.value.Current = 1
+    auxiliaryCurrentState.value.current = 1
   } else if (i == 1) {
-    auxiliaryCurrentState.value.Current = 2
+    auxiliaryCurrentState.value.current = 2
   }
   window.localStorage.setItem('auxiliaryCurrentState', JSON.stringify(auxiliaryCurrentState.value))
 }
@@ -191,7 +191,7 @@ function auxiliaryStateUpdate(i: number) {
 function clearCache() {
   window.localStorage.removeItem('auxiliaryCurrentState')
   auxiliaryCurrentState.value = {
-    Current: 0,
+    current: 0,
     resetState: true,
     tagState: 'warning'
   }
