@@ -34,9 +34,8 @@ interface GlobalStoreInterface {
 
 // 全局标签导航数据
 interface TabsData {
-    id: number,
     label: string
-    state?: string
+    state: string
 }
 
 // 登录注册数据

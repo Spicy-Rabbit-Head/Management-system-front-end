@@ -31,7 +31,7 @@
     <!-- 主体 -->
     <template #main>
       <!-- 状态标签导航 -->
-      <main-tab-nav/>
+        <main-tab-nav/>
       <slot/>
     </template>
     <template #header-main>

@@ -5,7 +5,7 @@
     <tree path="/src/assets" title="字体图片等静态资源"/>
     <tree path="/src/components" title="自定义通用组件"/>
     <tree path="/src/store" title="pinia"/>
-    <tree path="/src/utils" title="工具"/>
+    <tree path="/src/utils" title="全局工具方法" extension="" presentableText="" tooltipTitle="" icon="" textColor="" backgroundColor=""/>
     <tree path="/src/api" title="接口请求统一管理"/>
     <tree path="/src/views" title="页面"/>
     <tree path="/src/utils/request.ts" title="封装 axios" extension="ts"/>
@@ -30,12 +30,12 @@
     <tree path="/src/views/login/mimicry" title="登录注册拟态页面"/>
     <tree path="/src/components/LoginPageSwitch.vue" title="登录页切换开关"/>
     <tree path="/src/views/homePage" title="首页"/>
-    <tree path="/src/utils/verification.ts" title="vest 验证" extension="" presentableText=""
+    <tree path="/src/utils/verification.ts" title="vest 验证方法" extension="" presentableText=""
           tooltipTitle="" icon="" textColor="" backgroundColor=""/>
     <tree path="/src/views/login/PasswordReset.vue" title="密码重置"/>
     <tree path="/src/components/FullScreenLoading.vue" title="全局加载页面"/>
     <tree path="/src/components/LanguageSwitching.vue" title="语言切换组件"/>
-    <tree path="/src/utils/componentPlugins.ts" title="插件式组件工具类" extension="" presentableText="" tooltipTitle=""
+    <tree path="/src/utils/componentPlugins.ts" title="插件式组件方法" extension="" presentableText="" tooltipTitle=""
           icon="" textColor="" backgroundColor=""/>
     <tree path="/src/utils/loadingProgress.ts" title="全局加载进度" extension="" presentableText="" tooltipTitle=""
           icon="" textColor="" backgroundColor=""/>
@@ -57,4 +57,5 @@
     <tree path="/src/icons" title="图标"/>
     <tree path="/src/layout/item/MainTagsNav.vue" title="主体导航标签"/>
     <tree path="/src/components/DynamicTag.vue" title="动态标签导航(待完成)"/>
+    <tree path="/src/hooks" title="闭包工具方法"/>
 </trees>

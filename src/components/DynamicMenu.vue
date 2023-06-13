@@ -30,7 +30,7 @@ import {Menu as VexMenu, MenuGroup as VexMenuGroup, MenuItem as VexMenuItem} fro
 import {GlobalStore} from "@/store";
 import {DynamicMenuInterface} from "@/type/interface";
 import {options} from "axios";
-import {useTagsNav} from "@/utils/useTagsNav";
+import {useTagsNav} from "@/hooks/useTagsNav";
 
 const globalStore = GlobalStore();
 const {routeTrigger} = useTagsNav();
