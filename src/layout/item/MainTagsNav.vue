@@ -1,13 +1,17 @@
 <template>
   <div class="tw-h-10 tw-border-b flex-base tw-box-border">
-    <div class="tabs flex-base tw-select-none" v-for="(item1,index1) in tabs" :key="item1.title">
-      <component v-if="index1 !=1" :is="item1.icon" @click.stop="functionTrigger(index1)" class="tw-w-1/2 tw-h-1/2"/>
-      <div ref="tagsDom" v-else :style="getTabStyle" class="tw-w-full tw-overflow-hidden tw-transition-transform tw-duration-500">
-        <div ref="tagDom" class="tw-flex tw-items-start tw-whitespace-nowrap">
+    <div class="tabs tw-select-none" v-for="(item1,index1) in tabs" :key="item1.title">
+      <span v-if="index1 !=1" class="tw-h-full tw-flex-1 flex-base">
+        <component :is="item1.icon" @click.stop="functionTrigger(index1)" class="tw-w-1/2 tw-h-1/2"/>
+      </span>
+      <div ref="tagsDom" v-else class="tw-overflow-hidden tw-relative tw-flex-1">
+        <div ref="tagDom" :style="getTabStyle" class="tw-transition-transform tw-duration-500 tw-relative tw-float-left tw-whitespace-nowrap">
           <transition-group name="list">
             <div v-for="(item2,index2) in tagsData" :class="item2.state" :key="index2" class="tabs-item">
-              {{ item2.label }}
-              <icon-ep-close v-if="index2 != 0" @click.stop="deleteTag(index2)" class="hover:tw-text-red-400 tw-ml-2"/>
+              <div class="tw-flex tw-items-center">
+                {{ item2.label }}
+                <icon-ep-close v-if="index2 != 0" @click.stop="deleteTag(index2)" class="hover:tw-text-red-400 tw-ml-2"/>
+              </div>
             </div>
           </transition-group>
         </div>
@@ -72,9 +76,9 @@ const tabs = reactive<TabNavInterface[]>([
   @apply
   tw-h-10
   tw-w-10
-  tw-relative
   tw-py-1
   tw-flex-1
+  tw-flex
   tw-border-l
   first:tw-border-0
   odd:tw-flex-none
@@ -88,12 +92,10 @@ const tabs = reactive<TabNavInterface[]>([
   @apply
   tw-mx-1
   tw-h-8
+  tw-inline-block
   tw-border
   tw-p-1
   tw-rounded-md
-  tw-flex
-  tw-items-center
-  tw-justify-start
   hover:tw-cursor-pointer
 }
 
@@ -106,12 +108,12 @@ const tabs = reactive<TabNavInterface[]>([
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateX(30px);
 }
 
 /* 确保将离开的元素从布局流中删除
   以便能够正确地计算移动的动画。 */
-.list-leave-active {
+.list-leave-active, .list-move, {
   position: absolute;
 }
 </style>

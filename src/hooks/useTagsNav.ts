@@ -41,38 +41,42 @@ export function useTagsNav() {
     function addTag(tab: TabsData) {
         tagsData.push(tab)
         tagStateChange(tagsData.length - 1)
-        if (tagsWrapper.value) tagsWrapper.value.scrollLeft = tagsWrapper.value.scrollWidth + 100
     }
 
     // 功能触发器
     function functionTrigger(index: number) {
-        console.log(tagsWrapper)
         if (tagsWrapper.value) {
             switch (index) {
                 case 0 :
-                    translateX.value += -300
-                    scroll(-300)
-                    // wrapper.value.scrollLeft -= 300;
+                    scroll(300)
                     break;
                 case 2 :
-                    translateX.value += 300
-                    // wrapper.value.scrollLeft += 300
+                    scroll(-300)
                     break;
                 case 3 :
                     console.log('下拉菜单');
             }
         }
+        console.log(translateX.value)
     }
 
     // 滑动
     function scroll(offset: number) {
-        let scrollbarWidth = tagsWrapper.value
-            ? tagsWrapper.value.offsetWidth
-            : 0;
+        // 可视化宽度
+        let scrollbarWidth = tagsWrapper.value ? tagsWrapper.value.offsetWidth : 0;
+        // 标签总宽度
+        let tagWidth = tagWrapper.value ? tagWrapper.value.offsetWidth : 0;
+        console.log(scrollbarWidth, tagWidth, offset)
         if (offset > 0) {
             translateX.value = Math.min(0, translateX.value + offset);
         } else {
-
+            if (scrollbarWidth < tagWidth) {
+                if (translateX.value >= -(tagWidth - scrollbarWidth)) {
+                    translateX.value = Math.max(translateX.value + offset, scrollbarWidth - tagWidth);
+                }
+            } else {
+                translateX.value = 0
+            }
         }
     }
 
