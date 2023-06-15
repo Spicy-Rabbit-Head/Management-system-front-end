@@ -2,7 +2,7 @@ import {FunctionalComponent, SVGAttributes} from "vue/dist/vue";
 import {Router} from "vue-router";
 
 // 登录注册共享
-interface LoginStoreInterface {
+export type LoginStoreInterface = {
     loginScreen: LoginScreen,
     formLogin: FormLogin,
     automaticLogin: boolean,
@@ -16,7 +16,7 @@ interface LoginStoreInterface {
 }
 
 // 登录界面
-interface LoginScreen {
+export type LoginScreen = {
     switchButton: string,
     switchButtonHidden1: null | string,
     switchButtonHidden2: null | string,
@@ -27,19 +27,20 @@ interface LoginScreen {
 }
 
 // 全局共享状态
-interface GlobalStoreInterface {
+export type GlobalStoreInterface = {
     menuStatus: boolean,
     tabsData?: TabsData[],
 }
 
 // 全局标签导航数据
-interface TabsData {
+export type TabsData = {
     label: string
+    path: string
     state: string
 }
 
 // 登录注册数据
-interface FormLogin {
+export type FormLogin = {
     username: null | string,
     password: null | string,
     repeatPassword?: null | string
@@ -47,39 +48,29 @@ interface FormLogin {
 
 
 // 密码重置状态
-interface PasswordResetInterface {
+export type PasswordResetInterface = {
     current: number;
     resetState: boolean;
     tagState: 'default' | 'primary' | 'info' | 'success' | 'warning' | 'error';
 }
 
 // 标签导航
-interface TabNavInterface {
+export type TabNavInterface = {
     title: string;
     icon?: FunctionalComponent<SVGAttributes>,
 }
 
-// 动态菜单
-interface DynamicMenuInterface {
+// 菜单子项
+export type Children = {
     label: string;
-    children?: {
-        label: string;
-        icon: string;
-        name: string;
-        children?: {
-            label: string;
-            icon: string;
-            name: string;
-        }[]
-    }[]
+    path?: string;
+    icon?: string;
+    name?: string;
+    children?: Children[]
 }
 
-export type
-{
-    LoginStoreInterface,
-    GlobalStoreInterface,
-    TabsData,
-    PasswordResetInterface,
-    TabNavInterface,
-    DynamicMenuInterface
+// 动态菜单
+export type DynamicMenuInterface = {
+    label: string;
+    children?: Children[]
 }

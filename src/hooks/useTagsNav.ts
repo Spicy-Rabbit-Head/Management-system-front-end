@@ -1,23 +1,28 @@
 import {TabsData} from '@/type/interface'
-import {computed, CSSProperties, reactive, ref} from "vue";
+import {computed, CSSProperties, getCurrentInstance, reactive, ref} from "vue";
 // 全局共享标签导航数据
-const tagsData: Array<TabsData> = reactive<Array<TabsData>>([
+const tagsData = reactive<Array<TabsData>>([
         {
             label: '首页',
+            path: '/h0',
             state: 'tw-text-blue-500'
         },
     ]
 )
+// 当前实例
+const instance = getCurrentInstance();
 // 滑动条DOM
-const tagsWrapper = ref<HTMLDivElement | null>(null)
+const tagsWrapper = ref<HTMLDivElement[] | null>(null)
 // 标签容器DOM
-const tagWrapper = ref<HTMLDivElement | null>(null)
+const tagWrapper = ref<HTMLDivElement[] | null>(null)
 // 当前标签
 const currentTag = ref<number>(0)
 // 标签滑动位置
 const translateX = ref<number>(0);
 
+// 导出闭包方法
 export function useTagsNav() {
+    // 计算属性
     // 标签滑动位置
     const getTabStyle = computed((): CSSProperties => {
         return {
@@ -25,6 +30,38 @@ export function useTagsNav() {
         };
     });
 
+    // 滑动
+    function tagsScroll(offset: number) {
+        // 可视化宽度
+        let scrollbarWidth = tagsWrapper.value ? tagsWrapper.value[0].offsetWidth : 0;
+        // 标签总宽度
+        let tagWidth = tagWrapper.value ? tagWrapper.value[0].offsetWidth : 0;
+        // 向左滑动
+        if (offset > 0) {
+            translateX.value = Math.min(0, translateX.value + offset);
+        } else {
+            // 标签总宽度大于可视化宽度向右滑动
+            if (scrollbarWidth < tagWidth) {
+                if (translateX.value >= -(tagWidth - scrollbarWidth)) {
+                    translateX.value = Math.max(translateX.value + offset, scrollbarWidth - tagWidth);
+                }
+            }
+            // 标签总宽度小于可视化宽度不滑动
+            else {
+                translateX.value = 0
+            }
+        }
+    }
+
+    // 移动到标签视图
+    function moveToView(route: any) {
+        let index = tagsData.findIndex(item => {
+            return route.path === item.path;
+        });
+        // let tabNavPadding = 10;
+        if (!instance?.refs["dynamic" + index]) return;
+
+    }
 
     // 删除标签
     function deleteTag(id: number) {
@@ -48,37 +85,17 @@ export function useTagsNav() {
         if (tagsWrapper.value) {
             switch (index) {
                 case 0 :
-                    scroll(300)
+                    tagsScroll(300)
                     break;
                 case 2 :
-                    scroll(-300)
+                    tagsScroll(-300)
                     break;
                 case 3 :
                     console.log('下拉菜单');
             }
         }
-        console.log(translateX.value)
     }
 
-    // 滑动
-    function scroll(offset: number) {
-        // 可视化宽度
-        let scrollbarWidth = tagsWrapper.value ? tagsWrapper.value.offsetWidth : 0;
-        // 标签总宽度
-        let tagWidth = tagWrapper.value ? tagWrapper.value.offsetWidth : 0;
-        console.log(scrollbarWidth, tagWidth, offset)
-        if (offset > 0) {
-            translateX.value = Math.min(0, translateX.value + offset);
-        } else {
-            if (scrollbarWidth < tagWidth) {
-                if (translateX.value >= -(tagWidth - scrollbarWidth)) {
-                    translateX.value = Math.max(translateX.value + offset, scrollbarWidth - tagWidth);
-                }
-            } else {
-                translateX.value = 0
-            }
-        }
-    }
 
     // 标签状态改变
     function tagStateChange(index: number) {
@@ -88,12 +105,13 @@ export function useTagsNav() {
     }
 
     // 路由触发
-    function routeTrigger(tab: string) {
+    function routeTrigger(tab: string, meta: any) {
+        console.log(meta)
         let i: number = tagsData.findIndex((item) => {
             return item.label === tab
         })
         if (i === -1) {
-            addTag({label: tab, state: ''})
+            addTag({label: tab, path: meta.path, state: ''})
             return
         }
         tagStateChange(i)
@@ -104,8 +122,10 @@ export function useTagsNav() {
         tagWrapper,
         tagsData,
         getTabStyle,
+        tagsScroll,
         deleteTag,
         routeTrigger,
-        functionTrigger
+        functionTrigger,
+        moveToView
     }
 }
