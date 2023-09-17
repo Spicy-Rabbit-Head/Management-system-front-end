@@ -18,7 +18,7 @@
     </template>
     <!-- 头部左侧 -->
     <template #header-left>
-      header-left
+      1
     </template>
     <!-- 头部右侧 -->
     <template #header-right>
@@ -35,7 +35,7 @@
       <slot/>
     </template>
     <template #header-main>
-      header-main
+      2
     </template>
   </vex-layout>
 </template>
