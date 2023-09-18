@@ -30,7 +30,7 @@
             <n-input :placeholder="$t('Login.PasswordReset.EnterAccountName')" class="tw-text-[1rem]"/>
             <n-input-group class="tw-my-6">
               <n-input :placeholder="$t('Login.PasswordReset.InputValidationCode')" class="tw-text-[1rem]"/>
-              <n-button type="primary" class="tw-text-[1rem]" :loading="emailCurrentLoading"
+              <n-button type="primary" class="tw-text-[0.75rem]" :loading="emailCurrentLoading"
                         @click="sendVerificationCode">
                 <template #icon>
                   <IconAntDesignSendOutlined/>

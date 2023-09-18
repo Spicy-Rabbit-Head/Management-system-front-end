@@ -1,6 +1,6 @@
 <template>
   <!-- 动态菜单 -->
-  <vex-menu :reduced="globalStore.menuStatus" @select="routeTrigger" accordion transfer marker-type="left">
+  <vex-menu :reduced="globalStore.menuStatus" accordion transfer marker-type="left">
     <!-- 分组 -->
     <vex-menu-group v-for="(item1) in options" :label="item1.label" :key="item1.label">
       <!-- 一级菜单 -->
@@ -30,10 +30,9 @@ import {Menu as VexMenu, MenuGroup as VexMenuGroup, MenuItem as VexMenuItem} fro
 import {GlobalStore} from "@/store";
 import {DynamicMenuInterface} from "@/type/interface";
 import {options} from "axios";
-import {useTagsNav} from "@/hooks/useTagsNav";
 
 const globalStore = GlobalStore();
-const {routeTrigger} = useTagsNav();
+// const {routeTrigger} = useTagsNav();
 
 const options: DynamicMenuInterface[] = [
   {
@@ -81,129 +80,6 @@ const options: DynamicMenuInterface[] = [
           }
         ]
       },
-      {
-        label: '2',
-        icon: 'ZChatBot',
-        name: '菜单 2',
-        children: [
-          {
-            label: '2-1',
-            path: '/h6',
-            icon: 'ZChartRing',
-            name: '子菜单 1'
-          },
-          {
-            label: '2-2',
-            path: '/h7',
-            icon: 'ZChartRing',
-            name: '子菜单 2'
-          },
-          {
-            label: '2-3',
-            path: '/h8',
-            icon: 'ZChartRing',
-            name: '子菜单 3'
-          },
-          {
-            label: '2-4',
-            path: '/h9',
-            icon: 'ZChartRing',
-            name: '子菜单 4'
-          },
-          {
-            label: '2-5',
-            path: '/h10',
-            icon: 'ZChartRing',
-            name: '子菜单 5'
-          },
-          {
-            label: '2-6',
-            path: '/h11',
-            icon: 'ZChartRing',
-            name: '子菜单 6'
-          },
-          {
-            label: '2-7',
-            path: '/h12',
-            icon: 'ZChartRing',
-            name: '子菜单 7'
-          },
-          {
-            label: '2-8',
-            path: '/h13',
-            icon: 'ZChartRing',
-            name: '子菜单 8'
-          },
-          {
-            label: '2-9',
-            path: '/h14',
-            icon: 'ZChartRing',
-            name: '子菜单 9'
-          },
-        ]
-      },
-      {
-        label: '3',
-        icon: 'ZChartRelationship',
-        name: '菜单 3',
-        children: [
-          {
-            label: '3-1',
-            path: '/h15',
-            icon: 'ZChartRing',
-            name: '子菜单 1'
-          },
-          {
-            label: '3-2',
-            path: '/h16',
-            icon: 'ZChartRing',
-            name: '子菜单 2'
-          },
-        ]
-      }
-    ]
-  },
-  {
-    label: '分组 2',
-    children: [
-      {
-        label: '4',
-        icon: 'ZChartRadial',
-        name: '菜单 4',
-        children: [
-          {
-            label: '4-1',
-            path: '/h17',
-            icon: 'ZChartRing',
-            name: '子菜单 1'
-          },
-          {
-            label: '4-2',
-            path: '/h18',
-            icon: 'ZChartRing',
-            name: '子菜单 2'
-          }
-        ],
-      },
-      {
-        label: '5',
-        icon: 'ZChartWinLoss',
-        name: '菜单 5',
-        children: [
-          {
-            label: '3-1',
-            path: '/h19',
-            icon: 'ZChartRing',
-            name: '子菜单 1'
-          },
-          {
-            label: '3-2',
-            path: '/h20',
-            icon: 'ZChartRing',
-            name: '子菜单 2'
-          },
-        ]
-      }
     ]
   }
 ]

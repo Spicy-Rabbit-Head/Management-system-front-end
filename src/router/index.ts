@@ -2,11 +2,13 @@
 import {createRouter, createWebHistory, Router, RouteRecordRaw} from 'vue-router'
 import {LoginStore} from "@/store";
 import {nextTick} from "vue";
+import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
 
 let loginStore: any
 nextTick(() => {
     loginStore = LoginStore()
 }).then()
+const {} = useFullScreenLoading();
 
 function FullScreenLoadingRun() {
     loginStore.loading = true
