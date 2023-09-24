@@ -1,18 +1,12 @@
 // 引入js
 import {createRouter, createWebHistory, Router, RouteRecordRaw} from 'vue-router'
-import {LoginStore} from "@/store";
-import {nextTick} from "vue";
 import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
 
-let loginStore: any
-nextTick(() => {
-    loginStore = LoginStore()
-}).then()
-const {} = useFullScreenLoading();
-
-function FullScreenLoadingRun() {
-    loginStore.loading = true
-}
+const {
+    FullScreenLoadingRun,
+    fullScreenLoadingState,
+    FullScreenLoadingStop
+} = useFullScreenLoading();
 
 
 // 定义路由
@@ -75,12 +69,27 @@ const routes = [
     },
     // 首页
     {
-        path: '/home',
-        name: 'Home',
+        path: '/sidebar',
+        name: 'Sidebar',
         meta: {title: 'Title.Home'},
         component: () => import('@/views/homePage/Home.vue'),
         beforeEnter: FullScreenLoadingRun,
     },
+    // 临时
+    // {
+    //     path: '/sidebar',
+    //     name: 'Sidebar',
+    //     component: () => import('@/layout/SidebarLayout.vue'),
+    //     beforeEnter: FullScreenLoadingRun,
+    //     redirect: {name: 'Schedule'},
+    //     children: [
+    //         {
+    //             path: 'schedule',
+    //             name: 'Schedule',
+    //             component: () => import('@/views/schedule/ScheduleLayout.vue'),
+    //         }
+    //     ]
+    // },
     // 匹配所有路径,如果没有匹配到,则重定向到404页面
     {
         path: '/:pathMatch(.*)*',
@@ -99,18 +108,15 @@ router.beforeEach((to, from, next) => {
     console.log("路由跳转开始")
     console.log(from.path)
     console.log(to.matched)
-    if (loginStore.isAuthenticated && to.path.includes('/login')) {
-        return;
-    }
-    if (!loginStore.isAuthenticated && to.path.includes('/home')) {
-        return;
-    }
+    // if (to.path.includes('/login') || to.path.includes('/home')) {
+    //     return;
+    // }
     next()
 })
 // 后置全局守卫
 router.afterEach((to) => {
-    if (loginStore.loading) {
-        loginStore.loading = false
+    if (fullScreenLoadingState) {
+        FullScreenLoadingStop()
     }
     console.log(to.path)
     console.log("路由跳转结束")

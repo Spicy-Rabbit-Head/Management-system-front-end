@@ -9,13 +9,15 @@
       <!-- 标签父容器 -->
       <div ref="tagsWrapper" v-else class="tw-overflow-hidden tw-relative tw-flex-1">
         <!-- 滑动容器 -->
-        <div ref="tagWrapper" :style="getTabStyle" class="tw-transition-transform tw-duration-500 tw-relative tw-float-left tw-whitespace-nowrap">
+        <div ref="tagWrapper" :style="getTabStyle"
+             class="tw-transition-transform tw-duration-500 tw-relative tw-float-left tw-whitespace-nowrap">
           <transition-group name="list">
             <!-- 标签 -->
             <div v-for="(item2,index2) in tagsData" :class="item2.state" :key="index2" class="tabs-item">
               <div class="tw-flex tw-items-center">
                 {{ item2.label }}
-                <icon-ep-close v-if="index2 != 0" @click.stop="deleteTag(index2)" class="hover:tw-text-red-400 tw-ml-2"/>
+                <icon-ep-close v-if="index2 != 0" @click.stop="deleteTag(index2)"
+                               class="hover:tw-text-red-400 tw-ml-2"/>
               </div>
             </div>
           </transition-group>

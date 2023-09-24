@@ -18,8 +18,6 @@ declare module '@vue/runtime-core' {
     ElRow: typeof import('element-plus/es')['ElRow']
     ElStep: typeof import('element-plus/es')['ElStep']
     ElSteps: typeof import('element-plus/es')['ElSteps']
-    ElTabPane: typeof import('element-plus/es')['ElTabPane']
-    ElTabs: typeof import('element-plus/es')['ElTabs']
     FormDrawer: typeof import('./../components/FormDrawer.vue')['default']
     FullScreenLoading: typeof import('./../components/FullScreenLoading.vue')['default']
     FullScreenMode: typeof import('./../components/FullScreenMode.vue')['default']

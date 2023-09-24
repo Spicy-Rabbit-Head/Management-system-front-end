@@ -3,9 +3,12 @@
   <div :class="loginStore.loginScreen.switchRegister" class="response-container">
     <form class="response-form">
       <h2 class="login-public-title">{{ $t('Login.CreateAnAccount') }}</h2>
-      <input class="response-input" v-model="loginStore.formLogin.username" :placeholder="$t('Login.UsernameInputText')"/>
-      <input class="response-input" v-model="loginStore.formLogin.password" :placeholder="$t('Login.PasswordInputText')"/>
-      <input class="response-input" v-model="loginStore.formLogin.repeatPassword" :placeholder="$t('Login.ReenterThePassword')"/>
+      <input class="response-input" v-model="loginStore.formLogin.username"
+             :placeholder="$t('Login.UsernameInputText')"/>
+      <input class="response-input" v-model="loginStore.formLogin.password"
+             :placeholder="$t('Login.PasswordInputText')"/>
+      <input class="response-input" v-model="loginStore.formLogin.repeatPassword"
+             :placeholder="$t('Login.ReenterThePassword')"/>
       <n-button type="info" class="login-public-switch-button"
                 @click="verification(0)">
         {{ $t('Login.RegisterAccount') }}
@@ -23,11 +26,14 @@
   <div :class="loginStore.loginScreen.switchLogin" class="response-container">
     <form class="response-form">
       <h2 class="login-public-title">{{ $t('Login.LoginTitle') }}</h2>
-      <input class="response-input" v-model="loginStore.formLogin.username" :placeholder="$t('Login.UsernameInputText')"/>
-      <input class="response-input" v-model="loginStore.formLogin.password" :placeholder="$t('Login.PasswordInputText')"/>
+      <input class="response-input" v-model="loginStore.formLogin.username"
+             :placeholder="$t('Login.UsernameInputText')"/>
+      <input class="response-input" v-model="loginStore.formLogin.password"
+             :placeholder="$t('Login.PasswordInputText')"/>
       <el-row class="tw-w-3/5">
         <el-col :span="12" class="tw-text-left">
-          <el-checkbox class="response-automatic-login" v-model="loginStore.automaticLogin" :label="$t('Login.Mimicry.AutomaticLogin')"/>
+          <el-checkbox class="response-automatic-login" v-model="loginStore.automaticLogin"
+                       :label="$t('Login.Mimicry.AutomaticLogin')"/>
         </el-col>
         <el-col :span="12" style="text-align: right" class="max-sm:tw-invisible max-sm:tw-opacity-0 max-sm:tw-absolute">
           <n-button color="#ff2e63" class="tw-m-2.5 tw-text-[0.875rem] tw-btn-sm tw-bg-[#ff2e63]"
@@ -70,8 +76,10 @@ import PasswordReset from "@/views/login/PasswordReset.vue";
 import {ref} from "vue";
 import IconAntDesignSwapRightOutlined from '~icons/ant-design/swap-right-outlined'
 import IconAntDesignSwapLeftOutlined from '~icons/ant-design/swap-left-outlined'
+import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
 
 const loginStore = LoginStore();
+const {FullScreenLoadingRun} = useFullScreenLoading();
 // 弹窗重置密码页
 const showModal = ref<boolean>(false);
 
@@ -82,7 +90,7 @@ function verification(i: number) {
     if (i == 0) {
       loginStore.register(true)
     } else {
-      loginStore.loginLoading = true
+      FullScreenLoadingRun()
       loginStore.login()
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <!-- 头部用户模块 -->
-  <vex-dropdown custom>
+  <vex-dropdown custom placement="bottom-start" trigger="click">
     <!-- 头像 -->
     <vex-avatar class="tw-cursor-pointer" :size="40" src="/vite.svg"/>
     <!-- 功能列表 -->
@@ -40,7 +40,7 @@
 import {Avatar as VexAvatar, Dropdown as VexDropdown} from "vexip-ui";
 import {useRouter} from "vue-router";
 import {LoginStore} from "@/store";
-import {get} from "@/api/request";
+import {get} from "@/api/requestInstance";
 import {ref} from "vue";
 import PasswordReset from "@/views/login/PasswordReset.vue";
 import IconEpAvatar from "~icons/ep/avatar";

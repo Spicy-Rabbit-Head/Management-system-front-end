@@ -8,7 +8,7 @@
     <tree path="/src/utils" title="全局工具方法" extension="" presentableText="" tooltipTitle="" icon="" textColor="" backgroundColor=""/>
     <tree path="/src/api" title="接口请求统一管理"/>
     <tree path="/src/views" title="页面"/>
-    <tree path="/src/utils/request.ts" title="封装 axios" extension="ts"/>
+    <tree path="/src/utils/requestInstance.ts" title="封装 axios" extension="ts"/>
     <tree path="/src/utils/api.js" title="请求" extension="js"/>
     <tree path="/src/views/login" title="登录注册界面"/>
     <tree path="/src/views/error" title="错误界面"/>
@@ -59,4 +59,5 @@
     <tree path="/src/components/DynamicTag.vue" title="动态标签导航(待完成)"/>
     <tree path="/src/hooks" title="闭包工具方法"/>
     <tree path="/src/type" title="类型"/>
+    <tree path="/src/views/schedule" title="保养排程"/>
 </trees>

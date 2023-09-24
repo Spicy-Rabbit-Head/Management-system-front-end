@@ -6,7 +6,7 @@ const loginStore = LoginStore()
 
 function verificationRegister(code: number): boolean {
     let result;
-    let traversal = loginStore.FormLogin
+    let traversal = loginStore.formLogin
     for (let prop in traversal) {
         if (code) if (prop === 'repeatPassword') continue
         result = suite(traversal, prop)

@@ -1,6 +1,6 @@
 <template>
   <transition leave-to-class="loading-fade-leave-to">
-    <div v-if="loginStore.loading"
+    <div v-if="fullScreenLoadingState"
          class="loading">
       <div class="wrapper">
         <div class="circle"></div>
@@ -15,9 +15,10 @@
 </template>
 
 <script setup lang="ts">
-import {LoginStore} from "@/store";
+import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
 
-const loginStore = LoginStore();
+const {fullScreenLoadingState} = useFullScreenLoading();
+// const loginStore = LoginStore();
 
 </script>
 

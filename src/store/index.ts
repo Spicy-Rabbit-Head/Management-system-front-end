@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {post} from "@/api/request";
+import {post} from "@/api/requestInstance";
 import {useRouter} from "vue-router";
 import {showToast} from "@/utils/componentPlugins";
 import {GlobalStoreInterface, LoginStoreInterface} from "@/type/interface";
@@ -30,8 +30,6 @@ export const LoginStore = defineStore('LoginStore', {
             type: true,
             // 路由
             router: useRouter(),
-            // 全屏加载状态
-            loading: true,
             // 是否登录
             isAuthenticated: false,
             // 当前路由
@@ -88,7 +86,7 @@ export const LoginStore = defineStore('LoginStore', {
             }, 3000)
             post('loginRelated/login', this.formLogin, (data: any): void => {
                 this.isAuthenticated = true
-                this.router.replace({name: 'Home'}).then(() => {
+                this.router.replace({name: 'Sidebar'}).then(() => {
                     if (this.automaticLogin) {
                         window.sessionStorage.removeItem('token')
                         window.localStorage.setItem('token', data.data)

@@ -8,7 +8,6 @@ export type LoginStoreInterface = {
     automaticLogin: boolean,
     type: boolean,
     router: Router,
-    loading: boolean,
     isAuthenticated: boolean,
     currentRoute: string,
     loginLoading: boolean,

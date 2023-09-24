@@ -6,7 +6,7 @@
     <p class="login-public-description tw-mb-0">{{ $t('Login.Basic.LoginSubtitle') }}</p>
     <!-- 用户输入 -->
     <div class="basic-input">
-      <input type="text" required="" v-model="loginStore.formLogin.username">
+      <input type="text" required v-model="loginStore.formLogin.username">
       <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -16,7 +16,7 @@
     </div>
     <!-- 密码输入 -->
     <div class="basic-input">
-      <input type="text" required="" v-model="loginStore.formLogin.password">
+      <input type="text" required v-model="loginStore.formLogin.password">
       <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -40,7 +40,7 @@
     <n-button class="tw-w-3/5 tw-text-[1rem]" :loading="loginStore.loginLoading" type="primary" @click="verification">
       {{ $t('Login.LoginImmediately') }}
     </n-button>
-    <n-divider style="color: gray ;padding: 0 10%" class="tw-text-[0.875rem]">
+    <n-divider style="color: rgb(128,128,128) ;padding: 0 10%" class="tw-text-[0.875rem]">
       {{ $t('Login.Basic.RegistrationTips') }}
     </n-divider>
     <n-button class="tw-w-3/5 tw-text-[1rem]" type="warning"
@@ -54,13 +54,15 @@
 <script setup lang="ts">
 import {LoginStore} from '@/store'
 import {verificationRegister} from "@/utils/verification";
+import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
 
 const loginStore = LoginStore();
+const {FullScreenLoadingRun} = useFullScreenLoading();
 // 登录验证
 const verification = () => {
   let register = verificationRegister(1);
   if (register) {
-    loginStore.loginLoading = true
+    FullScreenLoadingRun()
     loginStore.login()
   }
 }
