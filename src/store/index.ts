@@ -2,7 +2,7 @@ import {defineStore} from 'pinia'
 import {post} from "@/api/requestInstance";
 import {useRouter} from "vue-router";
 import {showToast} from "@/utils/componentPlugins";
-import {GlobalStoreInterface, LoginStoreInterface} from "@/type/interface";
+import {GlobalStoreInterface, LoginStoreInterface} from "@/types/interface";
 
 // 登录注册界面实体
 export const LoginStore = defineStore('LoginStore', {

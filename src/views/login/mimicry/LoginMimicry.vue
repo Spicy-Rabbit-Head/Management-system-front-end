@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import LoginMimicrySwitch from "./LoginMimicrySwitch.vue";
 import LoginMimicryRegister from "./LoginMimicryRegister.vue";
 </script>

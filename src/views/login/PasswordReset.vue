@@ -126,7 +126,7 @@
 </template>
 <script lang="ts" setup>
 import {onMounted, ref} from "vue";
-import {PasswordResetInterface} from "@/type/interface";
+import {PasswordResetInterface} from "@/types/interface";
 import IconAntDesignSendOutlined from "~icons/ant-design/send-outlined";
 import IconAntDesignSyncOutlined from "~icons/ant-design/sync-outlined";
 // 退出重置按钮显示状态 false为隐藏 默认显示

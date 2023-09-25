@@ -23,7 +23,7 @@ import LanguageSwitching from "@/components/LanguageSwitching.vue";
 // const router = useRouter()
 
 // function advance(url: string): void {
-//   LoginPinia().type = url != 'LoginBasic';
+//   LoginPinia().types = url != 'LoginBasic';
 //   if (url == null) {
 //     router.push({name: 'RootPath'})
 //     return

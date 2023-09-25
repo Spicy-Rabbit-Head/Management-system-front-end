@@ -6,7 +6,7 @@
     <p class="login-public-description tw-mb-0">{{ $t('Login.Basic.RegisterSubtitle') }}</p>
     <!-- 用户输入 -->
     <div class="basic-input">
-      <input type="text" required="" v-model="loginStore.formLogin.username">
+      <input type="text" required v-model="loginStore.formLogin.username">
       <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -16,7 +16,7 @@
     </div>
     <!-- 密码输入 -->
     <div class="basic-input">
-      <input type="text" required="" v-model="loginStore.formLogin.password">
+      <input type="text" required v-model="loginStore.formLogin.password">
       <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -26,7 +26,7 @@
     </div>
     <!-- 重复密码输入 -->
     <div class="basic-input">
-      <input type="text" required="" v-model="loginStore.formLogin.repeatPassword">
+      <input type="text" required v-model="loginStore.formLogin.repeatPassword">
       <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -37,7 +37,7 @@
     <n-button class="tw-w-3/5 tw-text-[1rem]" type="primary" @click="verification">
       {{ $t('Login.RegisterAccount') }}
     </n-button>
-    <n-divider style="color: gray ;padding: 0 10%" class="tw-text-[0.875rem]">
+    <n-divider style="color: rgb(128,128,128) ;padding: 0 10%" class="tw-text-[0.875rem]">
       {{ $t('Login.Basic.LoginTips') }}
     </n-divider>
     <n-button class="tw-w-3/5 tw-text-[1rem]" type="warning"

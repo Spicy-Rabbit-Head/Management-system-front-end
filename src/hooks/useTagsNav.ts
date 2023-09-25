@@ -1,4 +1,4 @@
-import {TabsData} from '@/type/interface'
+import {TabsData} from '@/types/interface'
 import {computed, CSSProperties, getCurrentInstance, reactive, ref} from "vue";
 // 全局共享标签导航数据
 const tagsData = reactive<Array<TabsData>>([

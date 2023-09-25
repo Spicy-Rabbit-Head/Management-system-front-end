@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import {ref} from "vue";
 
-const props = defineProps({
+defineProps({
   // 抽屉标题
   drawerTitle: String,
   // 抽屉宽度
@@ -24,7 +24,7 @@ const props = defineProps({
   }
 })
 // 抽屉宽度
-const width = ref(props.drawerWidth)
+// const width = ref(props.drawerWidth)
 // 抽屉显示状态
 const drawerShow = ref(false)
 

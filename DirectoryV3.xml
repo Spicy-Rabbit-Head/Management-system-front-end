@@ -58,6 +58,6 @@
     <tree path="/src/layout/item/MainTagsNav.vue" title="主体导航标签"/>
     <tree path="/src/components/DynamicTag.vue" title="动态标签导航(待完成)"/>
     <tree path="/src/hooks" title="闭包工具方法"/>
-    <tree path="/src/type" title="类型"/>
+    <tree path="/src/types" title="类型"/>
     <tree path="/src/views/schedule" title="保养排程"/>
 </trees>

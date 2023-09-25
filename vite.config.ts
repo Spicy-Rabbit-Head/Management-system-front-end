@@ -14,7 +14,7 @@ export default defineConfig({
         // 组件自动导入
         AutoImport({
             resolvers: [ElementPlusResolver(), NaiveUiResolver()],
-            dts: 'src/type/auto-imports.d.ts',
+            dts: 'src/types/auto-imports.d.ts',
         }),
         Components({
             resolvers: [ElementPlusResolver(), NaiveUiResolver(),
@@ -22,7 +22,7 @@ export default defineConfig({
                     prefix: 'icon',
                     enabledCollections: ['ep', 'ant-design'],
                 })],
-            dts: 'src/type/components.d.ts',
+            dts: 'src/types/components.d.ts',
         }),
         VueI18nPlugin({
             include: [resolve(__dirname, './src/i18n/**')],

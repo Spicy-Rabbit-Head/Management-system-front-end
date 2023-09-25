@@ -19,7 +19,7 @@ import {GlobalStore} from "@/store";
 import FullScreenLoading from "@/components/FullScreenLoading.vue";
 import {onMounted, watch} from "vue";
 import {useI18n} from "vue-i18n";
-import {useUser} from "@/hooks/useUser";
+import {isLogin} from "@/api/userRequest"
 
 // naive ui 全局配置
 const themeOverrides: GlobalThemeOverrides = {
@@ -33,34 +33,11 @@ const route = useRoute();
 // const router = useRouter();
 const globalStore = GlobalStore();
 const {locale, t} = useI18n();
-const {automaticLogin} = useUser();
 
-
-// 查询是否登录
-// get('loginRelated/isLogin', () => {
-//   toggleButton(true)
-// }, () => {
-//   toggleButton(false)
-// }, () => {
-//   toggleButton(false)
-// })
-
-// 切换登录状态
-// function toggleButton(i: boolean) {
-//   let url = window.localStorage.getItem('login') || 'LoginBasic';
-//   loginStore.type = url != 'LoginBasic';
-//   if (i) {
-//     loginStore.isAuthenticated = true;
-//     router.replace({name: 'Sidebar'})
-//   } else {
-//     loginStore.isAuthenticated = false;
-//     router.replace({name: url})
-//   }
-// }
 
 // 读取本地存储的全局配置
 onMounted(() => {
-  automaticLogin()
+  isLogin()
   // 读取语言
   let language = window.localStorage.getItem('locale') || 'zhCN'
   if (language) {

@@ -96,7 +96,7 @@ function verification(i: number) {
   }
 }
 </script>
-<style scoped>
+<style scoped lang="postcss">
 
 /* 注册登录框容器 */
 .response-container {
