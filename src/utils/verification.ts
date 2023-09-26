@@ -1,12 +1,12 @@
 import {create, eager, enforce, only, test} from "vest";
-import {LoginStore} from "@/store";
 import {showToast} from "@/utils/componentPlugins";
+import {useUser} from "@/hooks/useUser.ts";
 
-const loginStore = LoginStore()
+const {userForm} = useUser()
 
 function verificationRegister(code: number): boolean {
     let result;
-    let traversal = loginStore.formLogin
+    let traversal = userForm
     for (let prop in traversal) {
         if (code) if (prop === 'repeatPassword') continue
         result = suite(traversal, prop)

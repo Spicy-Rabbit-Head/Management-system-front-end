@@ -1,3 +1,27 @@
+<script setup lang="ts">
+import {LoginStore} from '@/store'
+import {verificationRegister} from "@/utils/verification";
+import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
+import {login} from "@/api/userRequest.ts";
+import {useUser} from "@/hooks/useUser.ts";
+
+const loginStore = LoginStore();
+const {userForm} = useUser();
+const {FullScreenLoadingRun} = useFullScreenLoading();
+// 登录验证
+const verification = () => {
+  let register = verificationRegister(1);
+  if (register) {
+    FullScreenLoadingRun()
+    login()
+  }
+}
+
+// 输入框动画
+const time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms', '300ms', '350ms']
+
+</script>
+
 <template>
   <!-- 简约登录页 -->
   <form class="basic-login-form">
@@ -6,7 +30,7 @@
     <p class="login-public-description tw-mb-0">{{ $t('Login.Basic.LoginSubtitle') }}</p>
     <!-- 用户输入 -->
     <div class="basic-input">
-      <input type="text" required v-model="loginStore.formLogin.username">
+      <input type="text" required v-model="userForm.username">
       <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -16,7 +40,7 @@
     </div>
     <!-- 密码输入 -->
     <div class="basic-input">
-      <input type="text" required v-model="loginStore.formLogin.password">
+      <input type="text" required v-model="userForm.password">
       <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -50,27 +74,6 @@
     </n-button>
   </form>
 </template>
-
-<script setup lang="ts">
-import {LoginStore} from '@/store'
-import {verificationRegister} from "@/utils/verification";
-import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
-
-const loginStore = LoginStore();
-const {FullScreenLoadingRun} = useFullScreenLoading();
-// 登录验证
-const verification = () => {
-  let register = verificationRegister(1);
-  if (register) {
-    FullScreenLoadingRun()
-    loginStore.login()
-  }
-}
-
-// 输入框动画
-const time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms', '300ms', '350ms']
-
-</script>
 
 <style scoped>
 .basic-input {

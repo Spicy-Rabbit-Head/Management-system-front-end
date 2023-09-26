@@ -1,3 +1,78 @@
+<script lang="ts" setup>
+import {onMounted, ref} from "vue";
+import {PasswordResetInterface} from "@/types/interface";
+import IconAntDesignSendOutlined from "~icons/ant-design/send-outlined";
+import IconAntDesignSyncOutlined from "~icons/ant-design/sync-outlined";
+// 退出重置按钮显示状态 false为隐藏 默认显示
+defineProps({exitDisplay: {type: Boolean, default: true}})
+// 邮件重置步骤数
+const emailCurrent = ref<number>(0)
+// 邮箱重置加载状态
+const emailCurrentLoading = ref<boolean>(false)
+// 辅助重置加载状态
+const auxiliaryCurrentLoading = ref<boolean>(false)
+// 辅助重置当前状态
+const auxiliaryCurrentState = ref<PasswordResetInterface>({
+  // 辅助重置步骤数
+  current: 0,
+  // 辅助重置按钮审核状态 true为禁用
+  resetState: true,
+  // 辅助重置审核状态
+  tagState: 'warning'
+})
+
+// 读取缓存状态
+onMounted(() => {
+  let item: string | null = window.localStorage.getItem('auxiliaryCurrentState');
+  if (item) {
+    auxiliaryCurrentState.value = JSON.parse(item)
+  }
+  // 状态非法清除缓存
+  if (auxiliaryCurrentState.value.current > 2 || auxiliaryCurrentState.value.current < 0) {
+    clearCache()
+  }
+})
+
+// 发送邮件验证码
+function sendVerificationCode() {
+  emailCurrentLoading.value = true
+  setTimeout(() => {
+    emailCurrentLoading.value = false
+  }, 5000)
+}
+
+// 刷新辅助重置状态
+function refreshState() {
+  auxiliaryCurrentLoading.value = true
+  setTimeout(() => {
+    auxiliaryCurrentLoading.value = false
+    auxiliaryCurrentState.value.tagState = 'success'
+    auxiliaryCurrentState.value.resetState = false
+  }, 3000)
+}
+
+// 辅助重置步骤更新
+function auxiliaryStateUpdate(i: number) {
+  if (i == 0) {
+    auxiliaryCurrentState.value.current = 1
+  } else if (i == 1) {
+    auxiliaryCurrentState.value.current = 2
+  }
+  window.localStorage.setItem('auxiliaryCurrentState', JSON.stringify(auxiliaryCurrentState.value))
+}
+
+// 清除缓存
+function clearCache() {
+  window.localStorage.removeItem('auxiliaryCurrentState')
+  auxiliaryCurrentState.value = {
+    current: 0,
+    resetState: true,
+    tagState: 'warning'
+  }
+}
+
+</script>
+
 <template>
   <div class="basic-login-form tw-px-8">
     <!-- 退出重置按钮 -->
@@ -124,80 +199,7 @@
     </n-tabs>
   </div>
 </template>
-<script lang="ts" setup>
-import {onMounted, ref} from "vue";
-import {PasswordResetInterface} from "@/types/interface";
-import IconAntDesignSendOutlined from "~icons/ant-design/send-outlined";
-import IconAntDesignSyncOutlined from "~icons/ant-design/sync-outlined";
-// 退出重置按钮显示状态 false为隐藏 默认显示
-defineProps({exitDisplay: {type: Boolean, default: true}})
-// 邮件重置步骤数
-const emailCurrent = ref<number>(0)
-// 邮箱重置加载状态
-const emailCurrentLoading = ref<boolean>(false)
-// 辅助重置加载状态
-const auxiliaryCurrentLoading = ref<boolean>(false)
-// 辅助重置当前状态
-const auxiliaryCurrentState = ref<PasswordResetInterface>({
-  // 辅助重置步骤数
-  current: 0,
-  // 辅助重置按钮审核状态 true为禁用
-  resetState: true,
-  // 辅助重置审核状态
-  tagState: 'warning'
-})
 
-// 读取缓存状态
-onMounted(() => {
-  let item: string | null = window.localStorage.getItem('auxiliaryCurrentState');
-  if (item) {
-    auxiliaryCurrentState.value = JSON.parse(item)
-  }
-  // 状态非法清除缓存
-  if (auxiliaryCurrentState.value.current > 2 || auxiliaryCurrentState.value.current < 0) {
-    clearCache()
-  }
-})
-
-// 发送邮件验证码
-function sendVerificationCode() {
-  emailCurrentLoading.value = true
-  setTimeout(() => {
-    emailCurrentLoading.value = false
-  }, 5000)
-}
-
-// 刷新辅助重置状态
-function refreshState() {
-  auxiliaryCurrentLoading.value = true
-  setTimeout(() => {
-    auxiliaryCurrentLoading.value = false
-    auxiliaryCurrentState.value.tagState = 'success'
-    auxiliaryCurrentState.value.resetState = false
-  }, 3000)
-}
-
-// 辅助重置步骤更新
-function auxiliaryStateUpdate(i: number) {
-  if (i == 0) {
-    auxiliaryCurrentState.value.current = 1
-  } else if (i == 1) {
-    auxiliaryCurrentState.value.current = 2
-  }
-  window.localStorage.setItem('auxiliaryCurrentState', JSON.stringify(auxiliaryCurrentState.value))
-}
-
-// 清除缓存
-function clearCache() {
-  window.localStorage.removeItem('auxiliaryCurrentState')
-  auxiliaryCurrentState.value = {
-    current: 0,
-    resetState: true,
-    tagState: 'warning'
-  }
-}
-
-</script>
 <style scoped>
 /* 提示样式 */
 .tips {

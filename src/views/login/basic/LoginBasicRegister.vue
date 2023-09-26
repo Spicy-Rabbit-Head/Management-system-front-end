@@ -1,3 +1,24 @@
+<script setup lang="ts">
+import {LoginStore} from "@/store";
+import {verificationRegister} from "@/utils/verification";
+import {register} from "@/api/userRequest.ts";
+import {useUser} from "@/hooks/useUser.ts";
+
+const loginStore = LoginStore();
+const {userForm} = useUser();
+
+// 注册验证
+function verification() {
+  let bool = verificationRegister(0);
+  if (bool) {
+    register();
+  }
+}
+
+// 输入框动画
+let time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms', '300ms', '350ms']
+</script>
+
 <template>
   <!-- 简约注册页 -->
   <form class="basic-login-form">
@@ -6,7 +27,7 @@
     <p class="login-public-description tw-mb-0">{{ $t('Login.Basic.RegisterSubtitle') }}</p>
     <!-- 用户输入 -->
     <div class="basic-input">
-      <input type="text" required v-model="loginStore.formLogin.username">
+      <input type="text" required v-model="userForm.username">
       <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -16,7 +37,7 @@
     </div>
     <!-- 密码输入 -->
     <div class="basic-input">
-      <input type="text" required v-model="loginStore.formLogin.password">
+      <input type="text" required v-model="userForm.password">
       <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -26,7 +47,7 @@
     </div>
     <!-- 重复密码输入 -->
     <div class="basic-input">
-      <input type="text" required v-model="loginStore.formLogin.repeatPassword">
+      <input type="text" required v-model="userForm.repeatPassword">
       <label>
                 <span :style="{transitionDelay: time[index]}"
                       :key="index"
@@ -47,23 +68,7 @@
   </form>
 </template>
 
-<script setup lang="ts">
-import {LoginStore} from "@/store";
-import {verificationRegister} from "@/utils/verification";
 
-const loginStore = LoginStore();
-
-// 注册验证
-function verification() {
-  let register = verificationRegister(0);
-  if (register) {
-    loginStore.register(false);
-  }
-}
-
-// 输入框动画
-let time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms', '300ms', '350ms']
-</script>
 
 <style scoped>
 .basic-input {

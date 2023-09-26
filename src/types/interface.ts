@@ -1,10 +1,9 @@
-import {FunctionalComponent, SVGAttributes} from "vue/dist/vue";
+import {FunctionalComponent, SVGAttributes} from "vue";
 import {Router} from "vue-router";
 
 // 登录注册共享
 export type LoginStoreInterface = {
     loginScreen: LoginScreen,
-    formLogin: FormLogin,
     automaticLogin: boolean,
     type: boolean,
     router: Router,

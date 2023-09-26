@@ -1,3 +1,16 @@
+<script setup lang="ts">
+import {Avatar as VexAvatar, Dropdown as VexDropdown} from "vexip-ui";
+import {ref} from "vue";
+import PasswordReset from "@/views/login/PasswordReset.vue";
+import IconEpAvatar from "~icons/ep/avatar";
+import IconEpEdit from "~icons/ep/edit";
+import IconIcomoonFreeExit from "~icons/icomoon-free/exit";
+import {logout} from "@/api/userRequest.ts"
+
+// 密码重置抽屉
+const modifyPassword = ref(false)
+</script>
+
 <template>
   <!-- 头部用户模块 -->
   <vex-dropdown custom placement="bottom-start" trigger="click">
@@ -21,7 +34,7 @@
           修改密码
         </div>
         <!-- 退出登录 -->
-        <div class="layout-header-user-option" @click.stop="exit">
+        <div class="layout-header-user-option" @click.stop="logout">
           <icon-icomoon-free-exit class="tw-mr-2"/>
           退出登录
         </div>
@@ -35,38 +48,6 @@
     </n-drawer-content>
   </n-drawer>
 </template>
-
-<script setup lang="ts">
-import {Avatar as VexAvatar, Dropdown as VexDropdown} from "vexip-ui";
-import {useRouter} from "vue-router";
-import {LoginStore} from "@/store";
-import {get} from "@/api/requestInstance";
-import {ref} from "vue";
-import PasswordReset from "@/views/login/PasswordReset.vue";
-import IconEpAvatar from "~icons/ep/avatar";
-import IconEpEdit from "~icons/ep/edit";
-import IconIcomoonFreeExit from "~icons/icomoon-free/exit";
-
-const router = useRouter()
-const loginStore = LoginStore()
-// 密码重置抽屉
-const modifyPassword = ref(false)
-
-// 退出登录
-function exit() {
-  get('/loginRelated/logout', () => {
-    window.localStorage.removeItem('token')
-    window.sessionStorage.removeItem('token')
-    loginStore.isAuthenticated = false
-    router.replace({name: window.localStorage.getItem('login') || 'LoginBasic'})
-  }, () => {
-    window.localStorage.removeItem('token')
-    window.sessionStorage.removeItem('token')
-    loginStore.isAuthenticated = false
-    router.replace({name: window.localStorage.getItem('login') || 'LoginBasic'})
-  })
-}
-</script>
 
 <style scoped>
 /* 选择项 */

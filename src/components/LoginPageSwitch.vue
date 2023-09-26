@@ -11,7 +11,11 @@
 <script setup lang="ts">
 import {useRouter} from "vue-router";
 import {LoginStore} from "@/store";
+// import {useUser} from "@/hooks/useUser.ts";
 
+// const {
+//   type,
+// } = useUser();
 const router: any = useRouter();
 const loginStore = LoginStore();
 

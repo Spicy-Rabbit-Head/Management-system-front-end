@@ -1,13 +1,44 @@
+<script setup lang="ts">
+import {LoginStore} from '@/store'
+import {verificationRegister} from "@/utils/verification";
+import PasswordReset from "@/views/login/PasswordReset.vue";
+import {ref} from "vue";
+import IconAntDesignSwapRightOutlined from '~icons/ant-design/swap-right-outlined'
+import IconAntDesignSwapLeftOutlined from '~icons/ant-design/swap-left-outlined'
+import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
+import {login, register} from "@/api/userRequest.ts"
+import {useUser} from "@/hooks/useUser.ts";
+
+const loginStore = LoginStore();
+const {userForm} = useUser();
+const {FullScreenLoadingRun} = useFullScreenLoading();
+// 弹窗重置密码页
+const showModal = ref<boolean>(false);
+
+// 注册登录验证
+function verification(i: number) {
+  let bool = verificationRegister(i);
+  if (bool) {
+    if (i == 0) {
+      register()
+    } else {
+      FullScreenLoadingRun()
+      login()
+    }
+  }
+}
+</script>
+
 <template>
   <!-- 拟态注册 -->
   <div :class="loginStore.loginScreen.switchRegister" class="response-container">
     <form class="response-form">
       <h2 class="login-public-title">{{ $t('Login.CreateAnAccount') }}</h2>
-      <input class="response-input" v-model="loginStore.formLogin.username"
+      <input class="response-input" v-model="userForm.username"
              :placeholder="$t('Login.UsernameInputText')"/>
-      <input class="response-input" v-model="loginStore.formLogin.password"
+      <input class="response-input" v-model="userForm.password"
              :placeholder="$t('Login.PasswordInputText')"/>
-      <input class="response-input" v-model="loginStore.formLogin.repeatPassword"
+      <input class="response-input" v-model="userForm.repeatPassword"
              :placeholder="$t('Login.ReenterThePassword')"/>
       <n-button type="info" class="login-public-switch-button"
                 @click="verification(0)">
@@ -26,9 +57,9 @@
   <div :class="loginStore.loginScreen.switchLogin" class="response-container">
     <form class="response-form">
       <h2 class="login-public-title">{{ $t('Login.LoginTitle') }}</h2>
-      <input class="response-input" v-model="loginStore.formLogin.username"
+      <input class="response-input" v-model="userForm.username"
              :placeholder="$t('Login.UsernameInputText')"/>
-      <input class="response-input" v-model="loginStore.formLogin.password"
+      <input class="response-input" v-model="userForm.password"
              :placeholder="$t('Login.PasswordInputText')"/>
       <el-row class="tw-w-3/5">
         <el-col :span="12" class="tw-text-left">
@@ -69,33 +100,7 @@
     <PasswordReset :exit-display="false"/>
   </el-dialog>
 </template>
-<script setup lang="ts">
-import {LoginStore} from '@/store'
-import {verificationRegister} from "@/utils/verification";
-import PasswordReset from "@/views/login/PasswordReset.vue";
-import {ref} from "vue";
-import IconAntDesignSwapRightOutlined from '~icons/ant-design/swap-right-outlined'
-import IconAntDesignSwapLeftOutlined from '~icons/ant-design/swap-left-outlined'
-import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
 
-const loginStore = LoginStore();
-const {FullScreenLoadingRun} = useFullScreenLoading();
-// 弹窗重置密码页
-const showModal = ref<boolean>(false);
-
-// 注册登录验证
-function verification(i: number) {
-  let register = verificationRegister(i);
-  if (register) {
-    if (i == 0) {
-      loginStore.register(true)
-    } else {
-      FullScreenLoadingRun()
-      loginStore.login()
-    }
-  }
-}
-</script>
 <style scoped lang="postcss">
 
 /* 注册登录框容器 */

@@ -1,6 +1,8 @@
 // 封装 axios
 import axios from 'axios'
-import globalConfig from '@/config/global'
+import globalConfig from '@/config/globalConfig.ts'
+import {ResponseData} from "@/api/types.ts";
+import {httpCodeException, httpException} from "@/exception/httpExceptionHandling.ts";
 
 // 创建一个 axios 实例
 const service = axios.create({
@@ -8,7 +10,6 @@ const service = axios.create({
     timeout: 1000 * 8, // 请求超时时间
     responseEncoding: "UTF-8", // 响应编码
 })
-
 
 // 请求拦截器
 service.interceptors.request.use(
@@ -35,21 +36,21 @@ service.interceptors.response.use(response => {
         return Promise.resolve(response)
     },
     error => {
-        console.log("请求失败")
         // 对响应错误做点什么
+        httpException(error.message as string)
         return Promise.reject(new Error(error))
     }
 )
 
 
 // 封装 post 请求
-function post(url: string, params: any) {
-    return new Promise((resolve, reject) => {
-        service.post(url, params).then(data => {
-            console.log(data)
+function post<T = any, D = any>(url: string, body?: D) {
+    return new Promise<ResponseData<T>>((resolve, reject) => {
+        service.post<ResponseData<T>>(url, body).then(({data}) => {
             if (data.status) {
-                resolve(data.data)
+                resolve(data)
             } else {
+                httpCodeException(data.code)
                 reject(data)
             }
         }).catch((error) => {
@@ -60,13 +61,13 @@ function post(url: string, params: any) {
 }
 
 // 封装 get 请求
-function get<T>(url: string): Promise<T> {
-    return new Promise<T>((resolve, reject) => {
-        service.get(url).then(({data}) => {
-            console.log(data)
+function get<T = any, D = any>(url: string, params?: D) {
+    return new Promise<ResponseData<T>>((resolve, reject) => {
+        service.get<ResponseData<T>>(url, {params: params}).then(({data}) => {
             if (data.status) {
                 resolve(data)
             } else {
+                httpCodeException(data.code)
                 reject(data)
             }
         }).catch((error) => {
