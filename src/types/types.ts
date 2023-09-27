@@ -3,7 +3,7 @@ import {Router} from "vue-router";
 
 // 登录注册共享
 export type LoginStoreInterface = {
-    loginScreen: LoginScreen,
+    loginScreen: MimicryAction,
     automaticLogin: boolean,
     type: boolean,
     router: Router,
@@ -13,15 +13,21 @@ export type LoginStoreInterface = {
     loginException: null | number
 }
 
-// 登录界面
-export type LoginScreen = {
-    switchButton: string,
-    switchButtonHidden1: null | string,
-    switchButtonHidden2: null | string,
-    circle1: null | string,
-    circle2: null | string,
-    switchRegister: string,
-    switchLogin: string,
+// 拟态界面动作
+export interface MimicryAction {
+    switchButton?: string,
+
+    switchButtonHidden1?: string,
+
+    switchButtonHidden2?: string,
+
+    circle1?: string,
+
+    circle2?: string,
+
+    switchRegister?: string,
+
+    switchLogin?: string,
 }
 
 // 全局共享状态

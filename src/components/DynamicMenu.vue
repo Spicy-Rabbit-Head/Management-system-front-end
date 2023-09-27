@@ -28,7 +28,7 @@
 <script setup lang="ts">
 import {Menu as VexMenu, MenuGroup as VexMenuGroup, MenuItem as VexMenuItem} from "vexip-ui";
 import {GlobalStore} from "@/store";
-import {DynamicMenuInterface} from "@/types/interface";
+import {DynamicMenuInterface} from "@/types/types.ts";
 
 const globalStore = GlobalStore();
 // const {routeTrigger} = useTagsNav();

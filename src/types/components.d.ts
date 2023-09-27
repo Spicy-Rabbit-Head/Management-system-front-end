@@ -22,7 +22,8 @@ declare module '@vue/runtime-core' {
     FullScreenLoading: typeof import('./../components/FullScreenLoading.vue')['default']
     FullScreenMode: typeof import('./../components/FullScreenMode.vue')['default']
     LanguageSwitching: typeof import('./../components/LanguageSwitching.vue')['default']
-    LoginPageSwitch: typeof import('./../components/LoginPageSwitch.vue')['default']
+
+      LoginPageSwitch: typeof import('../views/login/LoginPageSwitch.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NCheckbox: typeof import('naive-ui')['NCheckbox']
     NDivider: typeof import('naive-ui')['NDivider']

@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import LoginPageSwitch from "@/components/LoginPageSwitch.vue";
+import LoginPageSwitch from "@/views/login/LoginPageSwitch.vue";
 import LanguageSwitching from "@/components/LanguageSwitching.vue";
 
 // const route = useRoute()

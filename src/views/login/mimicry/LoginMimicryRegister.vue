@@ -9,6 +9,17 @@ import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
 import {login, register} from "@/api/userRequest.ts"
 import {useUser} from "@/hooks/useUser.ts";
 
+export interface Props {
+  switchRegister?: string,
+
+  switchLogin?: string,
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  switchRegister: 'register-switch-r',
+  switchLogin: 'register-switch-r switch-hidden',
+})
+
 const loginStore = LoginStore();
 const {userForm} = useUser();
 const {FullScreenLoadingRun} = useFullScreenLoading();

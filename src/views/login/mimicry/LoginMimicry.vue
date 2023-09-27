@@ -1,3 +1,21 @@
+<script setup lang="ts">
+import LoginMimicrySwitch from "./LoginMimicrySwitch.vue";
+import LoginMimicryRegister from "./LoginMimicryRegister.vue";
+
+// // 登录注册界面切换实体
+// const mimicryAction = reactive<MimicryAction>({
+//   switchButton: 'prompt-box-switch-l',
+//   switchButtonHidden1: null,
+//   switchButtonHidden2: 'switch-hidden',
+//   circle1: null,
+//   circle2: null,
+//   switchRegister: 'register-switch-r',
+//   switchLogin: 'register-switch-r switch-hidden',
+// })
+
+
+</script>
+
 <!-- 拟态页主体 -->
 <template>
   <div class="mimicry-background mimicry-layout">
@@ -16,12 +34,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import LoginMimicrySwitch from "./LoginMimicrySwitch.vue";
-import LoginMimicryRegister from "./LoginMimicryRegister.vue";
-</script>
-
-<style scoped>
+<style scoped lang="postcss">
 /*注册登录界面布局框架*/
 .mimicry-layout {
   @apply

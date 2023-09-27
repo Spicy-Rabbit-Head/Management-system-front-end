@@ -28,7 +28,7 @@
     <tree path="/src/views/login/Login.vue" title="登录注册主路由"/>
     <tree path="/src/views/login/basic" title="登录注册基本页面"/>
     <tree path="/src/views/login/mimicry" title="登录注册拟态页面"/>
-    <tree path="/src/components/LoginPageSwitch.vue" title="登录页切换开关"/>
+    <tree path="/src/views/login/LoginPageSwitch.vue" title="登录页切换开关"/>
     <tree path="/src/views/homePage" title="首页"/>
     <tree path="/src/utils/verification.ts" title="vest 验证方法" extension="" presentableText=""
           tooltipTitle="" icon="" textColor="" backgroundColor=""/>

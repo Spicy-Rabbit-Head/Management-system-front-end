@@ -1,8 +1,36 @@
+<script setup lang="ts">
+import {LoginStore} from '@/store'
+
+export interface Props {
+  switchButton?: string,
+
+  switchButtonHidden1?: string,
+
+  switchButtonHidden2?: string,
+
+  circle1?: string,
+
+  circle2?: string,
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  switchButton: 'prompt-box-switch-l',
+  switchButtonHidden1: ' ',
+  switchButtonHidden2: 'switch-hidden',
+  circle1: '',
+  circle2: '',
+})
+
+const loginStore = LoginStore()
+
+
+</script>
+
 <template>
   <!-- 拟态切换页 -->
   <div class="switch"
        :class=" loginStore.loginScreen.switchButton">
-    <!-- 装饰园 -->
+    <!-- 装饰-园 -->
     <div class="switch-circle"
          :class="loginStore.loginScreen.circle1"></div>
     <div class="switch-circle switch-circle-top"
@@ -29,14 +57,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import {LoginStore} from '@/store'
-
-const loginStore = LoginStore()
-
-</script>
-
-<style scoped>
+<style scoped lang="postcss">
 /* 文字提示框 */
 .switch {
   @apply

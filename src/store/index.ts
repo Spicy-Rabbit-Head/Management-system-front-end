@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia'
 import {useRouter} from "vue-router";
-import {GlobalStoreInterface, LoginStoreInterface} from "@/types/interface";
+import {GlobalStoreInterface, LoginStoreInterface} from "@/types/types.ts";
 
 // 登录注册界面实体
 export const LoginStore = defineStore('LoginStore', {

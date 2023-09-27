@@ -34,7 +34,7 @@ import IconEpArrowLeftBold from "~icons/ep/arrow-left-bold"
 import IconEpArrowRightBold from "~icons/ep/arrow-right-bold"
 import IconEpArrowDownBold from "~icons/ep/arrow-down-bold"
 import IconEpClose from "~icons/ep/close"
-import {TabNavInterface} from "@/types/interface";
+import {TabNavInterface} from "@/types/types.ts";
 import {useTagsNav} from "@/hooks/useTagsNav";
 // 闭包方法
 const {
