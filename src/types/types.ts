@@ -3,7 +3,6 @@ import {Router} from "vue-router";
 
 // 登录注册共享
 export type LoginStoreInterface = {
-    loginScreen: MimicryAction,
     automaticLogin: boolean,
     type: boolean,
     router: Router,
@@ -13,8 +12,15 @@ export type LoginStoreInterface = {
     loginException: null | number
 }
 
-// 拟态界面动作
-export interface MimicryAction {
+// 拟态卡片样式
+export interface MimicryCardStyle {
+    bottomCard: MimicryBottomCardStyle,
+
+    topCard: MimicryTopCardStyle,
+}
+
+// 拟态底部卡片样式
+export interface MimicryBottomCardStyle {
     switchButton?: string,
 
     switchButtonHidden1?: string,
@@ -24,11 +30,15 @@ export interface MimicryAction {
     circle1?: string,
 
     circle2?: string,
+}
 
+// 拟态顶部卡片样式
+export interface MimicryTopCardStyle {
     switchRegister?: string,
 
     switchLogin?: string,
 }
+
 
 // 全局共享状态
 export type GlobalStoreInterface = {

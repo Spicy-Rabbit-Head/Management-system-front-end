@@ -8,14 +8,10 @@ import IconAntDesignSwapLeftOutlined from '~icons/ant-design/swap-left-outlined'
 import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
 import {login, register} from "@/api/userRequest.ts"
 import {useUser} from "@/hooks/useUser.ts";
+import {MimicryTopCardStyle} from "@/types/types.ts";
 
-export interface Props {
-  switchRegister?: string,
 
-  switchLogin?: string,
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<MimicryTopCardStyle>(), {
   switchRegister: 'register-switch-r',
   switchLogin: 'register-switch-r switch-hidden',
 })
@@ -42,7 +38,7 @@ function verification(i: number) {
 
 <template>
   <!-- 拟态注册 -->
-  <div :class="loginStore.loginScreen.switchRegister" class="response-container">
+  <div :class="props.switchRegister" class="response-container">
     <form class="response-form">
       <h2 class="login-public-title">{{ $t('Login.CreateAnAccount') }}</h2>
       <input class="response-input" v-model="userForm.username"
@@ -65,7 +61,7 @@ function verification(i: number) {
     </form>
   </div>
   <!-- 拟态登录 -->
-  <div :class="loginStore.loginScreen.switchLogin" class="response-container">
+  <div :class="props.switchLogin" class="response-container">
     <form class="response-form">
       <h2 class="login-public-title">{{ $t('Login.LoginTitle') }}</h2>
       <input class="response-input" v-model="userForm.username"

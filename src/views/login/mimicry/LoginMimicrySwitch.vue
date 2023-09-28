@@ -1,19 +1,8 @@
 <script setup lang="ts">
 import {LoginStore} from '@/store'
+import {MimicryBottomCardStyle} from "@/types/types.ts";
 
-export interface Props {
-  switchButton?: string,
-
-  switchButtonHidden1?: string,
-
-  switchButtonHidden2?: string,
-
-  circle1?: string,
-
-  circle2?: string,
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<MimicryBottomCardStyle>(), {
   switchButton: 'prompt-box-switch-l',
   switchButtonHidden1: ' ',
   switchButtonHidden2: 'switch-hidden',
@@ -29,15 +18,15 @@ const loginStore = LoginStore()
 <template>
   <!-- 拟态切换页 -->
   <div class="switch"
-       :class=" loginStore.loginScreen.switchButton">
+       :class=" props.switchButton">
     <!-- 装饰-园 -->
     <div class="switch-circle"
-         :class="loginStore.loginScreen.circle1"></div>
+         :class="props.circle1"></div>
     <div class="switch-circle switch-circle-top"
-         :class="loginStore.loginScreen.circle2"></div>
+         :class="props.circle2"></div>
     <!-- 切换主体 -->
     <div class="switch-container"
-         :class="loginStore.loginScreen.switchButtonHidden1">
+         :class="props.switchButtonHidden1">
       <h2 class="login-public-title">{{ $t('Login.Mimicry.RegisterTitle') }}</h2>
       <p class="login-public-description">{{ $t('Login.Mimicry.RegisterSubtitle') }}</p>
       <n-button type="info" size="large" class="login-public-switch-button"
@@ -46,7 +35,7 @@ const loginStore = LoginStore()
       </n-button>
     </div>
     <div class="switch-container"
-         :class="loginStore.loginScreen.switchButtonHidden2">
+         :class="props.switchButtonHidden2">
       <h2 class="login-public-title">{{ $t('Login.Mimicry.LoginTitle') }}</h2>
       <p class="login-public-description">{{ $t('Login.Mimicry.LoginSubtitle') }}</p>
       <n-button type="info" size="large" class="login-public-switch-button"
