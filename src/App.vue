@@ -30,7 +30,6 @@ const themeOverrides: GlobalThemeOverrides = {
   },
 }
 const route = useRoute();
-// const router = useRouter();
 const globalStore = GlobalStore();
 const {locale, t} = useI18n();
 
@@ -39,25 +38,21 @@ const {locale, t} = useI18n();
 onMounted(() => {
   isLogin()
   // 读取语言
-  let language = window.localStorage.getItem('locale') || 'zhCN'
-  if (language) {
-    locale.value = language
-  }
+  locale.value = localStorage.getItem('locale') || 'zhCN'
   // 读取菜单样式
-  let menu = window.localStorage.getItem('menu') || 'false'
+  let menu = localStorage.getItem('menu') || 'false'
   if (menu == 'false') {
-    window.localStorage.setItem('menu', 'false')
+    localStorage.setItem('menu', 'false')
     globalStore.menuStatus = false
   } else {
-    window.localStorage.setItem('menu', 'true')
+    localStorage.setItem('menu', 'true')
     globalStore.menuStatus = true
   }
 })
 // 监听路由变化，修改标题
 watch(() => route.meta, (meta) => {
-  if (meta.title) {
-    window.document.title = t(meta.title as string) || "设备保养管理系统";
-  }
+  if (meta.title) window.document.title = t(meta.title as string) || "设备保养管理系统";
+  else window.document.title = "设备保养管理系统";
 })
 </script>
 

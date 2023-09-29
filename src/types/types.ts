@@ -1,32 +1,36 @@
 import {FunctionalComponent, SVGAttributes} from "vue";
-import {Router} from "vue-router";
 
 // 登录注册共享
 export type LoginStoreInterface = {
-    automaticLogin: boolean,
     type: boolean,
-    router: Router,
-    isAuthenticated: boolean,
-    currentRoute: string,
     loginLoading: boolean,
     loginException: null | number
 }
 
 // 拟态卡片样式
 export interface MimicryCardStyle {
-    bottomCard: MimicryBottomCardStyle,
+    bottomCard?: MimicryBottomCardStyle,
 
-    topCard: MimicryTopCardStyle,
+    topCard?: MimicryTopCardStyle,
 }
 
 // 拟态底部卡片样式
 export interface MimicryBottomCardStyle {
-    switchButton?: string,
+    switchButton?: 'prompt-box-switch-l' | 'prompt-box-switch-r',
 
-    switchButtonHidden1?: string,
+    switchButtonHidden1?: MimicryCardHiddenTransition,
 
-    switchButtonHidden2?: string,
+    switchButtonHidden2?: MimicryCardHiddenTransition,
 
+    circle?: MimicryCircleTransition | null,
+}
+
+// 拟态卡片隐藏过渡
+export type MimicryCardHiddenTransition = 'switch-hidden' | null
+
+
+// 拟态圆过渡
+export interface MimicryCircleTransition {
     circle1?: string,
 
     circle2?: string,
@@ -34,9 +38,9 @@ export interface MimicryBottomCardStyle {
 
 // 拟态顶部卡片样式
 export interface MimicryTopCardStyle {
-    switchRegister?: string,
+    switchLogin?: 'register-switch-r switch-hidden' | 'register-switch-l',
 
-    switchLogin?: string,
+    switchRegister?: 'register-switch-r' | 'register-switch-l switch-hidden',
 }
 
 
@@ -51,13 +55,6 @@ export type TabsData = {
     label: string
     path: string
     state: string
-}
-
-// 登录注册数据
-export type FormLogin = {
-    username: null | string,
-    password: null | string,
-    repeatPassword?: null | string
 }
 
 

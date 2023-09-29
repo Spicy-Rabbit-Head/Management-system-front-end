@@ -11,13 +11,23 @@ import {useUser} from "@/hooks/useUser.ts";
 import {MimicryTopCardStyle} from "@/types/types.ts";
 
 
-const props = withDefaults(defineProps<MimicryTopCardStyle>(), {
-  switchRegister: 'register-switch-r',
-  switchLogin: 'register-switch-r switch-hidden',
+withDefaults(defineProps<{
+  topCard: MimicryTopCardStyle
+}>(), {
+  topCard: () => {
+    return {
+      switchLogin: 'register-switch-l',
+      switchRegister: 'register-switch-l switch-hidden',
+    }
+  }
 })
 
+const emit = defineEmits<{
+  toggle: [id: boolean]
+}>()
+
 const loginStore = LoginStore();
-const {userForm} = useUser();
+const {userForm, isAutomaticLogin} = useUser();
 const {FullScreenLoadingRun} = useFullScreenLoading();
 // 弹窗重置密码页
 const showModal = ref<boolean>(false);
@@ -38,7 +48,7 @@ function verification(i: number) {
 
 <template>
   <!-- 拟态注册 -->
-  <div :class="props.switchRegister" class="response-container">
+  <div :class="topCard.switchRegister" class="response-container">
     <form class="response-form">
       <h2 class="login-public-title">{{ $t('Login.CreateAnAccount') }}</h2>
       <input class="response-input" v-model="userForm.username"
@@ -52,7 +62,7 @@ function verification(i: number) {
         {{ $t('Login.RegisterAccount') }}
       </n-button>
       <n-button type="info" class="response-switch-button-left"
-                @click="loginStore.ToggleSwitch_Login(0)">
+                @click.stop="emit('toggle', false)">
         <template #icon>
           <IconAntDesignSwapLeftOutlined/>
         </template>
@@ -61,7 +71,7 @@ function verification(i: number) {
     </form>
   </div>
   <!-- 拟态登录 -->
-  <div :class="props.switchLogin" class="response-container">
+  <div :class="topCard.switchLogin" class="response-container">
     <form class="response-form">
       <h2 class="login-public-title">{{ $t('Login.LoginTitle') }}</h2>
       <input class="response-input" v-model="userForm.username"
@@ -70,7 +80,7 @@ function verification(i: number) {
              :placeholder="$t('Login.PasswordInputText')"/>
       <el-row class="tw-w-3/5">
         <el-col :span="12" class="tw-text-left">
-          <el-checkbox class="response-automatic-login" v-model="loginStore.automaticLogin"
+          <el-checkbox class="response-automatic-login" v-model="isAutomaticLogin"
                        :label="$t('Login.Mimicry.AutomaticLogin')"/>
         </el-col>
         <el-col :span="12" style="text-align: right" class="max-sm:tw-invisible max-sm:tw-opacity-0 max-sm:tw-absolute">
@@ -90,7 +100,7 @@ function verification(i: number) {
         {{ $t('Login.ResetPassword') }}
       </n-button>
       <n-button type="info" icon-placement="right" class="response-switch-button-right"
-                @click="loginStore.ToggleSwitch_Login(1)">
+                @click="emit('toggle', true)">
         {{ $t('Login.Mimicry.GoToRegister') }}
         <template #icon>
           <IconAntDesignSwapRightOutlined/>

@@ -1,23 +1,11 @@
-<template>
-  <div class="checkbox-wrapper-5">
-    <div class="check">
-      <input type="checkbox" id="check-5" v-model="loginStore.type"
-             @click="typeSwitch">
-      <label for="check-5"></label>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import {useRouter} from "vue-router";
 import {LoginStore} from "@/store";
-// import {useUser} from "@/hooks/useUser.ts";
+import {useUser} from "@/hooks/useUser.ts";
 
-// const {
-//   type,
-// } = useUser();
 const router: any = useRouter();
 const loginStore = LoginStore();
+const {clearBuffer} = useUser();
 
 // 切换登录页面
 function typeSwitch(): void {
@@ -29,9 +17,20 @@ function typeSwitch(): void {
     localStorage.setItem('login', 'LoginBasic')
     router.push({name: 'LoginBasic'});
   }
-  loginStore.Clear()
+  clearBuffer()
 }
 </script>
+
+
+<template>
+  <div class="checkbox-wrapper-5">
+    <div class="check">
+      <input type="checkbox" id="check-5" v-model="loginStore.type"
+             @click="typeSwitch">
+      <label for="check-5"></label>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .checkbox-wrapper-5 .check {

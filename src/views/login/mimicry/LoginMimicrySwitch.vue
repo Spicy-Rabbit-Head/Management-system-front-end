@@ -1,45 +1,53 @@
 <script setup lang="ts">
-import {LoginStore} from '@/store'
 import {MimicryBottomCardStyle} from "@/types/types.ts";
 
-const props = withDefaults(defineProps<MimicryBottomCardStyle>(), {
-  switchButton: 'prompt-box-switch-l',
-  switchButtonHidden1: ' ',
-  switchButtonHidden2: 'switch-hidden',
-  circle1: '',
-  circle2: '',
+withDefaults(defineProps<{
+  bottomCard: MimicryBottomCardStyle
+}>(), {
+  bottomCard: () => {
+    return {
+      switchButton: "prompt-box-switch-r",
+      switchButtonHidden1: "switch-hidden",
+      switchButtonHidden2: null,
+      circle: {
+        circle1: "!tw-left-2/5",
+        circle2: "!-tw-left-1/4",
+      }
+    }
+  }
 })
 
-const loginStore = LoginStore()
-
+const emit = defineEmits<{
+  toggle: [id: boolean]
+}>()
 
 </script>
 
 <template>
   <!-- 拟态切换页 -->
   <div class="switch"
-       :class=" props.switchButton">
+       :class="bottomCard.switchButton">
     <!-- 装饰-园 -->
     <div class="switch-circle"
-         :class="props.circle1"></div>
+         :class="bottomCard.circle?.circle1"></div>
     <div class="switch-circle switch-circle-top"
-         :class="props.circle2"></div>
+         :class="bottomCard.circle?.circle2"></div>
     <!-- 切换主体 -->
     <div class="switch-container"
-         :class="props.switchButtonHidden1">
+         :class="bottomCard.switchButtonHidden1">
       <h2 class="login-public-title">{{ $t('Login.Mimicry.RegisterTitle') }}</h2>
       <p class="login-public-description">{{ $t('Login.Mimicry.RegisterSubtitle') }}</p>
       <n-button type="info" size="large" class="login-public-switch-button"
-                @click="loginStore.ToggleSwitch_Login(0)">
+                @click.stop="emit('toggle', false)">
         {{ $t('Login.Mimicry.LoginButton') }}
       </n-button>
     </div>
     <div class="switch-container"
-         :class="props.switchButtonHidden2">
+         :class="bottomCard.switchButtonHidden2">
       <h2 class="login-public-title">{{ $t('Login.Mimicry.LoginTitle') }}</h2>
       <p class="login-public-description">{{ $t('Login.Mimicry.LoginSubtitle') }}</p>
       <n-button type="info" size="large" class="login-public-switch-button"
-                @click="loginStore.ToggleSwitch_Login(1)">
+                @click.stop="emit('toggle', true)">
         {{ $t('Login.Mimicry.RegisterButton') }}
       </n-button>
     </div>

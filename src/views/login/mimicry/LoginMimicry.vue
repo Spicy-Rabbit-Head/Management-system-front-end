@@ -1,18 +1,43 @@
 <script setup lang="ts">
 import LoginMimicrySwitch from "./LoginMimicrySwitch.vue";
 import LoginMimicryRegister from "./LoginMimicryRegister.vue";
+import {reactive} from "vue";
+import {MimicryCardStyle} from "@/types/types.ts";
 
-// // 登录注册界面切换实体
-// const mimicryAction = reactive<MimicryAction>({
-//   switchButton: 'prompt-box-switch-l',
-//   switchButtonHidden1: null,
-//   switchButtonHidden2: 'switch-hidden',
-//   circle1: null,
-//   circle2: null,
-//   switchRegister: 'register-switch-r',
-//   switchLogin: 'register-switch-r switch-hidden',
-// })
+// 拟态卡片样式
+const mimicryCardStyle = reactive<MimicryCardStyle>({
+  bottomCard: undefined,
+  topCard: undefined
+})
 
+function toggleCardStyle(bool: boolean) {
+  if (bool) {
+    mimicryCardStyle.bottomCard = {
+      switchButton: "prompt-box-switch-l",
+      switchButtonHidden1: null,
+      switchButtonHidden2: "switch-hidden",
+      circle: null,
+    }
+    mimicryCardStyle.topCard = {
+      switchLogin: "register-switch-r switch-hidden",
+      switchRegister: "register-switch-r",
+    }
+  } else {
+    mimicryCardStyle.bottomCard = {
+      switchButton: "prompt-box-switch-r",
+      switchButtonHidden1: "switch-hidden",
+      switchButtonHidden2: null,
+      circle: {
+        circle1: '!tw-left-2/5',
+        circle2: '!-tw-left-1/4',
+      }
+    }
+    mimicryCardStyle.topCard = {
+      switchLogin: "register-switch-l",
+      switchRegister: "register-switch-l switch-hidden",
+    }
+  }
+}
 
 </script>
 
@@ -28,8 +53,8 @@ import LoginMimicryRegister from "./LoginMimicryRegister.vue";
     </h2>
     <!-- 拟态组件 -->
     <div class="mimicry-frame mimicry-response">
-      <login-mimicry-switch/>
-      <login-mimicry-register/>
+      <login-mimicry-switch @toggle="toggleCardStyle" :bottom-card="mimicryCardStyle.bottomCard"/>
+      <login-mimicry-register @toggle="toggleCardStyle" :top-card="mimicryCardStyle.topCard"/>
     </div>
   </div>
 </template>

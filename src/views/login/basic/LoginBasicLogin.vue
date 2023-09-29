@@ -4,9 +4,13 @@ import {verificationRegister} from "@/utils/verification";
 import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
 import {login} from "@/api/userRequest.ts";
 import {useUser} from "@/hooks/useUser.ts";
+import {useRouter} from "vue-router";
 
 const loginStore = LoginStore();
-const {userForm} = useUser();
+const {
+  userForm,
+  isAutomaticLogin
+} = useUser();
 const {FullScreenLoadingRun} = useFullScreenLoading();
 // 登录验证
 const verification = () => {
@@ -16,6 +20,8 @@ const verification = () => {
     login()
   }
 }
+
+const {replace} = useRouter()
 
 // 输入框动画
 const time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms', '300ms', '350ms']
@@ -50,13 +56,13 @@ const time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms', '300
     </div>
     <el-row class="tw-w-3/5 tw-my-2">
       <el-col :span="13" class="tw-text-left tw-mt-1.5">
-        <n-checkbox class="tw-text-[0.875rem]" v-model:checked="loginStore.automaticLogin">
+        <n-checkbox class="tw-text-[0.875rem]" v-model:checked="isAutomaticLogin">
           {{ $t('Login.Basic.RememberMe') }}
         </n-checkbox>
       </el-col>
       <el-col :span="11" class="tw-text-right">
         <n-button color="#ff2e63" class="tw-text-[0.875rem]"
-                  @click="$router.replace({name:'BasicReset'})">
+                  @click.stop="$router.replace({name:'BasicReset'})">
           {{ $t('Login.ResetPassword') }}
         </n-button>
       </el-col>
@@ -68,7 +74,7 @@ const time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms', '300
       {{ $t('Login.Basic.RegistrationTips') }}
     </n-divider>
     <n-button class="tw-w-3/5 tw-text-[1rem]" type="warning"
-              @click="loginStore.basicSwitch('BasicRegister')"
+              @click.stop="replace({name:'BasicRegister'})"
     >
       {{ $t('Login.RegisterAccount') }}
     </n-button>

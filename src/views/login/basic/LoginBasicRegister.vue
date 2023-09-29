@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import {LoginStore} from "@/store";
 import {verificationRegister} from "@/utils/verification";
 import {register} from "@/api/userRequest.ts";
 import {useUser} from "@/hooks/useUser.ts";
+import {useRouter} from "vue-router";
 
-const loginStore = LoginStore();
 const {userForm} = useUser();
 
 // 注册验证
@@ -14,6 +13,8 @@ function verification() {
     register();
   }
 }
+
+const {replace} = useRouter()
 
 // 输入框动画
 let time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms', '300ms', '350ms']
@@ -62,12 +63,11 @@ let time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms', '300ms
       {{ $t('Login.Basic.LoginTips') }}
     </n-divider>
     <n-button class="tw-w-3/5 tw-text-[1rem]" type="warning"
-              @click="loginStore.basicSwitch('BasicLogin')">
+              @click="replace({name:'BasicLogin'})">
       {{ $t('Login.LoginTitle') }}
     </n-button>
   </form>
 </template>
-
 
 
 <style scoped>

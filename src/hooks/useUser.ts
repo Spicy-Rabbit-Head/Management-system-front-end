@@ -75,6 +75,7 @@ export function useUser() {
         clearToken,
         isAuthenticated,
         setLoginStatus,
-        userForm
+        userForm,
+        isAutomaticLogin
     }
 }
