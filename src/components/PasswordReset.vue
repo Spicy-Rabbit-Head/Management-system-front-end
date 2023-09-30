@@ -1,10 +1,16 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import {onMounted, ref} from "vue";
 import {PasswordResetInterface} from "@/types/types.ts";
 import IconAntDesignSendOutlined from "~icons/ant-design/send-outlined";
 import IconAntDesignSyncOutlined from "~icons/ant-design/sync-outlined";
+
 // 退出重置按钮显示状态 false为隐藏 默认显示
-defineProps({exitDisplay: {type: Boolean, default: true}})
+withDefaults(defineProps<{
+  exitDisplay?: boolean
+}>(), {
+  exitDisplay: true
+})
+
 // 邮件重置步骤数
 const emailCurrent = ref<number>(0)
 // 邮箱重置加载状态
@@ -23,7 +29,7 @@ const auxiliaryCurrentState = ref<PasswordResetInterface>({
 
 // 读取缓存状态
 onMounted(() => {
-  let item: string | null = window.localStorage.getItem('auxiliaryCurrentState');
+  let item: string | null = localStorage.getItem('auxiliaryCurrentState');
   if (item) {
     auxiliaryCurrentState.value = JSON.parse(item)
   }
@@ -58,12 +64,12 @@ function auxiliaryStateUpdate(i: number) {
   } else if (i == 1) {
     auxiliaryCurrentState.value.current = 2
   }
-  window.localStorage.setItem('auxiliaryCurrentState', JSON.stringify(auxiliaryCurrentState.value))
+  localStorage.setItem('auxiliaryCurrentState', JSON.stringify(auxiliaryCurrentState.value))
 }
 
 // 清除缓存
 function clearCache() {
-  window.localStorage.removeItem('auxiliaryCurrentState')
+  localStorage.removeItem('auxiliaryCurrentState')
   auxiliaryCurrentState.value = {
     current: 0,
     resetState: true,
@@ -200,7 +206,7 @@ function clearCache() {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 /* 提示样式 */
 .tips {
   @apply

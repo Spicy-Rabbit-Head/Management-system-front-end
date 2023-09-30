@@ -61,7 +61,7 @@ const routes = [
                         path: 'basic-reset',
                         name: 'BasicReset',
                         meta: {title: 'Title.BasicReset'},
-                        component: () => import('@/views/login/PasswordReset.vue')
+                        component: () => import('@/components/PasswordReset.vue')
                     }
                 ]
             }

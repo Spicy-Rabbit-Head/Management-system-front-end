@@ -1,12 +1,5 @@
 import {FunctionalComponent, SVGAttributes} from "vue";
 
-// 登录注册共享
-export type LoginStoreInterface = {
-    type: boolean,
-    loginLoading: boolean,
-    loginException: null | number
-}
-
 // 拟态卡片样式
 export interface MimicryCardStyle {
     bottomCard?: MimicryBottomCardStyle,

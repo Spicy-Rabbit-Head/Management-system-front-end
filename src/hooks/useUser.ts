@@ -2,12 +2,9 @@ import {reactive, ref} from "vue";
 import router from "@/router";
 import {UserForm} from "@/api/types.ts";
 
-// 登录注册界面切换状态 true拟态 false简单
-const type = ref<boolean>(false)
-// 当前登录状态
-const currentLoginStatus = ref<boolean>(false)
 // 是否自动登录
 const isAutomaticLogin = ref<boolean>(false)
+
 // 用户表单
 const userForm = reactive<UserForm>({
     username: '',
@@ -16,17 +13,17 @@ const userForm = reactive<UserForm>({
 })
 
 export function useUser() {
-    // 切换登录状态
-    function switchingLoginStatus(bool: boolean) {
-        let url = localStorage.getItem('login') || 'LoginBasic';
-        type.value = url != 'LoginBasic';
-        if (bool) {
-            currentLoginStatus.value = true;
-            router.replace({name: 'Sidebar'}).then()
-        } else {
-            currentLoginStatus.value = false;
-            router.replace({name: url}).then()
-        }
+    // 登录完成
+    function loginComplete() {
+        router.replace({name: 'Sidebar'}).then()
+    }
+
+    // 回到登录界面
+    function backToLogin() {
+        router.replace({name: localStorage.getItem('login') || 'LoginBasic'}).then(() => {
+                clearToken()
+            }
+        )
     }
 
     // 清除缓冲
@@ -56,26 +53,12 @@ export function useUser() {
         sessionStorage.removeItem('token')
     }
 
-    // 是否登录
-    function isAuthenticated() {
-        return currentLoginStatus.value
-    }
-
-    // 设定登录状态
-    function setLoginStatus(bool: boolean) {
-        currentLoginStatus.value = bool
-    }
-
     return {
-        type,
-        currentLoginStatus,
-        switchingLoginStatus,
+        isAutomaticLogin,
+        userForm,
+        loginComplete,
+        backToLogin,
         clearBuffer,
         addToken,
-        clearToken,
-        isAuthenticated,
-        setLoginStatus,
-        userForm,
-        isAutomaticLogin
     }
 }

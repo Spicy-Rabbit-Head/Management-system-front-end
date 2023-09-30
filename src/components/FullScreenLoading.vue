@@ -18,11 +18,10 @@
 import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
 
 const {fullScreenLoadingState} = useFullScreenLoading();
-// const loginStore = LoginStore();
 
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 .loading {
   @apply
   tw-w-screen

@@ -32,7 +32,7 @@
     <tree path="/src/views/homePage" title="首页"/>
     <tree path="/src/utils/verification.ts" title="vest 验证方法" extension="" presentableText=""
           tooltipTitle="" icon="" textColor="" backgroundColor=""/>
-    <tree path="/src/views/login/PasswordReset.vue" title="密码重置"/>
+    <tree path="/src/components/PasswordReset.vue" title="密码重置"/>
     <tree path="/src/components/FullScreenLoading.vue" title="全局加载页面"/>
     <tree path="/src/components/LanguageSwitching.vue" title="语言切换组件"/>
     <tree path="/src/utils/componentPlugins.ts" title="插件式组件方法" extension="" presentableText="" tooltipTitle=""

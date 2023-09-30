@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {Avatar as VexAvatar, Dropdown as VexDropdown} from "vexip-ui";
 import {ref} from "vue";
-import PasswordReset from "@/views/login/PasswordReset.vue";
+import PasswordReset from "@/components/PasswordReset.vue";
 import IconEpAvatar from "~icons/ep/avatar";
 import IconEpEdit from "~icons/ep/edit";
 import IconIcomoonFreeExit from "~icons/icomoon-free/exit";

@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import {LoginStore} from '@/store'
 import {verificationRegister} from "@/utils/verification";
-import PasswordReset from "@/views/login/PasswordReset.vue";
+import PasswordReset from "@/components/PasswordReset.vue";
 import {ref} from "vue";
 import IconAntDesignSwapRightOutlined from '~icons/ant-design/swap-right-outlined'
 import IconAntDesignSwapLeftOutlined from '~icons/ant-design/swap-left-outlined'
@@ -26,7 +25,6 @@ const emit = defineEmits<{
   toggle: [id: boolean]
 }>()
 
-const loginStore = LoginStore();
 const {userForm, isAutomaticLogin} = useUser();
 const {FullScreenLoadingRun} = useFullScreenLoading();
 // 弹窗重置密码页
@@ -90,7 +88,7 @@ function verification(i: number) {
           </n-button>
         </el-col>
       </el-row>
-      <n-button type="info" size="large" :loading="loginStore.loginLoading" class="login-public-switch-button"
+      <n-button type="info" size="large" class="login-public-switch-button"
                 @click="verification(1)">
         {{ $t('Login.LoginImmediately') }}
       </n-button>
@@ -114,7 +112,7 @@ function verification(i: number) {
       v-model="showModal"
       append-to-body
       align-center>
-    <PasswordReset :exit-display="false"/>
+    <password-reset :exit-display="false"/>
   </el-dialog>
 </template>
 

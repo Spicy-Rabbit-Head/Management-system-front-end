@@ -1,21 +1,19 @@
 <script setup lang="ts">
-import {LoginStore} from '@/store'
 import {verificationRegister} from "@/utils/verification";
 import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
 import {login} from "@/api/userRequest.ts";
 import {useUser} from "@/hooks/useUser.ts";
 import {useRouter} from "vue-router";
 
-const loginStore = LoginStore();
 const {
   userForm,
   isAutomaticLogin
 } = useUser();
 const {FullScreenLoadingRun} = useFullScreenLoading();
+
 // 登录验证
 const verification = () => {
-  let register = verificationRegister(1);
-  if (register) {
+  if (verificationRegister(1)) {
     FullScreenLoadingRun()
     login()
   }
@@ -67,7 +65,8 @@ const time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms', '300
         </n-button>
       </el-col>
     </el-row>
-    <n-button class="tw-w-3/5 tw-text-[1rem]" :loading="loginStore.loginLoading" type="primary" @click="verification">
+    <n-button class="tw-w-3/5 tw-text-[1rem]" type="primary"
+              @click.stop="verification">
       {{ $t('Login.LoginImmediately') }}
     </n-button>
     <n-divider style="color: rgb(128,128,128) ;padding: 0 10%" class="tw-text-[0.875rem]">

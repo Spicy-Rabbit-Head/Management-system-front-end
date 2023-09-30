@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import LoginPageSwitch from "@/views/login/LoginPageSwitch.vue";
+import LanguageSwitching from "@/components/LanguageSwitching.vue";
+</script>
+
 <template>
   <!-- 注册登录界面风格切换 -->
   <login-page-switch class="tw-absolute tw-top-2 tw-right-2 tw-z-20"/>
@@ -15,39 +20,6 @@
   </router-view>
 </template>
 
-<script setup lang="ts">
-import LoginPageSwitch from "@/views/login/LoginPageSwitch.vue";
-import LanguageSwitching from "@/components/LanguageSwitching.vue";
-
-// const route = useRoute()
-// const router = useRouter()
-
-// function advance(url: string): void {
-//   LoginPinia().types = url != 'LoginBasic';
-//   if (url == null) {
-//     router.push({name: 'RootPath'})
-//     return
-//   }
-//   router.push({name: url})
-// }
-
-// onMounted(() => {
-// let item = window.localStorage.getItem('login');
-// if (item) {
-//   advance(item)
-// } else {
-//   window.localStorage.setItem('login', 'LoginBasic')
-//   advance('LoginBasic')
-// }
-// });
-
-// watch(() => route.path, () => {
-//   if (route.name === 'Login') {
-//     advance("RootPath")
-//   }
-// })
-
-</script>
 
 <style scoped>
 

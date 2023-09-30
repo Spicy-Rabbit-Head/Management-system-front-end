@@ -3,20 +3,18 @@ import {get, post} from "@/api/requestInstance.ts";
 import {useUser} from "@/hooks/useUser.ts";
 
 const {
-    switchingLoginStatus,
     addToken,
     userForm,
-    clearToken,
-    setLoginStatus,
+    loginComplete,
+    backToLogin,
 } = useUser();
 
 
 // 登录
 export function login(): void {
-    console.log(userForm)
     post<string>('loginRelated/login', userForm)
         .then(response => {
-            switchingLoginStatus(true)
+            loginComplete()
             addToken(response.data)
         })
         .catch((error) => {
@@ -28,10 +26,10 @@ export function login(): void {
 export function isLogin() {
     get('loginRelated/isLogin')
         .then(() => {
-            switchingLoginStatus(true)
+            loginComplete()
         })
         .catch(() => {
-            switchingLoginStatus(false)
+            backToLogin()
         })
 }
 
@@ -42,9 +40,7 @@ export function logout(): void {
             console.log("退出登录失败")
         })
         .finally(() => {
-            clearToken();
-            setLoginStatus(false);
-            switchingLoginStatus(false);
+            backToLogin();
         })
 }
 
@@ -53,7 +49,7 @@ export function register(): void {
     post('loginRelated/register', userForm)
         .then(() => {
             console.log("注册成功,请登录")
-            switchingLoginStatus(false)
+            backToLogin()
         })
         .catch((error) => {
             console.log(error)

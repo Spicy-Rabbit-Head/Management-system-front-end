@@ -1,32 +1,33 @@
 <script setup lang="ts">
+
+import {ref} from "vue";
 import {useRouter} from "vue-router";
-import {LoginStore} from "@/store";
 import {useUser} from "@/hooks/useUser.ts";
 
-const router: any = useRouter();
-const loginStore = LoginStore();
+// 登录页面风格 true拟态 false简单
+const loginPageStyle = ref<boolean>(localStorage.getItem('login') != 'LoginBasic');
+const router = useRouter();
 const {clearBuffer} = useUser();
 
-// 切换登录页面
-function typeSwitch(): void {
-  loginStore.type = !loginStore.type;
-  if (loginStore.type) {
-    localStorage.setItem('login', 'LoginMimicry')
-    router.push({name: 'LoginMimicry'});
-  } else {
+function styleSwitch() {
+  if (loginPageStyle.value) {
     localStorage.setItem('login', 'LoginBasic')
     router.push({name: 'LoginBasic'});
+  } else {
+    localStorage.setItem('login', 'LoginMimicry')
+    router.push({name: 'LoginMimicry'});
   }
   clearBuffer()
 }
+
 </script>
 
 
 <template>
   <div class="checkbox-wrapper-5">
     <div class="check">
-      <input type="checkbox" id="check-5" v-model="loginStore.type"
-             @click="typeSwitch">
+      <input type="checkbox" id="check-5" v-model="loginPageStyle"
+             @click.stop="styleSwitch">
       <label for="check-5"></label>
     </div>
   </div>
