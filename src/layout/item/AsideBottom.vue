@@ -1,7 +1,7 @@
 <template>
   <div class="layout-aside-button flex-base" @click.stop="menuSwitch">
     <!--  菜单展开收缩 icon  -->
-    <icon-ep-fold v-if="globalStore.menuStatus"/>
+    <icon-ep-fold v-if="menuStatus"/>
     <icon-ep-expand v-else/>
   </div>
 </template>
@@ -9,19 +9,21 @@
 <script setup lang="ts">
 import IconEpExpand from "~icons/ep/expand";
 import IconEpFold from "~icons/ep/fold";
-import {GlobalStore} from "@/store";
+import {useMenu} from "@/hooks/useMenu.ts";
 
-const globalStore = GlobalStore();
+const {
+  menuStatus,
+} = useMenu();
 
 // 侧边栏展开收缩切换
 function menuSwitch() {
-  globalStore.menuStatus = !globalStore.menuStatus;
-  window.localStorage.setItem('menu', globalStore.menuStatus.toString());
+  menuStatus.value = !menuStatus.value
+  localStorage.setItem('menu', menuStatus.value.toString());
 }
 
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 /* 侧边栏展开收缩容器 */
 .layout-aside-button {
   @apply

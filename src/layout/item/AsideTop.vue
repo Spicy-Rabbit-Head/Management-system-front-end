@@ -3,19 +3,21 @@
     <!--  logo  -->
     <img src="/vite.svg" alt="">
     <!--  标题  -->
-    <p v-if="!globalStore.menuStatus" class="layout-aside-title">
+    <p v-if="!menuStatus" class="layout-aside-title">
       {{ $t('SignName') }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
-import {GlobalStore} from "@/store";
+import {useMenu} from "@/hooks/useMenu.ts";
 
-const globalStore = GlobalStore();
+const {
+  menuStatus,
+} = useMenu();
 // TODO: 侧边栏顶部高度
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 /* 侧边栏顶部样式 */
 .layout-aside-top {
   @apply

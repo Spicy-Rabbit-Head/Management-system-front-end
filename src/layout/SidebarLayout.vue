@@ -1,7 +1,7 @@
 <template>
   <vex-layout
       class="tw-z-10 tw-w-screen tw-h-screen tw-bg-white"
-      :reduced="globalStore.menuStatus"
+      :reduced="menuStatus"
   >
     <!--:header-fixed="false"-->
     <!-- 侧边栏顶部 -->
@@ -18,7 +18,7 @@
     </template>
     <!-- 头部左侧 -->
     <template #header-left>
-      1
+
     </template>
     <!-- 头部右侧 -->
     <template #header-right>
@@ -43,22 +43,23 @@
       </router-view>
     </template>
     <template #header-main>
-      2
+
     </template>
   </vex-layout>
 </template>
 
 <script setup lang="ts">
-import {GlobalStore} from "@/store";
 import {Layout as VexLayout} from "vexip-ui";
 import AsideTop from "@/layout/item/AsideTop.vue";
 import HeaderRight from "@/layout/item/HeaderRight.vue";
 import HeaderUser from "@/layout/item/HeaderUser.vue";
 import AsideBottom from "@/layout/item/AsideBottom.vue";
 import AsideMain from "@/layout/item/AsideMain.vue";
-// import MainTabNav from "@/layout/item/MainTagsNav.vue";
+import {useMenu} from "@/hooks/useMenu.ts";
 
-const globalStore = GlobalStore();
+const {
+  menuStatus,
+} = useMenu();
 </script>
 
 <style scoped>

@@ -39,7 +39,7 @@ export interface MimicryTopCardStyle {
 
 // 全局共享状态
 export type GlobalStoreInterface = {
-    menuStatus: boolean,
+    menuStatus?: boolean,
     tabsData?: TabsData[],
 }
 

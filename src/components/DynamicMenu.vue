@@ -1,6 +1,6 @@
 <template>
   <!-- 动态菜单 -->
-  <vex-menu :reduced="globalStore.menuStatus" transfer marker-type="left">
+  <vex-menu :reduced="menuStatus" transfer marker-type="left">
     <!-- 分组 -->
     <vex-menu-group v-for="(item1) in options" :label="item1.label" :key="item1.label">
       <!-- 一级菜单 -->
@@ -27,11 +27,12 @@
 
 <script setup lang="ts">
 import {Menu as VexMenu, MenuGroup as VexMenuGroup, MenuItem as VexMenuItem} from "vexip-ui";
-import {GlobalStore} from "@/store";
 import {DynamicMenuInterface} from "@/types/types.ts";
+import {useMenu} from "@/hooks/useMenu.ts";
 
-const globalStore = GlobalStore();
-// const {routeTrigger} = useTagsNav();
+const {
+  menuStatus,
+} = useMenu();
 
 const options: DynamicMenuInterface[] = [
   {
