@@ -1,6 +1,8 @@
 // 是否登录
 import {get, post} from "@/api/requestInstance.ts";
 import {useUser} from "@/hooks/useUser.ts";
+import {useMenu} from "@/hooks/useMenu.ts";
+import {DynamicMenuInterface} from "@/types/types.ts";
 
 const {
     addToken,
@@ -9,13 +11,18 @@ const {
     backToLogin,
 } = useUser();
 
+const {
+    addMenu,
+} = useMenu();
+
 
 // 登录
 export function login(): void {
     post<string>('loginRelated/login', userForm)
         .then(response => {
-            loginComplete()
             addToken(response.data)
+            getMenu()
+            loginComplete()
         })
         .catch((error) => {
             console.log(error)
@@ -26,6 +33,7 @@ export function login(): void {
 export function isLogin() {
     get('loginRelated/isLogin')
         .then(() => {
+            getMenu()
             loginComplete()
         })
         .catch(() => {
@@ -50,6 +58,17 @@ export function register(): void {
         .then(() => {
             console.log("注册成功,请登录")
             backToLogin()
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
+
+// 菜单权限获取
+function getMenu() {
+    get<Array<DynamicMenuInterface>>('permissions/getMenuList')
+        .then((response) => {
+            addMenu(response.data)
         })
         .catch((error) => {
             console.log(error)

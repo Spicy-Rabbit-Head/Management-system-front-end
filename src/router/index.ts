@@ -69,27 +69,12 @@ const routes = [
     },
     // 首页
     {
-        path: '/sidebar',
-        name: 'Sidebar',
+        path: '/home',
+        name: 'Home',
         meta: {title: 'Title.Home'},
         component: () => import('@/views/homePage/Home.vue'),
         beforeEnter: FullScreenLoadingRun,
     },
-    // 临时
-    // {
-    //     path: '/sidebar',
-    //     name: 'Sidebar',
-    //     component: () => import('@/layout/SidebarLayout.vue'),
-    //     beforeEnter: FullScreenLoadingRun,
-    //     redirect: {name: 'Schedule'},
-    //     children: [
-    //         {
-    //             path: 'schedule',
-    //             name: 'Schedule',
-    //             component: () => import('@/views/schedule/ScheduleLayout.vue'),
-    //         }
-    //     ]
-    // },
     // 匹配所有路径,如果没有匹配到,则重定向到404页面
     {
         path: '/:pathMatch(.*)*',

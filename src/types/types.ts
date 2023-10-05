@@ -65,16 +65,16 @@ export type TabNavInterface = {
 }
 
 // 菜单子项
-export type Children = {
-    label: string;
+export type MenuItem = {
+    menuName: string;
     path?: string;
     icon?: string;
-    name?: string;
-    children?: Children[]
+    menuDesc?: string;
+    children?: MenuItem[]
 }
 
 // 动态菜单
 export type DynamicMenuInterface = {
-    label: string;
-    children?: Children[]
+    groupName: string;
+    menus: MenuItem[]
 }

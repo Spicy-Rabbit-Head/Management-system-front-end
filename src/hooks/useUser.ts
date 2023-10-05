@@ -15,7 +15,7 @@ const userForm = reactive<UserForm>({
 export function useUser() {
     // 登录完成
     function loginComplete() {
-        router.replace({name: 'Sidebar'}).then()
+        router.replace({name: 'Home'}).then()
     }
 
     // 回到登录界面
@@ -35,16 +35,15 @@ export function useUser() {
 
     // 添加Token
     function addToken(token: string) {
-        router.replace({name: 'Sidebar'}).then(() => {
-            if (isAutomaticLogin) {
-                sessionStorage.removeItem('token')
-                localStorage.setItem('token', token)
-            } else {
-                localStorage.removeItem('token')
-                sessionStorage.setItem('token', token)
-            }
-            clearBuffer()
-        })
+        loginComplete()
+        if (isAutomaticLogin) {
+            sessionStorage.removeItem('token')
+            localStorage.setItem('token', token)
+        } else {
+            localStorage.removeItem('token')
+            sessionStorage.setItem('token', token)
+        }
+        clearBuffer()
     }
 
     // 清除Token

@@ -22,8 +22,7 @@ declare module '@vue/runtime-core' {
     FullScreenLoading: typeof import('./../components/FullScreenLoading.vue')['default']
     FullScreenMode: typeof import('./../components/FullScreenMode.vue')['default']
     LanguageSwitching: typeof import('./../components/LanguageSwitching.vue')['default']
-
-      LoginPageSwitch: typeof import('../views/login/LoginPageSwitch.vue')['default']
+    LoginPageSwitch: typeof import('../views/login/LoginPageSwitch.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NCheckbox: typeof import('naive-ui')['NCheckbox']
     NDivider: typeof import('naive-ui')['NDivider']
@@ -37,8 +36,7 @@ declare module '@vue/runtime-core' {
     NTabs: typeof import('naive-ui')['NTabs']
     NTag: typeof import('naive-ui')['NTag']
     NTooltip: typeof import('naive-ui')['NTooltip']
-
-      PasswordReset: typeof import('./../components/PasswordReset.vue')['default']
+    PasswordReset: typeof import('./../components/PasswordReset.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
