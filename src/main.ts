@@ -1,8 +1,7 @@
 import {createApp} from 'vue';
 import 'vexip-ui/css/index.css';
-// import 'element-plus/dist/index.css'
 import './style/style.css';
-import './style/index.css';
+import 'virtual:uno.css'
 import App from './App.vue';
 import {createPinia} from "pinia";
 import router from "@/router";

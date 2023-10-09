@@ -22,7 +22,6 @@ export function login(): void {
         .then(response => {
             addToken(response.data)
             getMenu()
-            loginComplete()
         })
         .catch((error) => {
             console.log(error)
@@ -34,7 +33,6 @@ export function isLogin() {
     get('loginRelated/isLogin')
         .then(() => {
             getMenu()
-            loginComplete()
         })
         .catch(() => {
             backToLogin()
@@ -68,7 +66,9 @@ export function register(): void {
 function getMenu() {
     get<Array<DynamicMenuInterface>>('permissions/getMenuList')
         .then((response) => {
-            addMenu(response.data)
+            addMenu(response.data).then(() => {
+                loginComplete()
+            })
         })
         .catch((error) => {
             console.log(error)

@@ -6,12 +6,12 @@ withDefaults(defineProps<{
 }>(), {
   bottomCard: () => {
     return {
-      switchButton: "prompt-box-switch-r",
+      switchButton: "mimicry-prompt-box-r",
       switchButtonHidden1: "switch-hidden",
       switchButtonHidden2: null,
       circle: {
-        circle1: "!tw-left-2/5",
-        circle2: "!-tw-left-1/4",
+        circle1: "!left-2/5",
+        circle2: "!-left-1/4",
       }
     }
   }
@@ -25,28 +25,33 @@ const emit = defineEmits<{
 
 <template>
   <!-- 拟态切换页 -->
-  <div class="switch"
-       :class="bottomCard.switchButton">
+  <div
+      class="bg-[#e6efeb] top-0 h-full w-2/5 p-16 box-border z-50 overflow-hidden shadow-2xl flex justify-center items-center absolute ease-in-out duration-1250"
+      :class="bottomCard.switchButton">
     <!-- 装饰-园 -->
-    <div class="switch-circle"
-         :class="bottomCard.circle?.circle1"></div>
-    <div class="switch-circle switch-circle-top"
-         :class="bottomCard.circle?.circle2"></div>
+    <div
+        class="duration-1250 caret-transparent absolute w-72 h-72 rounded-full -bottom-1/4 -left-1/4"
+        style="box-shadow: inset 8px 8px 12px #d1d9e6,inset -8px -8px 12px #f9f9f9"
+        :class="bottomCard.circle?.circle1"></div>
+    <div
+        class="duration-1250 caret-transparent absolute w-60 h-60 rounded-full -top-1/4 left-2/3"
+        style="box-shadow: inset 8px 8px 12px #d1d9e6,inset -8px -8px 12px #f9f9f9"
+        :class="bottomCard.circle?.circle2"></div>
     <!-- 切换主体 -->
-    <div class="switch-container"
+    <div class="absolute w-72 px-4 duration-1250"
          :class="bottomCard.switchButtonHidden1">
-      <h2 class="login-public-title">{{ $t('Login.Mimicry.RegisterTitle') }}</h2>
-      <p class="login-public-description">{{ $t('Login.Mimicry.RegisterSubtitle') }}</p>
-      <n-button type="info" size="large" class="login-public-switch-button"
+      <h2 class="text-slate-800 text-8 font-bold caret-black mb-8">{{ $t('Login.Mimicry.RegisterTitle') }}</h2>
+      <p text="base center gray-400" class="tracking-wider mb-8">{{ $t('Login.Mimicry.RegisterSubtitle') }}</p>
+      <n-button type="info" size="large" class="mt-4 w-40 h-12 tracking-wider font-bold rounded-full text-6"
                 @click.stop="emit('toggle', false)">
         {{ $t('Login.Mimicry.LoginButton') }}
       </n-button>
     </div>
-    <div class="switch-container"
+    <div class="absolute w-72 px-4 duration-1250"
          :class="bottomCard.switchButtonHidden2">
-      <h2 class="login-public-title">{{ $t('Login.Mimicry.LoginTitle') }}</h2>
-      <p class="login-public-description">{{ $t('Login.Mimicry.LoginSubtitle') }}</p>
-      <n-button type="info" size="large" class="login-public-switch-button"
+      <h2 class="text-slate-800 text-8 font-bold caret-black mb-8">{{ $t('Login.Mimicry.LoginTitle') }}</h2>
+      <p text="base center gray-400" class="tracking-wider mb-8">{{ $t('Login.Mimicry.LoginSubtitle') }}</p>
+      <n-button type="info" size="large" class="mt-4 w-40 h-12 tracking-wider font-bold rounded-full text-6"
                 @click.stop="emit('toggle', true)">
         {{ $t('Login.Mimicry.RegisterButton') }}
       </n-button>
@@ -55,56 +60,35 @@ const emit = defineEmits<{
 </template>
 
 <style scoped lang="postcss">
-/* 文字提示框 */
-.switch {
+/* 右过渡 */
+.mimicry-prompt-box-r {
   @apply
-  tw-bg-login-bg
-  tw-top-0
-  tw-h-full
-  tw-w-2/5
-  tw-p-16
-  tw-box-border
-  tw-z-50
-  tw-overflow-hidden
-  tw-shadow-2xl
-  tw-flex
-  tw-justify-center
-  tw-items-center
-  tw-absolute
-  tw-ease-in-out
-  tw-duration-1250
+  left-3/5
+  rounded-r-2xl
+  max-sm:(
+  invisible
+  opacity-0
+  absolute
+  )
 }
 
-/* 文字提示框下圆 */
-.switch-circle {
-  box-shadow: inset 8px 8px 12px #d1d9e6,
-  inset -8px -8px 12px #f9f9f9;
+/* 左过渡 */
+.mimicry-prompt-box-l {
   @apply
-  tw-duration-1250
-  tw-caret-transparent
-  tw-absolute
-  tw-w-72
-  tw-h-72
-  tw-rounded-full
-  -tw-bottom-1/4
-  -tw-left-1/4
+  left-0
+  rounded-l-2xl
+  max-sm:(
+  invisible
+  opacity-0
+  absolute
+  )
 }
 
-/* 文字提示框上圆 */
-.switch-circle-top {
+/* 切换隐藏 */
+.switch-hidden {
   @apply
-  -tw-top-1/4
-  tw-left-2/3
-  tw-w-60
-  tw-h-60
-}
-
-/* 文字提示框内容器 */
-.switch-container {
-  @apply
-  tw-absolute
-  tw-w-72
-  tw-px-4
-  tw-duration-1250
+  invisible
+  opacity-0
+  absolute
 }
 </style>

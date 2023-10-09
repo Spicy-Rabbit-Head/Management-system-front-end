@@ -4,10 +4,12 @@ import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
 import {login} from "@/api/userRequest.ts";
 import {useUser} from "@/hooks/useUser.ts";
 import {useRouter} from "vue-router";
+import {onBeforeMount} from "vue";
 
 const {
   userForm,
-  isAutomaticLogin
+  isAutomaticLogin,
+  clearBuffer
 } = useUser();
 const {FullScreenLoadingRun} = useFullScreenLoading();
 
@@ -24,14 +26,18 @@ const {replace} = useRouter()
 // 输入框动画
 const time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms', '300ms', '350ms']
 
+onBeforeMount(() => {
+  clearBuffer()
+})
+
 </script>
 
 <template>
   <!-- 简约登录页 -->
-  <form class="basic-login-form">
+  <form class="flex items-center justify-center flex-col w-full h-full">
     <!-- 标题 -->
-    <h2 class="login-public-title">{{ $t('Login.LoginTitle') }}</h2>
-    <p class="login-public-description tw-mb-0">{{ $t('Login.Basic.LoginSubtitle') }}</p>
+    <h2 text="slate-800 8" class="font-bold caret-black mb-8">{{ $t('Login.LoginTitle') }}</h2>
+    <p text="base center gray-400" class="tracking-wider mb-8">{{ $t('Login.Basic.LoginSubtitle') }}</p>
     <!-- 用户输入 -->
     <div class="basic-input">
       <input type="text" required v-model="userForm.username">
@@ -52,27 +58,27 @@ const time: string [] = ['0ms', '50ms', '100ms', '150ms', '200ms', '250ms', '300
                 </span>
       </label>
     </div>
-    <el-row class="tw-w-3/5 tw-my-2">
-      <el-col :span="13" class="tw-text-left tw-mt-1.5">
-        <n-checkbox class="tw-text-[0.875rem]" v-model:checked="isAutomaticLogin">
+    <el-row class="w-3/5 my-2">
+      <el-col :span="13" class="text-left mt-1.5">
+        <n-checkbox class="text-3.5" v-model:checked="isAutomaticLogin">
           {{ $t('Login.Basic.RememberMe') }}
         </n-checkbox>
       </el-col>
-      <el-col :span="11" class="tw-text-right">
-        <n-button color="#ff2e63" class="tw-text-[0.875rem]"
+      <el-col :span="11" class="text-right">
+        <n-button color="#ff2e63" class="text-3.5"
                   @click.stop="$router.replace({name:'BasicReset'})">
           {{ $t('Login.ResetPassword') }}
         </n-button>
       </el-col>
     </el-row>
-    <n-button class="tw-w-3/5 tw-text-[1rem]" type="primary"
+    <n-button class="w-3/5 text-4" type="primary"
               @click.stop="verification">
       {{ $t('Login.LoginImmediately') }}
     </n-button>
-    <n-divider style="color: rgb(128,128,128) ;padding: 0 10%" class="tw-text-[0.875rem]">
+    <n-divider style="color: rgb(128,128,128) ;padding: 0 10%" class="text-3.5">
       {{ $t('Login.Basic.RegistrationTips') }}
     </n-divider>
-    <n-button class="tw-w-3/5 tw-text-[1rem]" type="warning"
+    <n-button class="w-3/5 text-4" type="warning"
               @click.stop="replace({name:'BasicRegister'})"
     >
       {{ $t('Login.RegisterAccount') }}

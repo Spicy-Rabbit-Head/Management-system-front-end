@@ -1,17 +1,3 @@
-<template>
-  <!-- 全局加载 -->
-  <full-screen-loading/>
-  <div class="tw-w-screen tw-h-screen tw-bg-gray-200 tw-z-40 !tw-font-mono tw-font-semibold tw-tracking-wide">
-    <!-- naive ui 全局通知 -->
-    <n-notification-provider>
-      <!-- naive ui 全局配置 -->
-      <n-config-provider :theme-overrides="themeOverrides">
-        <router-view/>
-      </n-config-provider>
-    </n-notification-provider>
-  </div>
-</template>
-
 <script setup lang="ts">
 import {useRoute} from "vue-router";
 import {GlobalThemeOverrides, NConfigProvider} from "naive-ui";
@@ -57,6 +43,22 @@ watch(() => route.meta, (meta) => {
   else window.document.title = "设备保养管理系统";
 })
 </script>
+
+<template>
+  <!-- 全局加载 -->
+  <full-screen-loading/>
+  <div class="w-screen h-screen bg-gray-200 z-40 tracking-wide"
+       font="!mono semibold"
+  >
+    <!-- naive ui 全局通知 -->
+    <n-notification-provider>
+      <!-- naive ui 全局配置 -->
+      <n-config-provider :theme-overrides="themeOverrides">
+        <router-view/>
+      </n-config-provider>
+    </n-notification-provider>
+  </div>
+</template>
 
 
 <style scoped>

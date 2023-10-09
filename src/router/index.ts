@@ -67,14 +67,15 @@ const routes = [
             }
         ]
     },
-    // 首页
-    {
-        path: '/home',
-        name: 'Home',
-        meta: {title: 'Title.Home'},
-        component: () => import('@/views/homePage/Home.vue'),
-        beforeEnter: FullScreenLoadingRun,
-    },
+    //  首页
+    // {
+    //     path: '/sidebar',
+    //     name: 'Sidebar',
+    //     meta: {title: 'Title.Home'},
+    //     component: () => import('@/layout/SidebarLayout.vue'),
+    //     beforeEnter: FullScreenLoadingRun,
+    //     children: []
+    // },
     // 匹配所有路径,如果没有匹配到,则重定向到404页面
     {
         path: '/:pathMatch(.*)*',

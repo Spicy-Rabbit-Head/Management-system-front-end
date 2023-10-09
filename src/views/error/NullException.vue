@@ -1,20 +1,5 @@
-<template>
-  <div class="tw-h-screen tw-grid tw-place-items-center">
-    <el-result
-        icon="error"
-        :title="$t('Exception.Title')"
-        :sub-title="$t('Exception.SubTitle')"
-        class="tw-scale-100 sm:tw-scale-225"
-    >
-      <template #extra>
-        <div>{{ timing.countdown_time }} {{ $t('Exception.Text') }}</div>
-      </template>
-    </el-result>
-  </div>
-</template>
-
 <script setup lang="ts">
-import {onMounted, reactive} from "vue";
+import {onMounted, onUnmounted, reactive} from "vue";
 import {Router, useRouter} from "vue-router";
 
 const router: Router = useRouter();
@@ -22,8 +7,10 @@ const router: Router = useRouter();
 // 自定义错误提示接口
 interface timingInterface {
   countdown_time: number,
+
   Interval: null | number,
 }
+
 
 // 自定义错误提示实体
 const timing: timingInterface = reactive({
@@ -34,6 +21,12 @@ const timing: timingInterface = reactive({
 // 错误界面倒计时启动
 onMounted(() => {
   timing.Interval = window.setInterval(countdown, 1000)
+})
+
+// 离开页面清除倒计时
+onUnmounted(() => {
+  if (timing.Interval === null) return
+  window.clearInterval(timing.Interval)
 })
 
 // 错误界面倒计时跳转
@@ -51,6 +44,22 @@ function countdown() {
 }
 
 </script>
+
+<template>
+  <div class="tw-h-screen tw-grid tw-place-items-center">
+    <el-result
+        icon="error"
+        :title="$t('Exception.Title')"
+        :sub-title="$t('Exception.SubTitle')"
+        class="tw-scale-100 sm:tw-scale-225"
+    >
+      <template #extra>
+        <div>{{ timing.countdown_time }} {{ $t('Exception.Text') }}</div>
+      </template>
+    </el-result>
+  </div>
+</template>
+
 
 <style scoped>
 </style>

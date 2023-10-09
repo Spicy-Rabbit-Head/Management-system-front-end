@@ -1,26 +1,27 @@
 <!-- 简约注册登录页容器 -->
 <template>
-  <div class="tw-w-full tw-h-full tw-bg-white tw-flex">
-    <div class="basic-img-container">
+  <div class="w-full h-full bg-white flex">
+    <div class="h-screen opacity-0 duration-300 md:opacity-100 md:flex-1">
       <!-- 自动文字 -->
-      <div class="basic-typing">
+      <div text="white xl" class="absolute bottom-8 left-4 antialiased lg:text-3xl xl:text-4xl">
         <v-typical
             :key="typingOn"
-            class="blink"
+            class="after:content-['|'] blink"
             :steps="typing"
             :loop="Infinity"
         ></v-typical>
       </div>
       <!-- 背景图片 -->
-      <img class="tw-h-full tw-w-full tw-object-cover"
+      <img class="h-full w-full object-cover"
            src="@/assets/bg-img1.jpg"
            alt="">
     </div>
     <!-- 登录注册页 -->
-    <div class="basic-main">
+    <div class="absolute w-full h-screen md:w-[380px] md:relative">
       <router-view v-slot="{ Component }">
-        <transition enter-from-class="slide-fade-enter-from" leave-to-class="slide-fade-leave-to">
-          <component class="child-view" :is="Component"/>
+        <transition enter-from-class="opacity-0 -translate-x-50px" leave-to-class="opacity-0 translate-x-50px">
+          <component class="absolute w-full hidden transition-all-800 ease-[cubic-bezier(0.55,0,0.1,1)] "
+                     :is="Component"/>
         </transition>
       </router-view>
     </div>
@@ -44,43 +45,10 @@ watch(locale, () => {
 })
 </script>
 
-<style scoped>
-/* 背景图片容器 */
-.basic-img-container {
-  @apply
-  tw-h-screen
-  tw-opacity-0
-  tw-duration-300
-  md:tw-opacity-100
-  md:tw-flex-1
-}
-
-/* 登录注册页容器 */
-.basic-main {
-  @apply
-  tw-absolute
-  tw-w-full
-  tw-h-screen
-  md:tw-w-[380px]
-  md:tw-relative
-}
-
-/* 自动文字 */
-.basic-typing {
-  @apply
-  tw-absolute
-  tw-bottom-8
-  tw-left-4
-  tw-text-white
-  tw-antialiased
-  tw-text-xl
-  lg:tw-text-3xl
-  xl:tw-text-4xl
-}
+<style scoped lang="postcss">
 
 /* 自动文字闪烁 */
 .blink::after {
-  content: '|';
   animation: blink 1s infinite step-start;
 }
 

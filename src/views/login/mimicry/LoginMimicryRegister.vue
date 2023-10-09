@@ -16,7 +16,7 @@ withDefaults(defineProps<{
   topCard: () => {
     return {
       switchLogin: 'register-switch-l',
-      switchRegister: 'register-switch-l switch-hidden',
+      switchRegister: 'register-switch-l register-hidden',
     }
   }
 })
@@ -46,20 +46,20 @@ function verification(i: number) {
 
 <template>
   <!-- 拟态注册 -->
-  <div :class="topCard.switchRegister" class="response-container">
-    <form class="response-form">
-      <h2 class="login-public-title">{{ $t('Login.CreateAnAccount') }}</h2>
-      <input class="response-input" v-model="userForm.username"
+  <div :class="topCard.switchRegister" class="max-sm:w-full w-3/5 h-full top-0 absolute duration-700 ease-in-out">
+    <form class="text-center flex justify-center items-center flex-col w-full h-full">
+      <h2 text="slate-800 8" class="font-bold caret-black  mb-8">{{ $t('Login.CreateAnAccount') }}</h2>
+      <input class="mimicry-response-input" v-model="userForm.username"
              :placeholder="$t('Login.UsernameInputText')"/>
-      <input class="response-input" v-model="userForm.password"
+      <input class="mimicry-response-input" v-model="userForm.password"
              :placeholder="$t('Login.PasswordInputText')"/>
-      <input class="response-input" v-model="userForm.repeatPassword"
+      <input class="mimicry-response-input" v-model="userForm.repeatPassword"
              :placeholder="$t('Login.ReenterThePassword')"/>
-      <n-button type="info" class="login-public-switch-button"
+      <n-button type="info" class="mimicry-switch-button"
                 @click="verification(0)">
         {{ $t('Login.RegisterAccount') }}
       </n-button>
-      <n-button type="info" class="response-switch-button-left"
+      <n-button type="info" class="border-none absolute left-2 bottom-10 text-4 sm:(invisible opacity-0 absolute)"
                 @click.stop="emit('toggle', false)">
         <template #icon>
           <IconAntDesignSwapLeftOutlined/>
@@ -69,35 +69,37 @@ function verification(i: number) {
     </form>
   </div>
   <!-- 拟态登录 -->
-  <div :class="topCard.switchLogin" class="response-container">
-    <form class="response-form">
-      <h2 class="login-public-title">{{ $t('Login.LoginTitle') }}</h2>
-      <input class="response-input" v-model="userForm.username"
+  <div :class="topCard.switchLogin" class="max-sm:w-full w-3/5 h-full top-0 absolute duration-700 ease-in-out">
+    <form class="text-center flex justify-center items-center flex-col w-full h-full">
+      <h2 text="slate-800 8" class="font-bold caret-black  mb-8">{{ $t('Login.LoginTitle') }}</h2>
+      <input class="mimicry-response-input" v-model="userForm.username"
              :placeholder="$t('Login.UsernameInputText')"/>
-      <input class="response-input" v-model="userForm.password"
+      <input class="mimicry-response-input" v-model="userForm.password"
              :placeholder="$t('Login.PasswordInputText')"/>
-      <el-row class="tw-w-3/5">
-        <el-col :span="12" class="tw-text-left">
-          <el-checkbox class="response-automatic-login" v-model="isAutomaticLogin"
+      <el-row class="w-3/5">
+        <el-col :span="12" class="text-left">
+          <el-checkbox class="!h-14 text-left tracking-wider !text-3.5"
+                       v-model="isAutomaticLogin"
                        :label="$t('Login.Mimicry.AutomaticLogin')"/>
         </el-col>
-        <el-col :span="12" style="text-align: right" class="max-sm:tw-invisible max-sm:tw-opacity-0 max-sm:tw-absolute">
-          <n-button color="#ff2e63" class="tw-m-2.5 tw-text-[0.875rem] tw-btn-sm tw-bg-[#ff2e63]"
+        <el-col :span="12" style="text-align: right" class="max-sm:(invisible opacity-0 absolute)">
+          <n-button color="#ff2e63" class="m-2.5 text-3.5 bg-[#ff2e63]"
                     @click="showModal = true">
             {{ $t('Login.ResetPassword') }}
           </n-button>
         </el-col>
       </el-row>
-      <n-button type="info" size="large" class="login-public-switch-button"
+      <n-button type="info" size="large" class="mimicry-switch-button"
                 @click="verification(1)">
         {{ $t('Login.LoginImmediately') }}
       </n-button>
       <n-button color="#ff2e63"
-                class="response-switch-button-left"
+                class="border-none absolute left-2 bottom-10 text-4 sm:(invisible opacity-0 absolute)"
                 @click="showModal = true">
         {{ $t('Login.ResetPassword') }}
       </n-button>
-      <n-button type="info" icon-placement="right" class="response-switch-button-right"
+      <n-button type="info" icon-placement="right"
+                class="border-none absolute right-2 bottom-10 text-4 sm:(invisible opacity-0 absolute)"
                 @click="emit('toggle', true)">
         {{ $t('Login.Mimicry.GoToRegister') }}
         <template #icon>
@@ -108,7 +110,7 @@ function verification(i: number) {
   </div>
   <!-- 弹窗重置密码页 -->
   <el-dialog
-      class="!tw-w-[96%] sm:!tw-w-2/3 lg:!tw-w-2/5 2xl:!tw-w-1/3"
+      class="!w-[96%] sm:!w-2/3 lg:!w-2/5 2xl:!w-1/3"
       v-model="showModal"
       append-to-body
       align-center>
@@ -117,89 +119,61 @@ function verification(i: number) {
 </template>
 
 <style scoped lang="postcss">
-
-/* 注册登录框容器 */
-.response-container {
+/* 拟态输入框 */
+.mimicry-response-input {
+  box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
   @apply
-  max-sm:tw-w-full
-  tw-w-3/5
-  tw-h-full
-  tw-top-0
-  tw-absolute
-  tw-duration-700
-  tw-ease-in-out
+  w-3/5
+  my-2
+  h-10
+  pl-6
+  sm:h-12
+  text-xl
+  tracking-wider
+  outline-none
+  border-none
+  rounded-xl
+  duration-500
+  ease-in-out
+  focus:ring-4
+  focus:ring-blue-600
+  focus:w-8/12
+  color-black
 }
 
-/* 注册登录表单 */
-.response-form {
+/* 拟态触发按钮 */
+.mimicry-switch-button {
   @apply
-  tw-text-center
-  tw-flex
-  tw-justify-center
-  tw-items-center
-  tw-flex-col
-  tw-w-full
-  tw-h-full
+  mt-4
+  w-40
+  h-12
+  text-[#f9f9f9]
+  tracking-wider
+  font-bold
+  rounded-full
+  text-6
 }
 
-/* 自动登录框 */
-.response-automatic-login {
-  & :deep(.el-checkbox__label) {
-    @apply
-    tw-text-[0.875rem]
-  }
-
+/* 注册登录框左过渡 */
+.register-switch-l {
   @apply
-  tw-h-14
-  tw-text-left
-  tw-tracking-wider
+  max-sm:right-0
+  sm:right-2/5
 }
 
-/*tw-caret-transparent*/
-/*输入框*/
-.response-input {
+/* 注册登录框右过渡 */
+.register-switch-r {
   @apply
-  tw-shadow-login-in-shadow
-  tw-w-3/5
-  tw-my-2
-  tw-h-10
-  sm:tw-h-12
-  tw-pl-6
-  tw-text-xl
-  tw-tracking-wider
-  tw-outline-none
-  tw-border-none
-  tw-rounded-xl
-  tw-duration-500
-  tw-ease-in-out
-  focus:tw-ring-4
-  focus:tw-ring-blue-600
-  focus:tw-w-8/12
+  max-sm:right-0
+  sm:right-0
 }
 
-/* 按钮在左 */
-.response-switch-button-left {
+/* 切换隐藏 */
+.register-hidden {
   @apply
-  tw-border-none
-  tw-absolute
-  tw-left-2
-  tw-bottom-10
-  tw-text-[1rem]
-  sm:tw-invisible
-  sm:tw-opacity-0
-  sm:tw-absolute
+  invisible
+  opacity-0
+  absolute
 }
 
-/* 按钮在右 */
-.response-switch-button-right {
-  @apply
-  tw-border-none
-  tw-absolute
-  tw-right-2
-  tw-bottom-10
-  tw-text-[1rem]
-  sm:tw-invisible
-  sm:tw-opacity-0
-  sm:tw-absolute
-}
 </style>

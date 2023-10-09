@@ -1,7 +1,7 @@
 <template>
-  <transition leave-to-class="loading-fade-leave-to">
+  <transition leave-to-class="opacity-0">
     <div v-if="fullScreenLoadingState"
-         class="loading">
+         class="w-screen h-screen absolute z-50 caret-transparent bg-gray-200 flex justify-center items-center transition-opacity duration-1250">
       <div class="wrapper">
         <div class="circle"></div>
         <div class="circle"></div>
@@ -22,21 +22,6 @@ const {fullScreenLoadingState} = useFullScreenLoading();
 </script>
 
 <style scoped lang="postcss">
-.loading {
-  @apply
-  tw-w-screen
-  tw-h-screen
-  tw-absolute
-  tw-z-50
-  tw-caret-transparent
-  tw-bg-gray-200
-  tw-flex
-  tw-justify-center
-  tw-items-center
-  tw-transition-opacity
-  tw-duration-1250
-}
-
 .wrapper {
   width: 200px;
   height: 60px;

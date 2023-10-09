@@ -59,7 +59,7 @@
     <tree path="/src/components/DynamicTag.vue" title="动态标签导航(待完成)"/>
     <tree path="/src/hooks" title="闭包工具方法"/>
     <tree path="/src/types" title="类型"/>
-    <tree path="/src/views/schedule" title="保养排程"/>
+    <tree path="/src/views/maintenanceSchedule" title="保养排程"/>
     <tree path="/src/exception" title="异常处理"/>
     <tree path="/src/exception/httpExceptionHandling.ts" title="HTTP异常处理"/>
     <tree path="/src/config" title="配置"/>

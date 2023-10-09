@@ -35,7 +35,6 @@ export function useUser() {
 
     // 添加Token
     function addToken(token: string) {
-        loginComplete()
         if (isAutomaticLogin) {
             sessionStorage.removeItem('token')
             localStorage.setItem('token', token)

@@ -9,7 +9,9 @@ const loginPageStyle = ref<boolean>(localStorage.getItem('login') != 'LoginBasic
 const router = useRouter();
 const {clearBuffer} = useUser();
 
+// 样式切换
 function styleSwitch() {
+  clearBuffer()
   if (loginPageStyle.value) {
     localStorage.setItem('login', 'LoginBasic')
     router.push({name: 'LoginBasic'});
@@ -17,7 +19,6 @@ function styleSwitch() {
     localStorage.setItem('login', 'LoginMimicry')
     router.push({name: 'LoginMimicry'});
   }
-  clearBuffer()
 }
 
 </script>

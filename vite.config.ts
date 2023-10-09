@@ -7,6 +7,7 @@ import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import {join, resolve} from 'path'
 import Icons from 'unplugin-icons/vite'
 import IconResolver from 'unplugin-icons/resolver'
+import UnoCSS from 'unocss/vite'
 
 export default defineConfig({
     plugins: [
@@ -28,6 +29,7 @@ export default defineConfig({
             include: [resolve(__dirname, './src/i18n/**')],
         }),
         Icons({compiler: 'vue3'}),
+        UnoCSS(),
         // 压缩
         // compression({
         //     // 压缩格式

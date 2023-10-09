@@ -27,15 +27,15 @@ function handleSelect(key: string | number) {
 </script>
 
 <template>
-  <div class="tw-w-8 tw-h-8 tw-cursor-pointer">
+  <div class="w-8 h-8 cursor-pointer">
     <!-- 语言选择下拉框 -->
     <n-dropdown
-        class="tw-text-center"
+        text="center"
         trigger="hover"
         :options="options"
         :show-arrow="true"
         @select="handleSelect">
-      <icon-ant-design-translation-outlined class="tw-w-full tw-h-full tw-text-gray-600 click:tw-border-transparent"/>
+      <icon-ant-design-translation-outlined class="w-full h-full text-gray-600"/>
     </n-dropdown>
   </div>
 </template>

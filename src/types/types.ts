@@ -9,7 +9,7 @@ export interface MimicryCardStyle {
 
 // 拟态底部卡片样式
 export interface MimicryBottomCardStyle {
-    switchButton?: 'prompt-box-switch-l' | 'prompt-box-switch-r',
+    switchButton?: 'mimicry-prompt-box-l' | 'mimicry-prompt-box-r',
 
     switchButtonHidden1?: MimicryCardHiddenTransition,
 
@@ -31,9 +31,9 @@ export interface MimicryCircleTransition {
 
 // 拟态顶部卡片样式
 export interface MimicryTopCardStyle {
-    switchLogin?: 'register-switch-r switch-hidden' | 'register-switch-l',
+    switchLogin?: 'register-switch-r register-hidden' | 'register-switch-l',
 
-    switchRegister?: 'register-switch-r' | 'register-switch-l switch-hidden',
+    switchRegister?: 'register-switch-r' | 'register-switch-l register-hidden',
 }
 
 
@@ -67,7 +67,8 @@ export type TabNavInterface = {
 // 菜单子项
 export type MenuItem = {
     menuName: string;
-    path?: string;
+    path: string;
+    componentPath?: string;
     icon?: string;
     menuDesc?: string;
     children?: MenuItem[]
