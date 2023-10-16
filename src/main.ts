@@ -1,13 +1,15 @@
-import {createApp} from 'vue';
+import { createApp } from 'vue';
 import 'vexip-ui/css/index.css';
 import './style/style.css';
 import 'virtual:uno.css'
 import App from './App.vue';
-import {createPinia} from "pinia";
+import { createPinia } from "pinia";
 import router from "@/router";
-import {Toast} from "vexip-ui";
+import { Toast } from "vexip-ui";
 import messages from "@intlify/unplugin-vue-i18n/messages";
-import {createI18n} from "vue-i18n";
+import { createI18n } from "vue-i18n";
+import ElementPlus from 'element-plus'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import * as icons from '@vicons/carbon';
 
 const pinia = createPinia()
@@ -23,6 +25,11 @@ app.use(createI18n({
     fallbackLocale: 'zhCN',
     messages
 }))
+
+app.use(ElementPlus, {
+    locale: zhCn,
+})
+
 app.use(Toast)
 // Naive UI 样式挂载
 // const meta = document.createElement('meta')

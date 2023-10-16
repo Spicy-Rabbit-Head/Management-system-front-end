@@ -63,4 +63,10 @@
     <tree path="/src/exception" title="异常处理"/>
     <tree path="/src/exception/httpExceptionHandling.ts" title="HTTP异常处理"/>
     <tree path="/src/config" title="配置"/>
+    <tree path="/src/api/userManagement.ts" title="用户管理"/>
+    <tree path="/src/api/maintenanceManagement.ts" title="保养管理"/>
+    <tree path="/src/types/maintenanceManagement.ts" title="排程管理"/>
+    <tree path="/src/types/userManagement.ts" title="用户管理"/>
+    <tree path="/src/types/shared.ts" title="共享"/>
+    <tree path="/src/api/requestInstance.ts" title="请求封装"/>
 </trees>

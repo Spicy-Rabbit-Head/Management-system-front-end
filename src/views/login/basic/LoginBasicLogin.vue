@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import {verificationRegister} from "@/utils/verification";
-import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
-import {login} from "@/api/userRequest.ts";
-import {useUser} from "@/hooks/useUser.ts";
-import {useRouter} from "vue-router";
-import {onBeforeMount} from "vue";
+import { verificationRegister } from "@/utils/verification";
+import { useFullScreenLoading } from "@/hooks/useFullScreenLoading";
+import { login } from "@/api/userManagement.ts";
+import { useUser } from "@/hooks/useUser.ts";
+import { useRouter } from "vue-router";
+import { onBeforeMount } from "vue";
 
 const {
   userForm,

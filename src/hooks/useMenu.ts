@@ -1,8 +1,8 @@
-import {reactive, ref} from "vue";
-import {DynamicMenuInterface} from "@/types/types.ts";
+import { reactive, ref } from "vue";
+import { DynamicMenuInterface } from "@/types/userManagement.ts";
 import router from "@/router/index.ts"
-import {RouteRecordRaw} from "vue-router";
-import {useFullScreenLoading} from "@/hooks/useFullScreenLoading.ts";
+import { RouteRecordRaw } from "vue-router";
+import { useFullScreenLoading } from "@/hooks/useFullScreenLoading.ts";
 
 const {
     FullScreenLoadingRun,

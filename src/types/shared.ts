@@ -1,4 +1,4 @@
-import {FunctionalComponent, SVGAttributes} from "vue";
+import { FunctionalComponent, SVGAttributes } from "vue";
 
 // 拟态卡片样式
 export interface MimicryCardStyle {
@@ -36,6 +36,21 @@ export interface MimicryTopCardStyle {
     switchRegister?: 'register-switch-r' | 'register-switch-l register-hidden',
 }
 
+// 响应数据
+export interface ResponseData<T = any> {
+    // 状态码
+    code: number,
+
+    // 消息
+    message: string,
+
+    // 服务状态
+    status: boolean,
+
+    // 数据
+    data: T
+}
+
 
 // 全局共享状态
 export type GlobalStoreInterface = {
@@ -62,20 +77,4 @@ export type PasswordResetInterface = {
 export type TabNavInterface = {
     title: string;
     icon?: FunctionalComponent<SVGAttributes>,
-}
-
-// 菜单子项
-export type MenuItem = {
-    menuName: string;
-    path: string;
-    componentPath?: string;
-    icon?: string;
-    menuDesc?: string;
-    children?: MenuItem[]
-}
-
-// 动态菜单
-export type DynamicMenuInterface = {
-    groupName: string;
-    menus: MenuItem[]
 }

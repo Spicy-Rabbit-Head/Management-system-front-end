@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
-import {PasswordResetInterface} from "@/types/types.ts";
+import { onMounted, ref } from "vue";
+import { PasswordResetInterface } from "@/types/shared.ts";
 import IconAntDesignSendOutlined from "~icons/ant-design/send-outlined";
 import IconAntDesignSyncOutlined from "~icons/ant-design/sync-outlined";
 

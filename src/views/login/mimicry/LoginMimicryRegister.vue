@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import {verificationRegister} from "@/utils/verification";
+import { verificationRegister } from "@/utils/verification";
 import PasswordReset from "@/components/PasswordReset.vue";
-import {ref} from "vue";
+import { ref } from "vue";
 import IconAntDesignSwapRightOutlined from '~icons/ant-design/swap-right-outlined'
 import IconAntDesignSwapLeftOutlined from '~icons/ant-design/swap-left-outlined'
-import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
-import {login, register} from "@/api/userRequest.ts"
-import {useUser} from "@/hooks/useUser.ts";
-import {MimicryTopCardStyle} from "@/types/types.ts";
+import { useFullScreenLoading } from "@/hooks/useFullScreenLoading";
+import { login, register } from "@/api/userManagement.ts"
+import { useUser } from "@/hooks/useUser.ts";
+import { MimicryTopCardStyle } from "@/types/shared.ts";
 
 
 withDefaults(defineProps<{

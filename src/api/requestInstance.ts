@@ -1,8 +1,8 @@
 // 封装 axios
 import axios from 'axios'
-import globalConfig from '@/config/globalConfig.ts'
-import {ResponseData} from "@/api/types.ts";
-import {httpCodeException, httpException} from "@/exception/httpExceptionHandling.ts";
+import { whiteListApi } from '@/config/globalConfig.ts'
+import { ResponseData } from "@/types/shared.ts";
+import { httpCodeException, httpException } from "@/exception/httpExceptionHandling.ts";
 
 // 创建一个 axios 实例
 const service = axios.create({
@@ -14,10 +14,9 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
     config => {
-        let whiteList = globalConfig.whiteListApi
         console.log("开始请求")
         let token: string | null = localStorage.getItem("token") || sessionStorage.getItem("token")
-        if (whiteList.indexOf(config.url || "") === -1 && token) {
+        if (whiteListApi.indexOf(config.url || "") === -1 && token) {
             config.headers.token = token;
         }
         // 在发送请求之前做些什么
@@ -61,7 +60,7 @@ function post<T = any, D = any>(url: string, body?: D) {
 }
 
 // 封装 get 请求
-function get<T = any, D = any>(url: string, params?: D) {
+function get<T = any>(url: string, params?: any) {
     return new Promise<ResponseData<T>>((resolve, reject) => {
         service.get<ResponseData<T>>(url, {params: params}).then(({data}) => {
             if (data.status) {
@@ -76,4 +75,4 @@ function get<T = any, D = any>(url: string, params?: D) {
     })
 }
 
-export {post, get}
+export { post, get }

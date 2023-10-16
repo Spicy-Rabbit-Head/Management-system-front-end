@@ -1,25 +1,27 @@
-import {create, eager, enforce, only, test} from "vest";
-import {showToast} from "@/utils/componentPlugins";
-import {useUser} from "@/hooks/useUser.ts";
+import { create, eager, enforce, only, test } from "vest";
+import { showToast } from "@/utils/componentPlugins";
+import { useUser } from "@/hooks/useUser.ts";
 
 const {userForm} = useUser()
 
+// 验证注册登录表单
 function verificationRegister(code: number): boolean {
     let result;
     let traversal = userForm
     for (let prop in traversal) {
         if (code) if (prop === 'repeatPassword') continue
-        result = suite(traversal, prop)
+        result = userAuthentication(traversal, prop)
         if (result.hasErrors(prop)) {
             showToast(result.getErrors(prop)[0])
             return false
         }
     }
-    suite.reset()
+    userAuthentication.reset()
     return true
 }
 
-const suite = create((data = {}, currentField) => {
+// 注册登录表单验证实例
+const userAuthentication = create((data = {}, currentField) => {
     only(currentField)
     eager()
 
@@ -47,4 +49,12 @@ const suite = create((data = {}, currentField) => {
         enforce(data.repeatPassword).equals(data.password);
     });
 })
-export {verificationRegister}
+
+
+// 全局验证实例
+const globalVerification = create((data = {}, currentField) => {
+
+})
+
+export { verificationRegister }
+

@@ -1,8 +1,7 @@
-// 是否登录
-import {get, post} from "@/api/requestInstance.ts";
-import {useUser} from "@/hooks/useUser.ts";
-import {useMenu} from "@/hooks/useMenu.ts";
-import {DynamicMenuInterface} from "@/types/types.ts";
+import { get, post } from "@/api/requestInstance.ts";
+import { useUser } from "@/hooks/useUser.ts";
+import { useMenu } from "@/hooks/useMenu.ts";
+import { DynamicMenuInterface } from "@/types/userManagement.ts";
 
 const {
     addToken,
@@ -41,7 +40,7 @@ export function isLogin() {
 
 // 退出登录
 export function logout(): void {
-    get('/loginRelated/logout')
+    get('loginRelated/logout')
         .catch(() => {
             console.log("退出登录失败")
         })

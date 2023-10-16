@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import {verificationRegister} from "@/utils/verification";
-import {register} from "@/api/userRequest.ts";
-import {useUser} from "@/hooks/useUser.ts";
-import {useRouter} from "vue-router";
-import {onBeforeMount} from "vue";
+import { verificationRegister } from "@/utils/verification";
+import { register } from "@/api/userManagement.ts";
+import { useUser } from "@/hooks/useUser.ts";
+import { useRouter } from "vue-router";
+import { onBeforeMount } from "vue";
 
 const {userForm, clearBuffer} = useUser();
 

@@ -1,5 +1,5 @@
-import {defineStore} from 'pinia'
-import {GlobalStoreInterface} from "@/types/types.ts";
+import { defineStore } from 'pinia'
+import { GlobalStoreInterface } from "@/types/shared.ts";
 
 // 全局共享状态实体
 export const GlobalStore = defineStore('GlobalStore', {

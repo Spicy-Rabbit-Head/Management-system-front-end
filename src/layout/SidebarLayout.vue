@@ -1,6 +1,6 @@
 <template>
   <vex-layout
-      class="tw-z-10 tw-w-screen tw-h-screen tw-bg-white"
+      class="z-10 w-screen h-screen bg-white box-border"
       :reduced="menuStatus"
   >
     <!--:header-fixed="false"-->
@@ -31,16 +31,19 @@
     <!-- 主体 -->
     <template #main>
       <!-- 状态标签导航 -->
-      <!--<main-tab-nav/>-->
-      <router-view v-slot="{ Component }">
-        <transition mode="out-in"
-                    enter-from-class="tw-opacity-0"
-                    leave-to-class="tw-opacity-0"
-                    leave-active-class="tw-transition-opacity tw-duration-300"
-                    enter-active-class="tw-transition-opacity tw-duration-300">
-          <component :is="Component"/>
-        </transition>
-      </router-view>
+      <div style="height: calc(100vh - 55px)" class="bg-[#E2E2E8]">
+        <router-view v-slot="{ Component }">
+          <transition mode="out-in"
+                      enter-from-class="opacity-0"
+                      leave-to-class="opacity-0"
+                      leave-active-class="transition-opacity duration-300"
+                      enter-active-class="transition-opacity duration-300">
+            <div class="h-full w-full p-2">
+              <component class="h-full w-full rounded-xl bg-white" :is="Component"/>
+            </div>
+          </transition>
+        </router-view>
+      </div>
     </template>
     <template #header-main>
 
@@ -49,13 +52,13 @@
 </template>
 
 <script setup lang="ts">
-import {Layout as VexLayout} from "vexip-ui";
+import { Layout as VexLayout } from "vexip-ui";
 import AsideTop from "@/layout/item/AsideTop.vue";
 import HeaderRight from "@/layout/item/HeaderRight.vue";
 import HeaderUser from "@/layout/item/HeaderUser.vue";
 import AsideBottom from "@/layout/item/AsideBottom.vue";
 import AsideMain from "@/layout/item/AsideMain.vue";
-import {useMenu} from "@/hooks/useMenu.ts";
+import { useMenu } from "@/hooks/useMenu.ts";
 
 const {
   menuStatus,

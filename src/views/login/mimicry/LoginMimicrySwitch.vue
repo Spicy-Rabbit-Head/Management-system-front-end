@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {MimicryBottomCardStyle} from "@/types/types.ts";
+import { MimicryBottomCardStyle } from "@/types/shared.ts";
 
 withDefaults(defineProps<{
   bottomCard: MimicryBottomCardStyle

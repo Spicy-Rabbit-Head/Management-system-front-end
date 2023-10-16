@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import LoginMimicrySwitch from "./LoginMimicrySwitch.vue";
 import LoginMimicryRegister from "./LoginMimicryRegister.vue";
-import {reactive} from "vue";
-import {MimicryBottomCardStyle, MimicryCardStyle, MimicryTopCardStyle} from "@/types/types.ts";
-import {useUser} from "@/hooks/useUser.ts";
+import { reactive } from "vue";
+import { MimicryBottomCardStyle, MimicryCardStyle, MimicryTopCardStyle } from "@/types/shared.ts";
+import { useUser } from "@/hooks/useUser.ts";
 
 const {clearBuffer} = useUser();
 // 拟态卡片样式

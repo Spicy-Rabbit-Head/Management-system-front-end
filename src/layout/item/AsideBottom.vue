@@ -1,5 +1,7 @@
 <template>
-  <div class="layout-aside-button flex-base" @click.stop="menuSwitch">
+  <div
+      class="border-t-2 w-full h-12 text-xl cursor-pointer caret-transparent select-none flex items-center justify-center"
+      @click.stop="menuSwitch">
     <!--  菜单展开收缩 icon  -->
     <icon-ep-fold v-if="menuStatus"/>
     <icon-ep-expand v-else/>
@@ -9,7 +11,7 @@
 <script setup lang="ts">
 import IconEpExpand from "~icons/ep/expand";
 import IconEpFold from "~icons/ep/fold";
-import {useMenu} from "@/hooks/useMenu.ts";
+import { useMenu } from "@/hooks/useMenu.ts";
 
 const {
   menuStatus,
@@ -24,15 +26,4 @@ function menuSwitch() {
 </script>
 
 <style scoped lang="postcss">
-/* 侧边栏展开收缩容器 */
-.layout-aside-button {
-  @apply
-  tw-border-t-2
-  tw-w-full
-  tw-h-12
-  tw-text-xl
-  tw-cursor-pointer
-  tw-caret-transparent
-  tw-select-none
-}
 </style>

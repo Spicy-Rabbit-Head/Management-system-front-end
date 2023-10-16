@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-aside-top flex-base">
+  <div class="layout-aside-top flex items-center justify-center">
     <!--  logo  -->
     <img src="/vite.svg" alt="">
     <!--  标题  -->
@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import {useMenu} from "@/hooks/useMenu.ts";
+import { useMenu } from "@/hooks/useMenu.ts";
 
 const {
   menuStatus,
@@ -21,16 +21,26 @@ const {
 /* 侧边栏顶部样式 */
 .layout-aside-top {
   @apply
-  tw-w-full
-  tw-select-none
-  tw-h-[var(--vxp-layout-header-height)]
+  w-full
+  select-none
+  h-[var(--vxp-layout-header-height)]
 }
 
 /* 侧边栏顶部标题样式 */
 .layout-aside-title {
+  animation: layoutAsideTitle 1s ease-in-out;
   @apply
-  tw-ml-2
-  tw-transition-all
-  tw-animate-layout-aside-title-animation
+  ml-2
+  transition-all
 }
+
+@keyframes layoutAsideTitle {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 </style>

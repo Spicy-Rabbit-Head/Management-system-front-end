@@ -1,3 +1,21 @@
+<script setup lang="ts">
+import { VTypical } from "vue-typical";
+import { useI18n } from "vue-i18n";
+import { ref, watch } from "vue";
+
+
+const {t, locale} = useI18n()
+// 自动文字状态
+const typingOn = ref(0)
+// 自动文字
+const typing = ref([1000, t('Login.Typing.Animation1'), 2000, t('Login.Typing.Animation2'), 3000, t('Login.Typing.Animation3'), 2000])
+// 监听语言变化
+watch(locale, () => {
+  typing.value = [1000, t('Login.Typing.Animation1'), 2000, t('Login.Typing.Animation2'), 3000, t('Login.Typing.Animation3'), 2000]
+  typingOn.value++
+})
+</script>
+
 <!-- 简约注册登录页容器 -->
 <template>
   <div class="w-full h-full bg-white flex">
@@ -27,23 +45,6 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import {VTypical} from "vue-typical";
-import {useI18n} from "vue-i18n";
-import {ref, watch} from "vue";
-
-
-const {t, locale} = useI18n()
-// 自动文字状态
-const typingOn = ref(0)
-// 自动文字
-const typing = ref([1000, t('Login.Typing.Animation1'), 2000, t('Login.Typing.Animation2'), 3000, t('Login.Typing.Animation3'), 2000])
-// 监听语言变化
-watch(locale, () => {
-  typing.value = [1000, t('Login.Typing.Animation1'), 2000, t('Login.Typing.Animation2'), 3000, t('Login.Typing.Animation3'), 2000]
-  typingOn.value++
-})
-</script>
 
 <style scoped lang="postcss">
 

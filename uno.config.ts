@@ -1,5 +1,5 @@
 // 配置及预设
-import {defineConfig, presetAttributify, presetIcons, presetUno} from 'unocss'
+import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
 // 分组
 import transformerVariantGroup from '@unocss/transformer-variant-group'
 // 指令

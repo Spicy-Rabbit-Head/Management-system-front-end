@@ -1,6 +1,6 @@
-import {reactive, ref} from "vue";
+import { reactive, ref } from "vue";
 import router from "@/router";
-import {UserForm} from "@/api/types.ts";
+import { UserForm } from "@/types/userManagement.ts";
 
 // 是否自动登录
 const isAutomaticLogin = ref<boolean>(false)
@@ -31,6 +31,7 @@ export function useUser() {
         userForm.username = ''
         userForm.password = ''
         userForm.repeatPassword = ''
+        isAutomaticLogin.value = false
     }
 
     // 添加Token

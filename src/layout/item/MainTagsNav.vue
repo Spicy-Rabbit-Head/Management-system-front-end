@@ -29,13 +29,13 @@
 
 
 <script setup lang="ts">
-import {markRaw, nextTick, reactive, watch} from "vue";
+import { markRaw, nextTick, reactive, watch } from "vue";
 import IconEpArrowLeftBold from "~icons/ep/arrow-left-bold"
 import IconEpArrowRightBold from "~icons/ep/arrow-right-bold"
 import IconEpArrowDownBold from "~icons/ep/arrow-down-bold"
 import IconEpClose from "~icons/ep/close"
-import {TabNavInterface} from "@/types/types.ts";
-import {useTagsNav} from "@/hooks/useTagsNav";
+import { TabNavInterface } from "@/types/shared.ts";
+import { useTagsNav } from "@/hooks/useTagsNav";
 // 闭包方法
 const {
   tagsData,

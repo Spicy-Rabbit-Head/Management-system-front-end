@@ -1,6 +1,6 @@
 <template>
   <!-- 全局表单抽屉 -->
-  <n-drawer class="!tw-w-[v-bind(width)]" v-model:show="drawerShow" :mask-closable="false">
+  <n-drawer class="!w-[v-bind(width)]" v-model:show="drawerShow" :mask-closable="false">
     <n-drawer-content :title="drawerTitle" closable :native-scrollbar="false">
       <slot/>
       <template #footer>
@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from "vue";
+import { ref } from "vue";
 
 defineProps({
   // 抽屉标题

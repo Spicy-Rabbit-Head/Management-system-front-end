@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import {useRoute} from "vue-router";
-import {GlobalThemeOverrides, NConfigProvider} from "naive-ui";
+import { useRoute } from "vue-router";
+import { GlobalThemeOverrides, NConfigProvider } from "naive-ui";
 import FullScreenLoading from "@/components/FullScreenLoading.vue";
-import {onMounted, watch} from "vue";
-import {useI18n} from "vue-i18n";
-import {isLogin} from "@/api/userRequest"
-import {useMenu} from "@/hooks/useMenu.ts";
+import { onMounted, watch } from "vue";
+import { useI18n } from "vue-i18n";
+import { isLogin } from "@/api/userManagement.ts"
+import { useMenu } from "@/hooks/useMenu.ts";
 
 // naive ui 全局配置
 const themeOverrides: GlobalThemeOverrides = {
