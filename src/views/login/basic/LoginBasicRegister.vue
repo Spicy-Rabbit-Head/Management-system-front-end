@@ -1,19 +1,10 @@
 <script setup lang="ts">
-import { verificationRegister } from "@/utils/verification";
-import { register } from "@/api/userManagement.ts";
+import { verificationUserForm } from "@/utils/verification";
 import { useUser } from "@/hooks/useUser.ts";
 import { useRouter } from "vue-router";
 import { onBeforeMount } from "vue";
 
 const {userForm, clearBuffer} = useUser();
-
-// 注册验证
-function verification() {
-  let bool = verificationRegister(0);
-  if (bool) {
-    register();
-  }
-}
 
 const {replace} = useRouter()
 
@@ -62,7 +53,7 @@ onBeforeMount(() => {
                 </span>
       </label>
     </div>
-    <n-button class="w-3/5 text-4" type="primary" @click="verification">
+    <n-button class="w-3/5 text-4" type="primary" @click="verificationUserForm(true)">
       {{ $t('Login.RegisterAccount') }}
     </n-button>
     <n-divider style="color: rgb(128,128,128) ;padding: 0 10%" class="text-3.5">

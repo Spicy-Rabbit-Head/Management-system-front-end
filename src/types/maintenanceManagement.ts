@@ -52,6 +52,7 @@ export interface SchedulingInterfaceData {
     schedulingData: Array<ScheduleTableData>
 }
 
+// 排程选择
 export interface SchedulingSelect {
     // 负责人
     responsiblePerson: string,
@@ -61,4 +62,7 @@ export interface SchedulingSelect {
 
     // 排定时间
     schedulingTime: string
+
+    // 机台选择
+    machineSelect: Array<number>
 }

@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { verificationRegister } from "@/utils/verification";
-import { useFullScreenLoading } from "@/hooks/useFullScreenLoading";
-import { login } from "@/api/userManagement.ts";
+import { verificationUserForm } from "@/utils/verification";
 import { useUser } from "@/hooks/useUser.ts";
 import { useRouter } from "vue-router";
 import { onBeforeMount } from "vue";
@@ -11,15 +9,6 @@ const {
   isAutomaticLogin,
   clearBuffer
 } = useUser();
-const {FullScreenLoadingRun} = useFullScreenLoading();
-
-// 登录验证
-const verification = () => {
-  if (verificationRegister(1)) {
-    FullScreenLoadingRun()
-    login()
-  }
-}
 
 const {replace} = useRouter()
 
@@ -72,7 +61,7 @@ onBeforeMount(() => {
       </el-col>
     </el-row>
     <n-button class="w-3/5 text-4" type="primary"
-              @click.stop="verification">
+              @click.stop="verificationUserForm(false)">
       {{ $t('Login.LoginImmediately') }}
     </n-button>
     <n-divider style="color: rgb(128,128,128) ;padding: 0 10%" class="text-3.5">

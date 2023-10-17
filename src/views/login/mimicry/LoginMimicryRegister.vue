@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { verificationRegister } from "@/utils/verification";
+import { verificationUserForm } from "@/utils/verification";
 import PasswordReset from "@/components/PasswordReset.vue";
 import { ref } from "vue";
 import IconAntDesignSwapRightOutlined from '~icons/ant-design/swap-right-outlined'
 import IconAntDesignSwapLeftOutlined from '~icons/ant-design/swap-left-outlined'
-import { useFullScreenLoading } from "@/hooks/useFullScreenLoading";
-import { login, register } from "@/api/userManagement.ts"
 import { useUser } from "@/hooks/useUser.ts";
 import { MimicryTopCardStyle } from "@/types/shared.ts";
 
@@ -26,22 +24,8 @@ const emit = defineEmits<{
 }>()
 
 const {userForm, isAutomaticLogin} = useUser();
-const {FullScreenLoadingRun} = useFullScreenLoading();
 // 弹窗重置密码页
 const showModal = ref<boolean>(false);
-
-// 注册登录验证
-function verification(i: number) {
-  let bool = verificationRegister(i);
-  if (bool) {
-    if (i == 0) {
-      register()
-    } else {
-      FullScreenLoadingRun()
-      login()
-    }
-  }
-}
 </script>
 
 <template>
@@ -56,7 +40,7 @@ function verification(i: number) {
       <input class="mimicry-response-input" v-model="userForm.repeatPassword"
              :placeholder="$t('Login.ReenterThePassword')"/>
       <n-button type="info" class="mimicry-switch-button"
-                @click="verification(0)">
+                @click="verificationUserForm(true)">
         {{ $t('Login.RegisterAccount') }}
       </n-button>
       <n-button type="info" class="border-none absolute left-2 bottom-10 text-4 sm:(invisible opacity-0 absolute)"
@@ -90,7 +74,7 @@ function verification(i: number) {
         </el-col>
       </el-row>
       <n-button type="info" size="large" class="mimicry-switch-button"
-                @click="verification(1)">
+                @click="verificationUserForm(false)">
         {{ $t('Login.LoginImmediately') }}
       </n-button>
       <n-button color="#ff2e63"

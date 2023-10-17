@@ -39,10 +39,9 @@ const total = computed(() => {
 const schedulingSelect = reactive<SchedulingSelect>({
   responsiblePerson: '',
   memberSelect: [],
-  schedulingTime: ''
+  schedulingTime: '',
+  machineSelect: []
 })
-// 机台选择
-const machineSelect = reactive<Array<number>>([])
 // 排程表引用
 const scheduleTableReferences = ref<HTMLTableElement | null>(null)
 
@@ -52,15 +51,16 @@ watch([currentPage, pageSize], () => {
 
 // 选择机台
 function select(raws: Array<ScheduleTableData>) {
-  machineSelect.length = 0
-  machineSelect.push(...raws.map((item: any) => item.id))
+  schedulingSelect.machineSelect.length = 0
+  schedulingSelect.machineSelect.push(...raws.map((item: any) => item.id))
 }
 
 // 重置选择
 function resetOption() {
   schedulingSelect.responsiblePerson = ''
-  schedulingSelect.memberSelect = []
+  schedulingSelect.memberSelect.length = 0
   schedulingSelect.schedulingTime = ''
+  schedulingSelect.machineSelect.length = 0
 }
 
 // 清除选择
@@ -77,7 +77,7 @@ function getScheduleData() {
   SchedulingData(currentWorkshop.value, offset.value, pageSize.value).then(response => {
     schedule.length = 0
     schedule.push(...response)
-    machineSelect.length = 0
+    schedulingSelect.machineSelect.length = 0
   })
 }
 

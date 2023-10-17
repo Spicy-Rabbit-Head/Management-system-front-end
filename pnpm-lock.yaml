@@ -19,9 +19,6 @@ dependencies:
   pinia:
     specifier: ^2.1.3
     version: 2.1.3(typescript@5.2.2)(vue@3.3.4)
-  vest:
-    specifier: ^4.6.11
-    version: registry.npmmirror.com/vest@4.6.11
   vexip-ui:
     specifier: ^2.2.2
     version: registry.npmmirror.com/vexip-ui@2.2.2(vue@3.3.4)
@@ -2795,14 +2792,6 @@ packages:
     engines: { node: ^14.18.0 || >=16.10.0 }
     dev: true
 
-  registry.npmmirror.com/context@3.0.7:
-    resolution: { integrity: sha512-ceW8mQwFhOin5ih5Sm6jq9mju7+p/usZFkf+PwNPXcpARplz1eAE4PB0V90Os/STyd1387Gu4C8I5Jmy3wDoIA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/context/-/context-3.0.7.tgz }
-    name: context
-    version: 3.0.7
-    dependencies:
-      vest-utils: registry.npmmirror.com/vest-utils@0.1.1
-    dev: false
-
   registry.npmmirror.com/cross-spawn@7.0.3:
     resolution: { integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/cross-spawn/-/cross-spawn-7.0.3.tgz }
     name: cross-spawn
@@ -3486,15 +3475,6 @@ packages:
     version: 0.2.2
     dev: true
 
-  registry.npmmirror.com/n4s@4.3.7:
-    resolution: { integrity: sha512-uzm6CL9cBMHaB/YuGBHRDRa6RuvpZ/xXgyoWgVS/+8/E0zQC3IyZVnIOPCOavCs/UOm4zomn99T4ng9HWcL7Cw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/n4s/-/n4s-4.3.7.tgz }
-    name: n4s
-    version: 4.3.7
-    dependencies:
-      context: registry.npmmirror.com/context@3.0.7
-      vest-utils: registry.npmmirror.com/vest-utils@0.1.1
-    dev: false
-
   registry.npmmirror.com/naive-ui@2.34.3(vue@3.3.4):
     resolution: { integrity: sha512-fUMr0dzb/iGsOTWgoblPVobY5X5dihQ1eam5dA+H74oyLYAvgX4pL96xQFPBLIYqvyRFBAsN85kHN5pLqdtpxA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/naive-ui/-/naive-ui-2.34.3.tgz }
     id: registry.npmmirror.com/naive-ui/2.34.3
@@ -4036,14 +4016,6 @@ packages:
     version: 1.0.2
     dev: true
 
-  registry.npmmirror.com/vast@1.0.17:
-    resolution: { integrity: sha512-D2fZtQp8RfZ8WMfzC0izcrrmOsZ8Dmc4B57G/J3z4wCAuvAZskyPOXBKLR5QRoQ4nb7doB/ueihEMnpDcXl7JA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vast/-/vast-1.0.17.tgz }
-    name: vast
-    version: 1.0.17
-    dependencies:
-      vest-utils: registry.npmmirror.com/vest-utils@0.1.1
-    dev: false
-
   registry.npmmirror.com/vdirs@0.1.8(vue@3.3.4):
     resolution: { integrity: sha512-H9V1zGRLQZg9b+GdMk8MXDN2Lva0zx72MPahDKc30v+DtwKjfyOSXWRIX4t2mhDubM1H09gPhWeth/BJWPHGUw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vdirs/-/vdirs-0.1.8.tgz }
     id: registry.npmmirror.com/vdirs/0.1.8
@@ -4055,23 +4027,6 @@ packages:
       evtd: registry.npmmirror.com/evtd@0.2.4
       vue: 3.3.4
     dev: true
-
-  registry.npmmirror.com/vest-utils@0.1.1:
-    resolution: { integrity: sha512-dsH4zt4IsBvDY3BhUo6mNgwN9WVIfUP8jwBp2XEZQAq7XYAuVQnGTCrdF8+/OtoP141jCxMppXYpO4xbMWYwhA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vest-utils/-/vest-utils-0.1.1.tgz }
-    name: vest-utils
-    version: 0.1.1
-    dev: false
-
-  registry.npmmirror.com/vest@4.6.11:
-    resolution: { integrity: sha512-2C2PfDselDX5cgaxZmp4v1IaAhnGzlSkuQSSYIsOac3TW1+N6QFHoUx2n5qkLpe0thJLZjEWT4fM4anQSSjP2Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vest/-/vest-4.6.11.tgz }
-    name: vest
-    version: 4.6.11
-    dependencies:
-      context: registry.npmmirror.com/context@3.0.7
-      n4s: registry.npmmirror.com/n4s@4.3.7
-      vast: registry.npmmirror.com/vast@1.0.17
-      vest-utils: registry.npmmirror.com/vest-utils@0.1.1
-    dev: false
 
   registry.npmmirror.com/vexip-ui@2.2.2(vue@3.3.4):
     resolution: { integrity: sha512-AeECihucwKO351n15k0QQ0BwckOMIxf5RASl8zJE6dhLhT1YuNQmvoC7qJhJ7DVXntVXNnELR5sDgcuYvHjWag==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vexip-ui/-/vexip-ui-2.2.2.tgz }
