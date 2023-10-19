@@ -6,22 +6,6 @@ import { useFullScreenLoading } from "@/hooks/useFullScreenLoading.ts";
 const {FullScreenLoadingRun} = useFullScreenLoading();
 const {userForm} = useUser()
 
-// 验证注册登录表单
-// export function verificationRegister(code: number): boolean {
-//     let result;
-//     let traversal = userForm
-//     for (let prop in traversal) {
-//         if (code) if (prop === 'repeatPassword') continue
-//         result = userAuthentication(traversal, prop)
-//         if (result.hasErrors(prop)) {
-//             showToast(result.getErrors(prop)[0])
-//             return false
-//         }
-//     }
-//     userAuthentication.reset()
-//     return true
-// }
-
 /**
  * 验证登录表单
  * @param mode 是否验证密码对比

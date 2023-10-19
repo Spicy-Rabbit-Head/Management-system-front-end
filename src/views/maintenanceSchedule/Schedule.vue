@@ -37,7 +37,7 @@ const total = computed(() => {
 })
 // 排程选择
 const schedulingSelect = reactive<SchedulingSelect>({
-  responsiblePerson: '',
+  personInCharge: '',
   memberSelect: [],
   schedulingTime: '',
   machineSelect: []
@@ -57,7 +57,7 @@ function select(raws: Array<ScheduleTableData>) {
 
 // 重置选择
 function resetOption() {
-  schedulingSelect.responsiblePerson = ''
+  schedulingSelect.personInCharge = ''
   schedulingSelect.memberSelect.length = 0
   schedulingSelect.schedulingTime = ''
   schedulingSelect.machineSelect.length = 0
@@ -110,7 +110,7 @@ function updateSchedule() {
           </template>
         </el-popconfirm>
         <el-button @click.stop="resetOption">重置选择</el-button>
-        <el-select class="w-[100px]" v-model="schedulingSelect.responsiblePerson" placeholder="负责人" clearable>
+        <el-select class="w-[100px]" v-model="schedulingSelect.personInCharge" placeholder="负责人" clearable>
           <el-option v-for="member in members" :key="member.memberName" :label="member.memberName"
                      :value="member.memberName"/>
         </el-select>

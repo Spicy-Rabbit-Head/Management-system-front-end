@@ -59,5 +59,6 @@ export function useUser() {
         backToLogin,
         clearBuffer,
         addToken,
+        clearToken
     }
 }

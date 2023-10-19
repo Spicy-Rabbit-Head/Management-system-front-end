@@ -55,7 +55,7 @@ export interface SchedulingInterfaceData {
 // 排程选择
 export interface SchedulingSelect {
     // 负责人
-    responsiblePerson: string,
+    personInCharge: string,
 
     // 成员选择
     memberSelect: Array<string>,

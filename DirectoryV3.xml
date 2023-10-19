@@ -30,7 +30,7 @@
     <tree path="/src/views/login/mimicry" title="登录注册拟态页面"/>
     <tree path="/src/views/login/LoginPageSwitch.vue" title="登录页切换开关"/>
     <tree path="/src/views/homePage" title="首页"/>
-    <tree path="/src/utils/verification.ts" title="vest 验证方法" extension="" presentableText=""
+    <tree path="/src/utils/verification.ts" title="验证工具" extension="" presentableText=""
           tooltipTitle="" icon="" textColor="" backgroundColor=""/>
     <tree path="/src/components/PasswordReset.vue" title="密码重置"/>
     <tree path="/src/components/FullScreenLoading.vue" title="全局加载页面"/>
