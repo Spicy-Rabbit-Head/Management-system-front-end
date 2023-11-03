@@ -39,7 +39,7 @@
                       leave-active-class="transition-opacity duration-300"
                       enter-active-class="transition-opacity duration-300">
             <div class="h-full w-full p-2">
-              <component class="h-full w-full rounded-xl bg-white" :is="Component"/>
+              <component class="h-full w-full rounded-xl bg-[#F4F6F8]" :is="Component"/>
             </div>
           </transition>
         </router-view>
@@ -58,6 +58,7 @@ import HeaderRight from "@/layout/item/HeaderRight.vue";
 import HeaderUser from "@/layout/item/HeaderUser.vue";
 import AsideBottom from "@/layout/item/AsideBottom.vue";
 import AsideMain from "@/layout/item/AsideMain.vue";
+import "vexip-ui/es/css/layout"
 import { useMenu } from "@/hooks/useMenu.ts";
 
 const {

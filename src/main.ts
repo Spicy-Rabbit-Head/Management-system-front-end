@@ -1,11 +1,11 @@
 import { createApp } from 'vue';
-import 'vexip-ui/css/index.css';
 import './style/style.css';
 import 'virtual:uno.css'
 import App from './App.vue';
 import { createPinia } from "pinia";
 import router from "@/router";
 import { Toast } from "vexip-ui";
+import "vexip-ui/es/css/toast"
 import messages from "@intlify/unplugin-vue-i18n/messages";
 import { createI18n } from "vue-i18n";
 import ElementPlus from 'element-plus'

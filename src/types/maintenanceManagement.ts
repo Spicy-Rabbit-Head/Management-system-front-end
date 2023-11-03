@@ -1,4 +1,12 @@
-// 表格数据
+// 排程表格数据
+import {
+    MaintenanceExecutionContent,
+    MaintenanceInspectionContent,
+    MaintenanceReserveContent,
+    MaintenanceReviewContent,
+    TagType
+} from "@/enum/maintenanceManagement.ts";
+
 export interface ScheduleTableData {
     // 主键id
     id: number,
@@ -65,4 +73,46 @@ export interface SchedulingSelect {
 
     // 机台选择
     machineSelect: Array<number>
+}
+
+// 保养状态表数据
+export interface MaintenanceStatusTableData {
+    // 主键id
+    id: number,
+
+    // 设备编号
+    equipmentNumber: string,
+
+    // 设备名称
+    equipmentName: string,
+
+    // 保养周期
+    maintenanceCycle: string,
+
+    // 成员
+    directorsAndMembers: string,
+
+    // 保养准备
+    maintenanceReserve: {
+        content: MaintenanceReserveContent,
+        status: TagType
+    },
+
+    // 保养执行
+    maintenanceExecution: {
+        content: MaintenanceExecutionContent,
+        status: TagType
+    },
+
+    // 保养点检
+    maintenanceInspection: {
+        content: MaintenanceInspectionContent,
+        status: TagType
+    },
+
+    // 保养检讨
+    maintenanceReview: {
+        content: MaintenanceReviewContent,
+        status: TagType
+    },
 }

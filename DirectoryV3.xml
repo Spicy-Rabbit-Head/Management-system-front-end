@@ -69,4 +69,12 @@
     <tree path="/src/types/userManagement.ts" title="用户管理"/>
     <tree path="/src/types/shared.ts" title="共享"/>
     <tree path="/src/api/requestInstance.ts" title="请求封装"/>
+    <tree path="/src/views/homePage/NoticeBoard.vue" title="公告栏"/>
+    <tree path="/src/enum/maintenanceManagement.ts" title="排程管理"/>
+    <tree path="/src/views/homePage/MaintenanceStatusDisplay.vue" title="保养状态展示" extension="" presentableText=""
+          tooltipTitle="" icon="" textColor="" backgroundColor=""/>
+    <tree path="/src/views/homePage/ModuleMaintenanceDisplay.vue" title="模组保养展示"/>
+    <tree path="/src/types/moduleManagement.ts" title="模组管理"/>
+    <tree path="/src/views/homePage/ImprovementItemDisplay.vue" title="改善事项展示"/>
+    <tree path="/src/views/homePage/Calendar.vue" title="行事历"/>
 </trees>

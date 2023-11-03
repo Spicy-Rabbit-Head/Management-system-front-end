@@ -13,9 +13,15 @@ declare module '@vue/runtime-core' {
     DynamicTag: typeof import('./../components/DynamicTag.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
+
+      ElCalendar: typeof import('element-plus/es')['ElCalendar']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCol: typeof import('element-plus/es')['ElCol']
+
+      ElDescriptions: typeof import('element-plus/es')['ElDescriptions']
+
+      ElDescriptionsItem: typeof import('element-plus/es')['ElDescriptionsItem']
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElPagination: typeof import('element-plus/es')['ElPagination']
@@ -27,6 +33,12 @@ declare module '@vue/runtime-core' {
     ElSteps: typeof import('element-plus/es')['ElSteps']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+
+      ElTag: typeof import('element-plus/es')['ElTag']
+
+      ElTimeline: typeof import('element-plus/es')['ElTimeline']
+
+      ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem']
     FormDrawer: typeof import('./../components/FormDrawer.vue')['default']
     FullScreenLoading: typeof import('./../components/FullScreenLoading.vue')['default']
     FullScreenMode: typeof import('./../components/FullScreenMode.vue')['default']
@@ -34,6 +46,8 @@ declare module '@vue/runtime-core' {
     LoginPageSwitch: typeof import('../views/login/LoginPageSwitch.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NCheckbox: typeof import('naive-ui')['NCheckbox']
+
+      NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDivider: typeof import('naive-ui')['NDivider']
     NDrawer: typeof import('naive-ui')['NDrawer']
     NDrawerContent: typeof import('naive-ui')['NDrawerContent']

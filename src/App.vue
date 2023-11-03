@@ -1,20 +1,11 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import { GlobalThemeOverrides, NConfigProvider } from "naive-ui";
 import FullScreenLoading from "@/components/FullScreenLoading.vue";
 import { onMounted, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { isLogin } from "@/api/userManagement.ts"
 import { useMenu } from "@/hooks/useMenu.ts";
 
-// naive ui 全局配置
-const themeOverrides: GlobalThemeOverrides = {
-  common: {
-    // fontSizeMedium: '0.875rem',
-    fontSizeMedium: '0.875rem',
-    fontSizeLarge: '1.25rem',
-  },
-}
 const route = useRoute();
 const {
   menuStatus,
@@ -50,13 +41,7 @@ watch(() => route.meta, (meta) => {
   <div class="w-screen h-screen bg-gray-200 z-40 tracking-wide"
        font="!mono semibold"
   >
-    <!-- naive ui 全局通知 -->
-    <n-notification-provider>
-      <!-- naive ui 全局配置 -->
-      <n-config-provider :theme-overrides="themeOverrides">
-        <router-view/>
-      </n-config-provider>
-    </n-notification-provider>
+    <router-view/>
   </div>
 </template>
 

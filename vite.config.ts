@@ -1,10 +1,10 @@
-import {defineConfig} from 'vite'
+import { defineConfig } from 'vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import {ElementPlusResolver, NaiveUiResolver} from 'unplugin-vue-components/resolvers'
+import { ElementPlusResolver, NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import vue from '@vitejs/plugin-vue'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
-import {join, resolve} from 'path'
+import { join, resolve } from 'path'
 import Icons from 'unplugin-icons/vite'
 import IconResolver from 'unplugin-icons/resolver'
 import UnoCSS from 'unocss/vite'
@@ -14,7 +14,7 @@ export default defineConfig({
         vue(),
         // 组件自动导入
         AutoImport({
-            resolvers: [ElementPlusResolver(), NaiveUiResolver()],
+            resolvers: [ElementPlusResolver()],
             dts: 'src/types/auto-imports.d.ts',
         }),
         Components({
