@@ -75,7 +75,7 @@ const tabs = reactive<TabNavInterface[]>([
 ])
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 /* 选项卡 */
 .tabs {
   @apply

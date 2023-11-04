@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import NoticeBoard from "@/views/homePage/NoticeBoard.vue";
 import MaintenanceStatusDisplay from "@/views/homePage/MaintenanceStatusDisplay.vue";
 import ModuleMaintenanceDisplay from "@/views/homePage/ModuleMaintenanceDisplay.vue";
@@ -21,11 +20,11 @@ import Calendar from "@/views/homePage/Calendar.vue";
       <!-- 例行模组保养 -->
       <module-maintenance-display/>
     </div>
-    <div class="col-span-2 row-span-3 bg-white">
+    <div class="col-span-2 row-span-3 bg-white rounded-4 shadow-md">
       <!-- 改善事项 -->
       <improvement-item-display/>
     </div>
-    <div class="col-span-2 row-span-3 bg-white">
+    <div class="col-span-2 row-span-3 bg-white rounded-4 shadow-md py-2 caret-transparent flex flex-col">
       <!-- 行事历 -->
       <calendar/>
     </div>
@@ -35,10 +34,6 @@ import Calendar from "@/views/homePage/Calendar.vue";
     <div class="bg-white">8</div>
     <div class="bg-white">9</div>
     <div class="bg-white">10</div>
-    <div class="bg-white">11</div>
-    <div class="bg-white">12</div>
-    <div class="bg-white">13</div>
-    <div class="bg-white">14</div>
   </div>
 </template>
 
