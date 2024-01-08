@@ -3,14 +3,12 @@
       class="border-t-2 w-full h-12 text-xl cursor-pointer caret-transparent select-none flex items-center justify-center"
       @click.stop="menuSwitch">
     <!--  菜单展开收缩 icon  -->
-    <icon-ep-fold v-if="menuStatus"/>
-    <icon-ep-expand v-else/>
+    <div i-ep-fold v-if="menuStatus"/>
+    <div i-ep-expand v-else/>
   </div>
 </template>
 
 <script setup lang="ts">
-import IconEpExpand from "~icons/ep/expand";
-import IconEpFold from "~icons/ep/fold";
 import { useMenu } from "@/hooks/useMenu.ts";
 
 const {

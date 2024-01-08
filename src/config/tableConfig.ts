@@ -80,3 +80,43 @@ export const maintenanceStatusFormField: Array<Array<TableField>> = [
         },
     ]
 ]
+
+// 换靶表格状态字段
+export const changeTargetStatusFormField: Array<Array<TableField>> = [
+    [
+        {
+            field: "equipmentNumber",
+            label: "设备编号",
+        },
+        {
+            field: "personInCharge",
+            label: "负责人",
+        }
+    ],
+    [
+        {
+            field: "reserve",
+            label: "准备",
+        },
+        {
+            field: "execution",
+            label: "执行",
+        },
+        {
+            field: "productionConfirmation",
+            label: "生产确认",
+        },
+        {
+            field: "limitVacuumConfirmation",
+            label: "极限真空确认",
+        },
+        {
+            field: "filmThicknessConfirmation",
+            label: "膜厚确认",
+        },
+        {
+            field: "adhesionConfirmation",
+            label: "附着力确认",
+        },
+    ]
+]

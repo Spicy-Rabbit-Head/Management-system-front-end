@@ -3,7 +3,8 @@
     <tree path="/src/style" title="样式"/>
     <tree path="/src/router" title="路由"/>
     <tree path="/src/assets" title="字体图片等静态资源"/>
-    <tree path="/src/components" title="自定义通用组件"/>
+    <tree path="/src/components" title="" extension="" presentableText="" tooltipTitle="" icon="" textColor=""
+          backgroundColor=""/>
     <tree path="/src/store" title="pinia"/>
     <tree path="/src/utils" title="全局工具方法" extension="" presentableText="" tooltipTitle="" icon="" textColor="" backgroundColor=""/>
     <tree path="/src/api" title="接口请求统一管理"/>
@@ -75,6 +76,16 @@
           tooltipTitle="" icon="" textColor="" backgroundColor=""/>
     <tree path="/src/views/homePage/ModuleMaintenanceDisplay.vue" title="模组保养展示"/>
     <tree path="/src/types/moduleManagement.ts" title="模组管理"/>
-    <tree path="/src/views/homePage/ImprovementItemDisplay.vue" title="改善事项展示"/>
     <tree path="/src/views/homePage/Calendar.vue" title="行事历"/>
+    <tree path="/src/enum" title="枚举"/>
+    <tree path="/src/views/homePage/OtherMatterDisplay.vue" title="其他排程展示"/>
+    <tree path="/src/views/homePage/ProjectProgressDisplay.vue" title="项目进度展示"/>
+    <tree path="/src/views/homePage/ExternalLink.vue" title="外链"/>
+    <tree path="/src/views/maintenancePreparation" title="保养准备"/>
+    <tree path="/src/types/SparePartsManagement.ts" title="备品管理"/>
+    <tree path="/src/customComponent" title="自定义通用组件"/>
+    <tree path="/src/views/InformationManagement" title="资料管理"/>
+    <tree path="/src/types/informationManagement.ts" title="资料管理"/>
+    <tree path="/src/views/informationManagement" title="资料管理"/>
+    <tree path="/src/api/informationManagement.ts" title="资料管理"/>
 </trees>

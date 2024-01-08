@@ -1,4 +1,4 @@
-import { showToast } from "@/utils/componentPlugins";
+import { showNotification } from "@/utils/componentPlugins";
 import { useUser } from "@/hooks/useUser.ts";
 import { login, register } from "@/api/userManagement.ts";
 import { useFullScreenLoading } from "@/hooks/useFullScreenLoading.ts";
@@ -16,18 +16,18 @@ const {userForm} = useUser()
 export function verificationUserForm(mode: boolean): void {
     let from = userForm
     if (isEmpty(from.username) || isEmpty(from.password)) {
-        showToast("用户名或密码不能为空");
+        showNotification('错误',"用户名或密码不能为空");
         return;
     } else if (matches(from.username, /\s/) || matches(from.password, /\s/)) {
-        showToast("用户名或密码不能有空格");
+        showNotification('错误',"用户名或密码不能有空格");
         return;
     } else if (notMatches(from.username, /^[a-zA-Z0-9]+$/) || notMatches(from.password, /^[a-zA-Z0-9]+$/)) {
-        showToast("用户名或密码不能有特殊字符");
+        showNotification('错误',"用户名或密码不能有特殊字符");
         return;
     }
     if (mode) {
         if (notEquals(from.repeatPassword, from.password)) {
-            showToast("密码校验不相等");
+            showNotification('错误',"密码校验不相等");
             return;
         }
         console.log("注册验证通过")

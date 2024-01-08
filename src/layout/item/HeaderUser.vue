@@ -2,9 +2,6 @@
 import { Avatar as VexAvatar, Dropdown as VexDropdown } from "vexip-ui";
 import { ref } from "vue";
 import PasswordReset from "@/components/PasswordReset.vue";
-import IconEpAvatar from "~icons/ep/avatar";
-import IconEpEdit from "~icons/ep/edit";
-import IconIcomoonFreeExit from "~icons/icomoon-free/exit";
 import { logout } from "@/api/userManagement.ts"
 
 // 密码重置抽屉
@@ -25,17 +22,17 @@ const modifyPassword = ref(false)
         </div>
         <!-- 个人中心跳转 -->
         <div class="layout-header-user-option">
-          <icon-ep-avatar class="mr-2"/>
+          <div i-ep-avatar mr-2/>
           个人中心
         </div>
         <!-- 修改密码抽屉显示 -->
         <div class="layout-header-user-option" @click.stop="modifyPassword = true">
-          <icon-ep-edit class="mr-2"/>
+          <div i-ep-edit mr-2/>
           修改密码
         </div>
         <!-- 退出登录 -->
         <div class="layout-header-user-option" @click.stop="logout">
-          <icon-icomoon-free-exit class="mr-2"/>
+          <div i-icomoon-free-exit mr-2/>
           退出登录
         </div>
       </div>

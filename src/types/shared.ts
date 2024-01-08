@@ -107,7 +107,86 @@ export interface PasswordResetInterface {
  */
 export interface TabNavInterface {
     title: string;
+
     icon?: FunctionalComponent<SVGAttributes>,
+}
+
+/**
+ * 节点类型
+ */
+export type NodeType = 'primary' | 'success' | 'warning' | 'error' | 'info';
+
+/**
+ * 内容类型
+ */
+export type ContentType = 'heading' | 'paragraph';
+
+/**
+ * 通知内容
+ */
+export interface NotificationContent {
+    /**
+     * 内容类型
+     */
+    type: ContentType,
+
+    /**
+     * 内容
+     */
+    content: string,
+}
+
+/**
+ * RBG颜色
+ */
+export interface RGBColor {
+    r: number;
+
+    g: number;
+
+    b: number;
+
+    a?: number;
+}
+
+/**
+ * 通知
+ */
+export interface Notification {
+    /**
+     * 时间戳
+     */
+    timestamp: Date,
+
+    /**
+     * 发布者
+     */
+    publisher?: string,
+
+    /**
+     * 标题
+     */
+    title?: string,
+
+    /**
+     * 节点类型
+     */
+    type?: NodeType,
+
+    /**
+     * 节点颜色
+     */
+    color?: RGBColor | string,
+
+    /**
+     * 是否空心点
+     */
+    hollow?: boolean,
+
+    /**
+     * 内容
+     */
+    content?: Array<NotificationContent>,
 }
 
 /**
@@ -138,4 +217,39 @@ export interface TodoList {
      * 事项时间
      */
     dates: Date;
+
+    /**
+     * 是否提醒
+     */
+    remind: boolean;
+}
+
+/**
+ * 项目进度表数据
+ */
+export interface ProjectProgressData {
+    /**
+     * ID
+     */
+    id: number;
+
+    /**
+     * 项目阶段
+     */
+    phase: string;
+
+    /**
+     * 时间节点
+     */
+    timeNode: string;
+
+    /**
+     * 项目进度
+     */
+    schedule: number;
+
+    /**
+     * 子节点
+     */
+    children?: ProjectProgressData[];
 }

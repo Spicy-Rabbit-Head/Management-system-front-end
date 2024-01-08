@@ -1,15 +1,12 @@
 // 配置及预设
-import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
+import {defineConfig, presetAttributify, presetIcons, presetUno} from 'unocss'
 // 分组
 import transformerVariantGroup from '@unocss/transformer-variant-group'
 // 指令
 import transformerDirectives from '@unocss/transformer-directives'
 
 export default defineConfig({
-    rules: [
-        ['text-color', {color: 'var(--text-color)'}],
-
-    ],
+    rules: [],
     shortcuts: {},
     theme: {
         breakpoints: {
@@ -24,10 +21,10 @@ export default defineConfig({
     presets: [
         presetUno(),
         presetIcons(),
-        presetAttributify(),
+        presetAttributify()
     ],
     transformers: [
         transformerVariantGroup(),
-        transformerDirectives(),
-    ],
+        transformerDirectives()
+    ]
 })

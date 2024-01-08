@@ -8,7 +8,7 @@
     "allowJs": false,
     "strict": true,
     "importHelpers": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "skipLibCheck": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -36,7 +36,6 @@
     "types": [
       "unplugin-icons/types/vue",
       "vite/client",
-      "vexip-ui/types",
       "element-plus/global",
       "v-calendar/dist/types"
     ],
@@ -47,9 +46,11 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+    "src/types/*.ts",
     "src/types/auto-imports.d.ts",
     "src/types/components.d.ts",
-    "./vite.config.ts"
+    "./vite.config.ts",
+    "vexip-ui/types"
   ],
   "references": [
     {

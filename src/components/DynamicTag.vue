@@ -1,13 +1,12 @@
 <template>
   <div class="tabs-item" @mouseenter="showDeleteIcon(0)" @mouseleave="hideDeleteIcon">
     <slot/>
-    <icon-ep-close v-if="deleteIndex === 0" class="hover:tw-text-red-400  tw-ml-2"/>
+    <div i-ep-close class="hover:text-red-400  ml-2" v-if="deleteIndex === 0"/>
   </div>
 </template>
 
 <script setup lang="ts">
-import IconEpClose from "~icons/ep/close"
-import {ref} from "vue";
+import { ref } from "vue";
 
 const deleteIndex = ref(-1);
 

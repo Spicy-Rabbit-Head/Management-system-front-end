@@ -2,25 +2,21 @@
 import { ModuleInformation } from "@/types/moduleManagement.ts";
 import { ScheduleTime } from "@/enum/maintenanceManagement.ts";
 
-const moduleInformation: Array<ModuleInformation> = []
-
-for (let i = 0; i < 9; i++) {
-  moduleInformation.push(
-      {
-        moduleName: `模组${i}`,
-        moduleNumber: `txc-${i}`,
-        maintenanceQuantity: i + 1,
-        moduleType: `型号${i}`,
-        maintenancePersonnel: '张三',
-        scheduleTime: ScheduleTime.afternoon,
-      }
-  )
-}
+const moduleInformation: Array<ModuleInformation> = [
+  {
+    moduleName: 'IG 模组',
+    moduleNumber: 'CT-0080',
+    maintenanceQuantity: 1,
+    moduleType: 'B03',
+    maintenancePersonnel: '赵子奎',
+    scheduleTime: ScheduleTime.afternoon,
+  }
+]
 
 </script>
 
 <template>
-  <div class="border-b-2 border-gray-3 px-4 h-1/8 text-sm font-bold flex items-center">例行模组保养排程</div>
+  <div class="border-b-2 text-xl border-gray-3 px-4 h-1/8 text-sm font-bold flex items-center">例行模组保养排程</div>
   <div class="h-7/8 py-5 overflow-y-auto grid">
     <div class="px-3 overflow-y-auto grid gap-4">
       <el-descriptions
@@ -39,8 +35,9 @@ for (let i = 0; i < 9; i++) {
         <el-descriptions-item label="保养人员" align="center">{{ module.maintenancePersonnel }}</el-descriptions-item>
         <el-descriptions-item label="排定保养时间" align="center">{{ module.scheduleTime }}</el-descriptions-item>
         <el-descriptions-item label="操作" align="center">
-          <el-button type="primary">查看</el-button>
-          <el-button type="primary">查看</el-button>
+          <el-button type="success">进入详情页</el-button>
+          <el-button type="primary">进入完成流程</el-button>
+          <el-button type="danger">进入异常流程</el-button>
         </el-descriptions-item>
       </el-descriptions>
     </div>

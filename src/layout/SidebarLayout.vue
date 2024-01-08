@@ -1,6 +1,6 @@
 <template>
   <vex-layout
-      class="z-10 w-screen h-screen bg-white box-border"
+      class="z-10 w-screen h-screen bg-white box-border relative"
       :reduced="menuStatus"
   >
     <!--:header-fixed="false"-->
@@ -31,16 +31,14 @@
     <!-- 主体 -->
     <template #main>
       <!-- 状态标签导航 -->
-      <div style="height: calc(100vh - 55px)" class="bg-[#E2E2E8]">
+      <div style="height: calc(100vh - 55px)" class="bg-[#E2E2E8] w-full relative">
         <router-view v-slot="{ Component }">
           <transition mode="out-in"
                       enter-from-class="opacity-0"
                       leave-to-class="opacity-0"
                       leave-active-class="transition-opacity duration-300"
                       enter-active-class="transition-opacity duration-300">
-            <div class="h-full w-full p-2">
-              <component class="h-full w-full rounded-xl bg-[#F4F6F8]" :is="Component"/>
-            </div>
+            <component class="h-full w-full bg-[#FFF]" :is="Component"/>
           </transition>
         </router-view>
       </div>

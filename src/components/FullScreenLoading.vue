@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
+import {useFullScreenLoading} from "@/hooks/useFullScreenLoading.ts";
 
 const {fullScreenLoadingState} = useFullScreenLoading();
 

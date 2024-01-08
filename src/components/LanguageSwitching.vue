@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {useI18n} from "vue-i18n";
-import IconAntDesignTranslationOutlined from "~icons/ant-design/translation-outlined";
 // 语言选项
 const options = [
   {
@@ -35,7 +34,7 @@ function handleSelect(key: string | number) {
         :options="options"
         :show-arrow="true"
         @select="handleSelect">
-      <icon-ant-design-translation-outlined class="w-full h-full text-gray-600"/>
+      <div i-ant-design-translation-outlined class="w-full h-full text-gray-600"/>
     </n-dropdown>
   </div>
 </template>

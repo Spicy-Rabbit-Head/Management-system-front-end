@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { PasswordResetInterface } from "@/types/shared.ts";
-import IconAntDesignSendOutlined from "~icons/ant-design/send-outlined";
-import IconAntDesignSyncOutlined from "~icons/ant-design/sync-outlined";
 
 // 退出重置按钮显示状态 false为隐藏 默认显示
 withDefaults(defineProps<{
@@ -114,7 +112,7 @@ function clearCache() {
               <n-button type="primary" class="text-3" :loading="emailCurrentLoading"
                         @click="sendVerificationCode">
                 <template #icon>
-                  <IconAntDesignSendOutlined/>
+                  <div i-ant-design-send-outlined/>
                 </template>
                 {{ $t('Login.PasswordReset.SendVerificationCode') }}
               </n-button>
@@ -175,7 +173,7 @@ function clearCache() {
                   :loading="auxiliaryCurrentLoading"
                   @click="refreshState">
                 <template #icon>
-                  <IconAntDesignSyncOutlined/>
+                  <div i-ant-design-sync-outlined/>
                 </template>
                 {{ $t('Login.PasswordReset.RefreshStatus') }}
               </n-button>

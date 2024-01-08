@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref, watch } from "vue";
-import { Member, ScheduleTableData, SchedulingSelect } from "@/types/maintenanceManagement.ts";
+import { ScheduleTableData, SchedulingSelect } from "@/types/maintenanceManagement.ts";
 import { scheduleTableField } from "@/config/tableConfig.ts"
 import { schedulingTimeList, workshopList } from "@/config/globalConfig.ts"
 import { ModifySchedulingData, SchedulingData, SchedulingInterfaceData } from "@/api/maintenanceManagement.ts";
@@ -8,9 +8,9 @@ import { ModifySchedulingData, SchedulingData, SchedulingInterfaceData } from "@
 onMounted(() => {
   // 获取排程界面
   SchedulingInterfaceData(offset.value, pageSize.value).then(response => {
-    members.push(...response.members)
+    members.push(...response.data.members)
     schedule.length = 0
-    schedule.push(...response.schedulingData)
+    schedule.push(...response.data.schedulingData)
   })
 })
 
@@ -23,7 +23,7 @@ const currentPage = ref<number>(1)
 // 每页显示条数
 const pageSize = ref<number>(20)
 // 成员列表
-const members = reactive<Array<Member>>([])
+const members = reactive<Array<string>>([])
 // 计算偏移量
 const offset = computed(() => {
   return (currentPage.value - 1) * pageSize.value
@@ -37,10 +37,10 @@ const total = computed(() => {
 })
 // 排程选择
 const schedulingSelect = reactive<SchedulingSelect>({
+  machineSelect: [],
   personInCharge: '',
   memberSelect: [],
   schedulingTime: '',
-  machineSelect: []
 })
 // 排程表引用
 const scheduleTableReferences = ref<HTMLTableElement | null>(null)
@@ -76,27 +76,44 @@ function clearOption() {
 function getScheduleData() {
   SchedulingData(currentWorkshop.value, offset.value, pageSize.value).then(response => {
     schedule.length = 0
-    schedule.push(...response)
+    schedule.push(...response.data)
     schedulingSelect.machineSelect.length = 0
   })
 }
 
-// 修改排程
-function updateSchedule() {
-  ModifySchedulingData(schedulingSelect);
+// 确认保养人员
+function confirmMaintenancePersonnel() {
+  ModifySchedulingData(schedulingSelect).then(() => {
+    getScheduleData()
+  })
 }
 
+// 清除保养人员
+function clearMaintenancePersonnel() {
+  ModifySchedulingData(schedulingSelect, false).then(() => {
+    getScheduleData()
+  })
+}
+
+// 设定颜色
+function rowStyle({row, rowIndex}: { row: ScheduleTableData, rowIndex: number }) {
+  if (row.schedulingStatus) {
+    return {color: 'rgb(24,141,80)'}
+  }
+}
+
+const show = ref<boolean>(true)
 
 </script>
 
 <template>
-  <div class="flex flex-col">
-    <div class="h-16 flex-none flex items-center px-4 border-b border-warmgray">
+  <div class="flex flex-col overflow-hidden">
+    <div v-show="show" class="h-16 flex-none flex items-center px-4 border-b border-warmgray">
       <el-button-group>
-        <el-button type="primary" @click.stop="clearOption">清除选择</el-button>
-        <el-popconfirm title="确认！">
+        <el-button  type="primary" @click.stop="clearOption">清除选择</el-button>
+        <el-popconfirm title="确认！" @confirm="clearMaintenancePersonnel">
           <template #reference>
-            <el-button type="primary" @click.stop="">清除保养人员</el-button>
+            <el-button type="primary">清除保养人员</el-button>
           </template>
         </el-popconfirm>
         <el-select @change="getScheduleData" class="w-[160px]" v-model="currentWorkshop" placeholder="选择车间">
@@ -104,20 +121,20 @@ function updateSchedule() {
         </el-select>
       </el-button-group>
       <el-button-group class="ml-auto">
-        <el-popconfirm title="确认！" @confirm="updateSchedule">
+        <el-popconfirm title="确认！" @confirm="confirmMaintenancePersonnel">
           <template #reference>
             <el-button>确认保养人员</el-button>
           </template>
         </el-popconfirm>
         <el-button @click.stop="resetOption">重置选择</el-button>
         <el-select class="w-[100px]" v-model="schedulingSelect.personInCharge" placeholder="负责人" clearable>
-          <el-option v-for="member in members" :key="member.memberName" :label="member.memberName"
-                     :value="member.memberName"/>
+          <el-option v-for="member in members" :key="member" :label="member"
+                     :value="member"/>
         </el-select>
         <el-select class="w-[200px]" v-model="schedulingSelect.memberSelect" placeholder="成员" multiple clearable
                    collapse-tags collapse-tags-tooltip>
-          <el-option v-for="(member,index) in members" :key="index" :label="member.memberName"
-                     :value="member.memberName"/>
+          <el-option v-for="(member,index) in members" :key="index" :label="member"
+                     :value="member"/>
         </el-select>
         <el-select class="w-[100px]" v-model="schedulingSelect.schedulingTime" placeholder="排定时间" clearable>
           <el-option v-for="item in schedulingTimeList" :key="item.label" :label="item.label" :value="item.value"/>
@@ -126,13 +143,14 @@ function updateSchedule() {
     </div>
     <div class="h-2/3 flex-auto">
       <div class="h-9/10">
-        <el-table ref="scheduleTableReferences" :data="schedule" height="100%" @select-all="select" @select="select">
+        <el-table ref="scheduleTableReferences" size="large" :data="schedule" height="100%" @select-all="select"
+                  @select="select" :row-style="rowStyle">
           <el-table-column sortable align="center" type="selection"/>
           <el-table-column v-for="(item,index) in scheduleTableField" :key="index"
                            align="center" :prop="item.field" :label="item.label"/>
         </el-table>
       </div>
-      <div class="h-1/10 flex justify-center">
+      <div class="h-1/10 flex justify-center bg-white">
         <el-pagination
             background
             v-model:current-page="currentPage"

@@ -1,7 +1,7 @@
 /**
- * 保养准备状态
+ * 准备状态
  */
-export enum MaintenanceReserveContent {
+export enum PrepareState {
     /**
      * 准备中
      */
@@ -17,9 +17,9 @@ export enum MaintenanceReserveContent {
 }
 
 /**
- * 保养执行状态
+ * 执行状态
  */
-export enum MaintenanceExecutionContent {
+export enum ExecutionState {
     /**
      * 待执行
      */
@@ -39,9 +39,9 @@ export enum MaintenanceExecutionContent {
 }
 
 /**
- * 保养点检状态
+ * 点检状态
  */
-export enum MaintenanceInspectionContent {
+export enum SpotInspectionState {
     /**
      * 待点检
      */
@@ -57,9 +57,9 @@ export enum MaintenanceInspectionContent {
 }
 
 /**
- * 保养检讨状态
+ * 检讨状态
  */
-export enum MaintenanceReviewContent {
+export enum ReviewState {
     /**
      * 待检讨
      */
@@ -104,14 +104,68 @@ export enum ScheduleTime {
      * 上午
      */
     morning = "上午",
-
     /**
      * 下午
      */
-    afternoon = "下午",
-
+    afternoon = "13:00-14:00",
     /**
      * 全天
      */
     allDay = "全天",
+}
+
+/**
+ * 生产确认
+ */
+export enum ProductionConfirmation {
+    /**
+     * 未确认
+     */
+    unconfirmed = "未确认",
+    /**
+     * 已确认
+     */
+    confirmed = "已确认",
+}
+
+/**
+ * 极限真空确认
+ */
+export enum ExtremeVacuumConfirmation {
+    /**
+     * 未确认
+     */
+    unconfirmed = "未确认",
+    /**
+     * 已确认
+     */
+    confirmed = "已确认",
+}
+
+/**
+ * 膜厚确认
+ */
+export enum MembraneThicknessConfirmation {
+    /**
+     * 未确认
+     */
+    unconfirmed = "未确认",
+    /**
+     * 已确认
+     */
+    confirmed = "已确认",
+}
+
+/**
+ * 附着力确认
+ */
+export enum AdhesionConfirmation {
+    /**
+     * 未确认
+     */
+    unconfirmed = "未确认",
+    /**
+     * 已确认
+     */
+    confirmed = "已确认",
 }

@@ -2,8 +2,6 @@
 import { verificationUserForm } from "@/utils/verification";
 import PasswordReset from "@/components/PasswordReset.vue";
 import { ref } from "vue";
-import IconAntDesignSwapRightOutlined from '~icons/ant-design/swap-right-outlined'
-import IconAntDesignSwapLeftOutlined from '~icons/ant-design/swap-left-outlined'
 import { useUser } from "@/hooks/useUser.ts";
 import { MimicryTopCardStyle } from "@/types/shared.ts";
 
@@ -46,7 +44,7 @@ const showModal = ref<boolean>(false);
       <n-button type="info" class="border-none absolute left-2 bottom-10 text-4 sm:(invisible opacity-0 absolute)"
                 @click.stop="emit('toggle', false)">
         <template #icon>
-          <IconAntDesignSwapLeftOutlined/>
+          <div i-ant-design-swap-left-outlined/>
         </template>
         {{ $t('Login.Mimicry.GoToLogin') }}
       </n-button>
@@ -87,7 +85,7 @@ const showModal = ref<boolean>(false);
                 @click="emit('toggle', true)">
         {{ $t('Login.Mimicry.GoToRegister') }}
         <template #icon>
-          <IconAntDesignSwapRightOutlined/>
+          <div i-ant-design-swap-right-outlined/>
         </template>
       </n-button>
     </form>
