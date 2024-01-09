@@ -56,7 +56,6 @@ import HeaderRight from "@/layout/item/HeaderRight.vue";
 import HeaderUser from "@/layout/item/HeaderUser.vue";
 import AsideBottom from "@/layout/item/AsideBottom.vue";
 import AsideMain from "@/layout/item/AsideMain.vue";
-import "vexip-ui/es/css/layout"
 import { useMenu } from "@/hooks/useMenu.ts";
 
 const {

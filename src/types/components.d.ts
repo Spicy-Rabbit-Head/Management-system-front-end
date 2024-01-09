@@ -9,7 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    BusinessTable: typeof import('./../components/BusinessTable.vue')['default']
+    BusinessTable: typeof import('./../components/BusinessTable/BusinessTable.vue')['default']
     DynamicMenu: typeof import('./../components/DynamicMenu.vue')['default']
     DynamicTag: typeof import('./../components/DynamicTag.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']

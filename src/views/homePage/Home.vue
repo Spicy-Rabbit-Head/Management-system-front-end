@@ -9,14 +9,24 @@
 // import MaintenanceStatusDisplay from "@/views/homePage/MaintenanceStatusDisplay.vue";
 // import ModuleMaintenanceDisplay from "@/views/homePage/ModuleMaintenanceDisplay.vue";
 // import ProjectProgressDisplay from "@/views/homePage/ProjectProgressDisplay.vue";
-import BusinessTable from "@/components/BusinessTable.vue";
+import BusinessTable from "@/components/BusinessTable/BusinessTable.vue";
+import type { Pagination } from "@/components/BusinessTable/BusinessTable.vue";
+import { reactive } from "vue";
+
+const pagination = reactive<Pagination>({
+  currentPage: 1,
+  pageSize: 10,
+  total: 100
+})
+
 </script>
 
 <template>
-  <business-table>
+  <business-table :default-page-size="10" v-model:pagination="pagination" @page-change="console.log(pagination)">
     <el-button type="primary">新增</el-button>
     <el-button type="warning">编辑</el-button>
     <el-button type="danger">删除</el-button>
+    {{ pagination.currentPage }}
     <!--<template #search>-->
     <!--  <el-input/>-->
     <!--  <el-select-->

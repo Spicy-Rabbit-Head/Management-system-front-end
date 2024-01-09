@@ -10,6 +10,8 @@ import ElementPlus from 'element-plus'
 import 'element-plus/es/components/notification/style/css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import * as icons from '@vicons/carbon';
+import "vexip-ui/es/css/layout"
+import "vexip-ui/es/css/spin"
 
 const pinia = createPinia()
 const app = createApp(App)
@@ -19,14 +21,14 @@ app.use(pinia)
 app.use(router)
 // 使用国际化
 app.use(createI18n({
-    legacy: false,
-    locale: 'zhCN',
-    fallbackLocale: 'zhCN',
-    messages
+  legacy: false,
+  locale: 'zhCN',
+  fallbackLocale: 'zhCN',
+  messages
 }))
 
 app.use(ElementPlus, {
-    locale: zhCn,
+  locale: zhCn,
 })
 // Naive UI 样式挂载
 // const meta = document.createElement('meta')
@@ -35,6 +37,6 @@ app.use(ElementPlus, {
 // 挂载到主页面
 // 挂载全局图标
 for (const [key, component] of Object.entries(icons)) {
-    app.component('Z' + key, component)
+  app.component('Z' + key, component)
 }
 app.mount('#app')
