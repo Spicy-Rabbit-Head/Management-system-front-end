@@ -36,8 +36,7 @@
     "types": [
       "unplugin-icons/types/vue",
       "vite/client",
-      "element-plus/global",
-      "v-calendar/dist/types"
+      "element-plus/global"
     ],
     "forceConsistentCasingInFileNames": true
   },

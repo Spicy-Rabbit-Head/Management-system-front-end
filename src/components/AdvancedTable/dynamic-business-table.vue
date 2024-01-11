@@ -1,51 +1,43 @@
 <script setup lang="ts">
 import { ref, computed, reactive, toRaw } from "vue";
 import { Spin as VexSpin } from "vexip-ui";
-import type { Pagination, Field, FieldDisplay } from "./types"
+import { Pagination, FieldDisplay, OperationEvent, BusinessTableProps, Operation } from "./types"
 
 defineOptions({name: 'DynamicBusinessTable'})
-
-interface BusinessTableProps {
-  /**
-   * 表格数据
-   */
-  tableData: any[]
-
-  /**
-   * 总条数
-   */
-  total: number
-
-  /**
-   * 字段
-   */
-  fields: Field[]
-
-  /**
-   * 默认每页条数
-   */
-  defaultPageSize?: number
-
-  /**
-   * 是否启用多条件搜索
-   */
-  isSearch?: boolean
-
-  /**
-   * 是否启用模糊搜索
-   */
-  isFuzzySearch?: boolean
-}
 
 const props = withDefaults(defineProps<BusinessTableProps>(), {
   defaultPageSize: 15,
   isSearch: true,
-  isFuzzySearch: true
+  isFuzzySearch: true,
+  isOperation: true,
+  operations: () => ['Edit', 'Delete', 'Details'],
 })
 
 const emits = defineEmits<{
-  pageChange: [pagination: Pagination]
+  pageChange: [pagination: Pagination],
+  rowDetail: [row: any],
+  rowEdit: [row: any],
+  rowDelete: [row: any],
 }>()
+
+// 操作列表
+const operations: Operation = [
+  {
+    label: '编辑',
+    event: 'Edit',
+    icon: 'i-ep-edit',
+  },
+  {
+    label: '删除',
+    event: 'Delete',
+    icon: 'i-ep-delete',
+  },
+  {
+    label: '详情',
+    event: 'Detail',
+    icon: 'i-ep-details',
+  }
+]
 
 // 分页
 const pagination = reactive<Pagination>({
@@ -76,6 +68,11 @@ const dynamicHeight = computed(() => {
 
 // 可用字段
 const availableFields = reactive<FieldDisplay[]>(computeFields())
+
+// 可用操作
+const availableOperations = computed(() => {
+
+})
 
 // 当前页改变
 function pageChange(val: number) {
@@ -153,6 +150,21 @@ function refresh() {
     loading.value = false
   }, 2000)
 }
+
+// 操作事件
+function operation(event: OperationEvent, row: any) {
+  switch (event) {
+    case "Edit":
+      emits('rowEdit', row)
+      break
+    case "Delete":
+      emits('rowDelete', row)
+      break
+    case "Detail":
+      emits('rowDetail', row)
+      break
+  }
+}
 </script>
 
 <template>
@@ -207,6 +219,19 @@ function refresh() {
                              :prop="item.prop"
                              :label="item.label"/>
           </template>
+          <el-table-column v-if="props.isOperation"
+                           label="操作"
+                           width="200"
+                           align="center">
+            <template #default="scope">
+              <el-tooltip content="编辑">
+                <el-button type="primary" @click.stop="operation('Edit',scope)">
+                  <div i-ep-edit text-lg/>
+                </el-button>
+              </el-tooltip>
+              <el-button type="danger">删除</el-button>
+            </template>
+          </el-table-column>
         </el-table>
       </vex-spin>
     </div>

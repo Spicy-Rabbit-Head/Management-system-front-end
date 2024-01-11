@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver, NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import FullReload from 'vite-plugin-full-reload'
 import vue from '@vitejs/plugin-vue'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { join, resolve } from 'path'
@@ -22,7 +23,8 @@ export default defineConfig({
     VueI18nPlugin({
       include: [resolve(__dirname, './src/i18n/**')],
     }),
-    UnoCSS()
+    UnoCSS(),
+    FullReload('src/**/*.*')
   ],
   // base: '/',
   resolve: {

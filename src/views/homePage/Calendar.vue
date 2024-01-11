@@ -2,7 +2,6 @@
 import { Calendar as VCalendar } from 'v-calendar';
 import 'v-calendar/style.css';
 import { reactive, ref } from "vue";
-import { AttributeConfig } from "v-calendar/src/utils/attribute.ts";
 import { TodoList } from "@/types/shared.ts";
 
 // 当前待办事项
@@ -49,7 +48,7 @@ const todos = reactive<Array<TodoList>>([
 const calendar = ref();
 
 // 日历属性
-const property = reactive<Array<AttributeConfig>>([
+const property = reactive<Array<any>>([
   {
     key: 'today',
     highlight: {

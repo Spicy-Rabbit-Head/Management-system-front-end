@@ -29,11 +29,11 @@
 
 
 <script setup lang="ts">
-import { markRaw, nextTick, reactive, watch } from "vue";
-import IconEpArrowLeftBold from "~icons/ep/arrow-left-bold"
-import IconEpArrowRightBold from "~icons/ep/arrow-right-bold"
-import IconEpArrowDownBold from "~icons/ep/arrow-down-bold"
-import IconEpClose from "~icons/ep/close"
+import { nextTick, reactive, watch } from "vue";
+// import IconEpArrowLeftBold from "~icons/ep/arrow-left-bold"
+// import IconEpArrowRightBold from "~icons/ep/arrow-right-bold"
+// import IconEpArrowDownBold from "~icons/ep/arrow-down-bold"
+// import IconEpClose from "~icons/ep/close"
 import { TabNavInterface } from "@/types/shared.ts";
 import { useTagsNav } from "@/hooks/useTagsNav";
 // 闭包方法
@@ -59,18 +59,18 @@ watch(() => tagsData.length, () => {
 const tabs = reactive<TabNavInterface[]>([
   {
     title: '上一个',
-    icon: markRaw(IconEpArrowLeftBold)
+    // icon: markRaw(IconEpArrowLeftBold)
   },
   {
     title: '标签'
   },
   {
     title: '下一个',
-    icon: markRaw(IconEpArrowRightBold)
+    // icon: markRaw(IconEpArrowRightBold)
   },
   {
     title: '下拉菜单',
-    icon: markRaw(IconEpArrowDownBold)
+    // icon: markRaw(IconEpArrowDownBold)
   },
 ])
 </script>
