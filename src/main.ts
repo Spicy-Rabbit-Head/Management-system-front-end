@@ -12,6 +12,7 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import * as icons from '@vicons/carbon';
 import "vexip-ui/es/css/layout"
 import "vexip-ui/es/css/spin"
+import { DynamicBusinessTable } from "@/components/AdvancedTable"
 
 const pinia = createPinia()
 const app = createApp(App)
@@ -39,4 +40,5 @@ app.use(ElementPlus, {
 for (const [key, component] of Object.entries(icons)) {
   app.component('Z' + key, component)
 }
+app.component('DynamicBusinessTable', DynamicBusinessTable)
 app.mount('#app')

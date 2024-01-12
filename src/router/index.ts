@@ -1,4 +1,4 @@
-// 引入js
+// 引入
 import {createRouter, createWebHistory, Router, RouteRecordRaw} from 'vue-router'
 import {useFullScreenLoading} from "@/hooks/useFullScreenLoading";
 

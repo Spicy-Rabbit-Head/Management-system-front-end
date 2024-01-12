@@ -31,8 +31,8 @@
     <!-- 主体 -->
     <template #main>
       <!-- 状态标签导航 -->
-      <div style="height: calc(100vh - 55px)" class="bg-[#E2E2E8] w-full relative">
-        <router-view v-slot="{ Component }">
+      <div style="height: calc(100vh - 55px)" class="bg-white w-full relative">
+        <router-view v-slot="{ Component }" :key="$route.fullPath">
           <transition mode="out-in"
                       enter-from-class="opacity-0"
                       leave-to-class="opacity-0"
