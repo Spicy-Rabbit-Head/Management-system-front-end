@@ -30,7 +30,7 @@ export interface BusinessTableProps {
   isFuzzySearch?: boolean
 
   /**
-   * 是否启用操作栏
+   * 是否启用操作
    */
   isOperation?: boolean
 
@@ -68,6 +68,11 @@ export interface Field {
    * 字段标题
    */
   label: string
+
+  /**
+   * 默认显示
+   */
+  defaultDisplay?: boolean
 }
 
 /**
@@ -103,7 +108,17 @@ export interface Operation {
    * 操作图标
    */
   icon: string
+
+  /**
+   * 操作类型
+   */
+  type: OperationType
 }
+
+/**
+ * 操作类型
+ */
+export type OperationType = 'primary' | 'success' | 'warning' | 'danger'
 
 /**
  * 操作事件
