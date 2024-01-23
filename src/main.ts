@@ -12,6 +12,7 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import * as icons from '@vicons/carbon';
 import "vexip-ui/es/css/layout"
 import "vexip-ui/es/css/spin"
+import 'element-plus/es/components/switch/style/css'
 import { DynamicBusinessTable } from "@/components/AdvancedTable"
 
 const pinia = createPinia()

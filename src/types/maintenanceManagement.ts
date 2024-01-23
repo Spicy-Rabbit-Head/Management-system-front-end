@@ -289,12 +289,12 @@ export interface NonRoutineMattersScheduling {
   /**
    * 成员
    */
-  member: string,
+  member: string[] | string,
 
   /**
    * 验收佐证
    */
-  acceptanceEvidence: string,
+  acceptanceEvidence?: string,
 
   /**
    * 事项时间

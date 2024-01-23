@@ -15,7 +15,7 @@ const userForm = reactive<UserForm>({
 export function useUser() {
     // 登录完成
     function loginComplete() {
-        router.replace({name: 'Home'}).then()
+        router.replace({name: localStorage.getItem('router') ?? 'Home'}).then()
     }
 
     // 回到登录界面

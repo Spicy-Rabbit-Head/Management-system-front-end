@@ -1,4 +1,4 @@
-import DynamicBusinessTable from './dynamic-business-table.vue'
+import DynamicBusinessTable from './DynamicBusinessTable.vue'
 
 export * from "./types"
 

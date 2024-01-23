@@ -7,6 +7,7 @@ import {
   getModuleSchedule,
   getNonRoutineSchedule
 } from "@/api/maintenanceManagement.ts";
+import NonRoutineMattersEdit from "@/container/maintenanceSchedule/NonRoutineMattersEdit.vue";
 
 // 模组排程
 const moduleScheduling = reactive<Array<ModuleScheduling>>([])
@@ -21,14 +22,14 @@ const viewerSrc = ref<string>('https://t.mwm.moe/fj')
 // 成员列表
 const members = reactive<Array<string>>([])
 // 表单
-const form = reactive<NonRoutineMattersScheduling>({
-  id: 0,
-  mattersName: '',
-  mattersDescription: '',
-  acceptanceEvidence: '',
-  member: '',
-  mattersTime: '',
-})
+// const form = reactive<NonRoutineMattersScheduling>({
+//   id: 0,
+//   mattersName: '',
+//   mattersDescription: '',
+//   acceptanceEvidence: '',
+//   member: '',
+//   mattersTime: '',
+// })
 
 onMounted(() => {
   getModuleSchedule().then((res) => {
@@ -72,51 +73,69 @@ function deleteNonRoutineMatters(scope: any) {
 function acceptanceNonRoutineMatters() {
 
 }
+const visible = ref(true)
+
+function nonRoutineMattersFormEdit(payload: NonRoutineMattersScheduling) {
+  console.log(payload)
+}
+
+const payload: NonRoutineMattersScheduling = {
+  id: 1,
+  mattersName: '123',
+  mattersDescription: '123',
+  acceptanceEvidence: '123',
+  member: '123',
+  mattersTime: '123',
+}
 </script>
 
 <template>
   <div h-full w-full>
+    <non-routine-matters-edit
+        v-model:payload="payload"
+        v-model:visible="visible"
+        @submit="nonRoutineMattersFormEdit"/>
     <el-dialog
         v-model="viewerVisible"
         title="查看"
         width="60%">
     </el-dialog>
-    <el-dialog
-        v-model="dialogVisible"
-        title="新增"
-        width="40%"
-        align-center
-        :close-on-click-modal="false"
-        :close-on-press-escape="false"
-        class="flex items-center justify-center">
-      <el-form label-position="left" label-width="80px">
-        <el-form-item label="事项名称">
-          <el-input v-model="form.mattersName"/>
-        </el-form-item>
-        <el-form-item label="事项描述">
-          <el-input v-model="form.mattersDescription"/>
-        </el-form-item>
-        <el-form-item label="成员">
-          <el-select v-model="form.member" placeholder="选择成员">
-            <el-option v-for="item in members" :key="item" :label="item" :value="item"/>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="事项时间">
-          <el-select v-model="form.mattersTime" placeholder="选择时间">
-            <el-option label="上午" value="上午"/>
-            <el-option label="下午" value="下午"/>
-            <el-option label="全天" value="全天"/>
-          </el-select>
-        </el-form-item>
-      </el-form>
-      <template #footer>
-      <span class="dialog-footer">
-        <el-button type="primary" @click.stop="addNonRoutineMatters">
-          添加非例行事项
-        </el-button>
-      </span>
-      </template>
-    </el-dialog>
+    <!--<el-dialog-->
+    <!--    v-model="dialogVisible"-->
+    <!--    title="新增"-->
+    <!--    width="40%"-->
+    <!--    align-center-->
+    <!--    :close-on-click-modal="false"-->
+    <!--    :close-on-press-escape="false"-->
+    <!--    class="flex items-center justify-center">-->
+    <!--<el-form label-position="left" label-width="80px">-->
+    <!--  <el-form-item label="事项名称">-->
+    <!--    <el-input v-model="form.mattersName"/>-->
+    <!--  </el-form-item>-->
+    <!--  <el-form-item label="事项描述">-->
+    <!--    <el-input v-model="form.mattersDescription"/>-->
+    <!--  </el-form-item>-->
+    <!--  <el-form-item label="成员">-->
+    <!--    <el-select v-model="form.member" placeholder="选择成员">-->
+    <!--      <el-option v-for="item in members" :key="item" :label="item" :value="item"/>-->
+    <!--    </el-select>-->
+    <!--  </el-form-item>-->
+    <!--  <el-form-item label="事项时间">-->
+    <!--    <el-select v-model="form.mattersTime" placeholder="选择时间">-->
+    <!--      <el-option label="上午" value="上午"/>-->
+    <!--      <el-option label="下午" value="下午"/>-->
+    <!--      <el-option label="全天" value="全天"/>-->
+    <!--    </el-select>-->
+    <!--  </el-form-item>-->
+    <!--</el-form>-->
+    <!--  <template #footer>-->
+    <!--  <span class="dialog-footer">-->
+    <!--    <el-button type="primary" @click.stop="addNonRoutineMatters">-->
+    <!--      添加非例行事项-->
+    <!--    </el-button>-->
+    <!--  </span>-->
+    <!--  </template>-->
+    <!--</el-dialog>-->
 
     <el-card class="h-1/2">
       <template #header>

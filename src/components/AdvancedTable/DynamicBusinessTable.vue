@@ -24,7 +24,9 @@ const emits = defineEmits<{
 
 defineExpose({
   clearSelection,
-  getSelectionRows
+  getSelectionRows,
+  refreshComplete,
+  refresh
 })
 
 // 操作列表
@@ -97,6 +99,7 @@ const availableOperations = reactive<Operation[]>(computeOperations())
  * @param val 当前页
  */
 function pageChange(val: number) {
+  refresh()
   pagination.currentPage = val
   emits('pageChange', toRaw<Pagination>(pagination))
 }
@@ -106,6 +109,7 @@ function pageChange(val: number) {
  * @param val 每页条数
  */
 function sizeChange(val: number) {
+  refresh()
   pagination.pageSize = val
   emits('pageChange', toRaw<Pagination>(pagination))
 }
@@ -168,7 +172,7 @@ function computeFields() {
       return {
         prop: item.prop,
         label: item.label,
-        display: true,
+        display: item.defaultDisplay ?? true,
         disabled: false
       }
     })
@@ -197,13 +201,12 @@ function isUnique(_: any) {
 /**
  * 刷新数据
  */
-function refresh() {
+function refresh(trigger: boolean = false) {
   loading.value = true
   clearSelection()
-  emits('refresh')
-  setTimeout(() => {
-    loading.value = false
-  }, 3000)
+  if (trigger) {
+    emits('refresh')
+  }
 }
 
 /**
@@ -214,13 +217,13 @@ function refresh() {
 function operation(event: OperationEvent, row: any) {
   switch (event) {
     case "Edit":
-      emits('rowEdit', row)
+      emits('rowEdit', toRaw(row))
       break
     case "Delete":
-      emits('rowDelete', row)
+      emits('rowDelete', toRaw(row))
       break
     case "Details":
-      emits('rowDetails', row)
+      emits('rowDetails', toRaw(row))
       break
   }
 }
@@ -243,6 +246,15 @@ function clearSelection() {
 }
 
 /**
+ * 刷新完成
+ */
+function refreshComplete() {
+  setTimeout(() => {
+    loading.value = false
+  }, 500)
+}
+
+/**
  * 获取选择行数据
  */
 function getSelectionRows() {
@@ -259,36 +271,35 @@ function getSelectionRows() {
       <div class="h-12 border-x border-t border-gray-2 flex flex-none">
         <div class="flex-auto px-2 flex items-center">
           <el-tooltip content="刷新">
-            <el-button type="primary" @click.stop="refresh">
-              <div v-show="loading === true" i-svg-spinners-6-dots-scale-middle text-lg/>
-              <div v-show="loading === false" i-ep-refresh text-lg/>
+            <el-button type="primary" @click.stop="refresh(true)">
+              <div v-show="loading" i-svg-spinners-6-dots-scale-middle text-lg/>
+              <div v-show="!loading" i-ep-refresh text-lg/>
             </el-button>
           </el-tooltip>
           <slot></slot>
         </div>
-        <div class="flex-auto px-2 flex items-center justify-end">
-          <el-button-group>
+        <div class="flex-auto px-2 gap-2 flex items-center justify-end">
+          <slot name="head-right"></slot>
+          <el-dropdown :hide-on-click="false">
             <el-button type="primary">
-              <el-dropdown :hide-on-click="false">
-                <div i-ep-grid text-lg text-white/>
-                <template #dropdown>
-                  <el-dropdown-menu>
-                    <el-dropdown-item v-for="(item,index) in availableFields" :key="index">
-                      <el-checkbox :label="item.label"
-                                   @change="isUnique"
-                                   v-model="item.display"
-                                   :disabled="item.disabled"/>
-                    </el-dropdown-item>
-                  </el-dropdown-menu>
-                </template>
-              </el-dropdown>
+              <div i-ep-grid text-lg text-white/>
             </el-button>
-            <el-tooltip content="展开多添加查询">
-              <el-button type="primary" v-if="isSearch" @click.stop="toggleSearch">
-                <div i-ep-search text-lg/>
-              </el-button>
-            </el-tooltip>
-          </el-button-group>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item v-for="(item,index) in availableFields" :key="index">
+                  <el-checkbox :label="item.label"
+                               @change="isUnique"
+                               v-model="item.display"
+                               :disabled="item.disabled"/>
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+          <el-tooltip v-if="isSearch" content="展开多添加查询">
+            <el-button type="primary" @click.stop="toggleSearch">
+              <div i-ep-search text-lg/>
+            </el-button>
+          </el-tooltip>
         </div>
       </div>
       <vex-spin :active="loading" mask-color="LightGray" class="flex-initial h-14/15 flex flex-col">
@@ -331,6 +342,8 @@ function getSelectionRows() {
                      layout="sizes, total"
                      :total="props.total"/>
       <el-pagination background layout="prev, pager, next, jumper"
+                     :page-sizes="pageSizes"
+                     :default-page-size="props.defaultPageSize"
                      @update:current-page="pageChange"
                      :total="props.total"
                      :current-page="pagination.currentPage"/>

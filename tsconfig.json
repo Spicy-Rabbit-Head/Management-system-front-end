@@ -36,7 +36,8 @@
     "types": [
       "unplugin-icons/types/vue",
       "vite/client",
-      "element-plus/global"
+      "element-plus/global",
+      "vexip-ui/types"
     ],
     "forceConsistentCasingInFileNames": true
   },

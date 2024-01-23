@@ -9,8 +9,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    BusinessTable: typeof import('@/components/AdvancedTable/dynamic-business-table.vue')['default']
-    DynamicBusinessTable: typeof import('./../components/AdvancedTable/dynamic-business-table.vue')['default']
+    BusinessTable: typeof import('../components/AdvancedTable/DynamicBusinessTable.vue')['default']
+    DynamicBusinessTable: typeof import('./../components/AdvancedTable/DynamicBusinessTable.vue')['default']
     DynamicMenu: typeof import('./../components/DynamicMenu.vue')['default']
     DynamicTableColumn: typeof import('./../components/AdvancedTable/dynamic-table-column.vue')['default']
     DynamicTag: typeof import('./../components/DynamicTag.vue')['default']
@@ -50,6 +50,7 @@ declare module '@vue/runtime-core' {
     ElTimeline: typeof import('element-plus/es')['ElTimeline']
     ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
+    ExhibitDialog: typeof import('./../components/ExhibitDialog/ExhibitDialog.vue')['default']
     FormDrawer: typeof import('./../components/FormDrawer.vue')['default']
     FullScreenLoading: typeof import('./../components/FullScreenLoading.vue')['default']
     FullScreenMode: typeof import('./../components/FullScreenMode.vue')['default']

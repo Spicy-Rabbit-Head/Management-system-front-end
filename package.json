@@ -14,15 +14,16 @@
     "@types/node": "^20.2.4",
     "@vueuse/core": "^10.1.2",
     "axios": "1.6.5",
-    "element-plus": "^2.2.31",
+    "element-plus": "^2.5.2",
     "pinia": "^2.1.3",
     "v-calendar": "^3.1.2",
-    "vexip-ui": "^2.2.23",
+    "vexip-ui": "^2.3.1",
     "vue": "^3.4.6",
     "vue-i18n": "^9.4.1",
     "vue-pdf-embed": "^1.1.6",
     "vue-router": "^4.2.5",
-    "vue-typical": "^2.1.0"
+    "vue-typical": "^2.1.0",
+    "vest" : "^5.2.7"
   },
   "devDependencies": {
     "vite-plugin-full-reload": "^1.1.0",

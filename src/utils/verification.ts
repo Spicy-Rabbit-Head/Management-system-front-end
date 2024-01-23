@@ -14,29 +14,29 @@ const {userForm} = useUser()
  * @since 2023-10-17 15:59
  */
 export function verificationUserForm(mode: boolean): void {
-    let from = userForm
-    if (isEmpty(from.username) || isEmpty(from.password)) {
-        showNotification('错误',"用户名或密码不能为空");
-        return;
-    } else if (matches(from.username, /\s/) || matches(from.password, /\s/)) {
-        showNotification('错误',"用户名或密码不能有空格");
-        return;
-    } else if (notMatches(from.username, /^[a-zA-Z0-9]+$/) || notMatches(from.password, /^[a-zA-Z0-9]+$/)) {
-        showNotification('错误',"用户名或密码不能有特殊字符");
-        return;
+  let from = userForm
+  if (isEmpty(from.username) || isEmpty(from.password)) {
+    showNotification('错误', "用户名或密码不能为空");
+    return;
+  } else if (matches(from.username, /\s/) || matches(from.password, /\s/)) {
+    showNotification('错误', "用户名或密码不能有空格");
+    return;
+  } else if (notMatches(from.username, /^[a-zA-Z0-9]+$/) || notMatches(from.password, /^[a-zA-Z0-9]+$/)) {
+    showNotification('错误', "用户名或密码不能有特殊字符");
+    return;
+  }
+  if (mode) {
+    if (notEquals(from.repeatPassword, from.password)) {
+      showNotification('错误', "密码校验不相等");
+      return;
     }
-    if (mode) {
-        if (notEquals(from.repeatPassword, from.password)) {
-            showNotification('错误',"密码校验不相等");
-            return;
-        }
-        console.log("注册验证通过")
-        register();
-        return;
-    }
-    console.log("登录验证通过")
-    FullScreenLoadingRun();
-    login()
+    console.log("注册验证通过")
+    register();
+    return;
+  }
+  console.log("登录验证通过")
+  FullScreenLoadingRun();
+  login()
 }
 
 type Nullish<T = void> = Nullable<T> | Maybe<T>;
@@ -53,7 +53,7 @@ type Maybe<T> = T | undefined | void;
  * @since 2023-10-17 10:37
  */
 function bindNot<T extends (...args: any[]) => unknown>(fn: T) {
-    return (...args: Parameters<T>): boolean => !fn(...args)
+  return (...args: Parameters<T>): boolean => !fn(...args)
 }
 
 /**
@@ -65,7 +65,7 @@ function bindNot<T extends (...args: any[]) => unknown>(fn: T) {
  * @since 2023-10-17 10:44
  */
 function hasOwnProperty<T>(obj: T, key: string | number | symbol): key is keyof T {
-    return Object.prototype.hasOwnProperty.call(obj, key)
+  return Object.prototype.hasOwnProperty.call(obj, key)
 }
 
 /**
@@ -76,7 +76,7 @@ function hasOwnProperty<T>(obj: T, key: string | number | symbol): key is keyof 
  * @since 2023-10-17 11:12
  */
 function isObject(value: any): value is Record<any, any> {
-    return typeof value === 'object' && !isNullAndUndefined(value);
+  return typeof value === 'object' && !isNullAndUndefined(value);
 }
 
 /**
@@ -87,7 +87,7 @@ function isObject(value: any): value is Record<any, any> {
  * @since 2023-10-17 11:21
  */
 export function isNull(value: unknown): value is null {
-    return value === null;
+  return value === null;
 }
 
 /**
@@ -98,7 +98,7 @@ export function isNull(value: unknown): value is null {
  * @since 2023-10-17 11:22
  */
 function isUndefined(value?: unknown): value is undefined {
-    return value === undefined;
+  return value === undefined;
 }
 
 /**
@@ -109,7 +109,7 @@ function isUndefined(value?: unknown): value is undefined {
  * @since 2023-10-17 11:27
  */
 export function isNullAndUndefined(value: any): value is Nullish {
-    return isNull(value) || isUndefined(value);
+  return isNull(value) || isUndefined(value);
 }
 
 /**
@@ -120,7 +120,7 @@ export function isNullAndUndefined(value: any): value is Nullish {
  * @since 2023-10-17 10:27
  */
 function isNaN(value: unknown): boolean {
-    return Number.isNaN(value);
+  return Number.isNaN(value);
 }
 
 /**
@@ -131,9 +131,9 @@ function isNaN(value: unknown): boolean {
  * @since 2023-10-17 10:50
  */
 export function isNumeric(value: string | number): boolean {
-    let str = String(value);
-    let num = Number(value);
-    return Boolean(!isNaN(parseFloat(str)) && !isNaN(Number(value)) && isFinite(num))
+  let str = String(value);
+  let num = Number(value);
+  return Boolean(!isNaN(parseFloat(str)) && !isNaN(Number(value)) && isFinite(num))
 }
 
 /**
@@ -145,7 +145,7 @@ export function isNumeric(value: string | number): boolean {
  * @since 2023-10-17 11:07
  */
 function numberEquals(value: string | number, eq: string | number): boolean {
-    return isNumeric(value) && isNumeric(eq) && Number(value) === Number(eq)
+  return isNumeric(value) && isNumeric(eq) && Number(value) === Number(eq)
 }
 
 /**
@@ -157,7 +157,7 @@ function numberEquals(value: string | number, eq: string | number): boolean {
  * @since 2023-10-17 10:45
  */
 function lengthEquals(value: string | unknown[], arg: string | number): boolean {
-    return numberEquals(value.length, arg);
+  return numberEquals(value.length, arg);
 }
 
 /**
@@ -168,7 +168,7 @@ function lengthEquals(value: string | unknown[], arg: string | number): boolean 
  * @since 2023-10-17 15:44
  */
 function isString(value: unknown): value is string {
-    return String(value) === value;
+  return String(value) === value;
 }
 
 /**
@@ -179,14 +179,14 @@ function isString(value: unknown): value is string {
  * @since 2023-10-17 15:37
  */
 export function isEmpty(value: unknown): boolean {
-    if (!value) {
-        return true
-    } else if (hasOwnProperty(value, 'length')) {
-        return lengthEquals(value as string | unknown[], 0);
-    } else if (isObject(value)) {
-        return lengthEquals(Object.keys(value as Record<string, unknown>), 0);
-    }
-    return false
+  if (!value) {
+    return true
+  } else if (hasOwnProperty(value, 'length')) {
+    return lengthEquals(value as string | unknown[], 0);
+  } else if (isObject(value)) {
+    return lengthEquals(Object.keys(value as Record<string, unknown>), 0);
+  }
+  return false
 }
 
 /**
@@ -207,12 +207,12 @@ export const isNotEmpty = bindNot(isEmpty);
  * @since 2023-10-17 15:46
  */
 export function matches(value: string, regex: RegExp | string): boolean {
-    if (regex instanceof RegExp) {
-        return regex.test(value);
-    } else if (isString(regex)) {
-        return new RegExp(regex).test(value);
-    }
-    return false;
+  if (regex instanceof RegExp) {
+    return regex.test(value);
+  } else if (isString(regex)) {
+    return new RegExp(regex).test(value);
+  }
+  return false;
 }
 
 /**
@@ -234,7 +234,7 @@ export const notMatches = bindNot(matches);
  * @since 2023-10-17 15:48
  */
 export function equals(value: unknown, arg: unknown): boolean {
-    return value === arg;
+  return value === arg;
 }
 
 /**

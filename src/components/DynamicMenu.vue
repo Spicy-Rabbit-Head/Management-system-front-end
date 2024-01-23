@@ -1,6 +1,6 @@
 <template>
   <!-- 动态菜单 -->
-  <vex-menu :reduced="menuStatus" transfer marker-type="left" @select="select" active="Home">
+  <vex-menu :reduced="menuStatus" transfer marker-type="left" @select="select" :active="active">
     <!-- 分组 -->
     <vex-menu-group v-for="(item1) in menuOptions" :label="item1.groupName" :key="item1.groupName">
       <!-- 一级菜单 -->
@@ -26,14 +26,19 @@
 </template>
 
 <script setup lang="ts">
-import {Menu as VexMenu, MenuGroup as VexMenuGroup, MenuItem as VexMenuItem} from "vexip-ui";
-import {useMenu} from "@/hooks/useMenu.ts";
+import { Menu as VexMenu, MenuGroup as VexMenuGroup, MenuItem as VexMenuItem } from "vexip-ui";
+import { useMenu } from "@/hooks/useMenu.ts";
+import { computed } from 'vue'
 
 const {
   menuStatus,
   menuOptions,
   select,
 } = useMenu();
+
+const active = computed(() => {
+  return localStorage.getItem('router') ?? 'Home'
+})
 
 </script>
 
