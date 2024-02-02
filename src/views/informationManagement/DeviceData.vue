@@ -1,74 +1,16 @@
 <script setup lang="ts">
-import { ref, onMounted, reactive, watch, computed } from "vue";
-import { TableField } from "@/config/tableConfig.ts";
+import { computed, onMounted, reactive, ref } from "vue";
 import { DeviceData } from "@/types/informationManagement.ts";
 import { GetDeviceData } from "@/api/informationManagement.ts";
+import { DynamicBusinessTable, Field, Pagination } from "@/components/AdvancedTable";
 
-const tableField: Array<TableField> = [
-  {
-    label: '设备名称',
-    field: 'deviceName',
-  },
-  {
-    label: '设备型号',
-    field: 'deviceModel',
-  },
-  {
-    label: '制作厂商',
-    field: 'manufacturer',
-  },
-  {
-    label: '车间',
-    field: 'workshop',
-  },
-  {
-    label: '站别',
-    field: 'station',
-  },
-  {
-    label: '位置',
-    field: 'location',
-  },
-  {
-    label: '设备状态',
-    field: 'deviceStatus',
-  },
-  {
-    label: '是否有效',
-    field: 'isValid',
-  },
-  {
-    label: '保养规则名',
-    field: 'ruleName',
-  },
-  {
-    label: '启用日期',
-    field: 'enableDate',
-  },
-  {
-    label: '保养基准文号',
-    field: 'benchmarkDocumentNumber',
-  },
-  {
-    label: 'OIS文号',
-    field: 'oisDocumentNumber',
-  },
-  {
-    label: '每日设备巡检基准',
-    field: 'deviceInspectionBenchmark',
-  },
-  {
-    label: '变更日期',
-    field: 'changeDate',
-  }
-]
-// 表格数据
-const data = reactive<Array<DeviceData>>([])
-
+const deviceDataTableRef = ref<InstanceType<typeof DynamicBusinessTable> | null>(null)
 // 当前页
 const currentPage = ref<number>(1)
 // 每页显示条数
-const pageSize = ref<number>(20)
+const pageSize = ref<number>(15)
+// 表格数据
+const data = reactive<Array<DeviceData>>([])
 // 计算偏移量
 const offset = computed(() => {
   return (currentPage.value - 1) * pageSize.value
@@ -82,46 +24,94 @@ const total = computed(() => {
 })
 
 // 更新表格数据
-function updateTableData() {
+function getTableData() {
   GetDeviceData(offset.value, pageSize.value).then(response => {
     data.length = 0
     data.push(...response.data)
-    console.log(response)
+    deviceDataTableRef.value?.refreshComplete()
   })
 }
 
-watch([currentPage, pageSize], () => {
-  updateTableData()
-})
+function pageChange(payload: Pagination) {
+  currentPage.value = payload.currentPage
+  pageSize.value = payload.pageSize
+  getTableData()
+}
 
-// 挂载完成时
 onMounted(() => {
-  updateTableData()
+  getTableData()
 })
+const field = reactive<Field[]>([
+  {
+    label: '设备名称',
+    prop: 'deviceNumber',
+    defaultDisplay: true,
+  },
+  {
+    label: '设备型号',
+    prop: 'deviceModel',
+  },
+  {
+    label: '制作厂商',
+    prop: 'manufacturer',
+  },
+  {
+    label: '车间',
+    prop: 'workshop',
+  },
+  {
+    label: '站别',
+    prop: 'station',
+  },
+  {
+    label: '位置',
+    prop: 'location',
+  },
+  {
+    label: '设备状态',
+    prop: 'deviceStatus',
+  },
+  {
+    label: '是否有效',
+    prop: 'isValid',
+  },
+  {
+    label: '保养规则名',
+    prop: 'ruleName',
+  },
+  {
+    label: '启用日期',
+    prop: 'enableDate',
+  },
+  {
+    label: '保养基准文号',
+    prop: 'benchmarkDocumentNumber',
+  },
+  {
+    label: 'OIS文号',
+    prop: 'oisDocumentNumber',
+  },
+  {
+    label: '每日设备巡检基准',
+    prop: 'deviceInspectionBenchmark',
+  },
+  {
+    label: '变更日期',
+    prop: 'changeDate',
+  }
+])
 
 </script>
 
 <template>
-  <div class="h-1/12 flex items-center px-4">
-    <el-input class="!w-[160px]" placeholder="输入编号"></el-input>
-  </div>
-  <div class="h-10/12">
-    <el-table height="100%" ref="scheduleTableReferences" size="large" :data="data">
-      <el-table-column sortable align="center" type="selection"/>
-      <el-table-column fixed align="center" prop="deviceNumber" label="设备编号" width="200"/>
-      <el-table-column v-for="(item,index) in tableField" :key="index"
-                       align="center" :prop="item.field" :label="item.label" width="200"/>
-    </el-table>
-  </div>
-  <div class="h-1/12 flex justify-center bg-white">
-    <el-pagination
-        background
-        v-model:current-page="currentPage"
-        v-model:page-size="pageSize"
-        :page-sizes="[20, 40, 80, 160]"
-        layout="total,sizes,prev, pager, next, jumper"
-        :total="total"/>
-  </div>
+  <dynamic-business-table
+      ref="deviceDataTableRef"
+      :table-data="data"
+      :fields="field"
+      :total="total"
+      @refresh="getTableData"
+      @page-change="pageChange">
+  </dynamic-business-table>
 </template>
 
 <style scoped>

@@ -90,4 +90,5 @@
     <tree path="/src/api/informationManagement.ts" title="资料管理"/>
     <tree path="/src/container" title="容器"/>
     <tree path="/src/container/maintenanceSchedule" title="保养排程"/>
+    <tree path="/src/views/maintenanceExecution" title="保养执行"/>
 </trees>
