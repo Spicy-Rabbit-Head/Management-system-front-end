@@ -6,12 +6,26 @@ import { Pagination, FieldDisplay, OperationEvent, BusinessTableProps, Operation
 
 defineOptions({name: 'DynamicBusinessTable'})
 
+const slots = defineSlots<{
+  default(): any
+  search(): any
+  'head-right'(): any
+  operation(): any
+  forefront(): any
+  last(): any
+}>()
+
 const props = withDefaults(defineProps<BusinessTableProps>(), {
   defaultPageSize: 15,
+  total: 0,
   isSearch: true,
   isOperation: true,
+  isDisabledOperation: false,
   isFuzzySearch: true,
+  isRefresh: true,
   operations: () => ['Details', 'Edit', 'Delete'],
+  isPagination: true,
+  isMultipleSelection: true,
 })
 
 const emits = defineEmits<{
@@ -48,7 +62,7 @@ const operationsList: Operation[] = [
     event: 'Delete',
     icon: 'i-ep-delete',
     type: 'danger'
-  }
+  },
 ]
 
 // 分页
@@ -85,7 +99,13 @@ const isOperation = computed(() => {
 
 // 搜索栏高度
 const dynamicHeight = computed(() => {
-  return isSearchShow.value ? ["h-2/12 border-t", "h-9/12"] : ["h-0", "h-11/12"]
+  return isSearchShow.value ? ["h-2/12 border-t", props.isPagination ? "h-9/12" : "h-10/12"]
+      : ["h-0", props.isPagination ? "h-11/12" : "h-full"]
+});
+
+// 操作宽度
+const operationWidth = computed(() => {
+  return slots.operation ? (slots.operation().length + availableOperations.length) * 85 : availableOperations.length * 85
 });
 
 // 可用字段
@@ -128,6 +148,7 @@ function toggleSearch() {
  */
 function computeOperations() {
   const arr: Operation[] = []
+  if (props.isDisabledOperation) return []
   if (props.operations && props.operations.length > 0) {
     const operations = operationsList.map(item => item.event)
     // 取交集
@@ -270,7 +291,7 @@ function getSelectionRows() {
     <div flex-initial transition-all :class="dynamicHeight[1]">
       <div class="h-12 border-x border-t border-gray-2 flex flex-none">
         <div class="flex-auto px-2 flex items-center">
-          <el-tooltip content="刷新">
+          <el-tooltip content="刷新" v-if="isRefresh">
             <el-button type="primary" @click.stop="refresh(true)">
               <div v-show="loading" i-svg-spinners-6-dots-scale-middle text-lg/>
               <div v-show="!loading" i-ep-refresh text-lg/>
@@ -302,27 +323,32 @@ function getSelectionRows() {
           </el-tooltip>
         </div>
       </div>
-      <vex-spin :active="loading" mask-color="LightGray" class="flex-initial h-14/15 flex flex-col">
+      <vex-spin :active="loading" mask-color="LightGray"
+                style="height: calc(100% - 3rem);"
+                class="shrink flex flex-col">
         <template #icon>
           <div i-svg-spinners-blocks-wave text-25/>
         </template>
         <template #tip>
           <p class="text-15">加载中...</p>
         </template>
-        <el-table ref="tableRef" :data="tableData" border size="large" @selection-change="selectionChange">
-          <el-table-column fixed="left" type="selection" width="50" align="center"/>
+        <el-table ref="tableRef" :data="tableData" style="height: 100%" border size="large" table-layout="auto"
+                  @selection-change="selectionChange">
+          <el-table-column v-if="props.isMultipleSelection" fixed="left" type="selection" width="50" align="center"/>
+          <slot name="forefront"/>
           <template v-for="item in availableFields"
                     :key="item.prop">
             <el-table-column v-if="item.display"
-                             min-width="150"
+                             min-width="150px"
                              align="center"
                              :prop="item.prop"
                              :label="item.label"/>
           </template>
+          <slot name="last"/>
           <el-table-column v-if="isOperation"
                            fixed="right"
                            label="操作"
-                           width="220"
+                           :width="operationWidth"
                            align="center">
             <template #default="scope">
               <el-tooltip v-for="item in availableOperations" :content="item.label">
@@ -330,12 +356,13 @@ function getSelectionRows() {
                   <div text-lg :class="item.icon"/>
                 </el-button>
               </el-tooltip>
+              <slot name="operation" :row="scope.row"/>
             </template>
           </el-table-column>
         </el-table>
       </vex-spin>
     </div>
-    <div flex-none class="h-1/12 flex items-center justify-between">
+    <div flex-none class="h-1/12 flex items-center justify-between" v-if="props.isPagination">
       <el-pagination :page-sizes="pageSizes"
                      @size-change="sizeChange"
                      :default-page-size="props.defaultPageSize"
