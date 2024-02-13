@@ -35,7 +35,7 @@ const form = defineModel('form', {type: Object})
     <el-form :model="form" label-width="120px" label-position="top" :disabled="disabled">
       <el-form-item v-for="item in props.formStructure" :label="item.label" :key="item.label">
         <component v-if="item.component !== 'select'" :is="`el-${item.component}`"
-                   v-model="form[item.prop]" placeholder="请输入"></component>
+                   v-model="form[item.prop]" placeholder="请输入" :disabled="item.readonly"></component>
         <el-select v-else v-model="form[item.prop]" :multiple="item.multiple">
           <el-option v-for="op in item.options"
                      :key="op.label"
